@@ -21,6 +21,7 @@ class CFET {
 
         void parse_input(std::istream& stream);
         void tr_pairing();
+        void new_tr_pairing();
         void folding_shape_generation();
         void placement_single_row();
         void placement_single_row_search_tree();
@@ -118,6 +119,7 @@ class CFET {
                 int num_finger;
 
                 std::vector<Shape*> es;
+                std::vector<Transistor*> neighbors;
                 
 
         };

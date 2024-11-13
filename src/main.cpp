@@ -39,23 +39,16 @@ int main(int argc, char* argv[]) {
         {"max_cfet_width", 81.0},
         {"diffusion_break_constraint", 1},
         {"max_placement_size", 100000},
-        {"max_allowable_cell_height", 2},
+        {"max_allowable_cell_height", 1},
         {"relaxation_parameter", 0}
     };
     CFET solver(design_rule);
     solver.parse_input(fin);
-    solver.tr_pairing();
+    // solver.tr_pairing();
+    solver.new_tr_pairing();
     solver.folding_shape_generation();
-    // solver.custom_pairing();
-    // solver.test_ds();
-    // solver.placement_single_row();
-    std::cout << "hello world" << std::endl;
     // solver.placement_single_row_search_tree();
     solver.placement_multi_row_search_tree();
-    // solver.test_nmos();
-    // solver.test();
-
-    // solver.print_layout(fout);
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;

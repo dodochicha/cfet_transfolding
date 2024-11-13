@@ -202,10 +202,15 @@ CFET::Pshape* CFET::merge(Pshape* old_pshape, Lambda* new_lamb, Transistor* nmos
                     pshape->width = width + 1;
                 }
             }
+            if (i == total_height - 1) {
+                if (new_tr_shape_up[i][j] != 2 || new_tr_shape_down[i][j] != 2) {
+                    pshape->top_width = j + 1;
+                }
+            }
         }
         if (width != -1) {
-            // new_multirow_area = new_multirow_area + width + 1 + 2;
-            new_multirow_area = new_multirow_area + width + 1;
+            new_multirow_area = new_multirow_area + width + 1 + 2;
+            // new_multirow_area = new_multirow_area + width + 1;
         }
     }
     pshape->multirow_tr_shape_up = new_tr_shape_up;

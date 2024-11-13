@@ -544,11 +544,11 @@ void CFET::placement_multi_row_search_tree() {
     for (Transistor* p: pmos) {
         Transistor* n = tr_pairs[p];
         p->num_finger = (p->width-0.1) / max_cfet_width + 1;
-        std::cout << p->name << " num_finger: " << p->num_finger << std::endl;
-        std::cout << p->drain->name << " " << p->gate->name << " " << p->source->name << std::endl;
+        // std::cout << p->name << " num_finger: " << p->num_finger << std::endl;
+        // std::cout << p->drain->name << " " << p->gate->name << " " << p->source->name << std::endl;
         n->num_finger = (n->width-0.1) / max_cfet_width + 1;
-        std::cout << n->name << " num_finger: " << n->num_finger << std::endl;
-        std::cout << n->drain->name << " " << n->gate->name << " " << n->source->name << std::endl;
+        // std::cout << n->name << " num_finger: " << n->num_finger << std::endl;
+        // std::cout << n->drain->name << " " << n->gate->name << " " << n->source->name << std::endl;
     }
     // for (Transistor* n: nmos) {
     //     n->num_finger = (n->width-0.1) / max_cfet_width + 1;
@@ -628,13 +628,13 @@ void CFET::placement_multi_row_search_tree() {
                         }
                     }
                 }
-                // if (row == lamb->config_up.size() - 1) {
-                //     for (int col  = 0; col < lamb->config_up[row].size(); col++) {
-                //         if (lamb->config_up[row][col] != 2 || lamb->config_down[row][col] != 2) {
-                //             pshape->top_width = col + 1;
-                //         }
-                //     }
-                // }
+                if (row == lamb->config_up.size() - 1) {
+                    for (int col  = 0; col < lamb->config_up[row].size(); col++) {
+                        if (lamb->config_up[row][col] != 2 || lamb->config_down[row][col] != 2) {
+                            pshape->top_width = col + 1;
+                        }
+                    }
+                }
             }
             // std::cout << "pshape->width: " << pshape->width << std::endl;
             pshape->multirow_macro_area = (pshape->width + 2) * pshape->height;
@@ -809,7 +809,8 @@ void CFET::placement_multi_row_search_tree() {
                                     // std::cout << "row/col: " << row << " " << col << std::endl;
                                     Pshape* pshape = merge(old_pshape, lamb, tr_pairs[current_tr], current_tr, row, col);
                                     // cut by low_bound
-                                    low_bound = pshape->multirow_area + tr_left_sum;
+                                    // low_bound = pshape->multirow_area + tr_left_sum;
+                                    low_bound = std::max(pshape->top_width + 2 + tr_left_sum, pshape->width + 2) * pshape->height;
                                     
                                     // std::cout << "low_bound: " << low_bound << std::endl;
                                     // std::cout << "min_cell_area: " << min_cell_area << std::endl;
