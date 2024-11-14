@@ -48,7 +48,8 @@ int main(int argc, char* argv[]) {
     solver.new_tr_pairing();
     solver.folding_shape_generation();
     // solver.placement_single_row_search_tree();
-    solver.placement_multi_row_search_tree();
+    solver.new_placement_multi_row_search_tree();
+    // solver.placement_multi_row_search_tree_bottom_up();
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;

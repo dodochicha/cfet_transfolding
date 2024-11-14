@@ -209,8 +209,8 @@ CFET::Pshape* CFET::merge(Pshape* old_pshape, Lambda* new_lamb, Transistor* nmos
             }
         }
         if (width != -1) {
-            new_multirow_area = new_multirow_area + width + 1 + 2;
-            // new_multirow_area = new_multirow_area + width + 1;
+            // new_multirow_area = new_multirow_area + width + 1 + 2;
+            new_multirow_area = new_multirow_area + width + 1;
         }
     }
     pshape->multirow_tr_shape_up = new_tr_shape_up;
@@ -220,10 +220,10 @@ CFET::Pshape* CFET::merge(Pshape* old_pshape, Lambda* new_lamb, Transistor* nmos
     pshape->most_right_idx = new_most_right_idx;
     pshape->height = new_height;
     pshape->multirow_area = new_multirow_area;
-    pshape->multirow_macro_area = (pshape->width + 2) * pshape->height;
-    // pshape->multirow_macro_area = (pshape->width) * pshape->height;
+    // pshape->multirow_macro_area = (pshape->width + 2) * pshape->height;
+    pshape->multirow_macro_area = (pshape->width) * pshape->height;
     if (pshape->height <= max_allowable_cell_height) {
-        // std::cout << "merged:" << std::endl;
+        // std::cout << "merged: macro area = " << pshape->multirow_macro_area << " top_width: " << pshape->top_width << std::endl;
         // for (int r = 0; r < pshape->multirow_tr_shape_up.size(); r++) {
         //     for (int c = 0; c < pshape->multirow_tr_shape_up[r].size(); c++) {
         //         std::cout << pshape->multirow_tr_shape_up[r][c];

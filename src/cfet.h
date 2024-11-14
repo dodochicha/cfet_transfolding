@@ -24,8 +24,8 @@ class CFET {
         void new_tr_pairing();
         void folding_shape_generation();
         void placement_single_row();
-        void placement_single_row_search_tree();
-        void placement_multi_row_search_tree();
+        void new_placement_multi_row_search_tree();
+        void placement_multi_row_search_tree_bottom_up();
         void print_layout(std::ostream& stream);
         void custom_pairing();
 

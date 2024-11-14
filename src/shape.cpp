@@ -78,7 +78,9 @@ std::vector<CFET::Shape*> CFET::finger_slot_configuration(int finger) {
     int row = 2; // finger slot has maximum height 2
     int column = finger;
     int num_finger = finger;
-
+    if (finger == 0) {
+        return std::vector<Shape*>();
+    }
     if (finger == 1) {
         std::string key = "e_1_1_1";
         std::vector<std::vector<bool>> _es;
@@ -489,8 +491,11 @@ void CFET::folding_shape_generation() {
             phi[n].insert(std::make_pair(shape, lambdas));
         }
             // grnerate lambda n x p
+        if (p->num_finger == 0 || n->num_finger == 0) {
 
-        if (p->num_finger > n->num_finger) {
+        }
+        else if (p->num_finger > n->num_finger) {
+            // n x p
             for (auto p_shape: p->es) {
                 for (auto n_shape: n->es) {
                     std::vector<std::vector<bool>> stack_feasible = stack_feasibility(p_shape, n_shape);

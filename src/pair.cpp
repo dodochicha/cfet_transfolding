@@ -182,7 +182,8 @@ void CFET::new_tr_pairing() {
     // find neighbors of transistors
     for (auto tr: trs) {
         for (auto tr2: trs) {
-            if (tr->source == tr2->drain || tr->drain == tr2->source) {
+            if (tr->source == tr2->drain && tr->source->name != "VDD" && tr->source->name != "VSS" || 
+                tr->drain == tr2->source && tr2->source->name != "VDD" && tr2->source->name != "VSS") {
                 if (tr != tr2) {
                     tr->neighbors.push_back(tr2);
                 }
@@ -261,23 +262,30 @@ void CFET::new_tr_pairing() {
             compound_gates.push_back(group);
         }
     }
-    // for (auto group: compound_gates) {
-    //     std::cout << std::endl;
-    //     for (auto tr: group) {
-    //         std::cout << tr->name << std::endl;
-    //     }
-    // }
-    // std::cout << std::endl;
-    // for (auto group: transmission_gates) {
-    //     std::cout << std::endl;
-    //     for (auto tr: group) {
-    //         std::cout << tr->name << std::endl;
-    //     }
-    // }
-    // pair for each group
+    std::cout << "compound_gates: " << std::endl;
+    for (auto group: compound_gates) {
+        std::cout << std::endl;
+        for (auto tr: group) {
+            std::cout << tr->name << std::endl;
+        }
+    }
     std::cout << std::endl;
+    std::cout << "transmission_gates: " << std::endl;
+    for (auto group: transmission_gates) {
+        std::cout << std::endl;
+        for (auto tr: group) {
+            std::cout << tr->name << std::endl;
+        }
+    }
+    // pair for each group
+    // std::cout << std::endl;
+    std::vector<Transistor*> _pmos;
+    std::vector<Transistor*> _nmos;
+    _pmos = pmos;
+    _nmos = nmos;
     for (auto group: compound_gates) {
         // find p-network and n-network
+        // std::cout << "find p-network and n-network" << std::endl;
         std::vector<Transistor*> p_network;
         std::vector<Transistor*> n_network;
         std::unordered_map<Transistor*, bool> mos_visited_in_group;
@@ -288,20 +296,23 @@ void CFET::new_tr_pairing() {
             for (auto tr: group) {
                 mos_visited_in_group[tr] = true;
             }
-    }
+        }
         for (auto tr: group) {
             std::queue<Transistor*> q;
             if (tr->type == MosType::PMOS) {
                 if (mos_visited_in_group[tr] == false) {
+                    // std::cout << tr->name << " pmos" << std::endl;
                     q.push(tr);
                     mos_visited_in_group[tr] = true;
                     p_network.push_back(tr);
-                    while (q.size() !=  0) {
+                    while (!q.empty()) {
                         Transistor* current_tr = q.front();
+                        // std::cout << "current_tr(pmos): " << current_tr->name << std::endl;
                         for (auto neighbor_tr: current_tr->neighbors) {
-                            if (mos_visited_in_group[neighbor_tr] == false) {
+                            if (mos_visited_in_group[neighbor_tr] == false && neighbor_tr->type == MosType::PMOS) {
                                 q.push(neighbor_tr);
                                 mos_visited_in_group[neighbor_tr] = true;
+                                // std::cout << "push back: " << neighbor_tr->name << std::endl;
                                 p_network.push_back(neighbor_tr);
                             }
                         }
@@ -311,15 +322,18 @@ void CFET::new_tr_pairing() {
             }
             else {
                 if (mos_visited_in_group[tr] == false) {
+                    // std::cout << tr->name << " nmos" << std::endl;
                     q.push(tr);
                     mos_visited_in_group[tr] = true;
                     n_network.push_back(tr);
-                    while (q.size() !=  0) {
+                    while (!q.empty()) {
                         Transistor* current_tr = q.front();
+                        // std::cout << "current_tr(nmos): " << current_tr->name << std::endl;
                         for (auto neighbor_tr: current_tr->neighbors) {
-                            if (mos_visited_in_group[neighbor_tr] == false) {
+                            if (mos_visited_in_group[neighbor_tr] == false && neighbor_tr->type == MosType::NMOS) {
                                 q.push(neighbor_tr);
                                 mos_visited_in_group[neighbor_tr] = true;
+                                // std::cout << "push back: " << neighbor_tr->name << std::endl;
                                 n_network.push_back(neighbor_tr);
                             }
                         }
@@ -328,15 +342,15 @@ void CFET::new_tr_pairing() {
                 }
             }
         }
-        // std::cout << "p-network: " << std::endl;
-        // for (auto tr_p: p_network) {
-        //     std::cout << tr_p->name << std::endl;
-        // }
-        // std::cout << "n-network: " << std::endl;
-        // for (auto tr_n: n_network) {
-        //     std::cout << tr_n->name << std::endl;
-        // }
-        // std::cout << std::endl;
+        std::cout << "p-network: " << std::endl;
+        for (auto tr_p: p_network) {
+            std::cout << tr_p->name << std::endl;
+        }
+        std::cout << "n-network: " << std::endl;
+        for (auto tr_n: n_network) {
+            std::cout << tr_n->name << std::endl;
+        }
+        std::cout << std::endl;
         // do pairing
         for (auto tr_p: p_network) {
             // find same size
@@ -366,12 +380,59 @@ void CFET::new_tr_pairing() {
                 tr_pairs[tr_p] = tr_paired;
                 n_network.erase(std::remove(n_network.begin(), n_network.end(), tr_paired), n_network.end());
 
+                _pmos.erase(std::remove(_pmos.begin(), _pmos.end(), tr_p), _pmos.end());
+                _nmos.erase(std::remove(_nmos.begin(), _nmos.end(), tr_paired), _nmos.end());
             }
             else {
-                std::cout << "unpaired: " << tr_p->name << std::endl;
+                // std::cout << "unpaired: " << tr_p->name << std::endl;
+                Transistor* tr_paired = n_network[0];
+                int max_common_signal = 0;
+                for (auto tr_n: n_network) {
+                    std::vector<Signal*> tr_n_signals;
+                    tr_n_signals.push_back(tr_n->drain);
+                    tr_n_signals.push_back(tr_n->gate);
+                    tr_n_signals.push_back(tr_n->source);
+                    int d = std::count(tr_n_signals.begin(), tr_n_signals.end(), tr_p->drain);
+                    int g = std::count(tr_n_signals.begin(), tr_n_signals.end(), tr_p->gate);
+                    int s = std::count(tr_n_signals.begin(), tr_n_signals.end(), tr_p->source);
+                    if (d + g + s > max_common_signal) {
+                        max_common_signal = d + g + s;
+                        tr_paired = tr_n;
+                    }
+                }
+                tr_pairs[tr_p] = tr_paired;
+                n_network.erase(std::remove(n_network.begin(), n_network.end(), tr_paired), n_network.end());
+
+                _pmos.erase(std::remove(_pmos.begin(), _pmos.end(), tr_p), _pmos.end());
+                _nmos.erase(std::remove(_nmos.begin(), _nmos.end(), tr_paired), _nmos.end());
             }
         }
     }
+    // std::cout << _pmos.size() << " " << _nmos.size() << std::endl;
+    // if (_pmos.size() != 0) {
+    //     for (auto tr_p: _pmos) {
+    //         Transistor* tr_null = new Transistor();
+    //         tr_null->name = "NULL";
+    //         tr_null->width = 0;
+    //         tr_null->drain = nullptr;
+    //         tr_null->gate = nullptr;
+    //         tr_null->source = nullptr;
+    //         tr_null->type = MosType::NMOS;
+    //         tr_pairs[tr_p] = tr_null;
+    //     }
+    // }
+    // else if (_nmos.size() != 0) {
+    //     for (auto tr_n: _nmos) {
+    //         Transistor* tr_null = new Transistor();
+    //         tr_null->name = "NULL";
+    //         tr_null->width = 0;
+    //         tr_null->drain = nullptr;
+    //         tr_null->gate = nullptr;
+    //         tr_null->source = nullptr;
+    //         tr_null->type = MosType::NMOS;
+    //         tr_pairs[tr_null] = tr_n;
+    //     }
+    // }
     // print pairs
     std::cout << "pairs: " << std::endl;
     for (auto pair: tr_pairs) {

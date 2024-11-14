@@ -154,6 +154,7 @@ void CFET::parse_input(std::istream& stream) {
             nmos.push_back(tr);
         }
     }
+    
     // num_finger
     for (Transistor* p: pmos) {
         p->num_finger = (p->width-0.1) / max_cfet_width + 1;
@@ -165,6 +166,7 @@ void CFET::parse_input(std::istream& stream) {
         std::cout << n->name << " num_finger: " << n->num_finger << std::endl;
         std::cout << n->drain->name << " " << n->gate->name << " " << n->source->name << std::endl;
     }
+    std::cout << "#tr/#net: " << trs.size() << "/" << signals.size() << std::endl;
 }
 
 void CFET::print_layout(std::ostream& stream) {

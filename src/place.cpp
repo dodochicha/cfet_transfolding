@@ -250,297 +250,7 @@ void CFET::placement_single_row() {
     }
 }
 
-void CFET::placement_single_row_search_tree() {
-    std::vector<Pshape*> placement_cand;
-    int tr_size_sum = 0;
-    int min_cell_width = std::numeric_limits<int>::max();
-
-
-        for (Transistor* tr: pmos) {
-            // assign single row shape
-            std::vector<std::vector<std::vector<int>>> single_row_config;
-            for (auto _p_shape: phi_merged[tr]) {
-                for (auto lamb: _p_shape.second) {
-                    if (lamb->name == "single-row") {
-                        single_row_config.push_back(lamb->config);
-                    }
-                }
-            }
-            single_row_configs.insert(std::make_pair(tr, single_row_config));
-            tr_size_sum = tr_size_sum + std::max(tr->num_finger, tr_pairs[tr]->num_finger);
-        }
-        // std::cout << "tr_size_sum: " << tr_size_sum << std::endl;
-
-    // std::cout << "single_row_configs: " << std::endl;
-    // for (auto item: single_row_configs) {
-    //     for (auto config: item.second) {
-    //         for (int i = 0; i < config.size(); i++) {
-    //             for (int j = 0; j < config[i].size(); j++) {
-    //                 std::cout << config[i][j];
-    //             }
-    //             std::cout << std::endl;
-    //         }
-    //         std::cout << std::endl;
-    //     }
-    // }
-
-    Node* root = new Node();
-    for (int i = 0; i < pmos.size(); i++) {
-        bool pruned = false;
-        std::cout << "i: " << i << " " << pmos[i]->name << std::endl;
-        Node* current_node = new Node();
-        std::vector<Transistor*> remained_pmos(pmos);
-        Transistor* current_tr = pmos[i];
-        std::vector<Pshape* > partial_placement;
-        int tr_left_sum = tr_size_sum;
-        int config_idx = 0;
-        current_node->parent = root;
-        remained_pmos.erase(std::remove(remained_pmos.begin(), remained_pmos.end(), pmos[i]), remained_pmos.end());
-        current_node->remained_pmos = remained_pmos;
-        current_node->tr = current_tr;
-        current_node->fill = 0;
-        
-        tr_left_sum = tr_left_sum - std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger);
-
-        for (auto config: single_row_configs[current_tr]) {
-            Pshape* pshape = new Pshape();
-            pshape->tr_permutaton.push_back(current_tr);
-            pshape->tr_shape_id.push_back(config_idx);
-            pshape->width = config[0].size();
-            pshape->ds_array.push_back(true);
-            partial_placement.push_back(pshape);
-            config_idx++;
-        }
-        current_node->partial_shapes = partial_placement;
-        while (true) {
-            if (pruned) {
-                pruned = false;
-                while (true) {
-                    Node* n = current_node->parent;
-                    tr_left_sum = tr_left_sum + std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger);
-                    for (auto pshape: current_node->partial_shapes) {
-                        delete pshape;
-                    }
-                    delete current_node;
-                    current_node = n;
-                    current_tr = n->tr;
-                    if (((current_node->remained_pmos.size() == 0 || current_node->fill == current_node->remained_pmos.size() - 1) && (current_node != root)) == false) {
-                        break;
-                    }
-                }
-                current_node->fill++;
-                if (current_node == root) {
-                    break;
-                }
-            }
-            // leaf
-            else if (current_node->remained_pmos.size() == 0) {
-                if (current_node->partial_shapes.size() != 0) {
-                    if (current_node->partial_shapes[0]->width < min_cell_width) {
-                        min_cell_width = current_node->partial_shapes[0]->width;
-                        for (auto item: placement_cand) {
-                            delete item;
-                            item = nullptr;
-                        }
-                        placement_cand.clear();
-                        placement_cand = current_node->partial_shapes;
-                        std::cout << "min_cell_width: " << min_cell_width << std::endl;
-                    }
-                    else if (current_node->partial_shapes[0]->width == min_cell_width) {
-                        if (placement_cand.size() < max_placement_size) {
-                            for (auto item: current_node->partial_shapes) {
-                                placement_cand.push_back(item);
-                            }
-                        }
-                        else {
-                            for (auto item: current_node->partial_shapes) {
-                                delete item;
-                            }
-                        }
-                    }
-                }
-                while ((current_node->remained_pmos.size() == 0 || current_node->fill == current_node->remained_pmos.size() - 1) && (current_node != root)) {
-                    Node* n = current_node->parent;
-                    tr_left_sum = tr_left_sum + std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger);
-                    delete current_node;
-                    current_node = n;
-                    current_tr = n->tr;
-                }
-                current_node->fill++;
-                if (current_node == root) {
-                    break;
-                }
-            }
-            else {
-                // pruned
-                if (current_node->partial_shapes.size() == 0) {
-                    current_node->partial_shapes.clear();
-                    current_node->partial_shapes.shrink_to_fit();
-                    pruned = true;
-                    continue;
-                }
-                Node* n = new Node();
-                std::vector<Transistor*> remained_pmos = current_node->remained_pmos;
-                int config_idx = 0;
-                Transistor* old_tr = current_tr;
-                current_tr = remained_pmos[current_node->fill];
-                std::vector<Pshape*> new_partial_placement;
-                int min_partial_width = current_node->partial_shapes[0]->width + std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger) + 1;
-                // std::cout << "min_partial_width: " << min_partial_width << std::endl;
-                int low_bound;
-                tr_left_sum = tr_left_sum - std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger);
-                
-                for (auto old_pshape: current_node->partial_shapes) {
-                    int config_idx = 0;
-                    for (auto config: single_row_configs[current_tr]) {
-                        Pshape* pshape = new Pshape();
-                        auto new_tr_permutation = old_pshape->tr_permutaton;
-                        auto new_tr_shape_id = old_pshape->tr_shape_id;
-                        auto new_ds_array = old_pshape->ds_array;
-                        bool ds = diffusion_sharing_single_row(
-                            single_row_configs[old_tr][old_pshape->tr_shape_id.back()], 
-                            single_row_configs[current_tr][config_idx],
-                            old_tr,
-                            current_tr);
-                        if (ds) {
-                            if (old_pshape->width + config[0].size() < min_partial_width) {
-                                for (auto item: new_partial_placement) {
-                                    delete item;
-                                    item = nullptr;
-                                }
-                                new_partial_placement = std::vector<Pshape*>();
-                                min_partial_width = old_pshape->width + config[0].size();
-                            }
-                            new_tr_permutation.push_back(current_tr);
-                            new_tr_shape_id.push_back(config_idx);
-                            new_ds_array.push_back(true);
-                            pshape->tr_permutaton = new_tr_permutation;
-                            pshape->tr_shape_id = new_tr_shape_id;
-                            pshape->width = old_pshape->width + config[0].size();
-                            pshape->ds_array = new_ds_array;
-                            new_partial_placement.push_back(pshape);
-                        }
-                        else {
-                            low_bound = old_pshape->width + config[0].size() + 1 + tr_left_sum;
-                            // std::cout << "low_bound: " << low_bound << std::endl;
-                            if (low_bound > min_cell_width) {
-                                delete pshape;
-                                pshape = nullptr;
-                                config_idx++;
-                                continue;
-                            }
-                            // std::cout << "min_partial_width: " << min_partial_width << " " << old_pshape->width + config[0].size() + 1 << std::endl;
-                            if (min_partial_width < old_pshape->width + config[0].size() + 1) {
-                                delete pshape;
-                                pshape = nullptr;
-                                config_idx++;
-                                continue;
-                            }
-                            new_tr_permutation.push_back(current_tr);
-                            new_tr_shape_id.push_back(config_idx);
-                            new_ds_array.push_back(false);
-                            pshape->tr_permutaton = new_tr_permutation;
-                            pshape->tr_shape_id = new_tr_shape_id;
-                            pshape->width = old_pshape->width + config[0].size() + 1;
-                            pshape->ds_array = new_ds_array;
-                            new_partial_placement.push_back(pshape);
-                        }
-                        config_idx++;
-                    }
-                }
-                n->partial_shapes = new_partial_placement;
-                remained_pmos.erase(std::remove(remained_pmos.begin(), remained_pmos.end(), current_tr), remained_pmos.end());
-                n->remained_pmos = remained_pmos;
-                n->parent = current_node;
-                n->tr = current_tr;
-                n->fill = 0;
-                current_node->children.push_back(n);
-                current_node = n;
-            }
-        }
-        std::cout << "placement_cand.size(): " << placement_cand.size() << std::endl;
-    }
-
-    // print solution
-    std::cout << "min_cell_width: " << min_cell_width << std::endl;
-    std::cout << "number of cell: " << placement_cand.size() << std::endl;
-    for (auto pshape: placement_cand) {
-        for (int i = 0; i < pshape->tr_permutaton.size(); i++) {
-            Transistor* tr_p = pshape->tr_permutaton[i];
-            auto config = single_row_configs[tr_p][pshape->tr_shape_id[i]];
-            for (int k = 0; k < config[0].size(); k++) {
-                std::cout << tr_pairs[tr_p]->name << " ";
-            }
-        }
-        std::cout << std::endl;
-        for (int i = 0; i < pshape->tr_permutaton.size(); i++) {
-            Transistor* tr_p = pshape->tr_permutaton[i];
-            auto config = single_row_configs[tr_p][pshape->tr_shape_id[i]];
-            for (int k = 0; k < config[0].size(); k++) {
-                std::cout << tr_p->name << " ";
-            }
-        }
-        std::cout << std::endl;
-        //print shape idx
-        for (int i = 0; i < pshape->tr_shape_id.size(); i++) {
-            Transistor* tr_p = pshape->tr_permutaton[i];
-            auto config = single_row_configs[tr_p][pshape->tr_shape_id[i]];
-                for (int k = 0; k < config[0].size(); k++) {
-                    std::cout << config[0][k] << " ";
-                }
-        }
-        std::cout << std::endl;
-        for (int i = 0; i < pshape->tr_shape_id.size(); i++) {
-            Transistor* tr_p = pshape->tr_permutaton[i];
-            auto config = single_row_configs[tr_p][pshape->tr_shape_id[i]];
-                for (int k = 0; k < config[config.size()/2].size(); k++) {
-                    std::cout << config[config.size()/2][k] << " ";
-                }
-        }
-        std::cout << std::endl;
-        //print active
-        for (int i = 0; i < pshape->tr_shape_id.size(); i++) {
-            Transistor* tr_p = pshape->tr_permutaton[i];
-            auto config = single_row_configs[tr_p][pshape->tr_shape_id[i]];
-            if (pshape->ds_array[i] == false) {
-                std::cout << " dummy_gate ";
-            } 
-            for (int k = 0; k < config[0].size(); k++) {
-                if (config[0][k] == 0) {
-                    std::cout << std::left << std::setw(7 )<< tr_pairs[tr_p]->drain->name << " " << std::left << std::setw(7) << tr_pairs[tr_p]->gate->name << " " << std::left << std::setw(7) << tr_pairs[tr_p]->source->name << " ";
-                }
-                else if (config[0][k] == 1) {
-                    std::cout << std::left << std::setw(7) << tr_pairs[tr_p]->source->name << " " << std::left << std::setw(7) << tr_pairs[tr_p]->gate->name << " " << std::left << std::setw(7) << tr_pairs[tr_p]->drain->name << " ";
-                }
-                else {
-                    std::cout << std::left << std::setw(7) << "x" << " " << std::left << std::setw(7) << "x" << " " << std::left << std::setw(7) << "x" << " ";
-                }
-            }
-        }
-        std::cout << std::endl;
-        for (int i = 0; i < pshape->tr_shape_id.size(); i++) {
-            Transistor* tr_p = pshape->tr_permutaton[i];
-            auto config = single_row_configs[tr_p][pshape->tr_shape_id[i]];
-            if (pshape->ds_array[i] == false) {
-                std::cout << " dummy_gate ";
-            } 
-            for (int k = 0; k < config[config.size()/2].size(); k++) {
-                if (config[config.size()/2][k] == 0) {
-                    std::cout << std::left << std::setw(7) << tr_p->drain->name << " " << std::left << std::setw(7) << tr_p->gate->name << " " << std::left << std::setw(7) << tr_p->source->name << " ";
-                }
-                else if (config[config.size()/2][k] == 1) {
-                    std::cout << std::left << std::setw(7) << tr_p->source->name << " " << std::left << std::setw(7) << tr_p->gate->name << " " << std::left << std::setw(7) << tr_p->drain->name << " ";
-                }
-                else {
-                    std::cout << std::left << std::setw(7) << "x" << " " << std::left << std::setw(7) << "x" << " " << std::left << std::setw(7) << "x" << " ";
-                }
-            }
-        }
-        std::cout << std::endl;
-    }
-}
-
-void CFET::placement_multi_row_search_tree() {
+void CFET::placement_multi_row_search_tree_bottom_up() {
     for (Transistor* p: pmos) {
         Transistor* n = tr_pairs[p];
         p->num_finger = (p->width-0.1) / max_cfet_width + 1;
@@ -573,144 +283,129 @@ void CFET::placement_multi_row_search_tree() {
             }
             multi_row_configs.insert(std::make_pair(tr, multi_row_config));
         }
+    
 
-    Node* root = new Node();
-    for (int i = 0; i < pmos.size(); i++) {
-        // create node
-        bool pruned = false;
-        std::cout << "i: " << i << std::endl;
-        Node* current_node = new Node();
-        std::vector<Transistor*> remained_pmos(pmos);
-        Transistor* current_tr = pmos[i];
-        std::vector<Pshape* > partial_placement;
-        int tr_left_sum = tr_size_sum;
-        current_node->parent = root;
-        remained_pmos.erase(std::remove(remained_pmos.begin(), remained_pmos.end(), pmos[i]), remained_pmos.end());
-        current_node->remained_pmos = remained_pmos;
-        current_node->tr = current_tr;
-        current_node->fill = 0;
-        tr_left_sum = tr_left_sum - std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger);
+    // int target_area = tr_size_sum + 2;
+    int target_area = tr_size_sum;
+    while (placement_cand.size() == 0) {
+        std::cout << "target_area: " << target_area << std::endl;
+        Node* root = new Node();
+        for (int i = 0; i < pmos.size(); i++) {
+            // create node
+            bool pruned = false;
+            std::cout << "i: " << i << std::endl;
+            Node* current_node = new Node();
+            std::vector<Transistor*> remained_pmos(pmos);
+            Transistor* current_tr = pmos[i];
+            std::vector<Pshape* > partial_placement;
+            int tr_left_sum = tr_size_sum;
+            current_node->parent = root;
+            remained_pmos.erase(std::remove(remained_pmos.begin(), remained_pmos.end(), pmos[i]), remained_pmos.end());
+            current_node->remained_pmos = remained_pmos;
+            current_node->tr = current_tr;
+            current_node->fill = 0;
+            tr_left_sum = tr_left_sum - std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger);
 
-        // create partial shape
-        for (auto lamb: multi_row_configs[current_tr]) {
-            Pshape* pshape = new Pshape();
-            // multi-row
-            pshape->multirow_area = std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger);
-            pshape->multirow_tr_shape_up = lamb->config_up;
-            pshape->multirow_tr_shape_down = lamb->config_down;
-            pshape->multirow_tr_permutation_up.assign(lamb->config_up.size(), std::vector<Transistor*>(lamb->config_up[0].size()));
-            pshape->multirow_tr_permutation_down.assign(lamb->config_down.size(), std::vector<Transistor*>(lamb->config_down[0].size()));
-            pshape->height = 0;
-            pshape->width = 0;
-            pshape->top_width = 0;
-            for (int row = 0; row < lamb->config_up.size(); row++) {
-                pshape->most_right_idx.push_back(0);
-                for (int col  = 0; col < lamb->config_up[row].size(); col++) {
-                    if (lamb->config_up[row][col] != 2) {
-                        pshape->multirow_tr_permutation_up[row][col] = tr_pairs[current_tr];
-                        pshape->most_right_idx[row] = col;
-                        pshape->height = row + 1;
-                    }
-                    else {
-                        pshape->multirow_tr_permutation_up[row][col] = nullptr;
-                    }
-                    if (lamb->config_down[row][col] != 2) {
-                        pshape->multirow_tr_permutation_down[row][col] = current_tr;
-                        pshape->most_right_idx[row] = col;
-                        pshape->height = row + 1;
-                    }
-                    else {
-                        pshape->multirow_tr_permutation_down[row][col] = nullptr;
-                    }
-                    if (lamb->config_up[row][col] != 2 || lamb->config_down[row][col] != 2) {
-                        if (col + 1 > pshape->width) {
-                            pshape->width = col + 1;
-                        }
-                    }
-                }
-                if (row == lamb->config_up.size() - 1) {
+            // create partial shape
+            for (auto lamb: multi_row_configs[current_tr]) {
+                Pshape* pshape = new Pshape();
+                // multi-row
+                pshape->multirow_area = std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger);
+                pshape->multirow_tr_shape_up = lamb->config_up;
+                pshape->multirow_tr_shape_down = lamb->config_down;
+                pshape->multirow_tr_permutation_up.assign(lamb->config_up.size(), std::vector<Transistor*>(lamb->config_up[0].size()));
+                pshape->multirow_tr_permutation_down.assign(lamb->config_down.size(), std::vector<Transistor*>(lamb->config_down[0].size()));
+                pshape->height = 0;
+                pshape->width = 0;
+                pshape->top_width = 0;
+                for (int row = 0; row < lamb->config_up.size(); row++) {
+                    pshape->most_right_idx.push_back(0);
                     for (int col  = 0; col < lamb->config_up[row].size(); col++) {
+                        if (lamb->config_up[row][col] != 2) {
+                            pshape->multirow_tr_permutation_up[row][col] = tr_pairs[current_tr];
+                            pshape->most_right_idx[row] = col;
+                            pshape->height = row + 1;
+                        }
+                        else {
+                            pshape->multirow_tr_permutation_up[row][col] = nullptr;
+                        }
+                        if (lamb->config_down[row][col] != 2) {
+                            pshape->multirow_tr_permutation_down[row][col] = current_tr;
+                            pshape->most_right_idx[row] = col;
+                            pshape->height = row + 1;
+                        }
+                        else {
+                            pshape->multirow_tr_permutation_down[row][col] = nullptr;
+                        }
                         if (lamb->config_up[row][col] != 2 || lamb->config_down[row][col] != 2) {
-                            pshape->top_width = col + 1;
+                            if (col + 1 > pshape->width) {
+                                pshape->width = col + 1;
+                            }
+                        }
+                    }
+                    if (row == lamb->config_up.size() - 1) {
+                        for (int col  = 0; col < lamb->config_up[row].size(); col++) {
+                            if (lamb->config_up[row][col] != 2 || lamb->config_down[row][col] != 2) {
+                                pshape->top_width = col + 1;
+                            }
                         }
                     }
                 }
+                // std::cout << "pshape->width: " << pshape->width << std::endl;
+                pshape->multirow_macro_area = (pshape->width + 2) * pshape->height;
+                // std::cout << pshape->multirow_tr_permutation_down[0][0]->name << " " << pshape->multirow_tr_permutation_up[0][0]->name << std::endl;
+                partial_placement.push_back(pshape);
             }
-            // std::cout << "pshape->width: " << pshape->width << std::endl;
-            pshape->multirow_macro_area = (pshape->width + 2) * pshape->height;
-            // std::cout << pshape->multirow_tr_permutation_down[0][0]->name << " " << pshape->multirow_tr_permutation_up[0][0]->name << std::endl;
-            partial_placement.push_back(pshape);
-        }
-        // assign partial_placement
-        current_node->partial_shapes = partial_placement;
+            // assign partial_placement
+            current_node->partial_shapes = partial_placement;
 
-        // std::cout << "hello while" << std::endl;
-        while (true) {
-            // std::cout << "current_node->tr->name: " << current_node->tr->name << std::endl;
-            if (pruned) {
-                // std::cout << "pruned!" << std::endl;
-                pruned = false;
-                while (true) {
-                    Node* n = current_node->parent;
-                    tr_left_sum = tr_left_sum + std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger);
-                    for (auto pshape: current_node->partial_shapes) {
-                        delete pshape;
+            // std::cout << "hello while" << std::endl;
+            while (true) {
+                // std::cout << "current_node->tr->name: " << current_node->tr->name << std::endl;
+                if (pruned) {
+                    // std::cout << "pruned!" << std::endl;
+                    pruned = false;
+                    while (true) {
+                        Node* n = current_node->parent;
+                        tr_left_sum = tr_left_sum + std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger);
+                        for (auto pshape: current_node->partial_shapes) {
+                            delete pshape;
+                        }
+                        delete current_node;
+                        current_node = n;
+                        current_tr = n->tr;
+                        if (((current_node->remained_pmos.size() == 0 || current_node->fill == current_node->remained_pmos.size() - 1) && (current_node != root)) == false) {
+                            break;
+                        }
                     }
-                    delete current_node;
-                    current_node = n;
-                    current_tr = n->tr;
-                    if (((current_node->remained_pmos.size() == 0 || current_node->fill == current_node->remained_pmos.size() - 1) && (current_node != root)) == false) {
+                    current_node->fill++;
+                    if (current_node == root) {
                         break;
                     }
                 }
-                current_node->fill++;
-                if (current_node == root) {
-                    break;
-                }
-            }
-            else if (current_node->remained_pmos.size() == 0) {
-                // std::cout << "leaf!" << std::endl;
-                if (current_node->partial_shapes.size() != 0) {
-                    // std::cout << current_node->partial_shapes[0]->multirow_area << " " << min_cell_area << std::endl;
-                    if (current_node->partial_shapes[0]->multirow_area < min_cell_area) {
-                        min_cell_area = current_node->partial_shapes[0]->multirow_area;
-                        for (auto item: placement_cand) {
-                            delete item;
-                            item = nullptr;
-                        }
-                        placement_cand.clear();
-                        for (auto item: current_node->partial_shapes) {
-                            if (item->multirow_macro_area < min_macro_area) {
-                                for (auto cand: placement_cand) {
-                                    delete cand;
-                                    cand = nullptr;
-                                }
-                                min_macro_area = item->multirow_macro_area;
-                                placement_cand = std::vector<Pshape*>();
-                                placement_cand.push_back(item);
-                            }
-                            else if (item->multirow_macro_area == min_macro_area) {
-                                placement_cand.push_back(item);
-                            }
-                            else {
+                else if (current_node->remained_pmos.size() == 0) {
+                    // std::cout << "leaf!" << std::endl;
+                    if (current_node->partial_shapes.size() != 0) std::cout << "current_node->partial_shapes.size(): " << current_node->partial_shapes.size() << " area: " << current_node->partial_shapes[0]->multirow_macro_area << std::endl;
+                    if (current_node->partial_shapes.size() != 0) {
+                        // std::cout << current_node->partial_shapes[0]->multirow_area << " " << min_cell_area << std::endl;
+                        if (current_node->partial_shapes[0]->multirow_area < min_cell_area) {
+                            min_cell_area = current_node->partial_shapes[0]->multirow_area;
+                            std::cout << "min_cell_area: " << min_cell_area << std::endl;
+                            for (auto item: placement_cand) {
                                 delete item;
                                 item = nullptr;
                             }
-                        }
-                        // std::cout << "placement_cand.size(): " << placement_cand.size() << std::endl;
-                        // std::cout << "min_cell_area: " << min_cell_area << std::endl;
-                    }
-                    else if (current_node->partial_shapes[0]->multirow_area == min_cell_area) {
-                        for (auto item: current_node->partial_shapes) {
-                            if (placement_cand.size() < max_placement_size) {
-                                // std::cout << "item->min_macro_area: " << item->multirow_macro_area << std::endl;
+                            placement_cand.clear();
+                            placement_cand.shrink_to_fit();
+                            for (auto item: current_node->partial_shapes) {
                                 if (item->multirow_macro_area < min_macro_area) {
                                     for (auto cand: placement_cand) {
                                         delete cand;
                                         cand = nullptr;
                                     }
+                                    placement_cand.clear();
+                                    placement_cand.shrink_to_fit();
                                     min_macro_area = item->multirow_macro_area;
-                                    placement_cand = std::vector<Pshape*>();
                                     placement_cand.push_back(item);
                                 }
                                 else if (item->multirow_macro_area == min_macro_area) {
@@ -721,167 +416,210 @@ void CFET::placement_multi_row_search_tree() {
                                     item = nullptr;
                                 }
                             }
-                            else {
-                                delete item;
-                                item = nullptr;
+                            // std::cout << "placement_cand.size(): " << placement_cand.size() << std::endl;
+                            // std::cout << "min_cell_area: " << min_cell_area << std::endl;
+                        }
+                        else if (current_node->partial_shapes[0]->multirow_area == min_cell_area) {
+                            for (auto item: current_node->partial_shapes) {
+                                if (placement_cand.size() < max_placement_size) {
+                                    // std::cout << "item->min_macro_area: " << item->multirow_macro_area << std::endl;
+                                    if (item->multirow_macro_area < min_macro_area) {
+                                        for (auto cand: placement_cand) {
+                                            delete cand;
+                                            cand = nullptr;
+                                        }
+                                        min_macro_area = item->multirow_macro_area;
+                                        placement_cand.clear();
+                                        placement_cand.shrink_to_fit();
+                                        placement_cand.push_back(item);
+                                    }
+                                    else if (item->multirow_macro_area == min_macro_area) {
+                                        placement_cand.push_back(item);
+                                    }
+                                    else {
+                                        delete item;
+                                        item = nullptr;
+                                    }
+                                }
+                                else {
+                                    delete item;
+                                    item = nullptr;
+                                    break;
+                                }
+                            }
+                            if (current_node->partial_shapes.size() == 0) {
+                                delete current_node;
+                            }
+                            if (placement_cand.size() >= max_placement_size) {
+                                break;
                             }
                         }
-                        if (current_node->partial_shapes.size() == 0) {
-                            delete current_node;
+                        else {
+                            // std::cout << "else " << std::endl;
                         }
+                        // std::cout << "placement_cand.size(): " << placement_cand.size() << std::endl;
+                    }
+                    else {
+                        delete current_node;
+                    }
+                    while ((current_node->remained_pmos.size() == 0 || current_node->fill == current_node->remained_pmos.size() - 1) && (current_node != root)) {
+                        Node* n = current_node->parent;
+                        tr_left_sum = tr_left_sum + std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger);
+                        current_node = n;
+                        current_tr = n->tr;
+                    }
+                    current_node->fill++;
+                    if (current_node == root) {
+                        break;
                     }
                 }
-                while ((current_node->remained_pmos.size() == 0 || current_node->fill == current_node->remained_pmos.size() - 1) && (current_node != root)) {
-                    Node* n = current_node->parent;
-                    tr_left_sum = tr_left_sum + std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger);
-                    current_node = n;
-                    current_tr = n->tr;
-                }
-                current_node->fill++;
-                if (current_node == root) {
-                    break;
-                }
-            }
-            else {
-                int min_partial_area = std::numeric_limits<int>::max();
-                if (current_node->partial_shapes.size() == 0) {
-                    current_node->partial_shapes.clear();
-                    current_node->partial_shapes.shrink_to_fit();
-                    pruned = true;
-                    continue;
-                }
-                Node* n = new Node();
-                std::vector<Transistor*> remained_pmos = current_node->remained_pmos;
-                Transistor* old_tr = current_tr;
-                current_tr = remained_pmos[current_node->fill];
-                // std::cout << "now current_tr: " << current_tr->name << std::endl;
-                std::vector<Pshape*> new_partial_placement;
-                int low_bound;
-                // std::cout << "tr_left_sum before: " << tr_left_sum << std::endl;
-                tr_left_sum = tr_left_sum - std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger);
-                // std::cout << "tr_left_sum: " << tr_left_sum << std::endl;
-                for (auto old_pshape: current_node->partial_shapes) {
-                    // std::cout << "old_pshape: " << std::endl;
-                    // for (int r = 0; r < old_pshape->multirow_tr_shape_up.size(); r++) {
-                    //     for (int c = 0; c < old_pshape->multirow_tr_shape_up[r].size(); c++) {
-                    //         std::cout << old_pshape->multirow_tr_shape_up[r][c];
-                    //     }
-                    //     std::cout << std::endl;
-                    // }
-                    // std::cout << "--" << std::endl;
-                    // for (int r = 0; r < old_pshape->multirow_tr_shape_down.size(); r++) {
-                    //     for (int c = 0; c < old_pshape->multirow_tr_shape_down[r].size(); c++) {
-                    //         std::cout << old_pshape->multirow_tr_shape_down[r][c];
-                    //     }
-                    //     std::cout << std::endl;
-                    // }
-                    // std::cout << "multi_row_configs[current_tr].size(): " << multi_row_configs[current_tr].size() << std::endl;
-                    for (auto lamb: multi_row_configs[current_tr]) {
-                        auto new_tr_permutation = old_pshape->tr_permutaton;
-                        auto new_tr_shape_id = old_pshape->tr_shape_id;
-                        auto new_ds_array = old_pshape->ds_array;
-                        // std::cout << "new_lamb: " << std::endl;
-                        // for (int r = 0; r < lamb->config_up.size(); r++) {
-                        //     for (int c = 0; c < lamb->config_up[r].size(); c++) {
-                        //         std::cout << lamb->config_up[r][c];
+                else {
+                    int min_partial_area = std::numeric_limits<int>::max();
+                    if (current_node->partial_shapes.size() == 0) {
+                        current_node->partial_shapes.clear();
+                        current_node->partial_shapes.shrink_to_fit();
+                        pruned = true;
+                        continue;
+                    }
+                    Node* n = new Node();
+                    std::vector<Transistor*> remained_pmos = current_node->remained_pmos;
+                    Transistor* old_tr = current_tr;
+                    current_tr = remained_pmos[current_node->fill];
+                    // std::cout << "now current_tr: " << current_tr->name << std::endl;
+                    std::vector<Pshape*> new_partial_placement;
+                    int low_bound;
+                    // std::cout << "tr_left_sum before: " << tr_left_sum << std::endl;
+                    tr_left_sum = tr_left_sum - std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger);
+                    // std::cout << "tr_left_sum: " << tr_left_sum << std::endl;
+                    for (auto old_pshape: current_node->partial_shapes) {
+                        // std::cout << "old_pshape: " << std::endl;
+                        // for (int r = 0; r < old_pshape->multirow_tr_shape_up.size(); r++) {
+                        //     for (int c = 0; c < old_pshape->multirow_tr_shape_up[r].size(); c++) {
+                        //         std::cout << old_pshape->multirow_tr_shape_up[r][c];
                         //     }
                         //     std::cout << std::endl;
                         // }
                         // std::cout << "--" << std::endl;
-                        // for (int r = 0; r < lamb->config_down.size(); r++) {
-                        //     for (int c = 0; c < lamb->config_down[r].size(); c++) {
-                        //         std::cout << lamb->config_down[r][c];
+                        // for (int r = 0; r < old_pshape->multirow_tr_shape_down.size(); r++) {
+                        //     for (int c = 0; c < old_pshape->multirow_tr_shape_down[r].size(); c++) {
+                        //         std::cout << old_pshape->multirow_tr_shape_down[r][c];
                         //     }
                         //     std::cout << std::endl;
                         // }
-                        // for (int row = 0; row <= old_pshape->height; row++) {
-                        // std::cout << "test: " << old_pshape->height - 1 << " " << old_pshape->height << std::endl;
-                        for (int row = std::max(0, static_cast<int>(old_pshape->height - lamb->config_up.size())); row <= old_pshape->height; row++) {
-                            int col;
-                            if (row < old_pshape->multirow_tr_shape_up.size()) {
-                                col = old_pshape->most_right_idx[row];
-                            }
-                            else {
-                                col = 0;
-                            }
-                            while (true) {
-                                if (merge_enable(old_pshape, lamb, tr_pairs[current_tr], current_tr, row, col)) {
-                                    // std::cout << "row/col: " << row << " " << col << std::endl;
-                                    Pshape* pshape = merge(old_pshape, lamb, tr_pairs[current_tr], current_tr, row, col);
-                                    // cut by low_bound
-                                    // low_bound = pshape->multirow_area + tr_left_sum;
-                                    low_bound = std::max(pshape->top_width + 2 + tr_left_sum, pshape->width + 2) * pshape->height;
-                                    
-                                    // std::cout << "low_bound: " << low_bound << std::endl;
-                                    // std::cout << "min_cell_area: " << min_cell_area << std::endl;
-                                    // std::cout << pshape->height << "/ " << max_allowable_cell_height << std::endl;
-                                    // std::cout << low_bound << " " << min_cell_area + 1 << std::endl;
-                                    if (low_bound > min_cell_area) {
-                                        delete pshape;
-                                        pshape = nullptr;
-                                        break;
-                                    }
-                                    if (pshape->height > max_allowable_cell_height) {
-                                        delete pshape;
-                                        pshape = nullptr;
-                                        break;
-                                    }
-                                    // std::cout << "merge_enable" << std::endl;
-                                    // std::cout << "multi-row area: " << pshape->multirow_area << std::endl;
-                                    // std::cout << "min_partial_area: " << min_partial_area << std::endl;
-                                    // else if (min_partial_width < pshape->multirow_area) {
-                                    //     delete pshape;
-                                    //     pshape = nullptr;
-                                    //     continue;
-                                    // }
-                                    // new_partial_placement.push_back(pshape);
-                                    if (pshape->multirow_area < min_partial_area) {
-                                        for (auto item: new_partial_placement) {
-                                            delete item;
-                                            item = nullptr;
-                                        }
-                                        new_partial_placement = std::vector<Pshape*>();
-                                        // for (auto item: new_partial_placement) {
-                                        //     if (item->multirow_area > pshape->multirow_area) {
-                                        //         new_partial_placement.erase(std::remove(new_partial_placement.begin(), new_partial_placement.end(), item), new_partial_placement.end());
-                                        //     }
-                                        // }
-                                        min_partial_area = pshape->multirow_area;
-                                        new_partial_placement.push_back(pshape);
-                                    }
-                                    else if (pshape->multirow_area == min_partial_area) {
-                                        new_partial_placement.push_back(pshape);
-                                    }
-                                    break;
+                        // std::cout << "multi_row_configs[current_tr].size(): " << multi_row_configs[current_tr].size() << std::endl;
+                        for (auto lamb: multi_row_configs[current_tr]) {
+                            auto new_tr_permutation = old_pshape->tr_permutaton;
+                            auto new_tr_shape_id = old_pshape->tr_shape_id;
+                            auto new_ds_array = old_pshape->ds_array;
+                            // std::cout << "new_lamb: " << std::endl;
+                            // for (int r = 0; r < lamb->config_up.size(); r++) {
+                            //     for (int c = 0; c < lamb->config_up[r].size(); c++) {
+                            //         std::cout << lamb->config_up[r][c];
+                            //     }
+                            //     std::cout << std::endl;
+                            // }
+                            // std::cout << "--" << std::endl;
+                            // for (int r = 0; r < lamb->config_down.size(); r++) {
+                            //     for (int c = 0; c < lamb->config_down[r].size(); c++) {
+                            //         std::cout << lamb->config_down[r][c];
+                            //     }
+                            //     std::cout << std::endl;
+                            // }
+                            // for (int row = 0; row <= old_pshape->height; row++) {
+                            // std::cout << "test: " << old_pshape->height - 1 << " " << old_pshape->height << std::endl;
+                            for (int row = std::max(0, static_cast<int>(old_pshape->height - lamb->config_up.size())); row <= old_pshape->height; row++) {
+                                int col;
+                                if (row < old_pshape->multirow_tr_shape_up.size()) {
+                                    col = old_pshape->most_right_idx[row];
                                 }
-                                col++;
+                                else {
+                                    col = 0;
+                                }
+                                while (true) {
+                                    if (merge_enable(old_pshape, lamb, tr_pairs[current_tr], current_tr, row, col)) {
+                                        // std::cout << "row/col: " << row << " " << col << std::endl;
+                                        Pshape* pshape = merge(old_pshape, lamb, tr_pairs[current_tr], current_tr, row, col);
+                                        // cut by low_bound
+                                        // low_bound = pshape->multirow_area + tr_left_sum;
+                                        low_bound = std::max(pshape->top_width + tr_left_sum, pshape->width) * pshape->height;
+                                        // low_bound = std::max(pshape->top_width + 2 + tr_left_sum, pshape->width + 2) * pshape->height;
+                                        
+                                        // std::cout << "low_bound: " << low_bound << std::endl;
+                                        // std::cout << "min_cell_area: " << min_cell_area << std::endl;
+                                        // std::cout << pshape->height << "/ " << max_allowable_cell_height << std::endl;
+                                        // std::cout << low_bound << " " << min_cell_area + 1 << std::endl;
+                                        // if (low_bound > min_cell_area) {
+                                        if (low_bound > target_area) {
+                                            delete pshape;
+                                            pshape = nullptr;
+                                            break;
+                                        }
+                                        if (pshape->height > max_allowable_cell_height) {
+                                            delete pshape;
+                                            pshape = nullptr;
+                                            break;
+                                        }
+                                        // std::cout << "merge_enable" << std::endl;
+                                        // std::cout << "multi-row area: " << pshape->multirow_area << std::endl;
+                                        // std::cout << "min_partial_area: " << min_partial_area << std::endl;
+                                        // else if (min_partial_width < pshape->multirow_area) {
+                                        //     delete pshape;
+                                        //     pshape = nullptr;
+                                        //     continue;
+                                        // }
+                                        // new_partial_placement.push_back(pshape);
+                                        if (pshape->multirow_area < min_partial_area) {
+                                            for (auto item: new_partial_placement) {
+                                                delete item;
+                                                item = nullptr;
+                                            }
+                                            new_partial_placement.clear();
+                                            new_partial_placement.shrink_to_fit();
+                                            min_partial_area = pshape->multirow_area;
+                                            new_partial_placement.push_back(pshape);
+                                        }
+                                        else if (pshape->multirow_area == min_partial_area) {
+                                            new_partial_placement.push_back(pshape);
+                                        }
+                                        else {
+                                            delete pshape;
+                                            pshape = nullptr;
+                                        }
+                                        break;
+                                    }
+                                    col++;
+                                }
                             }
                         }
                     }
+                    // std::cout << "min_partial_area: " << min_partial_area << std::endl;
+                    // std::cout << "new_partial_placement.size(): " << new_partial_placement.size() << " min_partial_area: " << min_partial_area << std::endl;
+                    n->partial_shapes = new_partial_placement;
+                    remained_pmos.erase(std::remove(remained_pmos.begin(), remained_pmos.end(), current_tr), remained_pmos.end());
+                    n->remained_pmos = remained_pmos;
+                    n->parent = current_node;
+                    n->tr = current_tr;
+                    n->fill = 0;
+                    current_node->children.push_back(n);
+                    current_node = n;
+                    // std::cout << "current_node->tr->name: " << current_node->tr->name << std::endl;
+                    // break;
                 }
-                // std::cout << "min_partial_area: " << min_partial_area << std::endl;
-                // std::cout << "new_partial_placement.size(): " << new_partial_placement.size() << " min_partial_area: " << min_partial_area << std::endl;
-                n->partial_shapes = new_partial_placement;
-                remained_pmos.erase(std::remove(remained_pmos.begin(), remained_pmos.end(), current_tr), remained_pmos.end());
-                n->remained_pmos = remained_pmos;
-                n->parent = current_node;
-                n->tr = current_tr;
-                n->fill = 0;
-                current_node->children.push_back(n);
-                current_node = n;
-                // std::cout << "current_node->tr->name: " << current_node->tr->name << std::endl;
-                // break;
+            }
+            std::cout << "placement_cand.size(): " << placement_cand.size() << std::endl;
+            std::cout << "min_cell_area: " << min_cell_area << std::endl;
+            int _min_macro_area = std::numeric_limits<int>::max();
+            for (auto _pshape: placement_cand) {
+                if (_pshape->multirow_macro_area < _min_macro_area) {
+                    _min_macro_area = _pshape->multirow_macro_area;
+                }
+            }
+            std::cout << "min_macro_area: " << _min_macro_area << std::endl;
+            if (placement_cand.size() >= max_placement_size) {
+                break;
             }
         }
-        std::cout << "placement_cand.size(): " << placement_cand.size() << std::endl;
-        std::cout << "min_cell_area: " << min_cell_area << std::endl;
-        int _min_macro_area = std::numeric_limits<int>::max();
-        for (auto _pshape: placement_cand) {
-            if (_pshape->multirow_macro_area < _min_macro_area) {
-                _min_macro_area = _pshape->multirow_macro_area;
-            }
-        }
-        std::cout << "min_macro_area: " << _min_macro_area << std::endl;
+        target_area++;
     }
 
     // print solution
@@ -900,6 +638,401 @@ void CFET::placement_multi_row_search_tree() {
         }
     }
     placement_cand = new_placement_cand;
+    std::cout << "number of cell: " << placement_cand.size() << std::endl;
+    std::cout << "min_macro_area: " << min_macro_area << std::endl;
+    int place_cand_id = 0;
+    for (auto pshape: placement_cand) {
+        // std::cout << "min_macro_area: " << pshape->multirow_macro_area << std::endl;
+        // std::cout << "min_cell_area: " << pshape->multirow_area << std::endl;
+        std::cout << "#" << place_cand_id << std::endl;
+        // print transistor name
+        for (int i = 0; i < pshape->height; i++) {
+            for (int j = 0; j < pshape->width; j++) {
+                if (pshape->multirow_tr_permutation_up[i][j] == nullptr) {
+                    std::cout << "     ";
+                }
+                else {
+                    std::cout <<  std::left << std::setw(4) << pshape->multirow_tr_permutation_up[i][j]->name << " ";
+                }
+            }
+            std::cout << std::endl;
+        }
+        std::cout << "--" << std::endl;
+        for (int i = 0; i < pshape->height; i++) {
+            for (int j = 0; j < pshape->width; j++) {
+                if (pshape->multirow_tr_permutation_down[i][j] == nullptr) {
+                    std::cout << "     ";
+                }
+                else {
+                    std::cout <<  std::left << std::setw(4) << pshape->multirow_tr_permutation_down[i][j]->name << " ";
+                }
+            }
+            std::cout << std::endl;
+        }
+        //print active
+        for (int i = 0; i < pshape->height; i++) {
+            for (int j = 0; j < pshape->width; j++) {
+                Transistor* tr_n = pshape->multirow_tr_permutation_up[i][j];
+                switch (pshape->multirow_tr_shape_up[i][j]) {
+                    case 0:
+                        std::cout << std::left << std::setw(7) << tr_n->drain->name << " " << std::left << std::setw(7) << tr_n->gate->name << " " << std::left << std::setw(7) << tr_n->source->name << " ";
+                        break;
+                    case 1:
+                        std::cout << std::left << std::setw(7) << tr_n->source->name << " " << std::left << std::setw(7) << tr_n->gate->name << " " << std::left << std::setw(7) << tr_n->drain->name << " ";
+                        break;
+                    case 2:
+                        std::cout << "------------------------";
+                        break;
+                }
+            }
+            std::cout << std::endl;
+        }
+        std::cout << "--" << std::endl;
+        for (int i = 0; i < pshape->height; i++) {
+            for (int j = 0; j < pshape->width; j++) {
+                Transistor* tr_p = pshape->multirow_tr_permutation_down[i][j];
+                switch (pshape->multirow_tr_shape_down[i][j]) {
+                    case 0:
+                        std::cout << std::left << std::setw(7) << tr_p->drain->name << " " << std::left << std::setw(7) << tr_p->gate->name << " " << std::left << std::setw(7) << tr_p->source->name << " ";
+                        break;
+                    case 1:
+                        std::cout << std::left << std::setw(7) << tr_p->source->name << " " << std::left << std::setw(7) << tr_p->gate->name << " " << std::left << std::setw(7) << tr_p->drain->name << " ";
+                        break;
+                    case 2:
+                        std::cout << "------------------------";
+                        break;
+                }
+            }
+            std::cout << std::endl;
+        }
+        for (int i = 0; i < pshape->height; i++) {
+            for (int j = 0; j < pshape->width; j++) {
+                std::cout << pshape->multirow_tr_shape_up[i][j];
+            }
+            std::cout << std::endl;
+        }
+        std::cout << "--" << std::endl;
+        for (int i = 0; i < pshape->height; i++) {
+            for (int j = 0; j < pshape->width; j++) {
+                std::cout << pshape->multirow_tr_shape_down[i][j];
+            }
+            std::cout << std::endl;
+        }
+        std::cout << std::endl;
+        place_cand_id++;
+    }
+}
+
+void CFET::new_placement_multi_row_search_tree() {
+    // calculate num_finger
+    for (Transistor* p: pmos) {
+        Transistor* n = tr_pairs[p];
+        p->num_finger = (p->width-0.1) / max_cfet_width + 1;
+        n->num_finger = (n->width-0.1) / max_cfet_width + 1;
+    }
+    std::vector<Pshape*> placement_cand;
+    int tr_size_sum = 0;
+    int min_cell_area = std::numeric_limits<int>::max() - 1;
+    int min_macro_area = std::numeric_limits<int>::max() - 1;
+
+    for (Transistor* tr: pmos) {
+        tr_size_sum = tr_size_sum + std::max(tr->num_finger, tr_pairs[tr]->num_finger);
+    }
+    
+        for (Transistor* tr: pmos) {
+            std::vector<Lambda*> multi_row_config;
+            for (auto _p_shape: phi_merged[tr]) {
+                for (auto lamb: _p_shape.second) {
+                    multi_row_config.push_back(lamb);
+                }
+            }
+            multi_row_configs.insert(std::make_pair(tr, multi_row_config));
+        }
+    
+        Node* root = new Node();
+        for (int i = 0; i < pmos.size(); i++) {
+            // create node
+            bool pruned = false;
+            std::cout << "i: " << i << " current_tr: " << pmos[i]->name << std::endl;
+            Node* current_node = new Node();
+            std::vector<Transistor*> remained_pmos(pmos);
+            Transistor* current_tr = pmos[i];
+            std::vector<Pshape* > partial_placement;
+            int tr_left_sum = tr_size_sum;
+            current_node->parent = root;
+            remained_pmos.erase(std::remove(remained_pmos.begin(), remained_pmos.end(), pmos[i]), remained_pmos.end());
+            current_node->remained_pmos = remained_pmos;
+            current_node->tr = current_tr;
+            current_node->fill = 0;
+            tr_left_sum = tr_left_sum - std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger);
+            // create partial shape
+            for (auto lamb: multi_row_configs[current_tr]) {
+                Pshape* pshape = new Pshape();
+                // multi-row
+                pshape->multirow_area = std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger);
+                pshape->multirow_tr_shape_up = lamb->config_up;
+                pshape->multirow_tr_shape_down = lamb->config_down;
+                pshape->multirow_tr_permutation_up.assign(lamb->config_up.size(), std::vector<Transistor*>(lamb->config_up[0].size()));
+                pshape->multirow_tr_permutation_down.assign(lamb->config_down.size(), std::vector<Transistor*>(lamb->config_down[0].size()));
+                pshape->height = 0;
+                pshape->width = 0;
+                pshape->top_width = 0;
+                for (int row = 0; row < lamb->config_up.size(); row++) {
+                    pshape->most_right_idx.push_back(0);
+                    for (int col  = 0; col < lamb->config_up[row].size(); col++) {
+                        if (lamb->config_up[row][col] != 2) {
+                            pshape->multirow_tr_permutation_up[row][col] = tr_pairs[current_tr];
+                            pshape->most_right_idx[row] = col;
+                            pshape->height = row + 1;
+                        }
+                        else {
+                            pshape->multirow_tr_permutation_up[row][col] = nullptr;
+                        }
+                        if (lamb->config_down[row][col] != 2) {
+                            pshape->multirow_tr_permutation_down[row][col] = current_tr;
+                            pshape->most_right_idx[row] = col;
+                            pshape->height = row + 1;
+                        }
+                        else {
+                            pshape->multirow_tr_permutation_down[row][col] = nullptr;
+                        }
+                        if (lamb->config_up[row][col] != 2 || lamb->config_down[row][col] != 2) {
+                            if (col + 1 > pshape->width) {
+                                pshape->width = col + 1;
+                            }
+                        }
+                    }
+                    if (row == lamb->config_up.size() - 1) {
+                        for (int col  = 0; col < lamb->config_up[row].size(); col++) {
+                            if (lamb->config_up[row][col] != 2 || lamb->config_down[row][col] != 2) {
+                                pshape->top_width = col + 1;
+                            }
+                        }
+                    }
+                }
+                // std::cout << "pshape->width: " << pshape->width << std::endl;
+                pshape->multirow_macro_area = (pshape->width) * pshape->height;
+                // std::cout << pshape->multirow_tr_permutation_down[0][0]->name << " " << pshape->multirow_tr_permutation_up[0][0]->name << std::endl;
+                partial_placement.push_back(pshape);
+            }
+            // assign partial_placement
+            current_node->partial_shapes = partial_placement;
+
+            while (true) {
+                if (pruned) {
+                    // std::cout << "pruned!" << std::endl;
+                    pruned = false;
+                    while (true) {
+                        Node* n = current_node->parent;
+                        tr_left_sum = tr_left_sum + std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger);
+                        for (auto pshape: current_node->partial_shapes) {
+                            delete pshape;
+                        }
+                        delete current_node;
+                        current_node = n;
+                        current_tr = n->tr;
+                        if (((current_node->remained_pmos.size() == 0 || current_node->fill == current_node->remained_pmos.size() - 1) && (current_node != root)) == false) {
+                            break;
+                        }
+                    }
+                    current_node->fill++;
+                    if (current_node == root) {
+                        break;
+                    }
+                }
+                else if (current_node->remained_pmos.size() == 0) {
+                    // std::cout << "leaf!" << std::endl;
+                    if (current_node->partial_shapes.size() != 0) {
+                        for (auto pshape: current_node->partial_shapes) {
+                            if (pshape->multirow_macro_area < min_macro_area) {
+                                min_macro_area = pshape->multirow_macro_area;
+                                for (auto item: placement_cand) {
+                                    delete item;
+                                    item = nullptr;
+                                }
+                                placement_cand.clear();
+                                placement_cand.shrink_to_fit();
+                                placement_cand.push_back(pshape);
+                            }
+                            else if (pshape->multirow_macro_area == min_macro_area) {
+                                placement_cand.push_back(pshape);
+                            }
+                            else {
+                                delete pshape;
+                                pshape = nullptr;
+                            }
+                        }
+                        // std::cout << "placement_cand.size(): " << placement_cand.size() << std::endl;
+                    }
+                    else {
+                        delete current_node;
+                    }
+                    while ((current_node->remained_pmos.size() == 0 || current_node->fill == current_node->remained_pmos.size() - 1) && (current_node != root)) {
+                        Node* n = current_node->parent;
+                        tr_left_sum = tr_left_sum + std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger);
+                        current_node = n;
+                        current_tr = n->tr;
+                    }
+                    current_node->fill++;
+                    if (current_node == root) {
+                        break;
+                    }
+                }
+                else {
+                    int min_potential_macro_area = std::numeric_limits<int>::max();
+                    if (current_node->partial_shapes.size() == 0) {
+                        current_node->partial_shapes.clear();
+                        current_node->partial_shapes.shrink_to_fit();
+                        pruned = true;
+                        continue;
+                    }
+                    Node* n = new Node();
+                    std::vector<Transistor*> remained_pmos = current_node->remained_pmos;
+                    Transistor* old_tr = current_tr;
+                    current_tr = remained_pmos[current_node->fill];
+                    // std::cout << "now current_tr: " << current_tr->name << std::endl;
+                    std::vector<Pshape*> new_partial_placement;
+                    int low_bound;
+                    tr_left_sum = tr_left_sum - std::max(current_tr->num_finger, tr_pairs[current_tr]->num_finger);
+                    for (auto old_pshape: current_node->partial_shapes) {
+                        // std::cout << "old_pshape: " << std::endl;
+                        // for (int r = 0; r < old_pshape->multirow_tr_shape_up.size(); r++) {
+                        //     for (int c = 0; c < old_pshape->multirow_tr_shape_up[r].size(); c++) {
+                        //         std::cout << old_pshape->multirow_tr_shape_up[r][c];
+                        //     }
+                        //     std::cout << std::endl;
+                        // }
+                        // std::cout << "--" << std::endl;
+                        // for (int r = 0; r < old_pshape->multirow_tr_shape_down.size(); r++) {
+                        //     for (int c = 0; c < old_pshape->multirow_tr_shape_down[r].size(); c++) {
+                        //         std::cout << old_pshape->multirow_tr_shape_down[r][c];
+                        //     }
+                        //     std::cout << std::endl;
+                        // }
+                        // std::cout << "multi_row_configs[current_tr].size(): " << multi_row_configs[current_tr].size() << std::endl;
+                        for (auto lamb: multi_row_configs[current_tr]) {
+                            auto new_tr_permutation = old_pshape->tr_permutaton;
+                            auto new_tr_shape_id = old_pshape->tr_shape_id;
+                            auto new_ds_array = old_pshape->ds_array;
+                            // std::cout << "new_lamb: " << std::endl;
+                            // for (int r = 0; r < lamb->config_up.size(); r++) {
+                            //     for (int c = 0; c < lamb->config_up[r].size(); c++) {
+                            //         std::cout << lamb->config_up[r][c];
+                            //     }
+                            //     std::cout << std::endl;
+                            // }
+                            // std::cout << "--" << std::endl;
+                            // for (int r = 0; r < lamb->config_down.size(); r++) {
+                            //     for (int c = 0; c < lamb->config_down[r].size(); c++) {
+                            //         std::cout << lamb->config_down[r][c];
+                            //     }
+                            //     std::cout << std::endl;
+                            // }
+                            // for (int row = 0; row <= old_pshape->height; row++) {
+                            for (int row = std::max(0, static_cast<int>(old_pshape->height - lamb->config_up.size())); row <= old_pshape->height; row++) {
+                                int col;
+                                if (row < old_pshape->multirow_tr_shape_up.size()) {
+                                    col = old_pshape->most_right_idx[row];
+                                }
+                                else {
+                                    col = 0;
+                                }
+                                while (true) {
+                                    if (merge_enable(old_pshape, lamb, tr_pairs[current_tr], current_tr, row, col)) {
+                                        // std::cout << "row/col: " << row << " " << col << std::endl;
+                                        Pshape* pshape = merge(old_pshape, lamb, tr_pairs[current_tr], current_tr, row, col);
+                                        // cut by low_bound
+                                        // low_bound = pshape->multirow_area + tr_left_sum;
+                                        // low_bound = std::max(pshape->top_width + tr_left_sum, pshape->width) * pshape->height;
+                                        // low_bound = std::max(pshape->top_width + 2 + tr_left_sum, pshape->width + 2) * pshape->height;
+                                        low_bound = std::numeric_limits<int>::max();
+                                        for (int h = pshape->height; h <= max_allowable_cell_height; h++) {
+                                            int _low_bound = std::max(pshape->width, (pshape->top_width + tr_left_sum + (h - pshape->height + 1) - 1) / (h - pshape->height + 1));
+                                            _low_bound = _low_bound * h;
+                                            // std::cout << "_low_bound: " << _low_bound << " h: " << h << std::endl;
+                                            if (_low_bound < low_bound) {
+                                                low_bound = _low_bound;
+                                            }
+                                        }
+                                        
+                                        // std::cout << "low_bound: " << low_bound << " min_macro_area: " << min_macro_area << " min_potential_macro_area: " << min_potential_macro_area << std::endl;
+                                        // std::cout << "min_cell_area: " << min_cell_area << std::endl;
+                                        // std::cout << pshape->height << "/ " << max_allowable_cell_height << std::endl;
+                                        // std::cout << low_bound << " " << min_cell_area + 1 << std::endl;
+                                        if (low_bound > min_macro_area) {
+                                            delete pshape;
+                                            pshape = nullptr;
+                                            break;
+                                        }
+                                        if (pshape->height > max_allowable_cell_height) {
+                                            delete pshape;
+                                            pshape = nullptr;
+                                            break;
+                                        }
+                                        if (low_bound < min_potential_macro_area) {
+                                            for (auto item: new_partial_placement) {
+                                                delete item;
+                                                item = nullptr;
+                                            }
+                                            new_partial_placement.clear();
+                                            new_partial_placement.shrink_to_fit();
+                                            min_potential_macro_area = low_bound;
+                                            new_partial_placement.push_back(pshape);
+                                        }
+                                        else if (low_bound == min_potential_macro_area) {
+                                            new_partial_placement.push_back(pshape);
+                                        }
+                                        else {
+                                            delete pshape;
+                                            pshape = nullptr;
+                                        }
+                                        break;
+                                    }
+                                    col++;
+                                }
+                            }
+                        }
+                    }
+                    n->partial_shapes = new_partial_placement;
+                    remained_pmos.erase(std::remove(remained_pmos.begin(), remained_pmos.end(), current_tr), remained_pmos.end());
+                    n->remained_pmos = remained_pmos;
+                    n->parent = current_node;
+                    n->tr = current_tr;
+                    n->fill = 0;
+                    current_node->children.push_back(n);
+                    current_node = n;
+                }
+            }
+            std::cout << "placement_cand.size(): " << placement_cand.size() << std::endl;
+            // std::cout << "min_cell_area: " << min_cell_area << std::endl;
+            int _min_macro_area = std::numeric_limits<int>::max();
+            for (auto _pshape: placement_cand) {
+                if (_pshape->multirow_macro_area < _min_macro_area) {
+                    _min_macro_area = _pshape->multirow_macro_area;
+                }
+            }
+            std::cout << "min_macro_area: " << _min_macro_area << std::endl;
+            if (placement_cand.size() >= max_placement_size) {
+                break;
+            }
+        }
+
+    // print solution
+    // std::cout << "min_cell_area: " << min_cell_area << std::endl;
+
+    std::vector<Pshape*> new_placement_cand;
+    for (auto place_cand: placement_cand) {
+        if (place_cand->multirow_macro_area < min_macro_area) {
+            min_macro_area = place_cand->multirow_macro_area;
+        }
+    }
+    std::cout << "min_macro_area * (1 + relaxation_parameter): " << min_macro_area * (1 + relaxation_parameter) << std::endl;
+    for (auto place_cand: placement_cand) {
+        if (place_cand->multirow_macro_area <= min_macro_area * (1 + relaxation_parameter)) {
+            new_placement_cand.push_back(place_cand);
+        }
+    }
+    // placement_cand = new_placement_cand;
     std::cout << "number of cell: " << placement_cand.size() << std::endl;
     std::cout << "min_macro_area: " << min_macro_area << std::endl;
     int place_cand_id = 0;
