@@ -1,0 +1,26 @@
+.SUBCKT ICGx1_ASAP7_6t_L CLK ENA GCLK SE VDD VSS
+MM2 gclkn CLK net0140 VSS nmos_slvt w=54.0n l=20n nfin=2
+MM12 net0141 MH VSS VSS nmos_slvt w=54.0n l=20n nfin=2
+MM14 net0140 MH VSS VSS nmos_slvt w=54.0n l=20n nfin=2
+MM6 MS MH VSS VSS nmos_slvt w=27.0n l=20n nfin=1
+MM13 gclkn CLK net0141 VSS nmos_slvt w=54.0n l=20n nfin=2
+MM9 MH CLK pd3 VSS nmos_slvt w=27.0n l=20n nfin=1
+MM8 pd3 MS VSS VSS nmos_slvt w=27.0n l=20n nfin=1
+MM27 net0121 SE VSS VSS nmos_slvt w=54.0n l=20n nfin=2
+MM19 net0121 ENA VSS VSS nmos_slvt w=54.0n l=20n nfin=2
+MM24 GCLK gclkn VSS VSS nmos_slvt w=54.0n l=20n nfin=2
+MM5 pd1 net0121 VSS VSS nmos_slvt w=54.0n l=20n nfin=2
+MM4 MH clkn pd1 VSS nmos_slvt w=54.0n l=20n nfin=2
+MM20 clkn CLK VSS VSS nmos_slvt w=54.0n l=20n nfin=2
+MM18 nos1 SE VDD VDD pmos_slvt w=54.0n l=20n nfin=2
+MM16 gclkn CLK VDD VDD pmos_slvt w=54.0n l=20n nfin=2
+MM7 MS MH VDD VDD pmos_slvt w=27.0n l=20n nfin=1
+MM11 pd2 MS VDD VDD pmos_slvt w=27.0n l=20n nfin=1
+MM10 MH clkn pd2 VDD pmos_slvt w=27.0n l=20n nfin=1
+MM1 MH CLK pu1 VDD pmos_slvt w=54.0n l=20n nfin=2
+MM3 pu1 net0121 VDD VDD pmos_slvt w=54.0n l=20n nfin=2
+MM21 clkn CLK VDD VDD pmos_slvt w=54.0n l=20n nfin=2
+MM25 GCLK gclkn VDD VDD pmos_slvt w=54.0n l=20n nfin=2
+MM26 net0121 ENA nos1 VDD pmos_slvt w=54.0n l=20n nfin=2
+MM0 gclkn MH VDD VDD pmos_slvt w=54.0n l=20n nfin=2
+.ENDS

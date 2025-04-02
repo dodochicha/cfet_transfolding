@@ -1,0 +1,8 @@
+.SUBCKT NOR3x2_ASAP7_75t_L A B C VDD VSS Y
+MM14 Y C VSS VSS nmos_lvt w=162.00n l=20n nfin=6
+MM13 Y B VSS VSS nmos_lvt w=162.00n l=20n nfin=6
+MM12 Y A VSS VSS nmos_lvt w=162.00n l=20n nfin=6
+MM8 net21 C VDD VDD pmos_lvt w=486.00n l=20n nfin=18
+MM10 net22 B net21 VDD pmos_lvt w=486.00n l=20n nfin=18
+MM11 Y A net22 VDD pmos_lvt w=486.00n l=20n nfin=18
+.ENDS

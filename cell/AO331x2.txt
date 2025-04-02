@@ -1,0 +1,18 @@
+.SUBCKT AO331x2_ASAP7_75t_L A1 A2 A3 B1 B2 B3 C VDD VSS Y
+MM0 Y yb VDD VDD pmos_lvt w=162.00n l=20n nfin=6
+MM23 net24 B3 net034 VDD pmos_lvt w=81.0n l=20n nfin=3
+MM26 net034 A3 VDD VDD pmos_lvt w=81.0n l=20n nfin=3
+MM21 net24 B2 net034 VDD pmos_lvt w=81.0n l=20n nfin=3
+MM25 net034 A2 VDD VDD pmos_lvt w=81.0n l=20n nfin=3
+MM27 yb C net24 VDD pmos_lvt w=81.0n l=20n nfin=3
+MM20 net24 B1 net034 VDD pmos_lvt w=81.0n l=20n nfin=3
+MM24 net034 A1 VDD VDD pmos_lvt w=81.0n l=20n nfin=3
+MM1 Y yb VSS VSS nmos_lvt w=162.00n l=20n nfin=6
+MM22 yb C VSS VSS nmos_lvt w=81.0n l=20n nfin=3
+MM19 net31 B3 VSS VSS nmos_lvt w=81.0n l=20n nfin=3
+MM18 net32 B2 net31 VSS nmos_lvt w=81.0n l=20n nfin=3
+MM17 yb B1 net32 VSS nmos_lvt w=81.0n l=20n nfin=3
+MM16 n2 A3 VSS VSS nmos_lvt w=81.0n l=20n nfin=3
+MM15 n1 A2 n2 VSS nmos_lvt w=81.0n l=20n nfin=3
+MM14 yb A1 n1 VSS nmos_lvt w=81.0n l=20n nfin=3
+.ENDS

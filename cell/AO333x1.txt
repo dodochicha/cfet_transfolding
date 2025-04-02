@@ -1,0 +1,22 @@
+.SUBCKT AO333x1_ASAP7_75t_L A1 A2 A3 B1 B2 B3 C1 C2 C3 VDD VSS Y
+MM3 Y net40 VSS VSS nmos_lvt w=81.0n l=20n nfin=3
+MM0 net40 C1 net55 VSS nmos_lvt w=81.0n l=20n nfin=3
+MM1 net55 C2 net54 VSS nmos_lvt w=81.0n l=20n nfin=3
+MM2 net54 C3 VSS VSS nmos_lvt w=81.0n l=20n nfin=3
+MM19 net58 A3 VSS VSS nmos_lvt w=81.0n l=20n nfin=3
+MM18 net59 A2 net58 VSS nmos_lvt w=81.0n l=20n nfin=3
+MM14 net40 A1 net59 VSS nmos_lvt w=81.0n l=20n nfin=3
+MM10 net40 B3 net56 VSS nmos_lvt w=81.0n l=20n nfin=3
+MM9 net56 B2 net57 VSS nmos_lvt w=81.0n l=20n nfin=3
+MM8 net57 B1 VSS VSS nmos_lvt w=81.0n l=20n nfin=3
+MM7 net40 C1 net22 VDD pmos_lvt w=81.0n l=20n nfin=3
+MM6 net40 C2 net22 VDD pmos_lvt w=81.0n l=20n nfin=3
+MM5 net40 C3 net22 VDD pmos_lvt w=81.0n l=20n nfin=3
+MM4 Y net40 VDD VDD pmos_lvt w=81.0n l=20n nfin=3
+MM17 net24 A3 VDD VDD pmos_lvt w=81.0n l=20n nfin=3
+MM16 net24 A2 VDD VDD pmos_lvt w=81.0n l=20n nfin=3
+MM15 net24 A1 VDD VDD pmos_lvt w=81.0n l=20n nfin=3
+MM13 net22 B3 net24 VDD pmos_lvt w=81.0n l=20n nfin=3
+MM12 net22 B2 net24 VDD pmos_lvt w=81.0n l=20n nfin=3
+MM11 net22 B1 net24 VDD pmos_lvt w=81.0n l=20n nfin=3
+.ENDS

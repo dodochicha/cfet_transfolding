@@ -1,0 +1,6 @@
+.SUBCKT NAND2x2_ASAP7_75t_L A B VDD VSS Y
+MM3 net16 A VSS VSS nmos_lvt w=324.00n l=20n nfin=12
+MM2 Y B net16 VSS nmos_lvt w=324.00n l=20n nfin=12
+MM1 Y B VDD VDD pmos_lvt w=162.00n l=20n nfin=6
+MM0 Y A VDD VDD pmos_lvt w=162.00n l=20n nfin=6
+.ENDS

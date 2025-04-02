@@ -1,0 +1,16 @@
+.SUBCKT CKINVDCx10_ASAP7_75t_L A VDD VSS Y
+MM13 net067 net063 VSS VSS nmos_lvt w=162.00n l=20n nfin=6
+MM12 net067 net067 VSS VSS nmos_lvt w=162.00n l=20n nfin=6
+MM9 net066 net061 VSS VSS nmos_lvt w=162.00n l=20n nfin=6
+MM8 net066 net066 VSS VSS nmos_lvt w=162.00n l=20n nfin=6
+MM0 Y A VSS VSS nmos_lvt w=810.0n l=20n nfin=30
+MM2 net030 net030 VSS VSS nmos_lvt w=162.00n l=20n nfin=6
+MM3 net030 net029 VSS VSS nmos_lvt w=162.00n l=20n nfin=6
+MM11 net063 net063 VDD VDD pmos_lvt w=162.00n l=20n nfin=6
+MM10 net063 net067 VDD VDD pmos_lvt w=162.00n l=20n nfin=6
+MM7 net061 net061 VDD VDD pmos_lvt w=162.00n l=20n nfin=6
+MM6 net061 net066 VDD VDD pmos_lvt w=162.00n l=20n nfin=6
+MM5 net029 net029 VDD VDD pmos_lvt w=162.00n l=20n nfin=6
+MM4 net029 net030 VDD VDD pmos_lvt w=162.00n l=20n nfin=6
+MM1 Y A VDD VDD pmos_lvt w=810.0n l=20n nfin=30
+.ENDS

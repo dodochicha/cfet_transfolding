@@ -1,0 +1,12 @@
+.SUBCKT XOR2x1_ASAP7_75t_L A B VDD VSS Y
+MM11 VSS A net047 VSS nmos_lvt w=162.00n l=20n nfin=6
+MM10 net047 B Y VSS nmos_lvt w=162.00n l=20n nfin=6
+MM9 VSS net036 Y VSS nmos_lvt w=162.00n l=20n nfin=6
+MM0 VSS A net036 VSS nmos_lvt w=81.0n l=20n nfin=3
+MM1 VSS B net036 VSS nmos_lvt w=81.0n l=20n nfin=3
+MM4 VDD A net019 VDD pmos_lvt w=162.00n l=20n nfin=6
+MM5 VDD B net019 VDD pmos_lvt w=162.00n l=20n nfin=6
+MM6 net019 net036 Y VDD pmos_lvt w=162.00n l=20n nfin=6
+MM2 net048 B net036 VDD pmos_lvt w=81.0n l=20n nfin=3
+MM3 VDD A net048 VDD pmos_lvt w=81.0n l=20n nfin=3
+.ENDS

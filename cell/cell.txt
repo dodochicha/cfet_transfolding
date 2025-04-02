@@ -1,0 +1,20 @@
+.SUBCKT DFFHQNx1_ASAP7_75t_L CLK D QN VDD VSS
+MM24 QN SH VSS VSS nmos_lvt w=81.0n l=20n nfin=3
+MM23 clkb clkn VSS VSS nmos_lvt w=54.0n l=20n nfin=2
+MM20 clkn CLK VSS VSS nmos_lvt w=54.0n l=20n nfin=2
+MM17 SH clkn pd5 VSS nmos_lvt w=27.0n l=20n nfin=1
+MM16 pd5 SS VSS VSS nmos_lvt w=27.0n l=20n nfin=1
+MM14 SS SH VSS VSS nmos_lvt w=27.0n l=20n nfin=1
+MM12 MS clkb SH VSS nmos_lvt w=27.0n l=20n nfin=1
+MM8 pd3 MS VSS VSS nmos_lvt w=27.0n l=20n nfin=1
+MM6 MS MH VSS VSS nmos_lvt w=27.0n l=20n nfin=1
+MM25 QN SH VDD VDD pmos_lvt w=81.0n l=20n nfin=3
+MM22 clkb clkn VDD VDD pmos_lvt w=54.0n l=20n nfin=2
+MM21 clkn CLK VDD VDD pmos_lvt w=54.0n l=20n nfin=2
+MM19 pd4 SS VDD VDD pmos_lvt w=27n l=20n nfin=1
+MM18 SH clkb pd4 VDD pmos_lvt w=27n l=20n nfin=1
+MM15 SS SH VDD VDD pmos_lvt w=27n l=20n nfin=1
+MM13 MS clkn SH VDD pmos_lvt w=27n l=20n nfin=1
+MM11 pd2 MS VDD VDD pmos_lvt w=27n l=20n nfin=1
+MM7 MS MH VDD VDD pmos_lvt w=27n l=20n nfin=1
+.ENDS

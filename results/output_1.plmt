@@ -1,0 +1,10 @@
+<NAME> 1
+<OUTPUT> QN2 
+<POWER> VDD
+<GROUND> VSS
+<INPUT> CLK 
+<PMOS> 14 ( 54 54 81 81 81 27 27 27 27 27 27 81 81 27 )
+clkn <CLK> VDD VDD <clkn> clkb clkb <VDD> pu1_1 pu1_1 <clkb> net15_1 net15_1 <VDD> net15_2 net15_2 <clkn> pd2_2 pd2_2 <net29_2> VDD VDD <net15_2> net29_2 net29_2 <clkn> net32_2 net32_2 <clkb> pd4_2 pd4_2 <net37_2> VDD VDD <net32_2> QN2 QN2 <net32_2> VDD VDD <net32_2> net37_2 
+
+<NMOS> 14 ( 54 54 8181 8127 27 27 27 27 27 81 81 27 )
+clkn <CLK> VSS VSS <clkn> clkb clkb <VSS> net15_1 pd1_1 <clkn> net15_1 net15_1 <VSS> pd3_2 net15_2 <clkb> pd3_2 pd3_2 <net29_2> VSS VSS <net15_2> net29_2 net29_2 <clkb> net32_2 net32_2 <clkn> pd5_2 pd5_2 <net37_2> VSS VSS <net32_2> QN2 QN2 <net32_2> VSS VSS <net32_2> net37_2 

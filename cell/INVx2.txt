@@ -1,0 +1,4 @@
+.SUBCKT INVx2_ASAP7_75t_L A VDD VSS Y
+MM0 Y A VSS VSS nmos_lvt w=162.00n l=20n nfin=6
+MM1 Y A VDD VDD pmos_lvt w=162.00n l=20n nfin=6
+.ENDS

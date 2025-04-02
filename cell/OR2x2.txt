@@ -1,0 +1,8 @@
+.SUBCKT OR2x2_ASAP7_75t_L A B VDD VSS Y
+MM5 VSS net7 Y VSS nmos_lvt w=162.00n l=20n nfin=6
+MM1 VSS B net7 VSS nmos_lvt w=54.0n l=20n nfin=2
+MM2 VSS A net7 VSS nmos_lvt w=54.0n l=20n nfin=2
+MM0 VDD net7 Y VDD pmos_lvt w=162.00n l=20n nfin=6
+MM4 net15 B net7 VDD pmos_lvt w=81.0n l=20n nfin=3
+MM3 VDD A net15 VDD pmos_lvt w=81.0n l=20n nfin=3
+.ENDS

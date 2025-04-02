@@ -1,0 +1,10 @@
+.SUBCKT OAI22x1_ASAP7_75t_L A1 A2 B1 B2 VDD VSS Y
+MM3 net3 B2 VSS VSS nmos_lvt w=162.00n l=20n nfin=6
+MM2 Y A2 net3 VSS nmos_lvt w=162.00n l=20n nfin=6
+MM1 net3 B1 VSS VSS nmos_lvt w=162.00n l=20n nfin=6
+MM0 Y A1 net3 VSS nmos_lvt w=162.00n l=20n nfin=6
+MM8 net13 A1 VDD VDD pmos_lvt w=162.00n l=20n nfin=6
+MM11 Y A2 net13 VDD pmos_lvt w=162.00n l=20n nfin=6
+MM6 net14 B1 VDD VDD pmos_lvt w=162.00n l=20n nfin=6
+MM10 Y B2 net14 VDD pmos_lvt w=162.00n l=20n nfin=6
+.ENDS

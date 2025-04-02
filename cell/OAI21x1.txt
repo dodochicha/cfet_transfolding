@@ -1,0 +1,8 @@
+.SUBCKT OAI21x1_ASAP7_75t_L A1 A2 B VDD VSS Y
+MM2 Y B VDD VDD pmos_lvt w=162.00n l=20n nfin=6
+MM1 Y A2 net27 VDD pmos_lvt w=162.00n l=20n nfin=6
+MM0 net27 A1 VDD VDD pmos_lvt w=162.00n l=20n nfin=6
+MM6 net11 B VSS VSS nmos_lvt w=162.00n l=20n nfin=6
+MM5 Y A2 net11 VSS nmos_lvt w=162.00n l=20n nfin=6
+MM4 Y A1 net11 VSS nmos_lvt w=162.00n l=20n nfin=6
+.ENDS

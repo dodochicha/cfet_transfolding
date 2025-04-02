@@ -1,0 +1,6 @@
+.SUBCKT BUFx8_ASAP7_75t_L A VDD VSS Y
+MM0 AN A VDD VDD pmos_lvt w=108.00n l=20n nfin=4
+MM1 Y AN VDD VDD pmos_lvt w=648.00n l=20n nfin=24
+MM2 AN A VSS VSS nmos_lvt w=108.00n l=20n nfin=4
+MM3 Y AN VSS VSS nmos_lvt w=648.00n l=20n nfin=24
+.ENDS

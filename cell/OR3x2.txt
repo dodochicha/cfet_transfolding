@@ -1,0 +1,10 @@
+.SUBCKT OR3x2_ASAP7_75t_L A B C VDD VSS Y
+MM1 Y net61 VSS VSS nmos_lvt w=162.00n l=20n nfin=6
+MM14 net61 C VSS VSS nmos_lvt w=81.0n l=20n nfin=3
+MM13 net61 B VSS VSS nmos_lvt w=81.0n l=20n nfin=3
+MM12 net61 A VSS VSS nmos_lvt w=81.0n l=20n nfin=3
+MM0 Y net61 VDD VDD pmos_lvt w=162.00n l=20n nfin=6
+MM8 net66 C VDD VDD pmos_lvt w=81.0n l=20n nfin=3
+MM10 net67 B net66 VDD pmos_lvt w=81.0n l=20n nfin=3
+MM11 net61 A net67 VDD pmos_lvt w=81.0n l=20n nfin=3
+.ENDS
