@@ -1,8 +1,6 @@
 #ifndef CFET_H_
 #define CFET_H_
 
-#include <cuda_runtime.h>
-
 #include <chrono>
 #include <iostream>
 #include <map>

@@ -1,6 +1,5 @@
 #include "cfet.h"
 
-#include <cuda_runtime.h>
 #include <omp.h>
 #include <sys/stat.h>  // Linux/Unix 系統用於創建資料夾
 
