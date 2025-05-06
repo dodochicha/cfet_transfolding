@@ -49,7 +49,7 @@ void generate_multirow_plmt(std::vector<Pshape*> pshape_vec, std::vector<std::ve
     for (auto* sig : outputs) ofs << sig->name << " ";
     ofs << "\n<INPUT> ";
     for (auto* sig : inputs) ofs << sig->name << " ";
-    ofs << "\n<ROWS> " << rows << " <COLS> " << max_cols << "\n\n";
+    ofs << "\n<ROWS> " << rows << " <COLS> " << max_cols * 2 + 1 << "\n\n";
 
     // PMOS block
     ofs << "<PMOS>\n";
