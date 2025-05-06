@@ -788,13 +788,12 @@ void placement() {
         calculate_pgr_blocked(best_results[0]);
         single_row_vec.push_back(best_results[0]);
     }
-    generate_plmt(single_row_vec);
-
-    std::vector<std::vector<int>> available_track_case;
 
     print_signal_permutation(single_row_vec);
-    available_track_case = calculate_available_track_case(single_row_vec);
-    bool design_rule_violation = via_rule_violation(available_track_case);
+    bool via_rule_satisfied = satisfy_via_rule(single_row_vec);
+
+    // generate_plmt(single_row_vec);
+    generate_multirow_plmt(single_row_vec, via_preassignment);
     // merge single-row
     // auto pshape_single_row = single_row_merging(single_row_vec);
     // for (int i = 0; i < pshape_single_row.size(); i++) {

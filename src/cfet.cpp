@@ -17,6 +17,7 @@
 #include <queue>
 #include <set>
 #include <sstream>
+#include <string>
 #include <unordered_map>
 #include <utility>
 #include <vector>
@@ -55,6 +56,7 @@ std::vector<Signal *> inputs;
 std::vector<Transistor *> trs;
 std::vector<Transistor *> pmos;
 std::vector<Transistor *> nmos;
+std::vector<std::vector<bool>> via_preassignment;
 std::unordered_map<std::string, Transistor *> tr_dict;
 std::unordered_map<std::string, Signal *> signals;
 std::unordered_map<Transistor *, Transistor *> tr_pairs;
@@ -230,7 +232,6 @@ void print_signal_permutation(std::vector<Pshape *> pshape_vec) {
                         break;
                 }
             }
-            std::cout << std::endl;
         }
         pshape->multirow_signal_permutation_down.assign(pshape->height, std::vector<Signal *>(layout_width * 2 + 3, nullptr));
         for (int i = 0; i < pshape->height; i++) {
@@ -254,7 +255,6 @@ void print_signal_permutation(std::vector<Pshape *> pshape_vec) {
                         break;
                 }
             }
-            std::cout << std::endl;
         }
         for (int i = 0; i < pshape->height; i++) {
             for (int j = 0; j < pshape->multirow_signal_permutation_up[0].size(); j++) {
@@ -319,92 +319,266 @@ std::vector<std::vector<int>> calculate_available_track_case(std::vector<Pshape 
     return available_track_case;
 }
 
-bool via_rule_violation(std::vector<std::vector<int>> available_track_case) {
+bool satisfy_via_rule(std::vector<Pshape *> single_row_vec) {
+    std::cout << "hello satisfy_via_rule" << std::endl;
+    // assign available track case
+    std::vector<std::vector<int>> available_track_case;
+    available_track_case = calculate_available_track_case(single_row_vec);
+    for (int i = 0; i < single_row_vec.size(); i++) {
+        single_row_vec[i]->available_track_case = available_track_case[i];
+    }
+    // VSS on the top
+    int rows = single_row_vec.size() * 4;
+    int cols = single_row_vec[0]->available_track_case.size();
     z3::context ctx;
+    z3::solver solver(ctx);
+    z3::optimize opt(ctx);
     z3::expr_vector bool_vars(ctx);
-    int rows = available_track_case.size() * 4;
-    int cols = available_track_case[0].size();
-    std::vector<std::vector<z3::expr>> matrix(rows, std::vector<z3::expr>(cols, ctx.bool_val(false)));
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            std::string var_name = "b_" + std::to_string(i) + "_" + std::to_string(j);
-            matrix[i][j] = ctx.bool_const(var_name.c_str());
+    std::vector<std::vector<std::vector<z3::expr>>> matrix;
+    std::vector<std::vector<z3::expr>> via_occupied;
+    std::vector<Signal *> idx_to_sig;
+    std::unordered_map<Signal *, int> sig_count;
+    std::vector<std::vector<z3::expr>> max_y;
+    std::vector<std::vector<z3::expr>> min_y;
+
+    int idx = 0;
+
+    for (auto pair : signals) {
+        Signal *sig = pair.second;
+        sig->id = idx;
+        idx_to_sig.push_back(sig);
+        idx++;
+    }
+
+    for (int i = 0; i < single_row_vec.size(); i++) {
+        for (int j = 0; j < single_row_vec[i]->multirow_signal_permutation_up[0].size(); j++) {
+            Signal *sig_up = single_row_vec[i]->multirow_signal_permutation_up[0][j];
+            Signal *sig_down = single_row_vec[i]->multirow_signal_permutation_down[0][j];
+            if (sig_up != nullptr && sig_down != nullptr) {
+                if (sig_up == sig_down) {
+                    sig_count[sig_up]++;
+                } else {
+                    sig_count[sig_up]++;
+                    sig_count[sig_down]++;
+                }
+            }
         }
     }
-    z3::solver solver(ctx);
+
+    for (int i = 0; i < idx_to_sig.size(); i++) {
+        std::cout << "id: " << i << " " << idx_to_sig[i]->name << " count: " << sig_count[idx_to_sig[i]] << std::endl;
+    }
+
+    matrix.resize(signals.size());
+
+    for (int s = 0; s < matrix.size(); s++) {
+        matrix[s].assign(rows, std::vector<z3::expr>(cols, ctx.bool_val(false)));
+    }
+
+    for (int s = 0; s < signals.size(); s++) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                std::string var_name = "b_" + std::to_string(s) + "_" + std::to_string(i) + "_" + std::to_string(j);
+                matrix[s][i][j] = ctx.bool_const(var_name.c_str());
+            }
+        }
+    }
+
+    max_y.resize(single_row_vec.size());
+    min_y.resize(single_row_vec.size());
+    for (int r = 0; r < single_row_vec.size(); r++) {
+        max_y[r].assign(signals.size(), ctx.int_val(0));
+        min_y[r].assign(signals.size(), ctx.int_val(0));
+    }
+    for (int r = 0; r < single_row_vec.size(); r++) {
+        for (int s = 0; s < signals.size(); s++) {
+            max_y[r][s] = ctx.int_const((std::to_string(r) + "_" + std::to_string(s) + "_max_y").c_str());
+            min_y[r][s] = ctx.int_const((std::to_string(r) + "_" + std::to_string(s) + "_min_y").c_str());
+            opt.add(max_y[r][s] >= min_y[r][s]);
+            for (int i = r * 4; i < r * 4 + 4; i++) {
+                z3::expr row_has_true = ctx.bool_val(false);
+                for (int j = 0; j < matrix[s][i].size(); j++) {
+                    row_has_true = row_has_true || matrix[s][i][j];
+                }
+                opt.add(z3::implies(row_has_true, max_y[r][s] >= i - r * 4));
+                opt.add(z3::implies(row_has_true, min_y[r][s] <= i - r * 4));
+            }
+        }
+    }
+    z3::expr total_diff = ctx.int_val(0);  // 初始化為 0
+    for (int r = 0; r < single_row_vec.size(); r++) {
+        for (int s = 0; s < signals.size(); s++) {
+            total_diff = total_diff + (max_y[r][s] - min_y[r][s]);
+        }
+    }
+    opt.minimize(total_diff);
+
+    via_occupied.resize(matrix[0].size());
+    for (int i = 0; i < matrix[0].size(); i++) {
+        via_occupied[i].assign(matrix[0][0].size(), ctx.bool_val(false));
+    }
+    for (int s = 0; s < matrix.size(); s++) {
+        for (int i = 0; i < matrix[s].size(); i++) {
+            for (int j = 0; j < matrix[s][i].size(); j++) {
+                via_occupied[i][j] = via_occupied[i][j] || matrix[s][i][j];
+            }
+        }
+    }
 
     // 加入約束：相鄰的方格不能同時為 true
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
             if (i > 0)  // 上方相鄰
-                solver.add(!(matrix[i][j] && matrix[i - 1][j]));
+                opt.add(!(via_occupied[i][j] && via_occupied[i - 1][j]));
             if (i < rows - 1)  // 下方相鄰
-                solver.add(!(matrix[i][j] && matrix[i + 1][j]));
+                opt.add(!(via_occupied[i][j] && via_occupied[i + 1][j]));
             if (j > 0)  // 左方相鄰
-                solver.add(!(matrix[i][j] && matrix[i][j - 1]));
+                opt.add(!(via_occupied[i][j] && via_occupied[i][j - 1]));
             if (j < cols - 1)  // 右方相鄰
-                solver.add(!(matrix[i][j] && matrix[i][j + 1]));
+                opt.add(!(via_occupied[i][j] && via_occupied[i][j + 1]));
         }
     }
-    for (int i = 0; i < available_track_case.size(); i++) {
-        for (int j = 0; j < available_track_case[i].size(); j++) {
-            // for (int j = 0; j < 3; j++) {
-            int track_case = available_track_case[i][j];
-            switch (track_case) {
-                case 0:
-                    break;
-                case 1:
-                    solver.add(z3::ite(matrix[4 * i][j], ctx.int_val(1), ctx.int_val(0)) + z3::ite(matrix[4 * i + 1][j], ctx.int_val(1), ctx.int_val(0)) +
-                                   z3::ite(matrix[4 * i + 2][j], ctx.int_val(1), ctx.int_val(0)) +
-                                   z3::ite(matrix[4 * i + 3][j], ctx.int_val(1), ctx.int_val(0)) ==
-                               ctx.int_val(1));
 
-                    break;
-                case 2:
-                    solver.add(z3::ite(matrix[4 * i][j], ctx.int_val(1), ctx.int_val(0)) + z3::ite(matrix[4 * i + 1][j], ctx.int_val(1), ctx.int_val(0)) +
-                                   z3::ite(matrix[4 * i + 2][j], ctx.int_val(1), ctx.int_val(0)) +
-                                   z3::ite(matrix[4 * i + 3][j], ctx.int_val(1), ctx.int_val(0)) ==
-                               ctx.int_val(1));
-
-                    break;
-                case 3: {
-                    z3::expr p1 = matrix[4 * i + 1][j] && matrix[4 * i + 3][j];
-                    z3::expr p2 = matrix[4 * i][j] && matrix[4 * i + 3][j];
-                    z3::expr p3 = matrix[4 * i + 2][j] && matrix[4 * i][j];
-                    z3::expr p4 = matrix[4 * i + 3][j] && matrix[4 * i][j];
-                    solver.add(z3::ite(p1, ctx.int_val(1), ctx.int_val(0)) + z3::ite(p2, ctx.int_val(1), ctx.int_val(0)) +
-                                   z3::ite(p3, ctx.int_val(1), ctx.int_val(0)) + z3::ite(p4, ctx.int_val(1), ctx.int_val(0)) ==
-                               ctx.int_val(1));
-                    break;
-                }
-                case 4: {
-                    if (i % 2 == 0) {
-                        solver.add(!matrix[4 * i][j] && !matrix[4 * i + 1][j] && !matrix[4 * i + 2][j] && matrix[4 * i + 3][j]);
+    for (int s = 0; s < signals.size(); s++) {
+        for (int i = 0; i < single_row_vec.size(); i++) {
+            for (int j = 0; j < single_row_vec[i]->available_track_case.size(); j++) {
+                int track_case = single_row_vec[i]->available_track_case[j];
+                if (single_row_vec[i]->multirow_signal_permutation_up[0][j] == idx_to_sig[s]) {
+                    if (sig_count[idx_to_sig[s]] <= 1 && idx_to_sig[s]->type == 0) {
+                        if (track_case == 3) {
+                            Signal *sig_down = single_row_vec[i]->multirow_signal_permutation_down[0][j];
+                            int s_paired = sig_down->id;
+                            if (sig_count[idx_to_sig[s_paired]] <= 1) {
+                                opt.add(!matrix[s_paired][4 * i][j] && !matrix[s_paired][4 * i + 1][j] && !matrix[s_paired][4 * i + 2][j] &&
+                                        !matrix[s_paired][4 * i + 3][j]);
+                            } else {
+                                z3::expr p1 = matrix[s_paired][4 * i + 3][j];
+                                z3::expr p3 = matrix[s_paired][4 * i][j];
+                                opt.add(!matrix[s_paired][4 * i + 1][j] && !matrix[s_paired][4 * i + 2][j]);
+                                opt.add(z3::ite(p1, ctx.int_val(1), ctx.int_val(0)) + z3::ite(p3, ctx.int_val(1), ctx.int_val(0)) == ctx.int_val(1));
+                            }
+                        } else {
+                            opt.add(!matrix[s][4 * i][j] && !matrix[s][4 * i + 1][j] && !matrix[s][4 * i + 2][j] && !matrix[s][4 * i + 3][j]);
+                        }
                     } else {
-                        solver.add(matrix[4 * i][j] && !matrix[4 * i + 1][j] && !matrix[4 * i + 2][j] && !matrix[4 * i + 3][j]);
+                        switch (track_case) {
+                            case 0:
+                                opt.add(!matrix[s][4 * i][j] && !matrix[s][4 * i + 1][j] && !matrix[s][4 * i + 2][j] && !matrix[s][4 * i + 3][j]);
+                                break;
+                            case 1:
+                                opt.add(z3::ite(matrix[s][4 * i][j], ctx.int_val(1), ctx.int_val(0)) +
+                                            z3::ite(matrix[s][4 * i + 1][j], ctx.int_val(1), ctx.int_val(0)) +
+                                            z3::ite(matrix[s][4 * i + 2][j], ctx.int_val(1), ctx.int_val(0)) +
+                                            z3::ite(matrix[s][4 * i + 3][j], ctx.int_val(1), ctx.int_val(0)) ==
+                                        ctx.int_val(1));
+
+                                break;
+                            case 2:
+                                opt.add(z3::ite(matrix[s][4 * i][j], ctx.int_val(1), ctx.int_val(0)) +
+                                            z3::ite(matrix[s][4 * i + 1][j], ctx.int_val(1), ctx.int_val(0)) +
+                                            z3::ite(matrix[s][4 * i + 2][j], ctx.int_val(1), ctx.int_val(0)) +
+                                            z3::ite(matrix[s][4 * i + 3][j], ctx.int_val(1), ctx.int_val(0)) ==
+                                        ctx.int_val(1));
+
+                                break;
+                            case 3: {
+                                Signal *sig_down = single_row_vec[i]->multirow_signal_permutation_down[0][j];
+                                int s_paired = sig_down->id;
+                                z3::expr p1 = matrix[s][4 * i + 1][j] && matrix[s_paired][4 * i + 3][j] && !matrix[s][4 * i][j] && !matrix[s][4 * i + 2][j] &&
+                                              !matrix[s][4 * i + 3][j] && !matrix[s_paired][4 * i][j] && !matrix[s_paired][4 * i + 1][j] &&
+                                              !matrix[s_paired][4 * i + 2][j];
+                                z3::expr p2 = matrix[s][4 * i][j] && matrix[s_paired][4 * i + 3][j] && !matrix[s][4 * i + 1][j] && !matrix[s][4 * i + 2][j] &&
+                                              !matrix[s][4 * i + 3][j] && !matrix[s_paired][4 * i][j] && !matrix[s_paired][4 * i + 1][j] &&
+                                              !matrix[s_paired][4 * i + 2][j];
+                                z3::expr p3 = matrix[s][4 * i + 2][j] && matrix[s_paired][4 * i][j] && !matrix[s][4 * i][j] && !matrix[s][4 * i + 1][j] &&
+                                              !matrix[s][4 * i + 3][j] && !matrix[s_paired][4 * i + 1][j] && !matrix[s_paired][4 * i + 2][j] &&
+                                              !matrix[s_paired][4 * i + 3][j];
+                                z3::expr p4 = matrix[s][4 * i + 3][j] && matrix[s_paired][4 * i][j] && !matrix[s][4 * i][j] && !matrix[s][4 * i + 1][j] &&
+                                              !matrix[s][4 * i + 2][j] && !matrix[s_paired][4 * i + 1][j] && !matrix[s_paired][4 * i + 2][j] &&
+                                              !matrix[s_paired][4 * i + 3][j];
+                                opt.add(z3::ite(p1, ctx.int_val(1), ctx.int_val(0)) + z3::ite(p2, ctx.int_val(1), ctx.int_val(0)) +
+                                            z3::ite(p3, ctx.int_val(1), ctx.int_val(0)) + z3::ite(p4, ctx.int_val(1), ctx.int_val(0)) ==
+                                        ctx.int_val(1));
+                                break;
+                            }
+                            case 4: {
+                                break;
+                            }
+                            case 5: {
+                                opt.add(!matrix[s][4 * i][j] && !matrix[s][4 * i + 1][j] && !matrix[s][4 * i + 2][j] && !matrix[s][4 * i + 3][j]);
+                                break;
+                            }
+                        }
                     }
-                    break;
-                }
-                case 5: {
-                    solver.add(!matrix[4 * i][j] && !matrix[4 * i + 1][j] && !matrix[4 * i + 2][j] && !matrix[4 * i + 3][j]);
-                    break;
+                } else if (single_row_vec[i]->multirow_signal_permutation_down[0][j] == idx_to_sig[s]) {
+                    switch (track_case) {
+                        case 0:
+                            opt.add(!matrix[s][4 * i][j] && !matrix[s][4 * i + 1][j] && !matrix[s][4 * i + 2][j] && !matrix[s][4 * i + 3][j]);
+                            break;
+                        case 1:
+                            opt.add(!matrix[s][4 * i][j] && !matrix[s][4 * i + 1][j] && !matrix[s][4 * i + 2][j] && !matrix[s][4 * i + 3][j]);
+                            break;
+                        case 2:
+                            opt.add(!matrix[s][4 * i][j] && !matrix[s][4 * i + 1][j] && !matrix[s][4 * i + 2][j] && !matrix[s][4 * i + 3][j]);
+                            break;
+                        case 3: {
+                            break;
+                        }
+                        case 4:
+                            if (i % 2 == 0) {
+                                opt.add(!matrix[s][4 * i][j] && !matrix[s][4 * i + 1][j] && !matrix[s][4 * i + 2][j] && matrix[s][4 * i + 3][j]);
+                            } else {
+                                opt.add(matrix[s][4 * i][j] && !matrix[s][4 * i + 1][j] && !matrix[s][4 * i + 2][j] && !matrix[s][4 * i + 3][j]);
+                            }
+                            break;
+
+                        case 5:
+                            opt.add(!matrix[s][4 * i][j] && !matrix[s][4 * i + 1][j] && !matrix[s][4 * i + 2][j] && !matrix[s][4 * i + 3][j]);
+                            break;
+                    }
+                } else {
+                    opt.add(!matrix[s][4 * i][j] && !matrix[s][4 * i + 1][j] && !matrix[s][4 * i + 2][j] && !matrix[s][4 * i + 3][j]);
                 }
             }
         }
     }
-    if (solver.check() == z3::sat) {
+
+    if (opt.check() == z3::sat) {
         std::cout << "SAT" << std::endl;
-        z3::model m = solver.get_model();
-        for (int i = 0; i < matrix.size(); i++) {
-            for (int j = 0; j < matrix[i].size(); j++) {
-                std::cout << (m.eval(matrix[i][j]).bool_value() == Z3_L_TRUE ? "1 " : "0 ");
+        z3::model m = opt.get_model();
+        for (int i = 0; i < matrix[0].size(); i++) {
+            for (int j = 0; j < matrix[0][i].size(); j++) {
+                std::cout << (m.eval(via_occupied[i][j]).bool_value() == Z3_L_TRUE ? "1 " : "0 ");
             }
             std::cout << std::endl;
         }
-        return false;
+
+        // check correctness
+        std::vector<std::vector<int>> matrix_constraint;
+        matrix_constraint.resize(rows, std::vector<int>(cols, 0));
+        for (int s = 0; s < signals.size(); s++) {
+            for (int i = 0; i < matrix[s].size(); i++) {
+                for (int j = 0; j < matrix[s][i].size(); j++) {
+                    matrix_constraint[i][j] += (m.eval(matrix[s][i][j]).bool_value() == Z3_L_TRUE ? 1 : 0);
+                }
+            }
+        }
+        via_preassignment.assign(rows, std::vector<bool>(cols, false));
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < cols; ++j) {
+                via_preassignment[i][j] = (m.eval(via_occupied[i][j]).bool_value() == Z3_L_TRUE);
+            }
+        }
+        std::cout << "total_via_vertical_diff: " << m.eval(total_diff) << std::endl;
+        for (int i = 0; i < matrix[0].size(); i++) {
+            for (int j = 0; j < matrix[0][i].size(); j++) {
+                assert(matrix_constraint[i][j] <= 1);
+            }
+        }
+        return true;
     } else {
         std::cout << "UNSAT" << std::endl;
-        return true;
+        return false;
     }
 }
 
@@ -608,176 +782,6 @@ void calculate_pgr_blocked(Pshape *pshape) {
                 pshape->multirow_pgr_blocked_vss[std::min(static_cast<int>(pshape->multirow_pgr_blocked_vss.size()), 2 * k + 3)] = 1;
             }
         }
-    }
-}
-
-void generate_plmt(std::vector<Pshape *> pshape_vec) {
-    // 指定資料夾名稱
-    std::string folderName = "results";
-
-    if (fs::exists(folderName)) {
-        // 刪除資料夾及其內容
-        fs::remove_all(folderName);
-        std::cout << "資料夾 " << folderName << " 已刪除。" << std::endl;
-    } else {
-        std::cout << "資料夾 " << folderName << " 不存在。" << std::endl;
-    }
-
-    // 創建資料夾
-    if (createFolder(folderName) == 0) {
-        std::cout << "資料夾 " << folderName << " 已成功創建！" << std::endl;
-    } else {
-        std::cerr << "無法創建資料夾 " << folderName << "，可能已存在。" << std::endl;
-    }
-    for (int i = 0; i < pshape_vec.size(); i++) {
-        // 將輸出寫入該資料夾中的不同檔案
-        Pshape *pshape = pshape_vec[i];
-        // 構造檔案路徑
-        std::string fileName = folderName + "/output_" + std::to_string(i) + ".plmt";
-
-        // 打開文件輸出流
-        std::ofstream outputFile(fileName);
-        if (!outputFile) {
-            std::cerr << "無法創建檔案 " << fileName << std::endl;
-            continue;
-        }
-
-        // 寫入內容
-        outputFile << "<NAME> " << i << std::endl;
-        outputFile << "<OUTPUT> ";
-        for (Signal *sig : outputs) {
-            for (Transistor *tr : pshape->multirow_tr_permutation_down[0]) {
-                if (tr == nullptr) continue;
-                if (tr->drain == sig || tr->source == sig) {
-                    outputFile << sig->name << " ";
-                    break;
-                }
-            }
-        }
-        outputFile << std::endl;
-        outputFile << "<POWER> VDD" << std::endl;
-        outputFile << "<GROUND> VSS" << std::endl;
-        outputFile << "<INPUT> ";
-        for (Signal *sig : inputs) {
-            for (Transistor *tr : pshape->multirow_tr_permutation_down[0]) {
-                if (tr == nullptr) continue;
-                if (tr->gate == sig) {
-                    outputFile << sig->name << " ";
-                    break;
-                }
-            }
-        }
-        outputFile << std::endl;
-        outputFile << "<PMOS> " << pshape->width << " ( ";
-        for (int i = 0; i < pshape->height; i++) {
-            for (int j = 0; j < pshape->width; j++) {
-                Transistor *tr_p = pshape->multirow_tr_permutation_down[i][j];
-                switch (pshape->multirow_tr_shape_down[i][j]) {
-                    case 0:
-                        outputFile << tr_p->width / tr_p->num_finger << " ";
-                        break;
-                    case 1:
-                        outputFile << tr_p->width / tr_p->num_finger << " ";
-                        break;
-                    case 2:
-                        outputFile << "81 ";
-                        break;
-                }
-            }
-            outputFile << ")" << std::endl;
-        }
-        for (int i = 0; i < pshape->height; i++) {
-            for (int j = 0; j < pshape->width; j++) {
-                Transistor *tr_p = pshape->multirow_tr_permutation_down[i][j];
-                switch (pshape->multirow_tr_shape_down[i][j]) {
-                    case 0:
-                        outputFile << tr_p->drain->name << " <" << tr_p->gate->name << "> " << tr_p->source->name << " ";
-                        break;
-                    case 1:
-                        outputFile << tr_p->source->name << " <" << tr_p->gate->name << "> " << tr_p->drain->name << " ";
-                        break;
-                    case 2:
-                        Transistor *tr_p_pre = pshape->multirow_tr_permutation_down[i][j - 1];
-                        Transistor *tr_p_post = pshape->multirow_tr_permutation_down[i][j + 1];
-                        switch (pshape->multirow_tr_shape_down[i][j - 1]) {
-                            case 0:
-                                outputFile << tr_p_pre->source->name << " ";
-                                break;
-                            case 1:
-                                outputFile << tr_p_pre->drain->name << " ";
-                                break;
-                        }
-                        outputFile << "<VDD> ";
-                        switch (pshape->multirow_tr_shape_down[i][j + 1]) {
-                            case 0:
-                                outputFile << tr_p_post->drain->name << " ";
-                                break;
-                            case 1:
-                                outputFile << tr_p_post->source->name << " ";
-                                break;
-                        }
-                        break;
-                }
-            }
-            outputFile << std::endl;
-        }
-        outputFile << std::endl;
-        outputFile << "<NMOS> " << pshape->width << " ( ";
-        for (int i = 0; i < pshape->height; i++) {
-            for (int j = 0; j < pshape->width; j++) {
-                Transistor *tr_n = pshape->multirow_tr_permutation_up[i][j];
-                switch (pshape->multirow_tr_shape_up[i][j]) {
-                    case 0:
-                        outputFile << tr_n->width / tr_n->num_finger << " ";
-                        break;
-                    case 1:
-                        outputFile << tr_n->width / tr_n->num_finger << " ";
-                        break;
-                    case 2:
-                        outputFile << "81";
-                        break;
-                }
-            }
-            outputFile << ")" << std::endl;
-        }
-        for (int i = 0; i < pshape->height; i++) {
-            for (int j = 0; j < pshape->width; j++) {
-                Transistor *tr_n = pshape->multirow_tr_permutation_up[i][j];
-                switch (pshape->multirow_tr_shape_up[i][j]) {
-                    case 0:
-                        outputFile << tr_n->drain->name << " <" << tr_n->gate->name << "> " << tr_n->source->name << " ";
-                        break;
-                    case 1:
-                        outputFile << tr_n->source->name << " <" << tr_n->gate->name << "> " << tr_n->drain->name << " ";
-                        break;
-                    case 2:
-                        Transistor *tr_n_pre = pshape->multirow_tr_permutation_up[i][j - 1];
-                        Transistor *tr_n_post = pshape->multirow_tr_permutation_up[i][j + 1];
-                        switch (pshape->multirow_tr_shape_up[i][j - 1]) {
-                            case 0:
-                                outputFile << tr_n_pre->source->name << " ";
-                                break;
-                            case 1:
-                                outputFile << tr_n_pre->drain->name << " ";
-                                break;
-                        }
-                        outputFile << "<VSS> ";
-                        switch (pshape->multirow_tr_shape_up[i][j + 1]) {
-                            case 0:
-                                outputFile << tr_n_post->source->name << " ";
-                                break;
-                            case 1:
-                                outputFile << tr_n_post->drain->name << " ";
-                                break;
-                        }
-                        break;
-                }
-            }
-            outputFile << std::endl;
-        }
-        outputFile.close();
-
-        std::cout << "內容已寫入檔案 " << fileName << std::endl;
     }
 }
 

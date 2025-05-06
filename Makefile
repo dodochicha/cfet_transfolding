@@ -17,22 +17,22 @@ CPP_OBJ = $(CPP_SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 TARGET = main
 
 # 預設目標
-all: $(BIN_DIR) $(OBJ_DIR) $(BIN_DIR)/$(TARGET)
+all: $(OBJ_DIR) $(TARGET)
 
 # 編譯 .cpp 檔
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# 連結
-$(BIN_DIR)/$(TARGET): $(CPP_OBJ)
+# 連結（執行檔放在根目錄）
+$(TARGET): $(CPP_OBJ)
 	$(CXX) $(CPP_OBJ) -o $@ -lz3 -fopenmp
 
 # 建立資料夾
-$(OBJ_DIR) $(BIN_DIR):
+$(OBJ_DIR):
 	mkdir -p $@
 
 # 清除中間檔
 clean:
-	rm -rf $(OBJ_DIR) $(BIN_DIR)
+	rm -rf $(OBJ_DIR) $(TARGET)
 
 .PHONY: all clean

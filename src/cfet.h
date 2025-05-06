@@ -30,6 +30,7 @@ extern std::vector<Signal*> inputs;
 extern std::vector<Transistor*> trs;
 extern std::vector<Transistor*> pmos;
 extern std::vector<Transistor*> nmos;
+extern std::vector<std::vector<bool>> via_preassignment;
 extern std::unordered_map<std::string, Transistor*> tr_dict;
 extern std::unordered_map<std::string, Signal*> signals;
 extern std::unordered_map<Transistor*, Transistor*> tr_pairs;
@@ -59,13 +60,14 @@ void calculate_pgr_blocked(Pshape* pshape);
 void print_pshape(Pshape* pshape);
 void print_signal_permutation(std::vector<Pshape*> pshape_vec);
 void generate_plmt(std::vector<Pshape*> pshape_vec);
+void generate_multirow_plmt(std::vector<Pshape*> pshape_vec, std::vector<std::vector<bool>> via_preassignment);
 void generateBias(const std::vector<int>& row_bias, std::vector<int>& bias, size_t index, bool& found);
 bool check_overlapped(Shape* big_shape, Shape* small_shape, int x, int y);
 bool compareGroupPair(const Group_pair* a, const Group_pair* b);
 bool comparePshapeHSP(const Pshape* a, const Pshape* b);
 bool comparePshapeHSP_descending(const Pshape* a, const Pshape* b);
 bool merge_enable(Pshape* old_pshape, Lambda* new_lamb, Transistor* nmos, Transistor* pmos, int row, int col);
-bool via_rule_violation(std::vector<std::vector<int>> available_track_case);
+bool satisfy_via_rule(std::vector<Pshape*> single_row_vec);
 int hsp(Pshape* pshape);
 int hcd(Pshape* pshape);
 int inter_row_signal_count(std::vector<Pshape*> pshape_vec);
@@ -128,9 +130,11 @@ class Signal {
     Signal();
 
     std::string name;
+    int type = 0;  // 0: others, 1: io
     bool is_io_pins = false;
     int start = -1;
     int end = -1;
+    int id;
 };
 
 class Pshape {
@@ -138,12 +142,6 @@ class Pshape {
     Pshape();
 
     ~Pshape() {
-        // tr_permutaton.clear();
-        // tr_permutaton.shrink_to_fit();
-        // tr_shape_id.clear();
-        // tr_shape_id.shrink_to_fit();
-        // ds_array.clear();
-        // ds_array.shrink_to_fit();
         multirow_tr_shape_up.clear();
         multirow_tr_shape_up.shrink_to_fit();
         multirow_tr_shape_down.clear();
@@ -176,6 +174,7 @@ class Pshape {
     std::vector<int> most_right_idx;
     std::vector<int> multirow_pgr_blocked_vdd;
     std::vector<int> multirow_pgr_blocked_vss;
+    std::vector<int> available_track_case;
     int multirow_area;
     int height;
     int multirow_macro_area;

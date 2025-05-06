@@ -18,6 +18,10 @@ void parse_input(std::istream& stream) {
     std::istringstream iss(line);
     std::string temp;
     while (iss >> temp) {
+        Signal* sig = new Signal();
+        sig->name = temp;
+        sig->type = 1;
+        signals.insert(std::make_pair(temp, sig));
         io_pins.push_back(temp);
     }
 
