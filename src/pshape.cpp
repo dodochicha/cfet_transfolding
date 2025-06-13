@@ -212,28 +212,28 @@ void Pshape::print_pshape() {
         }
         std::cout << std::endl;
     }
-    for (int i = 0; i < row; i++) {
-        for (int j = 0; j < multirow_signal_permutation_up[i].size(); j++) {
-            Signal *sig = multirow_signal_permutation_up[i][j];
-            if (sig == nullptr) {
-                std::cout << "Null    ";
-            } else {
-                std::cout << std::left << std::setw(7) << sig->name << " ";
-            }
-        }
-    }
-    std::cout << std::endl;
-    for (int i = 0; i < row; i++) {
-        for (int j = 0; j < multirow_signal_permutation_down[i].size(); j++) {
-            Signal *sig = multirow_signal_permutation_down[i][j];
-            if (sig == nullptr) {
-                std::cout << "Null    ";
-            } else {
-                std::cout << std::left << std::setw(7) << sig->name << " ";
-            }
-        }
-    }
-    std::cout << std::endl;
+    // for (int i = 0; i < row; i++) {
+    //     for (int j = 0; j < multirow_signal_permutation_up[i].size(); j++) {
+    //         Signal *sig = multirow_signal_permutation_up[i][j];
+    //         if (sig == nullptr) {
+    //             std::cout << "Null    ";
+    //         } else {
+    //             std::cout << std::left << std::setw(7) << sig->name << " ";
+    //         }
+    //     }
+    // }
+    // std::cout << std::endl;
+    // for (int i = 0; i < row; i++) {
+    //     for (int j = 0; j < multirow_signal_permutation_down[i].size(); j++) {
+    //         Signal *sig = multirow_signal_permutation_down[i][j];
+    //         if (sig == nullptr) {
+    //             std::cout << "Null    ";
+    //         } else {
+    //             std::cout << std::left << std::setw(7) << sig->name << " ";
+    //         }
+    //     }
+    // }
+    // std::cout << std::endl;
 }
 
 bool Pshape::satisfy_via_rule() {
@@ -628,7 +628,7 @@ void Pshape::generate_multirow_plmt() {
     for (int i = 0; i < row; i++) {
         max_cols = std::max(max_cols, static_cast<int>(multirow_tr_permutation_up[i].size()));
     }
-    std::cout << "pass" << std::endl;
+
     std::string fileName = folderName + "/output.plmt";
     std::ofstream ofs(fileName);
     if (!ofs) {
@@ -637,7 +637,7 @@ void Pshape::generate_multirow_plmt() {
     }
 
     int cols = via_preassignment.empty() ? 0 : via_preassignment[0].size();
-    std::cout << "pass" << std::endl;
+
     // Header
     ofs << "<NAME> 0\n"
         << "<POWER> VDD\n"
@@ -647,13 +647,11 @@ void Pshape::generate_multirow_plmt() {
     ofs << "\n<INPUT> ";
     for (auto *sig : inputs) ofs << sig->name << " ";
     ofs << "\n<ROWS> " << row << " <COLS> " << max_cols * 3 << "\n\n";
-    std::cout << "pass" << std::endl;
+
     // PMOS block
     ofs << "<PMOS>\n";
     for (size_t r = 0; r < row; ++r) {
-        std::cout << "col: " << multirow_tr_shape_up[r].size() << std::endl;
         for (size_t c = 0; c < max_cols; ++c) {
-            std::cout << r << " " << c << std::endl;
             auto *tr = multirow_tr_permutation_down[r][c];
             int shape = multirow_tr_shape_down[r][c];
             if (shape == 0) {
@@ -694,7 +692,6 @@ void Pshape::generate_multirow_plmt() {
         ofs << "\n";
     }
     ofs << "\n";
-    std::cout << "pass" << std::endl;
     // NMOS block
     ofs << "<NMOS>\n";
     for (size_t r = 0; r < row; ++r) {
@@ -743,7 +740,7 @@ void Pshape::generate_multirow_plmt() {
         ofs << "\n";
     }
     ofs << "\n";
-    std::cout << "pass" << std::endl;
+
     // VIA Preassignment block
     ofs << "<VIA_PREASSIGNMENT>\n";
     for (int i = 0; i < row * 4; ++i) {
@@ -757,7 +754,7 @@ void Pshape::generate_multirow_plmt() {
         ofs << "\n";
     }
     ofs << "\n";
-    std::cout << "pass" << std::endl;
+
     ofs.close();
     std::cout << "Generated " << fileName << "\n";
 }
