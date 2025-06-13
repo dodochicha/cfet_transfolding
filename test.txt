@@ -22,26 +22,6 @@ MM11_2 num_finger: 1
 MM10_2 num_finger: 1
 MM1_2 num_finger: 1
 MM3_2 num_finger: 1
-MM25_3 num_finger: 2
-MM19_3 num_finger: 1
-MM18_3 num_finger: 1
-MM15_3 num_finger: 1
-MM13_3 num_finger: 1
-MM7_3 num_finger: 1
-MM11_3 num_finger: 1
-MM10_3 num_finger: 1
-MM1_3 num_finger: 1
-MM3_3 num_finger: 1
-MM25_4 num_finger: 2
-MM19_4 num_finger: 1
-MM18_4 num_finger: 1
-MM15_4 num_finger: 1
-MM13_4 num_finger: 1
-MM7_4 num_finger: 1
-MM11_4 num_finger: 1
-MM10_4 num_finger: 1
-MM1_4 num_finger: 1
-MM3_4 num_finger: 1
 MM24_1 num_finger: 2
 MM17_1 num_finger: 1
 MM16_1 num_finger: 1
@@ -64,51 +44,34 @@ MM9_2 num_finger: 1
 MM8_2 num_finger: 1
 MM5_2 num_finger: 1
 MM4_2 num_finger: 1
-MM24_3 num_finger: 2
-MM17_3 num_finger: 1
-MM16_3 num_finger: 1
-MM14_3 num_finger: 1
-MM12_3 num_finger: 1
-MM6_3 num_finger: 1
-MM9_3 num_finger: 1
-MM8_3 num_finger: 1
-MM5_3 num_finger: 1
-MM4_3 num_finger: 1
-MM24_4 num_finger: 2
-MM17_4 num_finger: 1
-MM16_4 num_finger: 1
-MM14_4 num_finger: 1
-MM12_4 num_finger: 1
-MM6_4 num_finger: 1
-MM9_4 num_finger: 1
-MM8_4 num_finger: 1
-MM5_4 num_finger: 1
-MM4_4 num_finger: 1
-#tr/#net: 84/53
+#tr/#net: 44/29
 compound_gates: 
 
-MM7_4
-MM6_4
+MM7_2
+MM6_2
 
-MM15_4
-MM14_4
+MM15_2
+MM14_2
 
-MM18_4
-MM17_4
+MM18_2
+MM17_2
 
-MM7_3
-MM6_3
+MM10_1
+MM1_1
+MM9_1
+MM4_1
 
-MM15_3
-MM14_3
+MM7_1
+MM6_1
 
-MM10_4
-MM1_4
-MM9_4
-MM4_4
+MM25_2
+MM24_2
 
-MM25_4
-MM24_4
+MM21_1
+MM20_1
+
+MM25_1
+MM24_1
 
 MM18_1
 MM17_1
@@ -116,50 +79,13 @@ MM17_1
 MM15_1
 MM14_1
 
-MM25_1
-MM24_1
-
-MM25_3
-MM24_3
-
-MM7_2
-MM6_2
-
-MM25_2
-MM24_2
-
-MM10_1
-MM1_1
-MM9_1
-MM4_1
-
-MM21_1
-MM20_1
-
-MM7_1
-MM6_1
-
-MM22_1
-MM23_1
-
 MM10_2
 MM1_2
 MM9_2
 MM4_2
 
-MM18_3
-MM17_3
-
-MM10_3
-MM1_3
-MM9_3
-MM4_3
-
-MM18_2
-MM17_2
-
-MM15_2
-MM14_2
+MM22_1
+MM23_1
 
 transmission_gates: 
 
@@ -168,54 +94,53 @@ MM12_1
 
 MM13_2
 MM12_2
-
-MM13_3
-MM12_3
-
-MM13_4
-MM12_4
 p-network: 
-MM7_4
+MM7_2
 n-network: 
-MM6_4
+MM6_2
 
 p-network: 
-MM15_4
+MM15_2
 n-network: 
-MM14_4
+MM14_2
 
 p-network: 
-MM18_4
-MM19_4
+MM18_2
+MM19_2
 n-network: 
-MM17_4
-MM16_4
+MM17_2
+MM16_2
 
 p-network: 
-MM7_3
+MM10_1
+MM11_1
+MM1_1
+MM3_1
 n-network: 
-MM6_3
+MM9_1
+MM8_1
+MM4_1
+MM5_1
 
 p-network: 
-MM15_3
+MM7_1
 n-network: 
-MM14_3
+MM6_1
 
 p-network: 
-MM10_4
-MM11_4
-MM1_4
-MM3_4
+MM25_2
 n-network: 
-MM9_4
-MM8_4
-MM4_4
-MM5_4
+MM24_2
 
 p-network: 
-MM25_4
+MM21_1
 n-network: 
-MM24_4
+MM20_1
+
+p-network: 
+MM25_1
+n-network: 
+MM24_1
 
 p-network: 
 MM18_1
@@ -230,52 +155,6 @@ n-network:
 MM14_1
 
 p-network: 
-MM25_1
-n-network: 
-MM24_1
-
-p-network: 
-MM25_3
-n-network: 
-MM24_3
-
-p-network: 
-MM7_2
-n-network: 
-MM6_2
-
-p-network: 
-MM25_2
-n-network: 
-MM24_2
-
-p-network: 
-MM10_1
-MM11_1
-MM1_1
-MM3_1
-n-network: 
-MM9_1
-MM8_1
-MM4_1
-MM5_1
-
-p-network: 
-MM21_1
-n-network: 
-MM20_1
-
-p-network: 
-MM7_1
-n-network: 
-MM6_1
-
-p-network: 
-MM22_1
-n-network: 
-MM23_1
-
-p-network: 
 MM10_2
 MM11_2
 MM1_2
@@ -287,89 +166,40 @@ MM4_2
 MM5_2
 
 p-network: 
-MM18_3
-MM19_3
+MM22_1
 n-network: 
-MM17_3
-MM16_3
-
-p-network: 
-MM10_3
-MM11_3
-MM1_3
-MM3_3
-n-network: 
-MM9_3
-MM8_3
-MM4_3
-MM5_3
-
-p-network: 
-MM18_2
-MM19_2
-n-network: 
-MM17_2
-MM16_2
-
-p-network: 
-MM15_2
-n-network: 
-MM14_2
+MM23_1
 
 pairs: 
-MM18_2 MM17_2
-MM3_3 MM5_3
-MM1_3 MM4_3
-MM10_3 MM9_3
-MM19_3 MM16_3
-MM1_2 MM4_2
-MM11_2 MM8_2
-MM10_2 MM9_2
-MM19_2 MM16_2
-MM1_4 MM4_4
-MM11_4 MM8_4
-MM18_4 MM17_4
-MM19_4 MM16_4
-MM3_2 MM5_2
-MM15_3 MM14_3
-MM7_4 MM6_4
-MM3_1 MM5_1
-MM18_3 MM17_3
-MM13_4 MM12_4
-MM1_1 MM4_1
-MM10_4 MM9_4
-MM15_4 MM14_4
-MM13_2 MM12_2
-MM7_3 MM6_3
-MM18_1 MM17_1
-MM13_1 MM12_1
-MM3_4 MM5_4
-MM25_4 MM24_4
-MM13_3 MM12_3
-MM19_1 MM16_1
-MM11_3 MM8_3
 MM15_1 MM14_1
-MM7_2 MM6_2
 MM25_1 MM24_1
-MM25_3 MM24_3
-MM25_2 MM24_2
-MM22_1 MM23_1
-MM10_1 MM9_1
-MM11_1 MM8_1
+MM13_2 MM12_2
+MM13_1 MM12_1
+MM7_2 MM6_2
+MM18_1 MM17_1
 MM15_2 MM14_2
+MM19_1 MM16_1
+MM18_2 MM17_2
+MM19_2 MM16_2
 MM21_1 MM20_1
+MM10_2 MM9_2
+MM11_1 MM8_1
+MM22_1 MM23_1
+MM1_2 MM4_2
+MM10_1 MM9_1
+MM25_2 MM24_2
+MM3_2 MM5_2
+MM1_1 MM4_1
+MM3_1 MM5_1
+MM11_2 MM8_2
 MM7_1 MM6_1
-cell width: 1242
-expected #row: 4
+cell width: 648
+expected #row: 3
 output mos: MM25_1
 output mos: MM25_2
-output mos: MM25_3
-output mos: MM25_4
 input mos: MM21_1
 input mos: MM3_1
 input mos: MM3_2
-input mos: MM3_3
-input mos: MM3_4
 group: 
 MM25_1
 MM18_1
@@ -384,13 +214,13 @@ MM3_2
 MM3_1
 hello group_placement
 target_area: 12
-BFS Time taken : 0.0308436
+BFS Time taken : 0.0160748
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-Time taken : 0.0579705 seconds
+Time taken : 0.0246827 seconds
 target_area: 13
-BFS Time taken : 1.75542
-bfs total time: 1.78626
-dfs total time: 0.0268924
+BFS Time taken : 1.04595
+bfs total time: 1.06203
+dfs total time: 0.0084232
 number of cell: 288
 group: 
 MM25_2
@@ -406,196 +236,127 @@ MM11_2
 MM19_2
 hello group_placement
 target_area: 12
-BFS Time taken : 0.0263575
+BFS Time taken : 0.0150305
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-Time taken : 0.0365906 seconds
+Time taken : 0.0153261 seconds
 target_area: 13
-BFS Time taken : 1.27668
+BFS Time taken : 0.858539
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-Time taken : 1.28782 seconds
+Time taken : 0.858852 seconds
 target_area: 14
-BFS Time taken : 2.51395
-0.929213, 0.933044, 0.941622, 0.939285, 0.931291, 0.930231, 0.931728, 0.932817, 0.93521, 0.933777, 0.931595, 0.939149, 0.929486, 0.9333, 0.984617, 0.933486, 
-Time taken : 3.51656 seconds
-bfs total time: 3.81699
-dfs total time: 1.01533
-number of cell: 1216
-group: 
-MM25_3
-MM18_3
-MM13_3
-MM15_3
-MM19_3
-MM7_3
-MM10_3
-MM1_3
-MM11_3
-MM3_3
-MM19_2
-hello group_placement
-target_area: 12
-BFS Time taken : 0.0455079
-bfs total time: 0.0455079
-dfs total time: 0
-number of cell: 48
-group: 
-MM25_4
-MM18_4
-MM13_4
-MM15_4
-MM19_4
-MM7_4
-MM10_4
-MM1_4
-MM11_4
-MM3_4
-MM19_2
-hello group_placement
-target_area: 12
-BFS Time taken : 0.047909
-bfs total time: 0.047909
-dfs total time: 0
-number of cell: 48
+BFS Time taken : 1.81108
+2.92537, 2.92377, 2.92247, 2.92271, 2.92263, 2.92271, 2.92324, 2.92928, 2.94236, 2.92371, 2.92277, 2.92266, 2.92155, 2.93137, 2.92267, 2.92188, 
+Time taken : 4.78377 seconds
+bfs total time: 2.68465
+dfs total time: 2.94329
+number of cell: 3456
 Set 1 intersecting elements: clkn clkb net15_1 pd1_1 pu1_1 net15_2 
-Set 2 intersecting elements: clkn clkb net15_1 pd1_1 pu1_1 pd5_2 net37_2 net15_2 pd4_2 
-Set 3 intersecting elements: clkn clkb pd5_2 net37_2 pd4_2 
-Set 4 intersecting elements: clkn clkb pd5_2 net37_2 pd4_2 
+Set 2 intersecting elements: clkn clkb net15_1 pd1_1 pu1_1 net15_2 
 Row 0: 
-MM5_1   MM24_1  MM24_1  MM5_2   MM4_2        MM14_1  MM16_1  MM17_1  MM12_1  MM6_1   MM8_1   MM9_1   
+MM5_1   MM24_1  MM24_1  MM5_2   MM4_2           MM14_1  MM16_1  MM17_1  MM12_1  MM6_1   MM8_1   MM9_1   
 --
-MM3_1   MM25_1  MM25_1  MM3_2   MM1_2        MM15_1  MM19_1  MM18_1  MM13_1  MM7_1   MM11_1  MM10_1  
+MM3_1   MM25_1  MM25_1  MM3_2   MM1_2           MM15_1  MM19_1  MM18_1  MM13_1  MM7_1   MM11_1  MM10_1  
 pd1_1   D1      VSS     VSS     net32_1 QN1     QN1     net32_1 VSS     VSS     D2      pd1_2   pd1_2   clkn    net15_2 ------------------------net37_1 net32_1 VSS     VSS     net37_1 pd5_1   pd5_1   clkn    net32_1 net32_1 clkb    net29_1 net29_1 net15_1 VSS     VSS     net29_1 pd3_1   pd3_1   clkb    net15_1 
 --
 pu1_1   D1      VDD     VDD     net32_1 QN1     QN1     net32_1 VDD     VDD     D2      pu1_2   pu1_2   clkb    net15_2 ------------------------net37_1 net32_1 VDD     VDD     net37_1 pd4_1   pd4_1   clkb    net32_1 net32_1 clkn    net29_1 net29_1 net15_1 VDD     VDD     net29_1 pd2_1   pd2_1   clkn    net15_1 
-vdd pgr: 
-0       1       1       1       0       1       1       1       0       0       0       0       0       1       1       1       0       0       0       0       0       1       1       1       0       0       0       
-vss pgr: 
-0       1       1       1       0       1       1       1       0       0       0       0       0       1       1       1       0       0       0       0       0       1       1       1       0       0       0       
+pd1_1   D1      VSS     net32_1 QN1     net32_1 VSS     D2      pd1_2   clkn    net15_2 Null    net37_1 net32_1 VSS     net37_1 pd5_1   clkn    net32_1 clkb    net29_1 net15_1 VSS     net29_1 pd3_1   clkb    net15_1 
+pu1_1   D1      VDD     net32_1 QN1     net32_1 VDD     D2      pu1_2   clkb    net15_2 Null    net37_1 net32_1 VDD     net37_1 pd4_1   clkb    net32_1 clkn    net29_1 net15_1 VDD     net29_1 pd2_1   clkn    net15_1 
 HSP: 80
 HCD: 3
 Row 1: 
-MM20_1  MM23_1       MM4_1        MM9_2   MM8_2   MM6_2   MM12_2  MM17_2  MM16_2  MM24_2  MM24_2  MM14_2  
+MM4_1           MM20_1  MM23_1          MM9_2   MM8_2   MM6_2   MM12_2  MM17_2  MM16_2  MM24_2  MM24_2  MM14_2  
 --
-MM21_1  MM22_1       MM1_1        MM10_2  MM11_2  MM7_2   MM13_2  MM18_2  MM19_2  MM25_2  MM25_2  MM15_2  
-clkn    CLK     VSS     VSS     clkn    clkb    ------------------------pd1_1   clkn    net15_1 ------------------------net15_2 clkb    pd3_2   pd3_2   net29_2 VSS     VSS     net15_2 net29_2 net29_2 clkb    net32_2 net32_2 clkn    pd5_2   pd5_2   net37_2 VSS     VSS     net32_2 QN2     QN2     net32_2 VSS     VSS     net32_2 net37_2 
+MM1_1           MM21_1  MM22_1          MM10_2  MM11_2  MM7_2   MM13_2  MM18_2  MM19_2  MM25_2  MM25_2  MM15_2  
+pd1_1   clkn    net15_1 ------------------------clkn    CLK     VSS     VSS     clkn    clkb    ------------------------net15_2 clkb    pd3_2   pd3_2   net29_2 VSS     VSS     net15_2 net29_2 net29_2 clkb    net32_2 net32_2 clkn    pd5_2   pd5_2   net37_2 VSS     VSS     net32_2 QN2     QN2     net32_2 VSS     VSS     net32_2 net37_2 
 --
-clkn    CLK     VDD     VDD     clkn    clkb    ------------------------pu1_1   clkb    net15_1 ------------------------net15_2 clkn    pd2_2   pd2_2   net29_2 VDD     VDD     net15_2 net29_2 net29_2 clkn    net32_2 net32_2 clkb    pd4_2   pd4_2   net37_2 VDD     VDD     net32_2 QN2     QN2     net32_2 VDD     VDD     net32_2 net37_2 
-vdd pgr: 
-0       1       1       1       0       0       0       0       0       0       0       0       0       1       1       1       0       0       0       0       0       1       1       1       0       1       1       1       0       
-vss pgr: 
-0       1       1       1       0       0       0       0       0       0       0       0       0       1       1       1       0       0       0       0       0       1       1       1       0       1       1       1       0       
-HSP: 112
+pu1_1   clkb    net15_1 ------------------------clkn    CLK     VDD     VDD     clkn    clkb    ------------------------net15_2 clkn    pd2_2   pd2_2   net29_2 VDD     VDD     net15_2 net29_2 net29_2 clkn    net32_2 net32_2 clkb    pd4_2   pd4_2   net37_2 VDD     VDD     net32_2 QN2     QN2     net32_2 VDD     VDD     net32_2 net37_2 
+pd1_1   clkn    net15_1 Null    clkn    CLK     VSS     clkn    clkb    Null    net15_2 clkb    pd3_2   net29_2 VSS     net15_2 net29_2 clkb    net32_2 clkn    pd5_2   net37_2 VSS     net32_2 QN2     net32_2 VSS     net32_2 net37_2 
+pu1_1   clkb    net15_1 Null    clkn    CLK     VDD     clkn    clkb    Null    net15_2 clkn    pd2_2   net29_2 VDD     net15_2 net29_2 clkn    net32_2 clkb    pd4_2   net37_2 VDD     net32_2 QN2     net32_2 VDD     net32_2 net37_2 
+HSP: 106
 HCD: 4
-Row 2: 
-MM16_2  MM5_3   MM4_3   MM9_3   MM8_3   MM6_3   MM12_3  MM17_3  MM16_3  MM24_3  MM24_3  MM14_3  
+inter-row signal set:
+clkn
+clkb
+net15_1
+pd1_1
+pu1_1
+net15_2
+
+hpml: 123
+hello move_tr_to_left
+hello allign
+MM5_1   MM24_1  MM24_1  MM5_2   MM4_2           MM14_1  MM16_1  MM17_1  MM12_1  MM6_1   MM8_1   MM9_1   MM4_1   
+MM20_1  MM23_1          MM9_2   MM8_2   MM6_2   MM12_2  MM17_2  MM16_2  MM24_2  MM24_2  MM14_2                  
 --
-MM19_2  MM3_3   MM1_3   MM10_3  MM11_3  MM7_3   MM13_3  MM18_3  MM19_3  MM25_3  MM25_3  MM15_3  
-pd5_2   net37_2 VSS     VSS     D3      pd1_3   pd1_3   clkn    net15_3 net15_3 clkb    pd3_3   pd3_3   net29_3 VSS     VSS     net15_3 net29_3 net29_3 clkb    net32_3 net32_3 clkn    pd5_3   pd5_3   net37_3 VSS     VSS     net32_3 QN3     QN3     net32_3 VSS     VSS     net32_3 net37_3 
+MM3_1   MM25_1  MM25_1  MM3_2   MM1_2           MM15_1  MM19_1  MM18_1  MM13_1  MM7_1   MM11_1  MM10_1  MM1_1   
+MM21_1  MM22_1          MM10_2  MM11_2  MM7_2   MM13_2  MM18_2  MM19_2  MM25_2  MM25_2  MM15_2                  
+pd1_1   D1      VSS     VSS     net32_1 QN1     QN1     net32_1 VSS     VSS     D2      pd1_2   pd1_2   clkn    net15_2 ------------------------net37_1 net32_1 VSS     VSS     net37_1 pd5_1   pd5_1   clkn    net32_1 net32_1 clkb    net29_1 net29_1 net15_1 VSS     VSS     net29_1 pd3_1   pd3_1   clkb    net15_1 net15_1 clkn    pd1_1   
+clkn    CLK     VSS     VSS     clkn    clkb    ------------------------net15_2 clkb    pd3_2   pd3_2   net29_2 VSS     VSS     net15_2 net29_2 net29_2 clkb    net32_2 net32_2 clkn    pd5_2   pd5_2   net37_2 VSS     VSS     net32_2 QN2     QN2     net32_2 VSS     VSS     net32_2 net37_2 ------------------------------------------------
 --
-pd4_2   net37_2 VDD     VDD     D3      pu1_3   pu1_3   clkb    net15_3 net15_3 clkn    pd2_3   pd2_3   net29_3 VDD     VDD     net15_3 net29_3 net29_3 clkn    net32_3 net32_3 clkb    pd4_3   pd4_3   net37_3 VDD     VDD     net32_3 QN3     QN3     net32_3 VDD     VDD     net32_3 net37_3 
-vdd pgr: 
-0       1       1       1       0       0       0       0       0       1       1       1       0       0       0       0       0       1       1       1       0       1       1       1       0       
-vss pgr: 
-0       1       1       1       0       0       0       0       0       1       1       1       0       0       0       0       0       1       1       1       0       1       1       1       0       
-HSP: 80
-HCD: 4
-Row 3: 
-MM16_2  MM5_4   MM4_4   MM9_4   MM8_4   MM6_4   MM12_4  MM17_4  MM16_4  MM24_4  MM24_4  MM14_4  
---
-MM19_2  MM3_4   MM1_4   MM10_4  MM11_4  MM7_4   MM13_4  MM18_4  MM19_4  MM25_4  MM25_4  MM15_4  
-pd5_2   net37_2 VSS     VSS     D4      pd1_4   pd1_4   clkn    net15_4 net15_4 clkb    pd3_4   pd3_4   net29_4 VSS     VSS     net15_4 net29_4 net29_4 clkb    net32_4 net32_4 clkn    pd5_4   pd5_4   net37_4 VSS     VSS     net32_4 QN4     QN4     net32_4 VSS     VSS     net32_4 net37_4 
---
-pd4_2   net37_2 VDD     VDD     D4      pu1_4   pu1_4   clkb    net15_4 net15_4 clkn    pd2_4   pd2_4   net29_4 VDD     VDD     net15_4 net29_4 net29_4 clkn    net32_4 net32_4 clkb    pd4_4   pd4_4   net37_4 VDD     VDD     net32_4 QN4     QN4     net32_4 VDD     VDD     net32_4 net37_4 
-vdd pgr: 
-0       1       1       1       0       0       0       0       0       1       1       1       0       0       0       0       0       1       1       1       0       1       1       1       0       
-vss pgr: 
-0       1       1       1       0       0       0       0       0       1       1       1       0       0       0       0       0       1       1       1       0       1       1       1       0       
-HSP: 80
-HCD: 4
-signal_permutation: 
-pd1_1   D1      VSS     net32_1 QN1     net32_1 VSS     D2      pd1_2   clkn    Null    Null    net37_1 net32_1 VSS     net37_1 pd5_1   clkn    net32_1 clkb    net29_1 net15_1 VSS     net29_1 pd3_1   clkb    net15_1 Null    Null    
-pu1_1   D1      VDD     net32_1 QN1     net32_1 VDD     D2      pu1_2   clkb    Null    Null    net37_1 net32_1 VDD     net37_1 pd4_1   clkb    net32_1 clkn    net29_1 net15_1 VDD     net29_1 pd2_1   clkn    net15_1 Null    Null    
-clkn    CLK     VSS     clkn    Null    Null    pd1_1   clkn    Null    Null    net15_2 clkb    pd3_2   net29_2 VSS     net15_2 net29_2 clkb    net32_2 clkn    pd5_2   net37_2 VSS     net32_2 QN2     net32_2 VSS     net32_2 net37_2 
-clkn    CLK     VDD     clkn    Null    Null    pu1_1   clkb    Null    Null    net15_2 clkn    pd2_2   net29_2 VDD     net15_2 net29_2 clkn    net32_2 clkb    pd4_2   net37_2 VDD     net32_2 QN2     net32_2 VDD     net32_2 net37_2 
-pd5_2   net37_2 VSS     D3      pd1_3   clkn    net15_3 clkb    pd3_3   net29_3 VSS     net15_3 net29_3 clkb    net32_3 clkn    pd5_3   net37_3 VSS     net32_3 QN3     net32_3 VSS     net32_3 net37_3 Null    Null    Null    Null    
-pd4_2   net37_2 VDD     D3      pu1_3   clkb    net15_3 clkn    pd2_3   net29_3 VDD     net15_3 net29_3 clkn    net32_3 clkb    pd4_3   net37_3 VDD     net32_3 QN3     net32_3 VDD     net32_3 net37_3 Null    Null    Null    Null    
-pd5_2   net37_2 VSS     D4      pd1_4   clkn    net15_4 clkb    pd3_4   net29_4 VSS     net15_4 net29_4 clkb    net32_4 clkn    pd5_4   net37_4 VSS     net32_4 QN4     net32_4 VSS     net32_4 net37_4 Null    Null    Null    Null    
-pd4_2   net37_2 VDD     D4      pu1_4   clkb    net15_4 clkn    pd2_4   net29_4 VDD     net15_4 net29_4 clkn    net32_4 clkb    pd4_4   net37_4 VDD     net32_4 QN4     net32_4 VDD     net32_4 net37_4 Null    Null    Null    Null    
+pu1_1   D1      VDD     VDD     net32_1 QN1     QN1     net32_1 VDD     VDD     D2      pu1_2   pu1_2   clkb    net15_2 ------------------------net37_1 net32_1 VDD     VDD     net37_1 pd4_1   pd4_1   clkb    net32_1 net32_1 clkn    net29_1 net29_1 net15_1 VDD     VDD     net29_1 pd2_1   pd2_1   clkn    net15_1 net15_1 clkb    pu1_1   
+clkn    CLK     VDD     VDD     clkn    clkb    ------------------------net15_2 clkn    pd2_2   pd2_2   net29_2 VDD     VDD     net15_2 net29_2 net29_2 clkn    net32_2 net32_2 clkb    pd4_2   pd4_2   net37_2 VDD     VDD     net32_2 QN2     QN2     net32_2 VDD     VDD     net32_2 net37_2 ------------------------------------------------
+pd1_1   D1      VSS     net32_1 QN1     net32_1 VSS     D2      pd1_2   clkn    net15_2 Null    net37_1 net32_1 VSS     net37_1 pd5_1   clkn    net32_1 clkb    net29_1 net15_1 VSS     net29_1 pd3_1   clkb    net15_1 clkn    pd1_1   clkn    CLK     VSS     clkn    clkb    Null    net15_2 clkb    pd3_2   net29_2 VSS     net15_2 net29_2 clkb    net32_2 clkn    pd5_2   net37_2 VSS     net32_2 QN2     net32_2 VSS     net32_2 net37_2 Null    Null    Null    Null    
+pu1_1   D1      VDD     net32_1 QN1     net32_1 VDD     D2      pu1_2   clkb    net15_2 Null    net37_1 net32_1 VDD     net37_1 pd4_1   clkb    net32_1 clkn    net29_1 net15_1 VDD     net29_1 pd2_1   clkn    net15_1 clkb    pu1_1   clkn    CLK     VDD     clkn    clkb    Null    net15_2 clkn    pd2_2   net29_2 VDD     net15_2 net29_2 clkn    net32_2 clkb    pd4_2   net37_2 VDD     net32_2 QN2     net32_2 VDD     net32_2 net37_2 Null    Null    Null    Null    
 hello satisfy_via_rule
-31511151330011513313115133100
-11510033001331511313315111511
-31513313315113133151115110000
-31513313315113133151115110000
-id: 0 pd2_4 count: 1
-id: 1 pd1_4 count: 1
-id: 2 net29_4 count: 2
-id: 3 net37_4 count: 2
-id: 4 net32_4 count: 4
-id: 5 pd5_4 count: 1
-id: 6 pu1_3 count: 1
-id: 7 pd3_3 count: 1
-id: 8 net29_3 count: 2
-id: 9 net37_3 count: 2
-id: 10 pd3_4 count: 1
-id: 11 pu1_2 count: 1
-id: 12 pd2_2 count: 1
-id: 13 net15_4 count: 2
-id: 14 pd4_2 count: 3
-id: 15 pd1_2 count: 1
-id: 16 VSS count: 16
-id: 17 pd4_3 count: 1
-id: 18 VDD count: 16
-id: 19 pu1_4 count: 1
-id: 20 pd2_3 count: 1
-id: 21 QN4 count: 1
-id: 22 net32_1 count: 4
-id: 23 net37_1 count: 2
-id: 24 QN1 count: 1
-id: 25 QN3 count: 1
-id: 26 net29_2 count: 2
-id: 27 QN2 count: 1
-id: 28 D2 count: 1
-id: 29 net15_1 count: 2
-id: 30 CLK count: 1
-id: 31 pd1_1 count: 2
-id: 32 clkn count: 18
-id: 33 pd5_1 count: 1
-id: 34 net29_1 count: 2
-id: 35 pd1_3 count: 1
-id: 36 D3 count: 1
-id: 37 clkb count: 16
-id: 38 net15_2 count: 2
-id: 39 pd4_1 count: 1
-id: 40 pd5_3 count: 1
-id: 41 net32_3 count: 4
-id: 42 D4 count: 1
-id: 43 D1 count: 1
-id: 44 pd2_1 count: 1
-id: 45 net15_3 count: 2
-id: 46 pu1_1 count: 2
-id: 47 pd4_4 count: 1
-id: 48 net32_2 count: 4
-id: 49 pd5_2 count: 3
-id: 50 pd3_2 count: 1
-id: 51 pd3_1 count: 1
-id: 52 net37_2 count: 4
+pd1_1/pu1_1 D1/D1 VSS/VDD net32_1/net32_1 QN1/QN1 net32_1/net32_1 VSS/VDD D2/D2 pd1_2/pu1_2 clkn/clkb net15_2/net15_2 NULL/NULL net37_1/net37_1 net32_1/net32_1 VSS/VDD net37_1/net37_1 pd5_1/pd4_1 clkn/clkb net32_1/net32_1 clkb/clkn net29_1/net29_1 net15_1/net15_1 VSS/VDD net29_1/net29_1 pd3_1/pd2_1 clkb/clkn net15_1/net15_1 clkn/clkb pd1_1/pu1_1 
+clkn/clkn CLK/CLK VSS/VDD clkn/clkn clkb/clkb NULL/NULL net15_2/net15_2 clkb/clkn pd3_2/pd2_2 net29_2/net29_2 VSS/VDD net15_2/net15_2 net29_2/net29_2 clkb/clkn net32_2/net32_2 clkn/clkb pd5_2/pd4_2 net37_2/net37_2 VSS/VDD net32_2/net32_2 QN2/QN2 net32_2/net32_2 VSS/VDD net32_2/net32_2 net37_2/net37_2 NULL/NULL NULL/NULL NULL/NULL NULL/NULL 
+31511151331011513313115133133
+11511013315113133151115110000
+2
+29
+reserve space: CLK 1 1
+reserve space: D1 0 1
+reserve space: D2 0 7
+reserve space: QN2 1 20
+reserve space: QN1 0 4
+reserve space: net15_2 0 10
+pass2
 SAT
-1 0 0 0 0 0 0 0 0 1 0 0 1 0 0 1 0 1 0 1 0 0 0 0 0 1 0 0 0 
-0 0 0 1 0 1 0 0 0 0 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 1 0 0 
-0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 1 0 0 1 0 0 0 0 0 
-1 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 
-0 0 0 1 0 0 1 0 0 0 0 1 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 
-1 0 0 0 0 0 0 1 0 0 1 0 0 0 0 1 0 0 0 1 0 1 0 0 1 0 0 0 1 
-0 1 0 0 0 0 1 0 0 0 0 0 0 1 0 0 1 0 1 0 1 0 0 1 0 1 0 1 0 
-0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
-1 0 0 0 0 0 0 1 0 1 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 
-0 1 0 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 1 0 1 0 1 0 0 0 0 0 
-1 0 0 1 0 1 0 1 0 0 0 0 0 1 0 1 0 1 0 0 0 0 0 0 1 0 0 0 0 
-0 0 0 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 1 0 1 0 1 0 0 0 0 0 
-1 0 0 0 0 1 0 1 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
-0 1 0 1 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-1 0 0 0 0 1 0 1 0 0 0 0 0 1 0 1 0 1 0 0 1 0 0 0 1 0 0 0 0 
-total_via_vertical_diff: 7
+1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 1 0 0 1 
+0 0 0 0 1 0 0 0 0 0 1 0 1 0 0 1 0 0 0 0 1 0 0 1 0 0 0 1 0 
+1 0 0 1 0 1 0 1 0 0 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 1 0 1 
+0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 1 0 1 0 
+1 0 0 1 0 0 0 1 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 1 0 0 1 0 1 0 0 0 0 1 0 1 0 1 0 0 0 0 0 
+0 0 0 0 1 0 0 1 0 0 0 0 0 1 0 1 0 1 0 0 1 0 0 0 1 0 0 0 0 
+total_via_vertical_diff: 1
+hello generate_multirow_plmt
+pass
+pass
+pass
+col: 14
+0 0
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+0 11
+0 12
+0 13
+col: 14
+1 0
+1 1
+1 2
+1 3
+1 4
+1 5
+1 6
+1 7
+1 8
+1 9
+1 10
+1 11
+1 12
+1 13
+pass
+pass
+pass
 Generated results/output.plmt
-Time taken : 11.2858 seconds
+Time taken : 7.7469 seconds

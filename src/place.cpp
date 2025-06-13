@@ -482,160 +482,7 @@ std::vector<Pshape *> dfs_placement(Node *root_node, int target_area, std::vecto
     return placement_cand;
 }
 
-// void placement() {
-//     std::vector<Transistor *> pmos_group1;
-
-//     // definition
-//     std::vector<Group *> old_groups;
-//     std::vector<Group *> new_groups;
-//     std::unordered_map<Transistor *, bool> tr_merged;
-
-//     // intialize groups
-//     for (auto tr_p : pmos) {
-//         tr_merged.insert(std::make_pair(tr_p, false));
-//         Group *g = new Group();
-//         g->trs.push_back(tr_p);
-//         g->width = std::max(tr_p->num_finger, tr_pairs[tr_p]->num_finger);
-//         old_groups.push_back(g);
-//     }
-
-//     while (old_groups.size() > 4) {
-//         // initialization
-//         std::vector<Group_pair *> gp_vec;
-//         std::unordered_map<Transistor *, bool> tr_merged;
-//         for (auto tr_p : pmos) {
-//             tr_merged.insert(std::make_pair(tr_p, false));
-//         }
-
-//         // calculate #common signal
-//         std::vector<std::vector<int>> common_signal_vec(old_groups.size(), std::vector<int>(old_groups.size(), 0));
-//         for (int i = 0; i < old_groups.size(); i++) {
-//             for (int j = 0; j < old_groups.size(); j++) {
-//                 Group *g1 = old_groups[i];
-//                 Group *g2 = old_groups[j];
-//                 int common = 0;
-//                 std::vector<Signal *> sig_vec1;
-//                 std::vector<Signal *> sig_vec2;
-//                 for (int k = 0; k < g1->trs.size(); k++) {
-//                     Transistor *tr_p = g1->trs[k];
-//                     sig_vec1.push_back(tr_p->drain);
-//                     sig_vec1.push_back(tr_p->gate);
-//                     sig_vec1.push_back(tr_p->source);
-//                     sig_vec1.push_back(tr_pairs[tr_p]->drain);
-//                     sig_vec1.push_back(tr_pairs[tr_p]->gate);
-//                     sig_vec1.push_back(tr_pairs[tr_p]->source);
-//                 }
-//                 for (int k = 0; k < g2->trs.size(); k++) {
-//                     Transistor *tr_p = g2->trs[k];
-//                     sig_vec2.push_back(tr_p->drain);
-//                     sig_vec2.push_back(tr_p->gate);
-//                     sig_vec2.push_back(tr_p->source);
-//                     sig_vec2.push_back(tr_pairs[tr_p]->drain);
-//                     sig_vec2.push_back(tr_pairs[tr_p]->gate);
-//                     sig_vec2.push_back(tr_pairs[tr_p]->source);
-//                 }
-//                 for (int k = 0; k < sig_vec1.size(); k++) {
-//                     for (int m = 0; m < sig_vec2.size(); m++) {
-//                         if (sig_vec1[k] == sig_vec2[m]) {
-//                             common++;
-//                             break;
-//                         }
-//                     }
-//                 }
-//                 common_signal_vec[i][j] = common;
-//             }
-//         }
-//         for (int i = 0; i < old_groups.size(); i++) {
-//             for (int j = 0; j < old_groups.size(); j++) {
-//                 std::cout << common_signal_vec[i][j] << " ";
-//             }
-//             std::cout << std::endl;
-//         }
-
-//         for (int i = 0; i < old_groups.size(); i++) {
-//             for (int j = 0; j < i; j++) {
-//                 Group *g1 = old_groups[i];
-//                 Group *g2 = old_groups[j];
-//                 Group_pair *gp = new Group_pair();
-//                 gp->pair = std::make_pair(g1, g2);
-//                 gp->common = common_signal_vec[i][j];
-//                 gp_vec.push_back(gp);
-//             }
-//         }
-
-//         std::sort(gp_vec.begin(), gp_vec.end(), compareGroupPair);
-//         for (const auto &gp : gp_vec) {
-//             std::cout << "common: " << gp->common << std::endl;
-//         }
-//         std::cout << "new group size: " << new_groups.size() << std::endl;
-//         // merge groups
-//         for (int i = 0; i < gp_vec.size(); i++) {
-//             Group *group1 = gp_vec[i]->pair.first;
-//             Group *group2 = gp_vec[i]->pair.second;
-//             bool merged = false;
-//             for (int j = 0; j < group1->trs.size(); j++) {
-//                 Transistor *tr = group1->trs[j];
-//                 if (tr_merged[tr] == true) {
-//                     merged = true;
-//                     break;
-//                 }
-//             }
-//             for (int j = 0; j < group2->trs.size(); j++) {
-//                 Transistor *tr = group2->trs[j];
-//                 if (tr_merged[tr] == true) {
-//                     merged = true;
-//                     break;
-//                 }
-//             }
-//             if (merged == false) {
-//                 Group *new_group = new Group();
-//                 auto it1 = std::remove(old_groups.begin(), old_groups.end(), group1);
-//                 old_groups.erase(it1, old_groups.end());
-//                 auto it2 = std::remove(old_groups.begin(), old_groups.end(), group2);
-//                 old_groups.erase(it2, old_groups.end());
-
-//                 new_group->width = group1->width + group2->width;
-//                 for (int j = 0; j < group1->trs.size(); j++) {
-//                     Transistor *tr = group1->trs[j];
-//                     new_group->trs.push_back(tr);
-//                     tr_merged[tr] = true;
-//                 }
-//                 for (int j = 0; j < group2->trs.size(); j++) {
-//                     Transistor *tr = group2->trs[j];
-//                     new_group->trs.push_back(tr);
-//                     tr_merged[tr] = true;
-//                 }
-//                 new_groups.push_back(new_group);
-//                 for (int j = 0; j < new_group->trs.size(); j++) {
-//                     Transistor *tr = new_group->trs[j];
-//                 }
-//             }
-//         }
-//         for (int i = 0; i < old_groups.size(); i++) {
-//             new_groups.push_back(old_groups[i]);
-//         }
-
-//         // for (Group *group : old_groups) {
-//         //     delete group;
-//         // }
-//         for (int i = 0; i < new_groups.size(); i++) {
-//             Group *group = new_groups[i];
-//             for (int j = 0; j < group->trs.size(); j++) {
-//                 Transistor *tr = group->trs[j];
-//                 std::cout << tr->name << " ";
-//             }
-//             std::cout << group->width << std::endl;
-//         }
-//         old_groups.clear();
-//         old_groups = std::move(new_groups);
-//         std::cout << "old_groups size: " << old_groups.size() << std::endl;
-//     }
-
-//     pmos_group1 = pmos;
-//     group_placement(pmos_group1);
-// }
-
-void placement() {
+std::vector<Pshape *> placement() {
     std::vector<Transistor *> pmos_group1;
     std::vector<Transistor *> output_pmos;
     std::vector<Transistor *> input_pmos;
@@ -761,7 +608,7 @@ void placement() {
 
     // grouping single-row
     for (int i = 0; i < placement_eachrow.size(); i++) {
-        std::priority_queue<Pshape *, std::vector<Pshape *>, decltype(&comparePshapeHSP)> pq(comparePshapeHSP);
+        std::priority_queue<Pshape *, std::vector<Pshape *>, decltype(&compareRoutability)> pq(compareRoutability);
         std::vector<Pshape *> best_results;
         for (int j = 0; j < placement_eachrow[i].size(); j++) {
             Pshape *pshape = placement_eachrow[i][j];
@@ -778,22 +625,62 @@ void placement() {
             pq.pop();
         }
         std::cout << "Row " << i << ": " << std::endl;
-        for (int i = 0; i < best_results.size(); i++) {
-            Pshape *pshape = best_results[i];
-            print_pshape(pshape);
+        for (int n = 0; n < best_results.size(); n++) {
+            Pshape *pshape = best_results[n];
+            pshape->multirow_signal_permutation_up.assign(1, std::vector<Signal *>(pshape->multirow_tr_permutation_up[0].size() * 2 + 1));
+            for (int j = 0; j < pshape->multirow_tr_permutation_up[0].size(); j++) {
+                Transistor *tr_n = pshape->multirow_tr_permutation_up[0][j];
+                if (tr_n) {
+                    switch (pshape->multirow_tr_shape_up[0][j]) {
+                        case 0:
+                            pshape->multirow_signal_permutation_up[0][2 * j] = tr_n->drain;
+                            pshape->multirow_signal_permutation_up[0][2 * j + 1] = tr_n->gate;
+                            pshape->multirow_signal_permutation_up[0][2 * j + 2] = tr_n->source;
+                            break;
+                        case 1:
+                            pshape->multirow_signal_permutation_up[0][2 * j] = tr_n->source;
+                            pshape->multirow_signal_permutation_up[0][2 * j + 1] = tr_n->gate;
+                            pshape->multirow_signal_permutation_up[0][2 * j + 2] = tr_n->drain;
+                            break;
+                        case 2:
+                            break;
+                    }
+                }
+            }
+
+            pshape->multirow_signal_permutation_down.assign(1, std::vector<Signal *>(pshape->multirow_tr_permutation_down[0].size() * 2 + 1));
+
+            for (int j = 0; j < pshape->multirow_tr_permutation_down[0].size(); j++) {
+                Transistor *tr_p = pshape->multirow_tr_permutation_down[0][j];
+                if (tr_p) {
+                    switch (pshape->multirow_tr_shape_down[0][j]) {
+                        case 0:
+                            pshape->multirow_signal_permutation_down[0][2 * j] = tr_p->drain;
+                            pshape->multirow_signal_permutation_down[0][2 * j + 1] = tr_p->gate;
+                            pshape->multirow_signal_permutation_down[0][2 * j + 2] = tr_p->source;
+                            break;
+                        case 1:
+                            pshape->multirow_signal_permutation_down[0][2 * j] = tr_p->source;
+                            pshape->multirow_signal_permutation_down[0][2 * j + 1] = tr_p->gate;
+                            pshape->multirow_signal_permutation_down[0][2 * j + 2] = tr_p->drain;
+                            break;
+                        case 2:
+                            break;
+                    }
+                }
+            }
+
+            pshape->print_pshape();
             std::cout << "HSP: " << pshape->hsp << std::endl;
             std::cout << "HCD: " << pshape->hcd << std::endl;
         }
         // best pshape in each row
-        calculate_pgr_blocked(best_results[0]);
         single_row_vec.push_back(best_results[0]);
     }
 
-    print_signal_permutation(single_row_vec);
-    bool via_rule_satisfied = satisfy_via_rule(single_row_vec);
+    return single_row_vec;
 
     // generate_plmt(single_row_vec);
-    generate_multirow_plmt(single_row_vec, via_preassignment);
     // merge single-row
     // auto pshape_single_row = single_row_merging(single_row_vec);
     // for (int i = 0; i < pshape_single_row.size(); i++) {
@@ -934,4 +821,28 @@ std::vector<Pshape *> group_placement(std::vector<Transistor *> pmos_group) {
         place_cand_id++;
     }
     return final_placement_cand;
+}
+
+Pshape *detailed_placement(std::vector<Pshape *> single_row_vec) {
+    int inter_row_signal_num = inter_row_signal_count(single_row_vec);
+    int hpml = calculate_hpml(single_row_vec);
+    Pshape *multirow_pshape = new Pshape();
+    int initial_width = single_row_vec[0]->multirow_tr_permutation_up[0].size();
+    multirow_pshape->multirow_tr_permutation_up.resize(single_row_vec.size());
+    multirow_pshape->multirow_tr_permutation_down.resize(single_row_vec.size());
+    multirow_pshape->multirow_signal_permutation_up.resize(single_row_vec.size());
+    multirow_pshape->multirow_signal_permutation_down.resize(single_row_vec.size());
+    multirow_pshape->multirow_tr_shape_up.resize(single_row_vec.size());
+    multirow_pshape->multirow_tr_shape_down.resize(single_row_vec.size());
+    for (int i = 0; i < single_row_vec.size(); i++) {
+        multirow_pshape->multirow_tr_permutation_up[i] = single_row_vec[i]->multirow_tr_permutation_up[0];
+        multirow_pshape->multirow_tr_permutation_down[i] = single_row_vec[i]->multirow_tr_permutation_down[0];
+        multirow_pshape->multirow_signal_permutation_up[i] = single_row_vec[i]->multirow_signal_permutation_up[0];
+        multirow_pshape->multirow_signal_permutation_down[i] = single_row_vec[i]->multirow_signal_permutation_down[0];
+        multirow_pshape->multirow_tr_shape_up[i] = single_row_vec[i]->multirow_tr_shape_up[0];
+        multirow_pshape->multirow_tr_shape_down[i] = single_row_vec[i]->multirow_tr_shape_down[0];
+    }
+
+    multirow_pshape->move_tr_to_left(1, 0);
+    return multirow_pshape;
 }

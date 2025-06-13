@@ -56,6 +56,9 @@ using namespace z3;
 // }
 
 Signal* get_right_active(Transistor* tr, int tr_shape_id) {
+    if (tr == nullptr) {
+        return nullptr;
+    }
     if (tr_shape_id == 0) {
         return tr->source;
     } else if (tr_shape_id == 1) {
@@ -66,6 +69,9 @@ Signal* get_right_active(Transistor* tr, int tr_shape_id) {
 }
 
 Signal* get_left_active(Transistor* tr, int tr_shape_id) {
+    if (tr == nullptr) {
+        return nullptr;
+    }
     if (tr_shape_id == 0) {
         return tr->drain;
     } else if (tr_shape_id == 1) {

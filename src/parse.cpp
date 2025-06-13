@@ -20,7 +20,8 @@ void parse_input(std::istream& stream) {
     while (iss >> temp) {
         Signal* sig = new Signal();
         sig->name = temp;
-        sig->type = 1;
+        sig->is_io = 1;
+        sig->is_io_pins = true;
         signals.insert(std::make_pair(temp, sig));
         io_pins.push_back(temp);
     }

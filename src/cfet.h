@@ -30,7 +30,6 @@ extern std::vector<Signal*> inputs;
 extern std::vector<Transistor*> trs;
 extern std::vector<Transistor*> pmos;
 extern std::vector<Transistor*> nmos;
-extern std::vector<std::vector<bool>> via_preassignment;
 extern std::unordered_map<std::string, Transistor*> tr_dict;
 extern std::unordered_map<std::string, Signal*> signals;
 extern std::unordered_map<Transistor*, Transistor*> tr_pairs;
@@ -55,19 +54,15 @@ extern float aspect_ratio;
 void parse_input(std::istream& stream);
 void new_tr_pairing();
 void folding_shape_generation();
-void placement();
 void calculate_pgr_blocked(Pshape* pshape);
-void print_pshape(Pshape* pshape);
-void print_signal_permutation(std::vector<Pshape*> pshape_vec);
 void generate_plmt(std::vector<Pshape*> pshape_vec);
-void generate_multirow_plmt(std::vector<Pshape*> pshape_vec, std::vector<std::vector<bool>> via_preassignment);
 void generateBias(const std::vector<int>& row_bias, std::vector<int>& bias, size_t index, bool& found);
+void generate_output(Pshape* pshape);
 bool check_overlapped(Shape* big_shape, Shape* small_shape, int x, int y);
 bool compareGroupPair(const Group_pair* a, const Group_pair* b);
-bool comparePshapeHSP(const Pshape* a, const Pshape* b);
-bool comparePshapeHSP_descending(const Pshape* a, const Pshape* b);
+bool compareRoutability(const Pshape* a, const Pshape* b);
 bool merge_enable(Pshape* old_pshape, Lambda* new_lamb, Transistor* nmos, Transistor* pmos, int row, int col);
-bool satisfy_via_rule(std::vector<Pshape*> single_row_vec);
+int calculate_hpml(std::vector<Pshape*> single_row_vec);
 int hsp(Pshape* pshape);
 int hcd(Pshape* pshape);
 int inter_row_signal_count(std::vector<Pshape*> pshape_vec);
@@ -76,13 +71,15 @@ Pshape* merge(Pshape* old_pshape, Lambda* new_lamb, Transistor* nmos, Transistor
 Pshape* flipped(Pshape* pshape);
 Signal* get_right_active(Transistor* tr, int tr_shape_id);
 Signal* get_left_active(Transistor* tr, int tr_shape_id);
+std::vector<Pshape*> placement();
 std::vector<Pshape*> single_row_merging(std::vector<Pshape*> pshape_vec);
 std::vector<Shape*> finger_slot_configuration(int finger);
 std::vector<Pshape*> group_placement(std::vector<Transistor*> pmos_group);
 std::vector<Pshape*> dfs_placement(Node* root_node, int target_area, std::vector<Transistor*> pmos_group);
 std::vector<Pshape*> multirow_assignment(std::vector<Pshape*> pshape_vec);
+Pshape* detailed_placement(std::vector<Pshape*> single_row_vec);
+
 std::vector<std::vector<bool>> stack_feasibility(Shape* big_shape, Shape* small_shape);
-std::vector<std::vector<int>> calculate_available_track_case(std::vector<Pshape*> pshape_vec);
 std::vector<std::set<Signal*>> findIntersectingElements(const std::vector<std::set<Signal*>>& sets);
 std::pair<std::vector<Node*>, std::vector<Pshape*>> bfs_placement(int target_area, std::vector<Transistor*> pmos_group);
 std::pair<std::vector<Node*>, std::vector<Permutation*>> bfs_placement_singlerow(int target_area);
@@ -130,7 +127,7 @@ class Signal {
     Signal();
 
     std::string name;
-    int type = 0;  // 0: others, 1: io
+    bool is_io = 0;  // 0: others, 1: io
     bool is_io_pins = false;
     int start = -1;
     int end = -1;
@@ -174,13 +171,22 @@ class Pshape {
     std::vector<int> most_right_idx;
     std::vector<int> multirow_pgr_blocked_vdd;
     std::vector<int> multirow_pgr_blocked_vss;
-    std::vector<int> available_track_case;
+    std::vector<std::vector<int>> available_track_case;
+    std::vector<std::vector<Signal*>> via_preassignment;
     int multirow_area;
     int height;
     int multirow_macro_area;
     int top_width;
     int hsp;
     int hcd;
+
+    void print_pshape();
+    std::pair<Signal*, Signal*> get_most_left_sig(int row);  // <sig_up, sig_down>
+    void allign();
+    void move_tr_to_left(int y, int x);
+    bool satisfy_via_rule();
+    void calculate_available_track_case();
+    void generate_multirow_plmt();
 };
 
 class Node {

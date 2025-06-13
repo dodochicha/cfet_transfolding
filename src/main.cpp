@@ -39,7 +39,9 @@ int main(int argc, char **argv) {
     parse_input(fin);
     new_tr_pairing();
     folding_shape_generation();
-    placement();
+    std::vector<Pshape *> single_row_vec = placement();
+    Pshape *pshape = detailed_placement(single_row_vec);
+    generate_output(pshape);
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
