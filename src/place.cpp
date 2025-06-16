@@ -1,6 +1,5 @@
-
 #include <omp.h>
-#include <sys/stat.h>  // Linux/Unix 系統用於創建資料夾
+#include <sys/stat.h>
 
 #include <algorithm>
 #include <cassert>
@@ -679,57 +678,6 @@ std::vector<Pshape *> placement() {
     }
 
     return single_row_vec;
-
-    // generate_plmt(single_row_vec);
-    // merge single-row
-    // auto pshape_single_row = single_row_merging(single_row_vec);
-    // for (int i = 0; i < pshape_single_row.size(); i++) {
-    //     calculate_pgr_blocked(pshape_single_row[i]);
-    //     print_pshape(pshape_single_row[i]);
-    //     pshape_vec.push_back(pshape_single_row[i]);
-    //     std::cout << "HSP " << i << ": " << pshape_single_row[i]->hsp << std::endl;
-    //     std::cout << "HCD " << i << ": " << pshape_single_row[i]->hcd << std::endl;
-    // };
-
-    // for (int i = 0; i < 16; i++) {
-    //     pshape_vec.push_back(placement_eachrow[0][i]);
-    //     std::cout << "HSP " << i << ": " << hsp(placement_eachrow[0][i]) << std::endl;
-    //     std::cout << "HCD " << i << ": " << hcd(placement_eachrow[0][i]) << std::endl;
-    // }
-
-    // generate_plmt(pshape_vec);
-
-    // multi-row
-    // multirow_assignment(single_row_vec);
-    // generate_plmt(single_row_vec);
-    // for (int i = 0; i < single_row_vec.size(); i++) {
-    //     print_pshape(single_row_vec[i]);
-    // }
-
-    // single-row router
-    // std::priority_queue<Pshape *, std::vector<Pshape *>, decltype(&comparePshapeHSP)> pq(comparePshapeHSP);
-    // for (int i = 0; i < placement_eachrow[0].size(); i++) {
-    //     Pshape *pshape = placement_eachrow[0][i];
-    //     int pshape_hsp = hsp(pshape);
-    //     pshape->hsp = pshape_hsp;
-    //     pq.push(pshape);
-    //     // 8 best results
-    //     if (pq.size() > 8) {
-    //         pq.pop();
-    //     }
-    // }
-    // std::vector<Pshape *> best_results;
-    // while (!pq.empty()) {
-    //     best_results.push_back(pq.top());
-    //     pq.pop();
-    // }
-    // for (int i = 0; i < best_results.size(); i++) {
-    //     Pshape *pshape = best_results[i];
-    //     std::cout << "HSP: " << pshape->hsp << std::endl;
-    // }
-
-    // // choose 8 best placement
-    // generate_plmt(best_results);
 }
 
 std::vector<Pshape *> group_placement(std::vector<Transistor *> pmos_group) {
@@ -821,28 +769,4 @@ std::vector<Pshape *> group_placement(std::vector<Transistor *> pmos_group) {
         place_cand_id++;
     }
     return final_placement_cand;
-}
-
-Pshape *detailed_placement(std::vector<Pshape *> single_row_vec) {
-    int inter_row_signal_num = inter_row_signal_count(single_row_vec);
-    int hpml = calculate_hpml(single_row_vec);
-    Pshape *multirow_pshape = new Pshape();
-    int initial_width = single_row_vec[0]->multirow_tr_permutation_up[0].size();
-    multirow_pshape->multirow_tr_permutation_up.resize(single_row_vec.size());
-    multirow_pshape->multirow_tr_permutation_down.resize(single_row_vec.size());
-    multirow_pshape->multirow_signal_permutation_up.resize(single_row_vec.size());
-    multirow_pshape->multirow_signal_permutation_down.resize(single_row_vec.size());
-    multirow_pshape->multirow_tr_shape_up.resize(single_row_vec.size());
-    multirow_pshape->multirow_tr_shape_down.resize(single_row_vec.size());
-    for (int i = 0; i < single_row_vec.size(); i++) {
-        multirow_pshape->multirow_tr_permutation_up[i] = single_row_vec[i]->multirow_tr_permutation_up[0];
-        multirow_pshape->multirow_tr_permutation_down[i] = single_row_vec[i]->multirow_tr_permutation_down[0];
-        multirow_pshape->multirow_signal_permutation_up[i] = single_row_vec[i]->multirow_signal_permutation_up[0];
-        multirow_pshape->multirow_signal_permutation_down[i] = single_row_vec[i]->multirow_signal_permutation_down[0];
-        multirow_pshape->multirow_tr_shape_up[i] = single_row_vec[i]->multirow_tr_shape_up[0];
-        multirow_pshape->multirow_tr_shape_down[i] = single_row_vec[i]->multirow_tr_shape_down[0];
-    }
-
-    multirow_pshape->move_tr_to_left(1, 0);
-    return multirow_pshape;
 }

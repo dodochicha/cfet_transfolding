@@ -43,6 +43,18 @@ void Pshape::allign() {
     sig_up.resize(row);
     sig_down.resize(row);
 
+    // for (int i = 0; i < row; i++) {
+    //     for (int j = 0; j < multirow_tr_permutation_up[i].size(); j++) {
+    //         Transistor *tr = multirow_tr_permutation_up[i][j];
+    //         if (tr) {
+    //             std::cout << tr->name << " ";
+    //         } else {
+    //             std::cout << "null ";
+    //         }
+    //     }
+    //     std::cout << std::endl;
+    // }
+
     for (int i = 0; i < row; i++) {
         Signal *pre_sig_up = nullptr;
         Signal *pre_sig_down = nullptr;
@@ -50,32 +62,46 @@ void Pshape::allign() {
         for (int j = 0; j < multirow_tr_permutation_up[i].size(); j++) {
             Transistor *current_tr_up = multirow_tr_permutation_up[i][j];
             Transistor *current_tr_down = multirow_tr_permutation_down[i][j];
+            // if (current_tr_up) {
+            //     std::cout << current_tr_up->name << " ";
+            // } else {
+            //     std::cout << "null ";
+            // }
             int current_shape_up = multirow_tr_shape_up[i][j];
             int current_shape_down = multirow_tr_shape_down[i][j];
-            if ((pre_sig_up == nullptr || pre_sig_up == get_left_active(current_tr_up, current_shape_up)) &&
-                (pre_sig_down == nullptr || pre_sig_down == get_left_active(current_tr_down, current_shape_down))) {
-                if (first_insert == false && current_tr_up == nullptr) {
+            Signal *current_sig_up = get_left_active(current_tr_up, current_shape_up);
+            Signal *current_sig_down = get_left_active(current_tr_down, current_shape_down);
+            if ((pre_sig_up == nullptr || pre_sig_up == current_sig_up) && (pre_sig_down == nullptr || pre_sig_down == current_sig_down) ||
+                current_tr_up == nullptr) {
+                if (first_insert == false && current_tr_up == nullptr || current_tr_up == nullptr) {
+                    // std::cout << "continue" << std::endl;
                     continue;
                 }
+                // std::cout << "push" << std::endl;
                 tr_up[i].push_back(current_tr_up);
                 tr_down[i].push_back(current_tr_down);
-                if (current_tr_up == nullptr) {
-                    tr_shape_up[i].push_back(2);
-                    tr_shape_down[i].push_back(2);
-                } else {
-                    tr_shape_up[i].push_back(multirow_tr_shape_up[i][j]);
-                    tr_shape_down[i].push_back(multirow_tr_shape_down[i][j]);
-                }
+                tr_shape_up[i].push_back(current_shape_up);
+                tr_shape_down[i].push_back(current_shape_down);
                 pre_sig_up = get_right_active(current_tr_up, current_shape_up);
                 pre_sig_down = get_right_active(current_tr_down, current_shape_down);
                 first_insert = true;
-            } else {
+            } else if (pre_sig_up != current_sig_up || pre_sig_down != current_sig_down) {
+                // std::cout << "insert null and cur_tr" << std::endl;
                 tr_up[i].push_back(nullptr);
                 tr_down[i].push_back(nullptr);
                 tr_shape_up[i].push_back(2);
                 tr_shape_down[i].push_back(2);
                 pre_sig_up = nullptr;
                 pre_sig_down = nullptr;
+
+                tr_up[i].push_back(current_tr_up);
+                tr_down[i].push_back(current_tr_down);
+                tr_shape_up[i].push_back(current_shape_up);
+                tr_shape_down[i].push_back(current_shape_down);
+                pre_sig_up = get_right_active(current_tr_up, current_shape_up);
+                pre_sig_down = get_right_active(current_tr_down, current_shape_down);
+            } else {
+                continue;
             }
         }
     }
@@ -99,7 +125,7 @@ void Pshape::allign() {
         }
     }
 
-    for (int i = 0; i < multirow_tr_permutation_down.size(); i++) {
+    for (int i = 0; i < row; i++) {
         multirow_signal_permutation_up[i].assign(multirow_tr_permutation_up[0].size() * 2 + 1, nullptr);
 
         for (int j = 0; j < multirow_tr_permutation_up[i].size(); j++) {
@@ -385,8 +411,6 @@ bool Pshape::satisfy_via_rule() {
         }
     }
 
-    std::cout << available_track_case.size() << std::endl;
-    std::cout << available_track_case[0].size() << std::endl;
     // assign via
     for (int s = 0; s < signals.size(); s++) {
         for (int i = 0; i < row; i++) {
@@ -527,7 +551,6 @@ bool Pshape::satisfy_via_rule() {
             }
         }
     }
-    std::cout << "pass2" << std::endl;
     if (opt.check() == z3::sat) {
         std::cout << "SAT" << std::endl;
         z3::model m = opt.get_model();
@@ -757,4 +780,64 @@ void Pshape::generate_multirow_plmt() {
 
     ofs.close();
     std::cout << "Generated " << fileName << "\n";
+}
+
+int Pshape::inter_row_signal_count() {
+    std::set<Signal *> signal_set;
+    std::set<Signal *> interrow_signal_set;
+    const int rows = multirow_tr_permutation_up.size();
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < multirow_tr_permutation_down[i].size(); j++) {
+            Transistor *tr_p = multirow_tr_permutation_down[i][j];
+            Transistor *tr_n = multirow_tr_permutation_up[i][j];
+            if (tr_p != nullptr) {
+                signal_set.insert(tr_p->drain);
+                signal_set.insert(tr_p->gate);
+                signal_set.insert(tr_p->source);
+            }
+            if (tr_n != nullptr) {
+                signal_set.insert(tr_n->drain);
+                signal_set.insert(tr_n->gate);
+                signal_set.insert(tr_n->source);
+            }
+        }
+    }
+    signal_set.erase(signals["VDD"]);
+    signal_set.erase(signals["VSS"]);
+    int result = 0;
+    for (Signal *sig : signal_set) {
+        int start = -1;
+        int end = -1;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < multirow_tr_permutation_down[i].size(); j++) {
+                Transistor *tr_p = multirow_tr_permutation_down[i][j];
+                Transistor *tr_n = multirow_tr_permutation_up[i][j];
+                if (tr_p != nullptr) {
+                    if (sig == tr_p->drain || sig == tr_p->gate || sig == tr_p->source) {
+                        if (start == -1) {
+                            start = i;
+                        }
+                        end = i;
+                    }
+                }
+                if (tr_n != nullptr) {
+                    if (sig == tr_n->drain || sig == tr_n->gate || sig == tr_n->source) {
+                        if (start == -1) {
+                            start = i;
+                        }
+                        end = i;
+                    }
+                }
+            }
+        }
+        if (end != start) {
+            interrow_signal_set.insert(sig);
+        }
+        result = result + end - start;
+    }
+    std::cout << "inter-row signal set:" << std::endl;
+    for (auto sig : interrow_signal_set) {
+        std::cout << sig->name << std::endl;
+    }
+    return interrow_signal_set.size();
 }

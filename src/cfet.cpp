@@ -545,28 +545,6 @@ int hcd(Pshape *pshape) {
     return result;
 }
 
-std::vector<Pshape *> multirow_assignment(std::vector<Pshape *> pshape_vec) {
-    std::vector<std::vector<Pshape *>> result;
-
-    std::sort(pshape_vec.begin(), pshape_vec.end());
-
-    do {
-        result.push_back(pshape_vec);
-    } while (std::next_permutation(pshape_vec.begin(), pshape_vec.end()));
-
-    int min = std::numeric_limits<int>::max();
-    std::vector<Pshape *> result_pshape;
-    for (int i = 0; i < result.size(); i++) {
-        int inter_row_signal_num = inter_row_signal_count(result[i]);
-        if (inter_row_signal_num < min) {
-            min = inter_row_signal_num;
-            result_pshape = result[i];
-        }
-    }
-    std::cout << "inter_row_signal_count: " << inter_row_signal_count(result_pshape) << std::endl;
-    return result_pshape;
-}
-
 int max_cfet_width = 81.0;
 int diffusion_break_constraint = 1;
 int max_placement_size = 16384;

@@ -62,10 +62,9 @@ bool check_overlapped(Shape* big_shape, Shape* small_shape, int x, int y);
 bool compareGroupPair(const Group_pair* a, const Group_pair* b);
 bool compareRoutability(const Pshape* a, const Pshape* b);
 bool merge_enable(Pshape* old_pshape, Lambda* new_lamb, Transistor* nmos, Transistor* pmos, int row, int col);
-int calculate_hpml(std::vector<Pshape*> single_row_vec);
+
 int hsp(Pshape* pshape);
 int hcd(Pshape* pshape);
-int inter_row_signal_count(std::vector<Pshape*> pshape_vec);
 int check_connection(int row, int column, std::vector<bool> bool_vars);
 Pshape* merge(Pshape* old_pshape, Lambda* new_lamb, Transistor* nmos, Transistor* pmos, int row, int col);
 Pshape* flipped(Pshape* pshape);
@@ -173,6 +172,7 @@ class Pshape {
     std::vector<int> multirow_pgr_blocked_vss;
     std::vector<std::vector<int>> available_track_case;
     std::vector<std::vector<Signal*>> via_preassignment;
+    std::set<Signal*> inter_row_signal_set;
     int multirow_area;
     int height;
     int multirow_macro_area;
@@ -187,6 +187,8 @@ class Pshape {
     bool satisfy_via_rule();
     void calculate_available_track_case();
     void generate_multirow_plmt();
+    int inter_row_signal_count();
+    int calculate_hpml();
 };
 
 class Node {

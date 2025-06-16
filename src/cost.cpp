@@ -23,26 +23,28 @@
 #include "cfet.h"
 #include "z3++.h"
 
-int calculate_hpml(std::vector<Pshape *> single_row_vec) {
+int Pshape::calculate_hpml() {
     int hpml = 0;
     std::unordered_map<Signal *, int> min_x;
     std::unordered_map<Signal *, int> max_x;
     std::unordered_map<Signal *, int> min_y;
     std::unordered_map<Signal *, int> max_y;
+    const int rows = multirow_signal_permutation_up.size();
+    const int cols = multirow_signal_permutation_up[0].size();
     std::cout << std::endl;
     for (auto pair : signals) {
         Signal *sig = pair.second;
         if (sig) {
-            min_x[sig] = single_row_vec[0]->multirow_signal_permutation_down[0].size();
+            min_x[sig] = cols;
             max_x[sig] = 0;
-            min_y[sig] = single_row_vec.size();
+            min_y[sig] = rows;
             max_y[sig] = 0;
         }
     }
-    for (int i = 0; i < single_row_vec.size(); i++) {
-        for (int j = 0; j < single_row_vec[i]->multirow_signal_permutation_up[0].size(); j++) {
-            Signal *sig_up = single_row_vec[i]->multirow_signal_permutation_up[0][j];
-            Signal *sig_down = single_row_vec[i]->multirow_signal_permutation_down[0][j];
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            Signal *sig_up = multirow_signal_permutation_up[i][j];
+            Signal *sig_down = multirow_signal_permutation_down[i][j];
             if (sig_up) {
                 min_x[sig_up] = std::min(j, min_x[sig_up]);
                 max_x[sig_up] = std::max(j, max_x[sig_up]);
@@ -60,70 +62,11 @@ int calculate_hpml(std::vector<Pshape *> single_row_vec) {
     for (auto pair : signals) {
         Signal *sig = pair.second;
         if (sig && sig->name != "VDD" && sig->name != "VSS") {
+            std::cout << sig->name << " [" << max_x[sig] - min_x[sig] + max_y[sig] - min_y[sig] << "] " << max_x[sig] << " " << min_x[sig] << " " << max_y[sig]
+                      << " " << min_y[sig] << std::endl;
             hpml += max_x[sig] - min_x[sig] + max_y[sig] - min_y[sig];
         }
     }
     std::cout << "hpml: " << hpml << std::endl;
     return hpml;
-}
-
-int inter_row_signal_count(std::vector<Pshape *> pshape_vec) {
-    std::set<Signal *> signal_set;
-    std::set<Signal *> interrow_signal_set;
-    for (int i = 0; i < pshape_vec.size(); i++) {
-        Pshape *pshape = pshape_vec[i];
-        for (int j = 0; j < pshape->multirow_tr_permutation_down[0].size(); j++) {
-            Transistor *tr_p = pshape->multirow_tr_permutation_down[0][j];
-            Transistor *tr_n = pshape->multirow_tr_permutation_up[0][j];
-            if (tr_p != nullptr) {
-                signal_set.insert(tr_p->drain);
-                signal_set.insert(tr_p->gate);
-                signal_set.insert(tr_p->source);
-            }
-            if (tr_n != nullptr) {
-                signal_set.insert(tr_n->drain);
-                signal_set.insert(tr_n->gate);
-                signal_set.insert(tr_n->source);
-            }
-        }
-    }
-    signal_set.erase(signals["VDD"]);
-    signal_set.erase(signals["VSS"]);
-    int result = 0;
-    for (Signal *sig : signal_set) {
-        int start = -1;
-        int end = -1;
-        for (int i = 0; i < pshape_vec.size(); i++) {
-            Pshape *pshape = pshape_vec[i];
-            for (int j = 0; j < pshape->multirow_tr_permutation_down[0].size(); j++) {
-                Transistor *tr_p = pshape->multirow_tr_permutation_down[0][j];
-                Transistor *tr_n = pshape->multirow_tr_permutation_up[0][j];
-                if (tr_p != nullptr) {
-                    if (sig == tr_p->drain || sig == tr_p->gate || sig == tr_p->source) {
-                        if (start == -1) {
-                            start = i;
-                        }
-                        end = i;
-                    }
-                }
-                if (tr_n != nullptr) {
-                    if (sig == tr_n->drain || sig == tr_n->gate || sig == tr_n->source) {
-                        if (start == -1) {
-                            start = i;
-                        }
-                        end = i;
-                    }
-                }
-            }
-        }
-        if (end != start) {
-            interrow_signal_set.insert(sig);
-        }
-        result = result + end - start;
-    }
-    std::cout << "inter-row signal set:" << std::endl;
-    for (auto sig : interrow_signal_set) {
-        std::cout << sig->name << std::endl;
-    }
-    return interrow_signal_set.size();
 }
