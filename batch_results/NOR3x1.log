@@ -1,0 +1,177 @@
+Hello, World!
+cell/NOR3x1.txt
+Available CPU cores: 16
+MM8 num_finger: 3
+MM10 num_finger: 3
+MM11 num_finger: 3
+MM14 num_finger: 1
+MM13 num_finger: 1
+MM12 num_finger: 1
+#tr/#net: 6/8
+compound_gates: 
+
+MM11
+MM14
+MM13
+MM12
+
+transmission_gates: 
+p-network: 
+MM11
+MM10
+MM8
+n-network: 
+MM14
+MM13
+MM12
+
+MM11 MM14 -3
+MM11 MM13 -3
+MM11 MM12 -1
+MM10 MM14 -5
+MM10 MM13 -3
+MM10 MM12 -5
+MM8 MM14 -2
+MM8 MM13 -4
+MM8 MM12 -4
+MM14 pref MM8
+MM14 pref MM11
+MM14 pref MM10
+MM13 pref MM11
+MM13 pref MM10
+MM13 pref MM8
+MM12 pref MM11
+MM12 pref MM8
+MM12 pref MM10
+MM11 pref MM12
+MM11 pref MM14
+MM11 pref MM13
+MM10 pref MM13
+MM10 pref MM14
+MM10 pref MM12
+MM8 pref MM14
+MM8 pref MM13
+MM8 pref MM12
+MM14 propose #0
+MM12 match MM11
+MM13 propose #0
+MM14 match MM10
+MM12 propose #0
+MM14 match MM8
+MM13 propose #1
+MM13 match MM10
+[matching result]
+MM11 <-> MM12
+MM10 <-> MM13
+MM8 <-> MM14
+pairs: 
+MM10 MM13
+MM8 MM14
+MM11 MM12
+[folding_shape_generation]
+[placement]
+total_finger: 9
+expected #row: 1
+output mos: MM11
+input mos: MM11
+input mos: MM10
+input mos: MM8
+[ungrouped_pmos]
+MM8
+MM10
+group: 
+MM11
+MM10
+MM8
+hello group_placement
+target_area: 9
+BFS Time taken : 0.000229775
+bfs total time: 0.000229775
+dfs total time: 0
+number of cell: 16
+HPML: 48
+Set 1 intersecting elements: None
+Row 0: 
+hello print_shape
+MM14                    MM13                    MM12                    
+--
+MM8     MM8     MM8     MM10    MM10    MM10    MM11    MM11    MM11    
+VSS     C       Y       ------------------------------------------------VSS     B       Y       ------------------------------------------------Y       A       VSS     ------------------------------------------------
+--
+VDD     C       net21   net21   C       VDD     VDD     C       net21   net21   B       net22   net22   B       net21   net21   B       net22   net22   A       Y       Y       A       net22   net22   A       Y       
+VSS     C       Y       Null    Null    Null    VSS     B       Y       Null    Null    Null    Y       A       VSS     Null    Null    Null    Null    
+
+VDD     C       net21   C       VDD     C       net21   B       net22   B       net21   B       net22   A       Y       A       net22   A       Y       
+
+HSP: 18
+HCD: 2
+hello print_shape
+MM14                    MM13                    MM12                    
+--
+MM8     MM8     MM8     MM10    MM10    MM10    MM11    MM11    MM11    
+VSS     C       Y       ------------------------------------------------VSS     B       Y       ------------------------------------------------Y       A       VSS     ------------------------------------------------
+--
+VDD     C       net21   net21   C       VDD     VDD     C       net21   net21   B       net22   net22   B       net21   net21   B       net22   net22   A       Y       Y       A       net22   net22   A       Y       
+VSS     C       Y       Null    Null    Null    VSS     B       Y       Null    Null    Null    Y       A       VSS     Null    Null    Null    Null    
+
+VDD     C       net21   C       VDD     C       net21   B       net22   B       net21   B       net22   A       Y       A       net22   A       Y       
+
+area: 9
+hpml: 44
+#inter-row signals: 0
+total density: 149
+cost: 270
+hello print_shape
+MM14                    MM13                    MM12                    
+--
+MM8     MM8     MM8     MM10    MM10    MM10    MM11    MM11    MM11    
+VSS     C       Y       ------------------------------------------------VSS     B       Y       ------------------------------------------------Y       A       VSS     ------------------------------------------------
+--
+VDD     C       net21   net21   C       VDD     VDD     C       net21   net21   B       net22   net22   B       net21   net21   B       net22   net22   A       Y       Y       A       net22   net22   A       Y       
+VSS     C       Y       Null    Null    Null    VSS     B       Y       Null    Null    Null    Y       A       VSS     Null    Null    Null    Null    
+
+VDD     C       net21   C       VDD     C       net21   B       net22   B       net21   B       net22   A       Y       A       net22   A       Y       
+
+[initial] cost: 270
+[epoch 0]
+hello satisfy_via_rule
+5131114131113141111
+SAT
+[via]
+0 1 0 1 0 1 0 0 1 0 0 0 1 0 0 0 1 0 0 
+0 0 1 0 0 0 0 1 0 1 0 1 0 0 0 0 0 0 0 
+0 0 0 0 1 0 0 0 1 0 0 0 0 1 0 1 0 1 0 
+0 0 1 0 0 0 1 0 0 0 1 0 1 0 1 0 0 0 1 
+[metal]
+ -1   6   6   6   6   6  -1   0   0  -1  -1  -1   0   0  -1   0   0  -1  -1 
+ -1   2   2  -1  -1  -1  -1   5   5   5   5   5  -1  -1  -1  -1  -1  -1  -1 
+ -1  -1  -1   4   4  -1  -1   2   2  -1  -1  -1   7   7   7   7   7   7   7 
+ -1   1   1  -1  -1   1   1  -1  -1   1   1  -1   2   2   2  -1  -1   2   2 
+[metal density]
+0 1 1 1 1 1 0 0 1 1 1 1 1 1 1 1 1 0 0 
+0 0 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 1 0 0 0 0 1 1 1 1 1 0 
+0 0 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 
+[satisfy via metal]
+0111110110001101100
+0110000111110000000
+0001100110001111111
+0110011001101110011
+pass
+total_via_vertical_diff: 2
+total density: 42
+hello print_shape
+MM14                    MM13                    MM12                    
+--
+MM8     MM8     MM8     MM10    MM10    MM10    MM11    MM11    MM11    
+VSS     C       Y       ------------------------------------------------VSS     B       Y       ------------------------------------------------Y       A       VSS     ------------------------------------------------
+--
+VDD     C       net21   net21   C       VDD     VDD     C       net21   net21   B       net22   net22   B       net21   net21   B       net22   net22   A       Y       Y       A       net22   net22   A       Y       
+VSS     C       Y       Null    Null    Null    VSS     B       Y       Null    Null    Null    Y       A       VSS     Null    Null    Null    Null    
+
+VDD     C       net21   C       VDD     C       net21   B       net22   B       net21   B       net22   A       Y       A       net22   A       Y       
+
+成功建立檔案：results/NOR3x1.plmt
+max_cols: 9
+Generated results/NOR3x1.plmt
+Time taken : 0.810692 seconds

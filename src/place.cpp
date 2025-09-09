@@ -15,12 +15,11 @@
 #include <set>
 #include <sstream>
 #include <unordered_map>
+#include <unordered_set>
 #include <utility>
 #include <vector>
 
 #include "cfet.h"
-
-namespace fs = std::filesystem;
 
 std::pair<std::vector<Node *>, std::vector<Pshape *>> bfs_placement(int target_area, std::vector<Transistor *> pmos_group) {
     std::vector<Pshape *> placement_cand;
@@ -152,7 +151,7 @@ std::pair<std::vector<Node *>, std::vector<Pshape *>> bfs_placement(int target_a
                                     if (merge_enable(old_pshape, lamb, tr_pairs[br_tr], br_tr, row, col)) {
                                         Pshape *pshape = merge(old_pshape, lamb, tr_pairs[br_tr], br_tr, row, col);
                                         if (pshape->height > max_allowable_cell_height) {
-                                            delete pshape;
+                                            if (pshape) delete pshape;
                                             pshape = nullptr;
                                             break;
                                         }
@@ -184,23 +183,28 @@ std::pair<std::vector<Node *>, std::vector<Pshape *>> bfs_placement(int target_a
                                         // std::cout << "low_bound: " << low_bound << std::endl;
                                         // std::cout << std::endl;
                                         if (low_bound > target_area) {
-                                            delete pshape;
+                                            if (pshape) delete pshape;
                                             pshape = nullptr;
                                             break;
                                         }
                                         if (low_bound < min_potential_macro_area) {
-                                            for (auto item : new_partial_placement) {
-                                                delete item;
-                                                item = nullptr;
+                                            // for (auto item : new_partial_placement) {
+                                            //     if (item) delete item;
+                                            //     item = nullptr;
+                                            // }
+                                            // new_partial_placement.clear();
+                                            // new_partial_placement.shrink_to_fit();
+                                            for (size_t i = 0; i < new_partial_placement.size(); ++i) {
+                                                delete new_partial_placement[i];
+                                                new_partial_placement[i] = nullptr;
                                             }
                                             new_partial_placement.clear();
-                                            new_partial_placement.shrink_to_fit();
                                             min_potential_macro_area = low_bound;
                                             new_partial_placement.push_back(pshape);
                                         } else if (low_bound == min_potential_macro_area) {
                                             new_partial_placement.push_back(pshape);
                                         } else {
-                                            delete pshape;
+                                            if (pshape) delete pshape;
                                             pshape = nullptr;
                                         }
                                         break;
@@ -215,13 +219,13 @@ std::pair<std::vector<Node *>, std::vector<Pshape *>> bfs_placement(int target_a
                 if (br_node->partial_shapes.size() != 0) {
                     q.push(br_node);
                 } else {
-                    delete br_node;
+                    if (br_node) delete br_node;
                     br_node = nullptr;
                 }
             }
 
             for (auto pshape : current_node->partial_shapes) {
-                delete pshape;
+                if (pshape) delete pshape;
                 pshape = nullptr;
             }
             // delete current_node;
@@ -246,7 +250,7 @@ std::pair<std::vector<Node *>, std::vector<Pshape *>> bfs_placement(int target_a
                         // }
                         placement_cand.push_back(pshape);
                     } else {
-                        delete pshape;
+                        if (pshape) delete pshape;
                         pshape = nullptr;
                     }
                 } else {
@@ -291,9 +295,9 @@ std::vector<Pshape *> dfs_placement(Node *root_node, int target_area, std::vecto
             while (true) {
                 Node *n = current_node->parent;
                 for (auto pshape : current_node->partial_shapes) {
-                    delete pshape;
+                    if (pshape) delete pshape;
                 }
-                delete current_node;
+                if (current_node) delete current_node;
                 current_node = n;
                 current_tr = n->tr;
                 if (((current_node->remained_pmos.size() == 0 || current_node->fill == current_node->remained_pmos.size() - 1) && (current_node != root)) ==
@@ -312,7 +316,7 @@ std::vector<Pshape *> dfs_placement(Node *root_node, int target_area, std::vecto
                     if (pshape->multirow_macro_area < min_macro_area) {
                         min_macro_area = pshape->multirow_macro_area;
                         for (auto item : placement_cand) {
-                            delete item;
+                            if (item) delete item;
                             item = nullptr;
                         }
                         placement_cand.clear();
@@ -321,7 +325,7 @@ std::vector<Pshape *> dfs_placement(Node *root_node, int target_area, std::vecto
                     } else if (pshape->multirow_macro_area == min_macro_area) {
                         placement_cand.push_back(pshape);
                     } else {
-                        delete pshape;
+                        if (pshape) delete pshape;
                         pshape = nullptr;
                     }
                     if (placement_cand.size() >= max_placement_size) {
@@ -330,7 +334,7 @@ std::vector<Pshape *> dfs_placement(Node *root_node, int target_area, std::vecto
                 }
                 // std::cout << "placement_cand.size(): " << placement_cand.size() << std::endl;
             } else {
-                delete current_node;
+                if (current_node) delete current_node;
             }
             if (placement_cand.size() >= max_placement_size) {
                 break;
@@ -424,18 +428,18 @@ std::vector<Pshape *> dfs_placement(Node *root_node, int target_area, std::vecto
                                 // << pshape->height << "/ " << max_allowable_cell_height << std::endl; std::cout << low_bound << " " <<
                                 // min_cell_area + 1 << std::endl;
                                 if (low_bound > target_area) {
-                                    delete pshape;
+                                    if (pshape) delete pshape;
                                     pshape = nullptr;
                                     break;
                                 }
                                 if (pshape->height > max_allowable_cell_height) {
-                                    delete pshape;
+                                    if (pshape) delete pshape;
                                     pshape = nullptr;
                                     break;
                                 }
                                 if (low_bound < min_potential_macro_area) {
                                     for (auto item : new_partial_placement) {
-                                        delete item;
+                                        if (item) delete item;
                                         item = nullptr;
                                     }
                                     new_partial_placement.clear();
@@ -445,7 +449,7 @@ std::vector<Pshape *> dfs_placement(Node *root_node, int target_area, std::vecto
                                 } else if (low_bound == min_potential_macro_area) {
                                     new_partial_placement.push_back(pshape);
                                 } else {
-                                    delete pshape;
+                                    if (pshape) delete pshape;
                                     pshape = nullptr;
                                 }
                                 break;
@@ -481,28 +485,34 @@ std::vector<Pshape *> dfs_placement(Node *root_node, int target_area, std::vecto
     return placement_cand;
 }
 
-std::vector<Pshape *> placement() {
+Pshape *placement() {
     std::vector<Transistor *> pmos_group1;
-    std::vector<Transistor *> output_pmos;
-    std::vector<Transistor *> input_pmos;
     std::vector<Transistor *> ungrouped_pmos;
+    std::set<Transistor *> inout_pmos;
 
     int total_finger = 0;
     for (Transistor *tr_p : pmos) {
         total_finger = total_finger + std::max(tr_p->num_finger, tr_pairs[tr_p]->num_finger);
     }
-    float cell_width = total_finger * 27;
-    std::cout << "cell width: " << cell_width << std::endl;
-    while (cell_width / expected_row_num / (expected_row_num * 81) >= aspect_ratio) {
-        expected_row_num = expected_row_num + 1;
+    std::cout << "total_finger: " << total_finger << std::endl;
+
+    if (total_finger < 12) {
+        expected_row_num = 1;
+    } else if (total_finger < 25) {
+        expected_row_num = 2;
+    } else if (total_finger < 37) {
+        expected_row_num = 3;
+    } else if (total_finger < 91) {
+        expected_row_num = 4;
+    } else {
+        expected_row_num = 8;
     }
-    expected_row_num--;
     std::cout << "expected #row: " << expected_row_num << std::endl;
 
     for (Signal *output : outputs) {
         for (Transistor *tr : pmos) {
             if (tr->drain == output || tr->source == output) {
-                output_pmos.push_back(tr);
+                inout_pmos.insert(tr);
                 std::cout << "output mos: " << tr->name << std::endl;
                 break;
             }
@@ -511,7 +521,7 @@ std::vector<Pshape *> placement() {
     for (Signal *input : inputs) {
         for (Transistor *tr : pmos) {
             if (tr->gate == input) {
-                input_pmos.push_back(tr);
+                inout_pmos.insert(tr);
                 std::cout << "input mos: " << tr->name << std::endl;
                 break;
             }
@@ -523,20 +533,38 @@ std::vector<Pshape *> placement() {
     // initialize groups
     std::vector<Group *> groups;
     // determine #rows
-    for (int i = 0; i < output_pmos.size(); i++) {
-        // for (int i = 0; i < 1; i++) {
-        Transistor *tr_o = output_pmos[i];
+    std::vector<Transistor *> leader_cands;
+    std::vector<Transistor *> other_cands;
+    int num_cand = 0;
+    for (auto tr : inout_pmos) {
+        if (outputs.find(tr->drain) != outputs.end() || outputs.find(tr->gate) != outputs.end() || outputs.find(tr->source) != outputs.end()) {
+            leader_cands.push_back(tr);
+        } else {
+            other_cands.push_back(tr);
+        }
+    }
+    leader_cands.insert(leader_cands.end(), other_cands.begin(), other_cands.end());
+    for (int i = 0; i < expected_row_num; i++) {
+        Transistor *tr_o = leader_cands[i];
         Group *gp = new Group();
         gp->trs.push_back(tr_o);
         gp->width = std::max(tr_o->num_finger, tr_pairs[tr_o]->num_finger);
         groups.push_back(gp);
         ungrouped_pmos.erase(std::remove(ungrouped_pmos.begin(), ungrouped_pmos.end(), tr_o), ungrouped_pmos.end());
     }
-    while (ungrouped_pmos.size() != 0) {
+    std::cout << "[ungrouped_pmos]" << std::endl;
+    for (int i = 0; i < ungrouped_pmos.size(); i++) {
+        std::cout << ungrouped_pmos[i]->name << std::endl;
+    }
+    while (!ungrouped_pmos.empty()) {
+        std::unordered_set<Transistor *> selected;  // 紀錄這一輪選到的 tr_cand，避免重複分配
+        std::unordered_map<Group *, Transistor *> groupToCand;
+
         for (Group *group : groups) {
             int max_common = 0;
-            Transistor *tr_cand = ungrouped_pmos[0];
+            Transistor *tr_cand = nullptr;
             std::vector<Signal *> sig_ref;
+
             for (auto tr_p : group->trs) {
                 sig_ref.push_back(tr_p->drain);
                 sig_ref.push_back(tr_p->gate);
@@ -545,25 +573,38 @@ std::vector<Pshape *> placement() {
                 sig_ref.push_back(tr_pairs[tr_p]->gate);
                 sig_ref.push_back(tr_pairs[tr_p]->source);
             }
+
             for (auto ungrouped_tr : ungrouped_pmos) {
+                if (selected.count(ungrouped_tr)) continue;  // 這輪已經被選走，跳過
+
                 int common_num = 0;
                 for (auto sig : sig_ref) {
                     if (sig->name != "VDD" && sig->name != "VSS") {
-                        if (sig == ungrouped_tr->drain) common_num = common_num + 2;
-                        if (sig == ungrouped_tr->gate) common_num = common_num + 1;
-                        if (sig == ungrouped_tr->source) common_num = common_num + 2;
-                        if (sig == tr_pairs[ungrouped_tr]->drain) common_num = common_num + 2;
-                        if (sig == tr_pairs[ungrouped_tr]->gate) common_num = common_num + 1;
-                        if (sig == tr_pairs[ungrouped_tr]->source) common_num = common_num + 2;
+                        if (sig == ungrouped_tr->drain) common_num += 2;
+                        if (sig == ungrouped_tr->gate) common_num += 1;
+                        if (sig == ungrouped_tr->source) common_num += 2;
+                        if (sig == tr_pairs[ungrouped_tr]->drain) common_num += 2;
+                        if (sig == tr_pairs[ungrouped_tr]->gate) common_num += 1;
+                        if (sig == tr_pairs[ungrouped_tr]->source) common_num += 2;
                     }
                 }
-                if (common_num > max_common) {
+
+                if (common_num > max_common || tr_cand == nullptr) {
                     max_common = common_num;
                     tr_cand = ungrouped_tr;
                 }
             }
-            group->trs.push_back(tr_cand);
-            ungrouped_pmos.erase(std::remove(ungrouped_pmos.begin(), ungrouped_pmos.end(), tr_cand), ungrouped_pmos.end());
+
+            if (tr_cand != nullptr) {
+                groupToCand[group] = tr_cand;
+                selected.insert(tr_cand);
+            }
+        }
+
+        // 將這輪選中的 transistor 實際加入對應的 group，並從 ungrouped_pmos 移除
+        for (auto &[group, tr] : groupToCand) {
+            group->trs.push_back(tr);
+            ungrouped_pmos.erase(std::remove(ungrouped_pmos.begin(), ungrouped_pmos.end(), tr), ungrouped_pmos.end());
         }
     }
 
@@ -581,11 +622,22 @@ std::vector<Pshape *> placement() {
         }
     }
 
+    // std::cout << "[HPML sorting]" << std::endl;
+    // for (int i = 0; i < placement_eachrow.size(); i++) {
+    //     for (int j = 0; j < placement_eachrow[i].size(); j++) {
+    //         placement_eachrow[i][j]->allign();
+    //         placement_eachrow[i][j]->calculate_hpml();
+    //         // std::cout << "HPML: " << placement_eachrow[i][j]->calculate_hpml() << std::endl;
+    //     }
+    //     std::sort(placement_eachrow[i].begin(), placement_eachrow[i].end(), [](Pshape *a, Pshape *b) { return a->hpml < b->hpml; });
+    // }
+
     // common signals
     std::vector<std::set<Signal *>> row_placement_signals;
     for (int i = 0; i < placement_eachrow.size(); i++) {
         std::vector<Signal *> sig_array;
         Pshape *pshape = placement_eachrow[i][0];
+        std::cout << "HPML: " << pshape->hpml << std::endl;
         for (Transistor *tr : pshape->multirow_tr_permutation_down[0]) {
             if (tr == nullptr) continue;
             sig_array.push_back(tr->drain);
@@ -605,7 +657,7 @@ std::vector<Pshape *> placement() {
     std::vector<Pshape *> single_row_vec;  // select best placement for each group (single-row)
     std::vector<Pshape *> pshape_vec;      // placement going to router
 
-    // grouping single-row
+    // choose best single-row
     for (int i = 0; i < placement_eachrow.size(); i++) {
         std::priority_queue<Pshape *, std::vector<Pshape *>, decltype(&compareRoutability)> pq(compareRoutability);
         std::vector<Pshape *> best_results;
@@ -677,16 +729,20 @@ std::vector<Pshape *> placement() {
         single_row_vec.push_back(best_results[0]);
     }
 
-    return single_row_vec;
+    // single-row placement abutting
+    // Pshape *multirow_pshape = placement_abutting(single_row_vec);
+    Pshape *multirow_pshape = placement_merging(single_row_vec);
+    multirow_pshape->print_pshape();
+
+    multirow_pshape->allign();
+    return multirow_pshape;
 }
 
 std::vector<Pshape *> group_placement(std::vector<Transistor *> pmos_group) {
     std::cout << "hello group_placement" << std::endl;
     std::vector<Pshape *> final_placement_cand;
-    std::vector<double> workload;
     double bfs_total_time = 0;
     double dfs_total_time = 0;
-    workload.assign(16, 0);
     tr_size_sum = 0;
     int min_cell_area = std::numeric_limits<int>::max() - 1;
     int min_macro_area = std::numeric_limits<int>::max() - 1;
@@ -737,18 +793,11 @@ std::vector<Pshape *> group_placement(std::vector<Transistor *> pmos_group) {
                     final_placement_cand.push_back(pshape);
                 }
                 int thread_id = omp_get_thread_num();
-                workload[thread_id] += elapsed_dfs.count();
             }
             auto end_dfs_total = std::chrono::high_resolution_clock::now();
             std::chrono::duration<double> elapsed_dfs_total = end_dfs_total - start_dfs_total;
             dfs_total_time += elapsed_dfs_total.count();
-            // std::cout << "max_dfs_time_taken: " << max_dfs_time_taken << std::endl;
-            for (int i = 0; i < 16; i++) {
-                std::cout << workload[i] << ", ";
-            }
-            std::cout << std::endl;
         }
-        workload.assign(16, 0);
         target_area++;
         auto end_while = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> elapsed_while = end_while - start_while;
@@ -761,12 +810,5 @@ std::vector<Pshape *> group_placement(std::vector<Transistor *> pmos_group) {
     std::cout << "number of cell: " << final_placement_cand.size() << std::endl;
     int place_cand_id = 0;
 
-    for (auto pshape : final_placement_cand) {
-        // std::cout << "min_macro_area: " << pshape->multirow_macro_area << std::endl;
-        // std::cout << "#" << place_cand_id << std::endl;
-        // print_pshape(pshape);
-        calculate_pgr_blocked(pshape);
-        place_cand_id++;
-    }
     return final_placement_cand;
 }

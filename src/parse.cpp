@@ -1,4 +1,5 @@
 #include <chrono>
+#include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <queue>
@@ -9,7 +10,18 @@
 
 #include "cfet.h"
 
-void parse_input(std::istream& stream) {
+void parse_input(std::string file) {
+    size_t last_slash = file.find_last_of("/\\");
+    size_t last_dot = file.find_last_of('.');
+
+    // 取出檔名（不含路徑與副檔名）
+    cell_name = file.substr(last_slash + 1, last_dot - last_slash - 1);
+
+    std::ifstream stream(file);
+    if (!stream) {
+        std::cerr << "Error: Could not open input file " << file << "\n";
+        return;
+    }
     std::string token;
     std::string line;
     stream >> token;
@@ -171,10 +183,10 @@ void parse_input(std::istream& stream) {
         }
         for (auto tr : pmos) {
             if (sig == tr->drain || sig == tr->source) {
-                outputs.push_back(sig);
+                outputs.insert(sig);
                 break;
             } else if (sig == tr->gate) {
-                inputs.push_back(sig);
+                inputs.insert(sig);
             }
         }
     }

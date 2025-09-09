@@ -1,0 +1,417 @@
+Hello, World!
+cell/AO332x1.txt
+Available CPU cores: 16
+MM15 num_finger: 1
+MM9 num_finger: 1
+MM8 num_finger: 1
+MM7 num_finger: 1
+MM6 num_finger: 1
+MM1 num_finger: 1
+MM5 num_finger: 1
+MM4 num_finger: 1
+MM0 num_finger: 1
+MM17 num_finger: 1
+MM16 num_finger: 1
+MM13 num_finger: 1
+MM12 num_finger: 1
+MM11 num_finger: 1
+MM10 num_finger: 1
+MM3 num_finger: 1
+MM14 num_finger: 1
+MM2 num_finger: 1
+#tr/#net: 18/19
+compound_gates: 
+
+MM15
+MM13
+
+MM1
+MM0
+MM17
+MM12
+MM14
+
+transmission_gates: 
+p-network: 
+MM15
+n-network: 
+MM13
+
+MM15 MM13 2
+MM13 pref MM15
+MM15 pref MM13
+MM13 propose #0
+MM13 match MM15
+[matching result]
+MM15 <-> MM13
+p-network: 
+MM1
+MM6
+MM5
+MM4
+MM9
+MM8
+MM7
+MM0
+n-network: 
+MM17
+MM16
+MM12
+MM11
+MM10
+MM14
+MM2
+MM3
+
+MM1 MM17 0
+MM1 MM16 -3
+MM1 MM12 -2
+MM1 MM11 -4
+MM1 MM10 -3
+MM1 MM14 -2
+MM1 MM2 -4
+MM1 MM3 -3
+MM6 MM17 -4
+MM6 MM16 -3
+MM6 MM12 -2
+MM6 MM11 -4
+MM6 MM10 -3
+MM6 MM14 -4
+MM6 MM2 -4
+MM6 MM3 -3
+MM5 MM17 -4
+MM5 MM16 -3
+MM5 MM12 -4
+MM5 MM11 -2
+MM5 MM10 -3
+MM5 MM14 -4
+MM5 MM2 -4
+MM5 MM3 -3
+MM4 MM17 -4
+MM4 MM16 -3
+MM4 MM12 -4
+MM4 MM11 -4
+MM4 MM10 -1
+MM4 MM14 -4
+MM4 MM2 -4
+MM4 MM3 -3
+MM9 MM17 -3
+MM9 MM16 -2
+MM9 MM12 -3
+MM9 MM11 -3
+MM9 MM10 -2
+MM9 MM14 -1
+MM9 MM2 -3
+MM9 MM3 -2
+MM8 MM17 -3
+MM8 MM16 -2
+MM8 MM12 -3
+MM8 MM11 -3
+MM8 MM10 -2
+MM8 MM14 -3
+MM8 MM2 -1
+MM8 MM3 -2
+MM7 MM17 -3
+MM7 MM16 -2
+MM7 MM12 -3
+MM7 MM11 -3
+MM7 MM10 -2
+MM7 MM14 -3
+MM7 MM2 -3
+MM7 MM3 0
+MM0 MM17 -2
+MM0 MM16 -1
+MM0 MM12 -2
+MM0 MM11 -4
+MM0 MM10 -3
+MM0 MM14 -2
+MM0 MM2 -4
+MM0 MM3 -3
+MM17 pref MM1
+MM17 pref MM0
+MM17 pref MM9
+MM17 pref MM8
+MM17 pref MM7
+MM17 pref MM6
+MM17 pref MM5
+MM17 pref MM4
+MM16 pref MM0
+MM16 pref MM9
+MM16 pref MM8
+MM16 pref MM7
+MM16 pref MM1
+MM16 pref MM6
+MM16 pref MM5
+MM16 pref MM4
+MM12 pref MM1
+MM12 pref MM6
+MM12 pref MM0
+MM12 pref MM9
+MM12 pref MM8
+MM12 pref MM7
+MM12 pref MM5
+MM12 pref MM4
+MM11 pref MM5
+MM11 pref MM9
+MM11 pref MM8
+MM11 pref MM7
+MM11 pref MM1
+MM11 pref MM6
+MM11 pref MM4
+MM11 pref MM0
+MM10 pref MM4
+MM10 pref MM9
+MM10 pref MM8
+MM10 pref MM7
+MM10 pref MM1
+MM10 pref MM6
+MM10 pref MM5
+MM10 pref MM0
+MM14 pref MM9
+MM14 pref MM1
+MM14 pref MM0
+MM14 pref MM8
+MM14 pref MM7
+MM14 pref MM6
+MM14 pref MM5
+MM14 pref MM4
+MM2 pref MM8
+MM2 pref MM9
+MM2 pref MM7
+MM2 pref MM1
+MM2 pref MM6
+MM2 pref MM5
+MM2 pref MM4
+MM2 pref MM0
+MM3 pref MM7
+MM3 pref MM9
+MM3 pref MM8
+MM3 pref MM1
+MM3 pref MM6
+MM3 pref MM5
+MM3 pref MM4
+MM3 pref MM0
+MM1 pref MM17
+MM1 pref MM12
+MM1 pref MM14
+MM1 pref MM16
+MM1 pref MM10
+MM1 pref MM3
+MM1 pref MM11
+MM1 pref MM2
+MM6 pref MM12
+MM6 pref MM16
+MM6 pref MM10
+MM6 pref MM3
+MM6 pref MM17
+MM6 pref MM11
+MM6 pref MM14
+MM6 pref MM2
+MM5 pref MM11
+MM5 pref MM16
+MM5 pref MM10
+MM5 pref MM3
+MM5 pref MM17
+MM5 pref MM12
+MM5 pref MM14
+MM5 pref MM2
+MM4 pref MM10
+MM4 pref MM16
+MM4 pref MM3
+MM4 pref MM17
+MM4 pref MM12
+MM4 pref MM11
+MM4 pref MM14
+MM4 pref MM2
+MM9 pref MM14
+MM9 pref MM16
+MM9 pref MM10
+MM9 pref MM3
+MM9 pref MM17
+MM9 pref MM12
+MM9 pref MM11
+MM9 pref MM2
+MM8 pref MM2
+MM8 pref MM16
+MM8 pref MM10
+MM8 pref MM3
+MM8 pref MM17
+MM8 pref MM12
+MM8 pref MM11
+MM8 pref MM14
+MM7 pref MM3
+MM7 pref MM16
+MM7 pref MM10
+MM7 pref MM17
+MM7 pref MM12
+MM7 pref MM11
+MM7 pref MM14
+MM7 pref MM2
+MM0 pref MM16
+MM0 pref MM17
+MM0 pref MM12
+MM0 pref MM14
+MM0 pref MM10
+MM0 pref MM3
+MM0 pref MM11
+MM0 pref MM2
+MM17 propose #0
+MM17 match MM1
+MM16 propose #0
+MM3 match MM6
+MM12 propose #0
+MM11 propose #0
+MM12 match MM4
+MM10 propose #0
+MM11 match MM9
+MM14 propose #0
+MM10 match MM8
+MM2 propose #0
+MM14 match MM7
+MM3 propose #0
+MM2 match MM0
+MM12 propose #1
+MM16 match MM5
+[matching result]
+MM1 <-> MM17
+MM6 <-> MM12
+MM5 <-> MM11
+MM4 <-> MM10
+MM9 <-> MM14
+MM8 <-> MM2
+MM7 <-> MM3
+MM0 <-> MM16
+pairs: 
+MM0 MM16
+MM7 MM3
+MM8 MM2
+MM9 MM14
+MM4 MM10
+MM5 MM11
+MM6 MM12
+MM1 MM17
+MM15 MM13
+[folding_shape_generation]
+[placement]
+total_finger: 9
+expected #row: 1
+output mos: MM15
+input mos: MM9
+input mos: MM8
+input mos: MM7
+input mos: MM6
+input mos: MM5
+input mos: MM4
+input mos: MM1
+input mos: MM0
+[ungrouped_pmos]
+MM9
+MM8
+MM7
+MM6
+MM1
+MM5
+MM4
+MM0
+group: 
+MM15
+MM1
+MM0
+MM6
+MM9
+MM5
+MM4
+MM8
+MM7
+hello group_placement
+target_area: 9
+BFS Time taken : 0.00338356
+bfs total time: 0.00338356
+dfs total time: 0
+number of cell: 2
+HPML: 0
+Set 1 intersecting elements: None
+Row 0: 
+hello print_shape
+MM17    MM16    MM10    MM11    MM12    MM14    MM2     MM3     MM13    
+--
+MM1     MM0     MM4     MM5     MM6     MM9     MM8     MM7     MM15    
+net018  C1      net061  net061  C2      VSS     VSS     B3      net064  net064  B2      net063  net063  B1      net018  net018  A1      net26   net26   A2      net25   net25   A3      VSS     VSS     net018  Y       
+--
+net030  C1      net018  net018  C2      net030  net030  B3      net031  net031  B2      net030  net030  B1      net031  net031  A1      VDD     VDD     A2      net031  net031  A3      VDD     VDD     net018  Y       
+net018  C1      net061  C2      VSS     B3      net064  B2      net063  B1      net018  A1      net26   A2      net25   A3      VSS     net018  Y       
+
+net030  C1      net018  C2      net030  B3      net031  B2      net030  B1      net031  A1      VDD     A2      net031  A3      VDD     net018  Y       
+
+HSP: 48
+HCD: 4
+hello print_shape
+MM17    MM16    MM10    MM11    MM12    MM14    MM2     MM3     MM13    
+--
+MM1     MM0     MM4     MM5     MM6     MM9     MM8     MM7     MM15    
+net018  C1      net061  net061  C2      VSS     VSS     B3      net064  net064  B2      net063  net063  B1      net018  net018  A1      net26   net26   A2      net25   net25   A3      VSS     VSS     net018  Y       
+--
+net030  C1      net018  net018  C2      net030  net030  B3      net031  net031  B2      net030  net030  B1      net031  net031  A1      VDD     VDD     A2      net031  net031  A3      VDD     VDD     net018  Y       
+net018  C1      net061  C2      VSS     B3      net064  B2      net063  B1      net018  A1      net26   A2      net25   A3      VSS     net018  Y       
+
+net030  C1      net018  C2      net030  B3      net031  B2      net030  B1      net031  A1      VDD     A2      net031  A3      VDD     net018  Y       
+
+area: 9
+hpml: 33
+#inter-row signals: 0
+total density: 270
+cost: 260
+hello print_shape
+MM17    MM16    MM10    MM11    MM12    MM14    MM2     MM3     MM13    
+--
+MM1     MM0     MM4     MM5     MM6     MM9     MM8     MM7     MM15    
+net018  C1      net061  net061  C2      VSS     VSS     B3      net064  net064  B2      net063  net063  B1      net018  net018  A1      net26   net26   A2      net25   net25   A3      VSS     VSS     net018  Y       
+--
+net030  C1      net018  net018  C2      net030  net030  B3      net031  net031  B2      net030  net030  B1      net031  net031  A1      VDD     VDD     A2      net031  net031  A3      VDD     VDD     net018  Y       
+net018  C1      net061  C2      VSS     B3      net064  B2      net063  B1      net018  A1      net26   A2      net25   A3      VSS     net018  Y       
+
+net030  C1      net018  C2      net030  B3      net031  B2      net030  B1      net031  A1      VDD     A2      net031  A3      VDD     net018  Y       
+
+[initial] cost: 260
+[epoch 0]
+hello satisfy_via_rule
+3131413131312131511
+SAT
+[via]
+1 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 
+0 0 0 1 0 0 0 1 0 1 0 0 0 0 0 0 0 1 0 
+0 1 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 0 
+1 0 0 0 1 0 0 0 1 0 0 1 0 0 0 1 0 0 0 
+[metal]
+ 18  18  18  18  -1  -1   1   1  -1   1   1  -1  -1   1   1  -1  -1  17  17 
+ -1  -1   7   7  -1  -1   8   8  -1  14  14  -1  -1  -1  -1  -1  -1  18  18 
+ 15  15  -1  -1   9   9  -1  -1  -1  18  18  -1  -1   6   6  -1  -1  -1  -1 
+  0   0  -1  -1   0   0  -1   0   0  -1  -1   4   4  -1  -1  13  13  -1  -1 
+[metal density]
+1 1 1 0 0 0 1 1 1 1 1 1 1 1 1 0 0 0 1 
+0 0 0 1 0 0 0 1 0 1 0 0 0 0 0 0 0 1 0 
+0 1 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 0 
+1 1 1 1 1 1 1 1 1 0 0 1 0 0 0 1 0 0 0 
+[satisfy via metal]
+1111001101100110011
+0011001101100000011
+1100110001100110000
+1100110110011001100
+pass
+total_via_vertical_diff: 2
+total density: 32
+hello print_shape
+MM17    MM16    MM10    MM11    MM12    MM14    MM2     MM3     MM13    
+--
+MM1     MM0     MM4     MM5     MM6     MM9     MM8     MM7     MM15    
+net018  C1      net061  net061  C2      VSS     VSS     B3      net064  net064  B2      net063  net063  B1      net018  net018  A1      net26   net26   A2      net25   net25   A3      VSS     VSS     net018  Y       
+--
+net030  C1      net018  net018  C2      net030  net030  B3      net031  net031  B2      net030  net030  B1      net031  net031  A1      VDD     VDD     A2      net031  net031  A3      VDD     VDD     net018  Y       
+net018  C1      net061  C2      VSS     B3      net064  B2      net063  B1      net018  A1      net26   A2      net25   A3      VSS     net018  Y       
+
+net030  C1      net018  C2      net030  B3      net031  B2      net030  B1      net031  A1      VDD     A2      net031  A3      VDD     net018  Y       
+
+成功建立檔案：results/AO332x1.plmt
+max_cols: 9
+Generated results/AO332x1.plmt
+Time taken : 1.49562 seconds

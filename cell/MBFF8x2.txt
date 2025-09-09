@@ -1,4 +1,4 @@
-.SUBCKT DFFHQNx8_ASAP7_75t_L CLK D1 QN1 D2 QN2 D3 QN3 D4 QN4 D5 QN5 D6 QN6 D7 QN7 D8 QN8 VDD VSS
+.SUBCKT MBFF8x2_ASAP7_75t_L CLK D1 D2 D3 D4 D5 D6 D7 D8 QN1 QN2 QN3 QN4 QN5 QN6 QN7 QN8 VDD VSS
 MM24_1 QN1 net32_1 VSS VSS nmos_lvt w=162.00n l=20n nfin=6
 MM17_1 net32_1 clkn pd5_1 VSS nmos_lvt w=27.0n l=20n nfin=1
 MM16_1 pd5_1 net37_1 VSS VSS nmos_lvt w=27.0n l=20n nfin=1
@@ -91,6 +91,7 @@ MM12_5 net29_5 clkb net32_5 VSS nmos_lvt w=27.0n l=20n nfin=1
 MM6_5 net29_5 net15_5 VSS VSS nmos_lvt w=27.0n l=20n nfin=1
 MM9_5 net15_5 clkb pd3_5 VSS nmos_lvt w=27.0n l=20n nfin=1
 MM8_5 pd3_5 net29_5 VSS VSS nmos_lvt w=27.0n l=20n nfin=1
+MM23_5 clkb clkn VSS VSS nmos_lvt w=54.0n l=20n nfin=2
 MM5_5 pd1_5 D5 VSS VSS nmos_lvt w=81.0n l=20n nfin=3
 MM4_5 net15_5 clkn pd1_5 VSS nmos_lvt w=81.0n l=20n nfin=3
 MM25_5 QN5 net32_5 VDD VDD pmos_lvt w=162.00n l=20n nfin=6
@@ -101,6 +102,7 @@ MM13_5 net29_5 clkn net32_5 VDD pmos_lvt w=27n l=20n nfin=1
 MM7_5 net29_5 net15_5 VDD VDD pmos_lvt w=27n l=20n nfin=1
 MM11_5 pd2_5 net29_5 VDD VDD pmos_lvt w=27n l=20n nfin=1
 MM10_5 net15_5 clkn pd2_5 VDD pmos_lvt w=27n l=20n nfin=1
+MM22_5 clkb clkn VDD VDD pmos_lvt w=54.0n l=20n nfin=2
 MM1_5 net15_5 clkb pu1_5 VDD pmos_lvt w=81.0n l=20n nfin=3
 MM3_5 pu1_5 D5 VDD VDD pmos_lvt w=81.0n l=20n nfin=3
 MM24_6 QN6 net32_6 VSS VSS nmos_lvt w=162.00n l=20n nfin=6

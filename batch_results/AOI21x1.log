@@ -1,0 +1,177 @@
+Hello, World!
+cell/AOI21x1.txt
+Available CPU cores: 16
+MM5 num_finger: 2
+MM0 num_finger: 2
+MM1 num_finger: 2
+MM4 num_finger: 2
+MM3 num_finger: 2
+MM2 num_finger: 2
+#tr/#net: 6/8
+compound_gates: 
+
+MM0
+MM4
+MM3
+
+transmission_gates: 
+p-network: 
+MM0
+MM5
+MM1
+n-network: 
+MM4
+MM3
+MM2
+
+MM0 MM4 -1
+MM0 MM3 -2
+MM0 MM2 -3
+MM5 MM4 -4
+MM5 MM3 -3
+MM5 MM2 0
+MM1 MM4 -4
+MM1 MM3 -1
+MM1 MM2 -2
+MM4 pref MM0
+MM4 pref MM5
+MM4 pref MM1
+MM3 pref MM1
+MM3 pref MM0
+MM3 pref MM5
+MM2 pref MM5
+MM2 pref MM1
+MM2 pref MM0
+MM0 pref MM4
+MM0 pref MM3
+MM0 pref MM2
+MM5 pref MM2
+MM5 pref MM3
+MM5 pref MM4
+MM1 pref MM3
+MM1 pref MM2
+MM1 pref MM4
+MM4 propose #0
+MM4 match MM0
+MM3 propose #0
+MM2 match MM5
+MM2 propose #0
+MM3 match MM1
+[matching result]
+MM0 <-> MM4
+MM5 <-> MM2
+MM1 <-> MM3
+pairs: 
+MM1 MM3
+MM5 MM2
+MM0 MM4
+[folding_shape_generation]
+[placement]
+total_finger: 6
+expected #row: 1
+output mos: MM0
+input mos: MM1
+input mos: MM5
+input mos: MM0
+[ungrouped_pmos]
+MM5
+MM1
+group: 
+MM0
+MM1
+MM5
+hello group_placement
+target_area: 6
+BFS Time taken : 0.000141124
+Time taken : 0.000156806 seconds
+target_area: 7
+BFS Time taken : 0.000132077
+bfs total time: 0.000273201
+dfs total time: 1.3493e-05
+number of cell: 32
+HPML: 0
+Set 1 intersecting elements: None
+Row 0: 
+hello print_shape
+MM2     MM2     MM3     MM3             MM4     MM4     
+--
+MM5     MM5     MM1     MM1             MM0     MM0     
+net29   A2      VSS     VSS     A2      net29   net29   A1      Y       Y       A1      net29   ------------------------VSS     B       Y       Y       B       VSS     
+--
+VDD     A2      net18   net18   A2      VDD     VDD     A1      net18   net18   A1      VDD     ------------------------net18   B       Y       Y       B       net18   
+net29   A2      VSS     A2      net29   A1      Y       A1      net29   Null    VSS     B       Y       B       VSS     
+
+VDD     A2      net18   A2      VDD     A1      net18   A1      VDD     Null    net18   B       Y       B       net18   
+
+HSP: 38
+HCD: 3
+hello print_shape
+MM2     MM2     MM3     MM3             MM4     MM4     
+--
+MM5     MM5     MM1     MM1             MM0     MM0     
+net29   A2      VSS     VSS     A2      net29   net29   A1      Y       Y       A1      net29   ------------------------VSS     B       Y       Y       B       VSS     
+--
+VDD     A2      net18   net18   A2      VDD     VDD     A1      net18   net18   A1      VDD     ------------------------net18   B       Y       Y       B       net18   
+net29   A2      VSS     A2      net29   A1      Y       A1      net29   Null    VSS     B       Y       B       VSS     
+
+VDD     A2      net18   A2      VDD     A1      net18   A1      VDD     Null    net18   B       Y       B       net18   
+
+area: 7
+hpml: 32
+#inter-row signals: 0
+total density: 267
+cost: 209
+hello print_shape
+MM2     MM2     MM3     MM3             MM4     MM4     
+--
+MM5     MM5     MM1     MM1             MM0     MM0     
+net29   A2      VSS     VSS     A2      net29   net29   A1      Y       Y       A1      net29   ------------------------VSS     B       Y       Y       B       VSS     
+--
+VDD     A2      net18   net18   A2      VDD     VDD     A1      net18   net18   A1      VDD     ------------------------net18   B       Y       Y       B       net18   
+net29   A2      VSS     A2      net29   A1      Y       A1      net29   Null    VSS     B       Y       B       VSS     
+
+VDD     A2      net18   A2      VDD     A1      net18   A1      VDD     Null    net18   B       Y       B       net18   
+
+[initial] cost: 209
+[epoch 0]
+hello satisfy_via_rule
+214121312041114
+SAT
+[via]
+0 1 0 1 0 0 1 0 0 0 0 0 1 0 0 
+0 0 0 0 0 1 0 1 0 0 0 1 0 1 0 
+1 0 0 0 1 0 0 0 1 0 0 0 0 0 0 
+0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 
+[metal]
+ -1   6   6   6  -1  -1   1   1  -1  -1  -1   1   1   1  -1 
+ -1  -1  -1  -1   7   7   7   7  -1  -1  -1   5   5   5  -1 
+  0   0  -1  -1   0   0  -1  -1   0   0  -1  -1  -1  -1  -1 
+ -1  -1   3   3  -1  -1   3   3  -1  -1   3   3  -1   3   3 
+[metal density]
+0 1 1 1 0 0 1 1 1 1 1 1 1 0 0 
+0 0 0 0 0 1 1 1 0 0 0 1 1 1 0 
+1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 
+0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 
+[satisfy via metal]
+011100110001110
+000011110001110
+110011001100000
+001100110011011
+pass
+total_via_vertical_diff: 0
+total density: 38
+hello print_shape
+MM2     MM2     MM3     MM3             MM4     MM4     
+--
+MM5     MM5     MM1     MM1             MM0     MM0     
+net29   A2      VSS     VSS     A2      net29   net29   A1      Y       Y       A1      net29   ------------------------VSS     B       Y       Y       B       VSS     
+--
+VDD     A2      net18   net18   A2      VDD     VDD     A1      net18   net18   A1      VDD     ------------------------net18   B       Y       Y       B       net18   
+net29   A2      VSS     A2      net29   A1      Y       A1      net29   Null    VSS     B       Y       B       VSS     
+
+VDD     A2      net18   A2      VDD     A1      net18   A1      VDD     Null    net18   B       Y       B       net18   
+
+成功建立檔案：results/AOI21x1.plmt
+max_cols: 7
+Generated results/AOI21x1.plmt
+Time taken : 0.74892 seconds

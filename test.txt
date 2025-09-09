@@ -1,4 +1,5 @@
 Hello, World!
+cell/MBFF4x2.txt
 Available CPU cores: 16
 MM25_1 num_finger: 2
 MM19_1 num_finger: 1
@@ -22,6 +23,26 @@ MM11_2 num_finger: 1
 MM10_2 num_finger: 1
 MM1_2 num_finger: 1
 MM3_2 num_finger: 1
+MM25_3 num_finger: 2
+MM19_3 num_finger: 1
+MM18_3 num_finger: 1
+MM15_3 num_finger: 1
+MM13_3 num_finger: 1
+MM7_3 num_finger: 1
+MM11_3 num_finger: 1
+MM10_3 num_finger: 1
+MM1_3 num_finger: 1
+MM3_3 num_finger: 1
+MM25_4 num_finger: 2
+MM19_4 num_finger: 1
+MM18_4 num_finger: 1
+MM15_4 num_finger: 1
+MM13_4 num_finger: 1
+MM7_4 num_finger: 1
+MM11_4 num_finger: 1
+MM10_4 num_finger: 1
+MM1_4 num_finger: 1
+MM3_4 num_finger: 1
 MM24_1 num_finger: 2
 MM17_1 num_finger: 1
 MM16_1 num_finger: 1
@@ -44,34 +65,51 @@ MM9_2 num_finger: 1
 MM8_2 num_finger: 1
 MM5_2 num_finger: 1
 MM4_2 num_finger: 1
-#tr/#net: 44/29
+MM24_3 num_finger: 2
+MM17_3 num_finger: 1
+MM16_3 num_finger: 1
+MM14_3 num_finger: 1
+MM12_3 num_finger: 1
+MM6_3 num_finger: 1
+MM9_3 num_finger: 1
+MM8_3 num_finger: 1
+MM5_3 num_finger: 1
+MM4_3 num_finger: 1
+MM24_4 num_finger: 2
+MM17_4 num_finger: 1
+MM16_4 num_finger: 1
+MM14_4 num_finger: 1
+MM12_4 num_finger: 1
+MM6_4 num_finger: 1
+MM9_4 num_finger: 1
+MM8_4 num_finger: 1
+MM5_4 num_finger: 1
+MM4_4 num_finger: 1
+#tr/#net: 84/53
 compound_gates: 
 
-MM7_2
-MM6_2
+MM7_4
+MM6_4
 
-MM15_2
-MM14_2
+MM15_4
+MM14_4
 
-MM18_2
-MM17_2
+MM18_4
+MM17_4
 
-MM10_1
-MM1_1
-MM9_1
-MM4_1
+MM7_3
+MM6_3
 
-MM7_1
-MM6_1
+MM15_3
+MM14_3
 
-MM25_2
-MM24_2
+MM10_4
+MM1_4
+MM9_4
+MM4_4
 
-MM21_1
-MM20_1
-
-MM25_1
-MM24_1
+MM25_4
+MM24_4
 
 MM18_1
 MM17_1
@@ -79,13 +117,50 @@ MM17_1
 MM15_1
 MM14_1
 
+MM25_1
+MM24_1
+
+MM25_3
+MM24_3
+
+MM7_2
+MM6_2
+
+MM25_2
+MM24_2
+
+MM10_1
+MM1_1
+MM9_1
+MM4_1
+
+MM21_1
+MM20_1
+
+MM7_1
+MM6_1
+
+MM22_1
+MM23_1
+
 MM10_2
 MM1_2
 MM9_2
 MM4_2
 
-MM22_1
-MM23_1
+MM18_3
+MM17_3
+
+MM10_3
+MM1_3
+MM9_3
+MM4_3
+
+MM18_2
+MM17_2
+
+MM15_2
+MM14_2
 
 transmission_gates: 
 
@@ -94,23 +169,257 @@ MM12_1
 
 MM13_2
 MM12_2
+
+MM13_3
+MM12_3
+
+MM13_4
+MM12_4
+p-network: 
+MM7_4
+n-network: 
+MM6_4
+
+MM7_4 MM6_4 2
+MM6_4 pref MM7_4
+MM7_4 pref MM6_4
+MM6_4 propose #0
+MM6_4 match MM7_4
+[matching result]
+MM7_4 <-> MM6_4
+p-network: 
+MM15_4
+n-network: 
+MM14_4
+
+MM15_4 MM14_4 2
+MM14_4 pref MM15_4
+MM15_4 pref MM14_4
+MM14_4 propose #0
+MM14_4 match MM15_4
+[matching result]
+MM15_4 <-> MM14_4
+p-network: 
+MM18_4
+MM19_4
+n-network: 
+MM17_4
+MM16_4
+
+MM18_4 MM17_4 -2
+MM18_4 MM16_4 -3
+MM19_4 MM17_4 -3
+MM19_4 MM16_4 0
+MM17_4 pref MM18_4
+MM17_4 pref MM19_4
+MM16_4 pref MM19_4
+MM16_4 pref MM18_4
+MM18_4 pref MM17_4
+MM18_4 pref MM16_4
+MM19_4 pref MM16_4
+MM19_4 pref MM17_4
+MM17_4 propose #0
+MM17_4 match MM18_4
+MM16_4 propose #0
+MM16_4 match MM19_4
+[matching result]
+MM18_4 <-> MM17_4
+MM19_4 <-> MM16_4
+p-network: 
+MM7_3
+n-network: 
+MM6_3
+
+MM7_3 MM6_3 2
+MM6_3 pref MM7_3
+MM7_3 pref MM6_3
+MM6_3 propose #0
+MM6_3 match MM7_3
+[matching result]
+MM7_3 <-> MM6_3
+p-network: 
+MM15_3
+n-network: 
+MM14_3
+
+MM15_3 MM14_3 2
+MM14_3 pref MM15_3
+MM15_3 pref MM14_3
+MM14_3 propose #0
+MM14_3 match MM15_3
+[matching result]
+MM15_3 <-> MM14_3
+p-network: 
+MM10_4
+MM11_4
+MM1_4
+MM3_4
+n-network: 
+MM9_4
+MM8_4
+MM4_4
+MM5_4
+
+MM10_4 MM9_4 -2
+MM10_4 MM8_4 -3
+MM10_4 MM4_4 -2
+MM10_4 MM5_4 -5
+MM11_4 MM9_4 -3
+MM11_4 MM8_4 0
+MM11_4 MM4_4 -5
+MM11_4 MM5_4 -4
+MM1_4 MM9_4 -2
+MM1_4 MM8_4 -5
+MM1_4 MM4_4 -2
+MM1_4 MM5_4 -3
+MM3_4 MM9_4 -5
+MM3_4 MM8_4 -4
+MM3_4 MM4_4 -3
+MM3_4 MM5_4 0
+MM9_4 pref MM10_4
+MM9_4 pref MM1_4
+MM9_4 pref MM11_4
+MM9_4 pref MM3_4
+MM8_4 pref MM11_4
+MM8_4 pref MM10_4
+MM8_4 pref MM3_4
+MM8_4 pref MM1_4
+MM4_4 pref MM10_4
+MM4_4 pref MM1_4
+MM4_4 pref MM3_4
+MM4_4 pref MM11_4
+MM5_4 pref MM3_4
+MM5_4 pref MM1_4
+MM5_4 pref MM11_4
+MM5_4 pref MM10_4
+MM10_4 pref MM9_4
+MM10_4 pref MM4_4
+MM10_4 pref MM8_4
+MM10_4 pref MM5_4
+MM11_4 pref MM8_4
+MM11_4 pref MM9_4
+MM11_4 pref MM5_4
+MM11_4 pref MM4_4
+MM1_4 pref MM9_4
+MM1_4 pref MM4_4
+MM1_4 pref MM5_4
+MM1_4 pref MM8_4
+MM3_4 pref MM5_4
+MM3_4 pref MM4_4
+MM3_4 pref MM8_4
+MM3_4 pref MM9_4
+MM9_4 propose #0
+MM9_4 match MM10_4
+MM8_4 propose #0
+MM8_4 match MM11_4
+MM4_4 propose #0
+MM5_4 propose #0
+MM5_4 match MM3_4
+MM4_4 propose #1
+MM4_4 match MM1_4
+[matching result]
+MM10_4 <-> MM9_4
+MM11_4 <-> MM8_4
+MM1_4 <-> MM4_4
+MM3_4 <-> MM5_4
+p-network: 
+MM25_4
+n-network: 
+MM24_4
+
+MM25_4 MM24_4 2
+MM24_4 pref MM25_4
+MM25_4 pref MM24_4
+MM24_4 propose #0
+MM24_4 match MM25_4
+[matching result]
+MM25_4 <-> MM24_4
+p-network: 
+MM18_1
+MM19_1
+n-network: 
+MM17_1
+MM16_1
+
+MM18_1 MM17_1 -2
+MM18_1 MM16_1 -3
+MM19_1 MM17_1 -3
+MM19_1 MM16_1 0
+MM17_1 pref MM18_1
+MM17_1 pref MM19_1
+MM16_1 pref MM19_1
+MM16_1 pref MM18_1
+MM18_1 pref MM17_1
+MM18_1 pref MM16_1
+MM19_1 pref MM16_1
+MM19_1 pref MM17_1
+MM17_1 propose #0
+MM17_1 match MM18_1
+MM16_1 propose #0
+MM16_1 match MM19_1
+[matching result]
+MM18_1 <-> MM17_1
+MM19_1 <-> MM16_1
+p-network: 
+MM15_1
+n-network: 
+MM14_1
+
+MM15_1 MM14_1 2
+MM14_1 pref MM15_1
+MM15_1 pref MM14_1
+MM14_1 propose #0
+MM14_1 match MM15_1
+[matching result]
+MM15_1 <-> MM14_1
+p-network: 
+MM25_1
+n-network: 
+MM24_1
+
+MM25_1 MM24_1 2
+MM24_1 pref MM25_1
+MM25_1 pref MM24_1
+MM24_1 propose #0
+MM24_1 match MM25_1
+[matching result]
+MM25_1 <-> MM24_1
+p-network: 
+MM25_3
+n-network: 
+MM24_3
+
+MM25_3 MM24_3 2
+MM24_3 pref MM25_3
+MM25_3 pref MM24_3
+MM24_3 propose #0
+MM24_3 match MM25_3
+[matching result]
+MM25_3 <-> MM24_3
 p-network: 
 MM7_2
 n-network: 
 MM6_2
 
+MM7_2 MM6_2 2
+MM6_2 pref MM7_2
+MM7_2 pref MM6_2
+MM6_2 propose #0
+MM6_2 match MM7_2
+[matching result]
+MM7_2 <-> MM6_2
 p-network: 
-MM15_2
+MM25_2
 n-network: 
-MM14_2
+MM24_2
 
-p-network: 
-MM18_2
-MM19_2
-n-network: 
-MM17_2
-MM16_2
-
+MM25_2 MM24_2 2
+MM24_2 pref MM25_2
+MM25_2 pref MM24_2
+MM24_2 propose #0
+MM24_2 match MM25_2
+[matching result]
+MM25_2 <-> MM24_2
 p-network: 
 MM10_1
 MM11_1
@@ -122,38 +431,104 @@ MM8_1
 MM4_1
 MM5_1
 
-p-network: 
-MM7_1
-n-network: 
-MM6_1
-
-p-network: 
-MM25_2
-n-network: 
-MM24_2
-
+MM10_1 MM9_1 -2
+MM10_1 MM8_1 -3
+MM10_1 MM4_1 -2
+MM10_1 MM5_1 -5
+MM11_1 MM9_1 -3
+MM11_1 MM8_1 0
+MM11_1 MM4_1 -5
+MM11_1 MM5_1 -4
+MM1_1 MM9_1 -2
+MM1_1 MM8_1 -5
+MM1_1 MM4_1 -2
+MM1_1 MM5_1 -3
+MM3_1 MM9_1 -5
+MM3_1 MM8_1 -4
+MM3_1 MM4_1 -3
+MM3_1 MM5_1 0
+MM9_1 pref MM10_1
+MM9_1 pref MM1_1
+MM9_1 pref MM11_1
+MM9_1 pref MM3_1
+MM8_1 pref MM11_1
+MM8_1 pref MM10_1
+MM8_1 pref MM3_1
+MM8_1 pref MM1_1
+MM4_1 pref MM10_1
+MM4_1 pref MM1_1
+MM4_1 pref MM3_1
+MM4_1 pref MM11_1
+MM5_1 pref MM3_1
+MM5_1 pref MM1_1
+MM5_1 pref MM11_1
+MM5_1 pref MM10_1
+MM10_1 pref MM9_1
+MM10_1 pref MM4_1
+MM10_1 pref MM8_1
+MM10_1 pref MM5_1
+MM11_1 pref MM8_1
+MM11_1 pref MM9_1
+MM11_1 pref MM5_1
+MM11_1 pref MM4_1
+MM1_1 pref MM9_1
+MM1_1 pref MM4_1
+MM1_1 pref MM5_1
+MM1_1 pref MM8_1
+MM3_1 pref MM5_1
+MM3_1 pref MM4_1
+MM3_1 pref MM8_1
+MM3_1 pref MM9_1
+MM9_1 propose #0
+MM9_1 match MM10_1
+MM8_1 propose #0
+MM8_1 match MM11_1
+MM4_1 propose #0
+MM5_1 propose #0
+MM5_1 match MM3_1
+MM4_1 propose #1
+MM4_1 match MM1_1
+[matching result]
+MM10_1 <-> MM9_1
+MM11_1 <-> MM8_1
+MM1_1 <-> MM4_1
+MM3_1 <-> MM5_1
 p-network: 
 MM21_1
 n-network: 
 MM20_1
 
+MM21_1 MM20_1 2
+MM20_1 pref MM21_1
+MM21_1 pref MM20_1
+MM20_1 propose #0
+MM20_1 match MM21_1
+[matching result]
+MM21_1 <-> MM20_1
 p-network: 
-MM25_1
+MM7_1
 n-network: 
-MM24_1
+MM6_1
 
+MM7_1 MM6_1 2
+MM6_1 pref MM7_1
+MM7_1 pref MM6_1
+MM6_1 propose #0
+MM6_1 match MM7_1
+[matching result]
+MM7_1 <-> MM6_1
 p-network: 
-MM18_1
-MM19_1
+MM22_1
 n-network: 
-MM17_1
-MM16_1
+MM23_1
 
-p-network: 
-MM15_1
-n-network: 
-MM14_1
-
+MM22_1 MM23_1 2
+MM23_1 pref MM22_1
+MM22_1 pref MM23_1
+MM23_1 propose #0
+MM23_1 match MM22_1
+[matching result]
+MM22_1 <-> MM23_1
 p-network: 
 MM10_2
 MM11_2
@@ -165,41 +540,300 @@ MM8_2
 MM4_2
 MM5_2
 
+MM10_2 MM9_2 -2
+MM10_2 MM8_2 -3
+MM10_2 MM4_2 -2
+MM10_2 MM5_2 -5
+MM11_2 MM9_2 -3
+MM11_2 MM8_2 0
+MM11_2 MM4_2 -5
+MM11_2 MM5_2 -4
+MM1_2 MM9_2 -2
+MM1_2 MM8_2 -5
+MM1_2 MM4_2 -2
+MM1_2 MM5_2 -3
+MM3_2 MM9_2 -5
+MM3_2 MM8_2 -4
+MM3_2 MM4_2 -3
+MM3_2 MM5_2 0
+MM9_2 pref MM10_2
+MM9_2 pref MM1_2
+MM9_2 pref MM11_2
+MM9_2 pref MM3_2
+MM8_2 pref MM11_2
+MM8_2 pref MM10_2
+MM8_2 pref MM3_2
+MM8_2 pref MM1_2
+MM4_2 pref MM10_2
+MM4_2 pref MM1_2
+MM4_2 pref MM3_2
+MM4_2 pref MM11_2
+MM5_2 pref MM3_2
+MM5_2 pref MM1_2
+MM5_2 pref MM11_2
+MM5_2 pref MM10_2
+MM10_2 pref MM9_2
+MM10_2 pref MM4_2
+MM10_2 pref MM8_2
+MM10_2 pref MM5_2
+MM11_2 pref MM8_2
+MM11_2 pref MM9_2
+MM11_2 pref MM5_2
+MM11_2 pref MM4_2
+MM1_2 pref MM9_2
+MM1_2 pref MM4_2
+MM1_2 pref MM5_2
+MM1_2 pref MM8_2
+MM3_2 pref MM5_2
+MM3_2 pref MM4_2
+MM3_2 pref MM8_2
+MM3_2 pref MM9_2
+MM9_2 propose #0
+MM9_2 match MM10_2
+MM8_2 propose #0
+MM8_2 match MM11_2
+MM4_2 propose #0
+MM5_2 propose #0
+MM5_2 match MM3_2
+MM4_2 propose #1
+MM4_2 match MM1_2
+[matching result]
+MM10_2 <-> MM9_2
+MM11_2 <-> MM8_2
+MM1_2 <-> MM4_2
+MM3_2 <-> MM5_2
 p-network: 
-MM22_1
+MM18_3
+MM19_3
 n-network: 
-MM23_1
+MM17_3
+MM16_3
 
+MM18_3 MM17_3 -2
+MM18_3 MM16_3 -3
+MM19_3 MM17_3 -3
+MM19_3 MM16_3 0
+MM17_3 pref MM18_3
+MM17_3 pref MM19_3
+MM16_3 pref MM19_3
+MM16_3 pref MM18_3
+MM18_3 pref MM17_3
+MM18_3 pref MM16_3
+MM19_3 pref MM16_3
+MM19_3 pref MM17_3
+MM17_3 propose #0
+MM17_3 match MM18_3
+MM16_3 propose #0
+MM16_3 match MM19_3
+[matching result]
+MM18_3 <-> MM17_3
+MM19_3 <-> MM16_3
+p-network: 
+MM10_3
+MM11_3
+MM1_3
+MM3_3
+n-network: 
+MM9_3
+MM8_3
+MM4_3
+MM5_3
+
+MM10_3 MM9_3 -2
+MM10_3 MM8_3 -3
+MM10_3 MM4_3 -2
+MM10_3 MM5_3 -5
+MM11_3 MM9_3 -3
+MM11_3 MM8_3 0
+MM11_3 MM4_3 -5
+MM11_3 MM5_3 -4
+MM1_3 MM9_3 -2
+MM1_3 MM8_3 -5
+MM1_3 MM4_3 -2
+MM1_3 MM5_3 -3
+MM3_3 MM9_3 -5
+MM3_3 MM8_3 -4
+MM3_3 MM4_3 -3
+MM3_3 MM5_3 0
+MM9_3 pref MM10_3
+MM9_3 pref MM1_3
+MM9_3 pref MM11_3
+MM9_3 pref MM3_3
+MM8_3 pref MM11_3
+MM8_3 pref MM10_3
+MM8_3 pref MM3_3
+MM8_3 pref MM1_3
+MM4_3 pref MM10_3
+MM4_3 pref MM1_3
+MM4_3 pref MM3_3
+MM4_3 pref MM11_3
+MM5_3 pref MM3_3
+MM5_3 pref MM1_3
+MM5_3 pref MM11_3
+MM5_3 pref MM10_3
+MM10_3 pref MM9_3
+MM10_3 pref MM4_3
+MM10_3 pref MM8_3
+MM10_3 pref MM5_3
+MM11_3 pref MM8_3
+MM11_3 pref MM9_3
+MM11_3 pref MM5_3
+MM11_3 pref MM4_3
+MM1_3 pref MM9_3
+MM1_3 pref MM4_3
+MM1_3 pref MM5_3
+MM1_3 pref MM8_3
+MM3_3 pref MM5_3
+MM3_3 pref MM4_3
+MM3_3 pref MM8_3
+MM3_3 pref MM9_3
+MM9_3 propose #0
+MM9_3 match MM10_3
+MM8_3 propose #0
+MM8_3 match MM11_3
+MM4_3 propose #0
+MM5_3 propose #0
+MM5_3 match MM3_3
+MM4_3 propose #1
+MM4_3 match MM1_3
+[matching result]
+MM10_3 <-> MM9_3
+MM11_3 <-> MM8_3
+MM1_3 <-> MM4_3
+MM3_3 <-> MM5_3
+p-network: 
+MM18_2
+MM19_2
+n-network: 
+MM17_2
+MM16_2
+
+MM18_2 MM17_2 -2
+MM18_2 MM16_2 -3
+MM19_2 MM17_2 -3
+MM19_2 MM16_2 0
+MM17_2 pref MM18_2
+MM17_2 pref MM19_2
+MM16_2 pref MM19_2
+MM16_2 pref MM18_2
+MM18_2 pref MM17_2
+MM18_2 pref MM16_2
+MM19_2 pref MM16_2
+MM19_2 pref MM17_2
+MM17_2 propose #0
+MM17_2 match MM18_2
+MM16_2 propose #0
+MM16_2 match MM19_2
+[matching result]
+MM18_2 <-> MM17_2
+MM19_2 <-> MM16_2
+p-network: 
+MM15_2
+n-network: 
+MM14_2
+
+MM15_2 MM14_2 2
+MM14_2 pref MM15_2
+MM15_2 pref MM14_2
+MM14_2 propose #0
+MM14_2 match MM15_2
+[matching result]
+MM15_2 <-> MM14_2
 pairs: 
-MM15_1 MM14_1
-MM25_1 MM24_1
-MM13_2 MM12_2
-MM13_1 MM12_1
-MM7_2 MM6_2
-MM18_1 MM17_1
-MM15_2 MM14_2
-MM19_1 MM16_1
 MM18_2 MM17_2
-MM19_2 MM16_2
-MM21_1 MM20_1
-MM10_2 MM9_2
-MM11_1 MM8_1
-MM22_1 MM23_1
+MM3_3 MM5_3
+MM1_3 MM4_3
+MM10_3 MM9_3
+MM19_3 MM16_3
 MM1_2 MM4_2
-MM10_1 MM9_1
-MM25_2 MM24_2
-MM3_2 MM5_2
-MM1_1 MM4_1
-MM3_1 MM5_1
 MM11_2 MM8_2
+MM10_2 MM9_2
+MM19_2 MM16_2
+MM1_4 MM4_4
+MM11_4 MM8_4
+MM18_4 MM17_4
+MM19_4 MM16_4
+MM3_2 MM5_2
+MM15_3 MM14_3
+MM7_4 MM6_4
+MM3_1 MM5_1
+MM18_3 MM17_3
+MM13_4 MM12_4
+MM1_1 MM4_1
+MM10_4 MM9_4
+MM15_4 MM14_4
+MM13_2 MM12_2
+MM7_3 MM6_3
+MM18_1 MM17_1
+MM13_1 MM12_1
+MM3_4 MM5_4
+MM25_4 MM24_4
+MM13_3 MM12_3
+MM19_1 MM16_1
+MM11_3 MM8_3
+MM15_1 MM14_1
+MM7_2 MM6_2
+MM25_1 MM24_1
+MM25_3 MM24_3
+MM25_2 MM24_2
+MM22_1 MM23_1
+MM10_1 MM9_1
+MM11_1 MM8_1
+MM15_2 MM14_2
+MM21_1 MM20_1
 MM7_1 MM6_1
-cell width: 648
-expected #row: 3
+[folding_shape_generation]
+[placement]
+total_finger: 46
+expected #row: 4
 output mos: MM25_1
 output mos: MM25_2
+output mos: MM25_3
+output mos: MM25_4
 input mos: MM21_1
 input mos: MM3_1
 input mos: MM3_2
+input mos: MM3_3
+input mos: MM3_4
+[ungrouped_pmos]
+MM19_1
+MM18_1
+MM15_1
+MM13_1
+MM7_1
+MM11_1
+MM10_1
+MM22_1
+MM1_1
+MM3_1
+MM21_1
+MM19_2
+MM18_2
+MM15_2
+MM13_2
+MM7_2
+MM11_2
+MM10_2
+MM1_2
+MM3_2
+MM19_3
+MM18_3
+MM15_3
+MM13_3
+MM7_3
+MM11_3
+MM10_3
+MM1_3
+MM3_3
+MM19_4
+MM18_4
+MM15_4
+MM13_4
+MM7_4
+MM11_4
+MM10_4
+MM1_4
+MM3_4
 group: 
 MM25_1
 MM18_1
@@ -214,13 +848,12 @@ MM3_2
 MM3_1
 hello group_placement
 target_area: 12
-BFS Time taken : 0.0149946
-0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-Time taken : 0.0182516 seconds
+BFS Time taken : 0.0122712
+Time taken : 0.0123949 seconds
 target_area: 13
-BFS Time taken : 1.10034
-bfs total time: 1.11533
-dfs total time: 0.0031465
+BFS Time taken : 0.724332
+bfs total time: 0.736604
+dfs total time: 6.4132e-05
 number of cell: 288
 group: 
 MM25_2
@@ -236,200 +869,5249 @@ MM11_2
 MM19_2
 hello group_placement
 target_area: 12
-BFS Time taken : 0.017563
-0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-Time taken : 0.0198981 seconds
+BFS Time taken : 0.0102725
+Time taken : 0.0103278 seconds
 target_area: 13
-BFS Time taken : 0.856852
-0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-Time taken : 0.857449 seconds
+BFS Time taken : 0.549079
+Time taken : 0.552654 seconds
 target_area: 14
-BFS Time taken : 1.73978
-6.20554, 6.20923, 6.20922, 6.21515, 6.20862, 6.20877, 6.20905, 6.20872, 6.20897, 6.20972, 6.20883, 6.21109, 6.20862, 6.2099, 6.21652, 6.23399, 
-Time taken : 8.019 seconds
-bfs total time: 2.6142
-dfs total time: 6.23592
+BFS Time taken : 1.11632
+Time taken : 16.813 seconds
+bfs total time: 1.67567
+dfs total time: 15.6982
 number of cell: 3456
+group: 
+MM25_3
+MM18_3
+MM13_3
+MM15_3
+MM19_3
+MM7_3
+MM10_3
+MM1_3
+MM11_3
+MM3_3
+hello group_placement
+target_area: 11
+BFS Time taken : 0.0152742
+bfs total time: 0.0152742
+dfs total time: 0
+number of cell: 48
+group: 
+MM25_4
+MM18_4
+MM13_4
+MM15_4
+MM19_4
+MM7_4
+MM10_4
+MM1_4
+MM11_4
+MM3_4
+hello group_placement
+target_area: 11
+BFS Time taken : 0.0169454
+bfs total time: 0.0169454
+dfs total time: 0
+number of cell: 48
+HPML: 289568856
+HPML: 0
+HPML: 0
+HPML: 0
 Set 1 intersecting elements: clkn clkb net15_1 pd1_1 pu1_1 net15_2 
 Set 2 intersecting elements: clkn clkb net15_1 pd1_1 pu1_1 net15_2 
+Set 3 intersecting elements: clkn clkb 
+Set 4 intersecting elements: clkn clkb 
 Row 0: 
+hello print_shape
 MM5_1   MM24_1  MM24_1  MM5_2   MM4_2           MM14_1  MM16_1  MM17_1  MM12_1  MM6_1   MM8_1   MM9_1   
 --
 MM3_1   MM25_1  MM25_1  MM3_2   MM1_2           MM15_1  MM19_1  MM18_1  MM13_1  MM7_1   MM11_1  MM10_1  
 pd1_1   D1      VSS     VSS     net32_1 QN1     QN1     net32_1 VSS     VSS     D2      pd1_2   pd1_2   clkn    net15_2 ------------------------net37_1 net32_1 VSS     VSS     net37_1 pd5_1   pd5_1   clkn    net32_1 net32_1 clkb    net29_1 net29_1 net15_1 VSS     VSS     net29_1 pd3_1   pd3_1   clkb    net15_1 
 --
 pu1_1   D1      VDD     VDD     net32_1 QN1     QN1     net32_1 VDD     VDD     D2      pu1_2   pu1_2   clkb    net15_2 ------------------------net37_1 net32_1 VDD     VDD     net37_1 pd4_1   pd4_1   clkb    net32_1 net32_1 clkn    net29_1 net29_1 net15_1 VDD     VDD     net29_1 pd2_1   pd2_1   clkn    net15_1 
+pd1_1   D1      VSS     net32_1 QN1     net32_1 VSS     D2      pd1_2   clkn    net15_2 Null    net37_1 net32_1 VSS     net37_1 pd5_1   clkn    net32_1 clkb    net29_1 net15_1 VSS     net29_1 pd3_1   clkb    net15_1 
+
+pu1_1   D1      VDD     net32_1 QN1     net32_1 VDD     D2      pu1_2   clkb    net15_2 Null    net37_1 net32_1 VDD     net37_1 pd4_1   clkb    net32_1 clkn    net29_1 net15_1 VDD     net29_1 pd2_1   clkn    net15_1 
+
 HSP: 80
 HCD: 3
 Row 1: 
+hello print_shape
 MM4_1           MM20_1  MM23_1          MM9_2   MM8_2   MM6_2   MM12_2  MM17_2  MM16_2  MM24_2  MM24_2  MM14_2  
 --
 MM1_1           MM21_1  MM22_1          MM10_2  MM11_2  MM7_2   MM13_2  MM18_2  MM19_2  MM25_2  MM25_2  MM15_2  
 pd1_1   clkn    net15_1 ------------------------clkn    CLK     VSS     VSS     clkn    clkb    ------------------------net15_2 clkb    pd3_2   pd3_2   net29_2 VSS     VSS     net15_2 net29_2 net29_2 clkb    net32_2 net32_2 clkn    pd5_2   pd5_2   net37_2 VSS     VSS     net32_2 QN2     QN2     net32_2 VSS     VSS     net32_2 net37_2 
 --
 pu1_1   clkb    net15_1 ------------------------clkn    CLK     VDD     VDD     clkn    clkb    ------------------------net15_2 clkn    pd2_2   pd2_2   net29_2 VDD     VDD     net15_2 net29_2 net29_2 clkn    net32_2 net32_2 clkb    pd4_2   pd4_2   net37_2 VDD     VDD     net32_2 QN2     QN2     net32_2 VDD     VDD     net32_2 net37_2 
+pd1_1   clkn    net15_1 Null    clkn    CLK     VSS     clkn    clkb    Null    net15_2 clkb    pd3_2   net29_2 VSS     net15_2 net29_2 clkb    net32_2 clkn    pd5_2   net37_2 VSS     net32_2 QN2     net32_2 VSS     net32_2 net37_2 
+
+pu1_1   clkb    net15_1 Null    clkn    CLK     VDD     clkn    clkb    Null    net15_2 clkn    pd2_2   net29_2 VDD     net15_2 net29_2 clkn    net32_2 clkb    pd4_2   net37_2 VDD     net32_2 QN2     net32_2 VDD     net32_2 net37_2 
+
 HSP: 106
 HCD: 4
-inter-row signal set:
-clkn
-clkb
-net15_1
-pd1_1
-pu1_1
-net15_2
+Row 2: 
+hello print_shape
+MM5_3   MM4_3   MM9_3   MM8_3   MM6_3   MM12_3  MM17_3  MM16_3  MM24_3  MM24_3  MM14_3  
+--
+MM3_3   MM1_3   MM10_3  MM11_3  MM7_3   MM13_3  MM18_3  MM19_3  MM25_3  MM25_3  MM15_3  
+VSS     D3      pd1_3   pd1_3   clkn    net15_3 net15_3 clkb    pd3_3   pd3_3   net29_3 VSS     VSS     net15_3 net29_3 net29_3 clkb    net32_3 net32_3 clkn    pd5_3   pd5_3   net37_3 VSS     VSS     net32_3 QN3     QN3     net32_3 VSS     VSS     net32_3 net37_3 
+--
+VDD     D3      pu1_3   pu1_3   clkb    net15_3 net15_3 clkn    pd2_3   pd2_3   net29_3 VDD     VDD     net15_3 net29_3 net29_3 clkn    net32_3 net32_3 clkb    pd4_3   pd4_3   net37_3 VDD     VDD     net32_3 QN3     QN3     net32_3 VDD     VDD     net32_3 net37_3 
+VSS     D3      pd1_3   clkn    net15_3 clkb    pd3_3   net29_3 VSS     net15_3 net29_3 clkb    net32_3 clkn    pd5_3   net37_3 VSS     net32_3 QN3     net32_3 VSS     net32_3 net37_3 
 
-pd2_2 [0] 12 12 1 1
-pd4_2 [0] 20 20 1 1
-net29_2 [3] 16 13 1 1
-net37_2 [0] 21 21 1 1
-pd5_2 [0] 20 20 1 1
-net32_2 [7] 25 18 1 1
-pd1_2 [0] 8 8 0 0
-pu1_1 [1] 0 0 1 0
-pd2_1 [0] 24 24 0 0
-pd4_1 [0] 16 16 0 0
-pd3_1 [0] 24 24 0 0
-pd1_1 [1] 0 0 1 0
-CLK [0] 5 5 1 1
-pu1_2 [0] 8 8 0 0
-net15_1 [25] 26 2 1 0
-D1 [0] 1 1 0 0
-net29_1 [3] 23 20 0 0
-D2 [0] 7 7 0 0
-QN2 [0] 24 24 1 1
-clkn [25] 25 1 1 0
-pd3_2 [0] 12 12 1 1
-pd5_1 [0] 16 16 0 0
-QN1 [0] 4 4 0 0
-net32_1 [15] 18 3 0 0
-net37_1 [3] 15 12 0 0
-net15_2 [6] 15 10 1 0
-clkb [25] 25 1 1 0
-hpml: 114
-hello allign
+VDD     D3      pu1_3   clkb    net15_3 clkn    pd2_3   net29_3 VDD     net15_3 net29_3 clkn    net32_3 clkb    pd4_3   net37_3 VDD     net32_3 QN3     net32_3 VDD     net32_3 net37_3 
+
+HSP: 80
+HCD: 4
+Row 3: 
+hello print_shape
+MM5_4   MM4_4   MM9_4   MM8_4   MM6_4   MM12_4  MM17_4  MM16_4  MM24_4  MM24_4  MM14_4  
+--
+MM3_4   MM1_4   MM10_4  MM11_4  MM7_4   MM13_4  MM18_4  MM19_4  MM25_4  MM25_4  MM15_4  
+VSS     D4      pd1_4   pd1_4   clkn    net15_4 net15_4 clkb    pd3_4   pd3_4   net29_4 VSS     VSS     net15_4 net29_4 net29_4 clkb    net32_4 net32_4 clkn    pd5_4   pd5_4   net37_4 VSS     VSS     net32_4 QN4     QN4     net32_4 VSS     VSS     net32_4 net37_4 
+--
+VDD     D4      pu1_4   pu1_4   clkb    net15_4 net15_4 clkn    pd2_4   pd2_4   net29_4 VDD     VDD     net15_4 net29_4 net29_4 clkn    net32_4 net32_4 clkb    pd4_4   pd4_4   net37_4 VDD     VDD     net32_4 QN4     QN4     net32_4 VDD     VDD     net32_4 net37_4 
+VSS     D4      pd1_4   clkn    net15_4 clkb    pd3_4   net29_4 VSS     net15_4 net29_4 clkb    net32_4 clkn    pd5_4   net37_4 VSS     net32_4 QN4     net32_4 VSS     net32_4 net37_4 
+
+VDD     D4      pu1_4   clkb    net15_4 clkn    pd2_4   net29_4 VDD     net15_4 net29_4 clkn    net32_4 clkb    pd4_4   net37_4 VDD     net32_4 QN4     net32_4 VDD     net32_4 net37_4 
+
+HSP: 80
+HCD: 4
+hello placement_merging
+DFS: posIdx: 0 0
+score_partial
+DFS: posIdx: 1 1
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 2 3
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 7
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 4 15
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 7
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 11
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 11
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 2 3
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 7
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 7
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 11
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 11
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 2 5
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 7
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 7
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 13
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 3/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 3/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 13
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 3/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 3/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 2 5
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 7
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 7
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 13
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 3/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 3/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 13
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 3/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 3/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 2 9
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 11
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 11
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 13
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 3/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 3/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 13
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 3/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 3/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 2 9
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 11
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 11
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 2/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 13
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 3/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 3/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+DFS: posIdx: 3 13
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+dfs pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 3/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+score_partial
+pos2comp[i]: 0
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 3
+row/col: 1/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 2
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+pos2comp[i]: 1
+row/col: 3/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+pass
+row/col: 0/0
+pass
+pass
+pass
+pass
+1
+13
+pass
+pass
+pass
+pass
+pass
+pass
+row/col: 1/0
+pass
+pass
+1
+14
+pass
+pass
+pass
+pass
+pass
+pass
+row/col: 2/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+row/col: 3/0
+pass
+pass
+1
+11
+pass
+pass
+pass
+pass
+pass
+pass
+hello print_shape
 MM5_1   MM24_1  MM24_1  MM5_2   MM4_2           MM14_1  MM16_1  MM17_1  MM12_1  MM6_1   MM8_1   MM9_1           
 MM4_1           MM20_1  MM23_1          MM9_2   MM8_2   MM6_2   MM12_2  MM17_2  MM16_2  MM24_2  MM24_2  MM14_2  
+MM5_3   MM4_3   MM9_3   MM8_3   MM6_3   MM12_3  MM17_3  MM16_3  MM24_3  MM24_3  MM14_3                          
+MM5_4   MM4_4   MM9_4   MM8_4   MM6_4   MM12_4  MM17_4  MM16_4  MM24_4  MM24_4  MM14_4                          
 --
 MM3_1   MM25_1  MM25_1  MM3_2   MM1_2           MM15_1  MM19_1  MM18_1  MM13_1  MM7_1   MM11_1  MM10_1          
 MM1_1           MM21_1  MM22_1          MM10_2  MM11_2  MM7_2   MM13_2  MM18_2  MM19_2  MM25_2  MM25_2  MM15_2  
+MM3_3   MM1_3   MM10_3  MM11_3  MM7_3   MM13_3  MM18_3  MM19_3  MM25_3  MM25_3  MM15_3                          
+MM3_4   MM1_4   MM10_4  MM11_4  MM7_4   MM13_4  MM18_4  MM19_4  MM25_4  MM25_4  MM15_4                          
 pd1_1   D1      VSS     VSS     net32_1 QN1     QN1     net32_1 VSS     VSS     D2      pd1_2   pd1_2   clkn    net15_2 ------------------------net37_1 net32_1 VSS     VSS     net37_1 pd5_1   pd5_1   clkn    net32_1 net32_1 clkb    net29_1 net29_1 net15_1 VSS     VSS     net29_1 pd3_1   pd3_1   clkb    net15_1 ------------------------
 pd1_1   clkn    net15_1 ------------------------clkn    CLK     VSS     VSS     clkn    clkb    ------------------------net15_2 clkb    pd3_2   pd3_2   net29_2 VSS     VSS     net15_2 net29_2 net29_2 clkb    net32_2 net32_2 clkn    pd5_2   pd5_2   net37_2 VSS     VSS     net32_2 QN2     QN2     net32_2 VSS     VSS     net32_2 net37_2 
+VSS     D3      pd1_3   pd1_3   clkn    net15_3 net15_3 clkb    pd3_3   pd3_3   net29_3 VSS     VSS     net15_3 net29_3 net29_3 clkb    net32_3 net32_3 clkn    pd5_3   pd5_3   net37_3 VSS     VSS     net32_3 QN3     QN3     net32_3 VSS     VSS     net32_3 net37_3 ------------------------------------------------------------------------
+VSS     D4      pd1_4   pd1_4   clkn    net15_4 net15_4 clkb    pd3_4   pd3_4   net29_4 VSS     VSS     net15_4 net29_4 net29_4 clkb    net32_4 net32_4 clkn    pd5_4   pd5_4   net37_4 VSS     VSS     net32_4 QN4     QN4     net32_4 VSS     VSS     net32_4 net37_4 ------------------------------------------------------------------------
 --
 pu1_1   D1      VDD     VDD     net32_1 QN1     QN1     net32_1 VDD     VDD     D2      pu1_2   pu1_2   clkb    net15_2 ------------------------net37_1 net32_1 VDD     VDD     net37_1 pd4_1   pd4_1   clkb    net32_1 net32_1 clkn    net29_1 net29_1 net15_1 VDD     VDD     net29_1 pd2_1   pd2_1   clkn    net15_1 ------------------------
 pu1_1   clkb    net15_1 ------------------------clkn    CLK     VDD     VDD     clkn    clkb    ------------------------net15_2 clkn    pd2_2   pd2_2   net29_2 VDD     VDD     net15_2 net29_2 net29_2 clkn    net32_2 net32_2 clkb    pd4_2   pd4_2   net37_2 VDD     VDD     net32_2 QN2     QN2     net32_2 VDD     VDD     net32_2 net37_2 
-[move]
-hello move_tr_to_left
-hello allign
-MM5_1   MM24_1  MM24_1  MM5_2   MM4_2           MM14_1  MM16_1  MM17_1  MM12_1  MM6_1   MM8_1   MM9_1   MM4_1   
-MM20_1  MM23_1          MM9_2   MM8_2   MM6_2   MM12_2  MM17_2  MM16_2  MM24_2  MM24_2  MM14_2                  
---
-MM3_1   MM25_1  MM25_1  MM3_2   MM1_2           MM15_1  MM19_1  MM18_1  MM13_1  MM7_1   MM11_1  MM10_1  MM1_1   
-MM21_1  MM22_1          MM10_2  MM11_2  MM7_2   MM13_2  MM18_2  MM19_2  MM25_2  MM25_2  MM15_2                  
-pd1_1   D1      VSS     VSS     net32_1 QN1     QN1     net32_1 VSS     VSS     D2      pd1_2   pd1_2   clkn    net15_2 ------------------------net37_1 net32_1 VSS     VSS     net37_1 pd5_1   pd5_1   clkn    net32_1 net32_1 clkb    net29_1 net29_1 net15_1 VSS     VSS     net29_1 pd3_1   pd3_1   clkb    net15_1 net15_1 clkn    pd1_1   
-clkn    CLK     VSS     VSS     clkn    clkb    ------------------------net15_2 clkb    pd3_2   pd3_2   net29_2 VSS     VSS     net15_2 net29_2 net29_2 clkb    net32_2 net32_2 clkn    pd5_2   pd5_2   net37_2 VSS     VSS     net32_2 QN2     QN2     net32_2 VSS     VSS     net32_2 net37_2 ------------------------------------------------
---
-pu1_1   D1      VDD     VDD     net32_1 QN1     QN1     net32_1 VDD     VDD     D2      pu1_2   pu1_2   clkb    net15_2 ------------------------net37_1 net32_1 VDD     VDD     net37_1 pd4_1   pd4_1   clkb    net32_1 net32_1 clkn    net29_1 net29_1 net15_1 VDD     VDD     net29_1 pd2_1   pd2_1   clkn    net15_1 net15_1 clkb    pu1_1   
-clkn    CLK     VDD     VDD     clkn    clkb    ------------------------net15_2 clkn    pd2_2   pd2_2   net29_2 VDD     VDD     net15_2 net29_2 net29_2 clkn    net32_2 net32_2 clkb    pd4_2   pd4_2   net37_2 VDD     VDD     net32_2 QN2     QN2     net32_2 VDD     VDD     net32_2 net37_2 ------------------------------------------------
-inter-row signal set:
-clkn
-clkb
-net15_2
+VDD     D3      pu1_3   pu1_3   clkb    net15_3 net15_3 clkn    pd2_3   pd2_3   net29_3 VDD     VDD     net15_3 net29_3 net29_3 clkn    net32_3 net32_3 clkb    pd4_3   pd4_3   net37_3 VDD     VDD     net32_3 QN3     QN3     net32_3 VDD     VDD     net32_3 net37_3 ------------------------------------------------------------------------
+VDD     D4      pu1_4   pu1_4   clkb    net15_4 net15_4 clkn    pd2_4   pd2_4   net29_4 VDD     VDD     net15_4 net29_4 net29_4 clkn    net32_4 net32_4 clkb    pd4_4   pd4_4   net37_4 VDD     VDD     net32_4 QN4     QN4     net32_4 VDD     VDD     net32_4 net37_4 ------------------------------------------------------------------------
+pd1_1   D1      VSS     net32_1 QN1     net32_1 VSS     D2      pd1_2   clkn    net15_2 Null    net37_1 net32_1 VSS     net37_1 pd5_1   clkn    net32_1 clkb    net29_1 net15_1 VSS     net29_1 pd3_1   clkb    net15_1 Null    Null    
+pd1_1   clkn    net15_1 Null    clkn    CLK     VSS     clkn    clkb    Null    net15_2 clkb    pd3_2   net29_2 VSS     net15_2 net29_2 clkb    net32_2 clkn    pd5_2   net37_2 VSS     net32_2 QN2     net32_2 VSS     net32_2 net37_2 
+VSS     D3      pd1_3   clkn    net15_3 clkb    pd3_3   net29_3 VSS     net15_3 net29_3 clkb    net32_3 clkn    pd5_3   net37_3 VSS     net32_3 QN3     net32_3 VSS     net32_3 net37_3 Null    Null    Null    Null    Null    Null    
+VSS     D4      pd1_4   clkn    net15_4 clkb    pd3_4   net29_4 VSS     net15_4 net29_4 clkb    net32_4 clkn    pd5_4   net37_4 VSS     net32_4 QN4     net32_4 VSS     net32_4 net37_4 Null    Null    Null    Null    Null    Null    
 
-pd2_2 [0] 8 8 1 1
-pd4_2 [0] 16 16 1 1
-net29_2 [3] 12 9 1 1
-net37_2 [7] 24 17 1 1
-pd5_2 [0] 16 16 1 1
-net32_2 [9] 23 14 1 1
-pd1_2 [0] 8 8 0 0
-pu1_1 [28] 28 0 0 0
-pd2_1 [0] 24 24 0 0
-pd4_1 [0] 16 16 0 0
-pd3_1 [0] 24 24 0 0
-pd1_1 [28] 28 0 0 0
-CLK [0] 1 1 1 1
-pu1_2 [0] 8 8 0 0
-net15_1 [5] 26 21 0 0
-D1 [0] 1 1 0 0
-net29_1 [3] 23 20 0 0
-D2 [0] 7 7 0 0
-QN2 [0] 20 20 1 1
-clkn [28] 27 0 1 0
-pd3_2 [0] 8 8 1 1
-pd5_1 [0] 16 16 0 0
-QN1 [0] 4 4 0 0
-net32_1 [15] 18 3 0 0
-net37_1 [3] 15 12 0 0
-net15_2 [6] 11 6 1 0
-clkb [24] 27 4 1 0
-hpml: 159
-[move]
-hello move_tr_to_left
-hello allign
-MM24_1  MM24_1  MM5_2   MM4_2           MM14_1  MM16_1  MM17_1  MM12_1  MM6_1   MM8_1   MM9_1   MM4_1   MM5_1   
-MM20_1  MM23_1          MM9_2   MM8_2   MM6_2   MM12_2  MM17_2  MM16_2  MM24_2  MM24_2  MM14_2                  
---
-MM25_1  MM25_1  MM3_2   MM1_2           MM15_1  MM19_1  MM18_1  MM13_1  MM7_1   MM11_1  MM10_1  MM1_1   MM3_1   
-MM21_1  MM22_1          MM10_2  MM11_2  MM7_2   MM13_2  MM18_2  MM19_2  MM25_2  MM25_2  MM15_2                  
-VSS     net32_1 QN1     QN1     net32_1 VSS     VSS     D2      pd1_2   pd1_2   clkn    net15_2 ------------------------net37_1 net32_1 VSS     VSS     net37_1 pd5_1   pd5_1   clkn    net32_1 net32_1 clkb    net29_1 net29_1 net15_1 VSS     VSS     net29_1 pd3_1   pd3_1   clkb    net15_1 net15_1 clkn    pd1_1   pd1_1   D1      VSS     
-clkn    CLK     VSS     VSS     clkn    clkb    ------------------------net15_2 clkb    pd3_2   pd3_2   net29_2 VSS     VSS     net15_2 net29_2 net29_2 clkb    net32_2 net32_2 clkn    pd5_2   pd5_2   net37_2 VSS     VSS     net32_2 QN2     QN2     net32_2 VSS     VSS     net32_2 net37_2 ------------------------------------------------
---
-VDD     net32_1 QN1     QN1     net32_1 VDD     VDD     D2      pu1_2   pu1_2   clkb    net15_2 ------------------------net37_1 net32_1 VDD     VDD     net37_1 pd4_1   pd4_1   clkb    net32_1 net32_1 clkn    net29_1 net29_1 net15_1 VDD     VDD     net29_1 pd2_1   pd2_1   clkn    net15_1 net15_1 clkb    pu1_1   pu1_1   D1      VDD     
-clkn    CLK     VDD     VDD     clkn    clkb    ------------------------net15_2 clkn    pd2_2   pd2_2   net29_2 VDD     VDD     net15_2 net29_2 net29_2 clkn    net32_2 net32_2 clkb    pd4_2   pd4_2   net37_2 VDD     VDD     net32_2 QN2     QN2     net32_2 VDD     VDD     net32_2 net37_2 ------------------------------------------------
-inter-row signal set:
-clkn
-clkb
-net15_2
+pu1_1   D1      VDD     net32_1 QN1     net32_1 VDD     D2      pu1_2   clkb    net15_2 Null    net37_1 net32_1 VDD     net37_1 pd4_1   clkb    net32_1 clkn    net29_1 net15_1 VDD     net29_1 pd2_1   clkn    net15_1 Null    Null    
+pu1_1   clkb    net15_1 Null    clkn    CLK     VDD     clkn    clkb    Null    net15_2 clkn    pd2_2   net29_2 VDD     net15_2 net29_2 clkn    net32_2 clkb    pd4_2   net37_2 VDD     net32_2 QN2     net32_2 VDD     net32_2 net37_2 
+VDD     D3      pu1_3   clkb    net15_3 clkn    pd2_3   net29_3 VDD     net15_3 net29_3 clkn    net32_3 clkb    pd4_3   net37_3 VDD     net32_3 QN3     net32_3 VDD     net32_3 net37_3 Null    Null    Null    Null    Null    Null    
+VDD     D4      pu1_4   clkb    net15_4 clkn    pd2_4   net29_4 VDD     net15_4 net29_4 clkn    net32_4 clkb    pd4_4   net37_4 VDD     net32_4 QN4     net32_4 VDD     net32_4 net37_4 Null    Null    Null    Null    Null    Null    
 
-pd2_2 [0] 8 8 1 1
-pd4_2 [0] 16 16 1 1
-net29_2 [3] 12 9 1 1
-net37_2 [7] 24 17 1 1
-pd5_2 [0] 16 16 1 1
-net32_2 [9] 23 14 1 1
-pd1_2 [0] 6 6 0 0
-pu1_1 [0] 26 26 0 0
-pd2_1 [0] 22 22 0 0
-pd4_1 [0] 14 14 0 0
-pd3_1 [0] 22 22 0 0
-pd1_1 [0] 26 26 0 0
-CLK [0] 1 1 1 1
-pu1_2 [0] 6 6 0 0
-net15_1 [5] 24 19 0 0
-D1 [0] 27 27 0 0
-net29_1 [3] 21 18 0 0
-D2 [0] 5 5 0 0
-QN2 [0] 20 20 1 1
-clkn [26] 25 0 1 0
-pd3_2 [0] 8 8 1 1
-pd5_1 [0] 14 14 0 0
-QN1 [0] 2 2 0 0
-net32_1 [15] 16 1 0 0
-net37_1 [3] 13 10 0 0
-net15_2 [6] 11 6 1 0
-clkb [22] 25 4 1 0
-hpml: 99
+area: 56
+hpml: 175
+#inter-row signals: 6
+total density: 1868
+cost: 1683
+hello print_shape
+MM5_1   MM24_1  MM24_1  MM5_2   MM4_2           MM14_1  MM16_1  MM17_1  MM12_1  MM6_1   MM8_1   MM9_1           
+MM4_1           MM20_1  MM23_1          MM9_2   MM8_2   MM6_2   MM12_2  MM17_2  MM16_2  MM24_2  MM24_2  MM14_2  
+MM5_3   MM4_3   MM9_3   MM8_3   MM6_3   MM12_3  MM17_3  MM16_3  MM24_3  MM24_3  MM14_3                          
+MM5_4   MM4_4   MM9_4   MM8_4   MM6_4   MM12_4  MM17_4  MM16_4  MM24_4  MM24_4  MM14_4                          
+--
+MM3_1   MM25_1  MM25_1  MM3_2   MM1_2           MM15_1  MM19_1  MM18_1  MM13_1  MM7_1   MM11_1  MM10_1          
+MM1_1           MM21_1  MM22_1          MM10_2  MM11_2  MM7_2   MM13_2  MM18_2  MM19_2  MM25_2  MM25_2  MM15_2  
+MM3_3   MM1_3   MM10_3  MM11_3  MM7_3   MM13_3  MM18_3  MM19_3  MM25_3  MM25_3  MM15_3                          
+MM3_4   MM1_4   MM10_4  MM11_4  MM7_4   MM13_4  MM18_4  MM19_4  MM25_4  MM25_4  MM15_4                          
+pd1_1   D1      VSS     VSS     net32_1 QN1     QN1     net32_1 VSS     VSS     D2      pd1_2   pd1_2   clkn    net15_2 ------------------------net37_1 net32_1 VSS     VSS     net37_1 pd5_1   pd5_1   clkn    net32_1 net32_1 clkb    net29_1 net29_1 net15_1 VSS     VSS     net29_1 pd3_1   pd3_1   clkb    net15_1 ------------------------
+pd1_1   clkn    net15_1 ------------------------clkn    CLK     VSS     VSS     clkn    clkb    ------------------------net15_2 clkb    pd3_2   pd3_2   net29_2 VSS     VSS     net15_2 net29_2 net29_2 clkb    net32_2 net32_2 clkn    pd5_2   pd5_2   net37_2 VSS     VSS     net32_2 QN2     QN2     net32_2 VSS     VSS     net32_2 net37_2 
+VSS     D3      pd1_3   pd1_3   clkn    net15_3 net15_3 clkb    pd3_3   pd3_3   net29_3 VSS     VSS     net15_3 net29_3 net29_3 clkb    net32_3 net32_3 clkn    pd5_3   pd5_3   net37_3 VSS     VSS     net32_3 QN3     QN3     net32_3 VSS     VSS     net32_3 net37_3 ------------------------------------------------------------------------
+VSS     D4      pd1_4   pd1_4   clkn    net15_4 net15_4 clkb    pd3_4   pd3_4   net29_4 VSS     VSS     net15_4 net29_4 net29_4 clkb    net32_4 net32_4 clkn    pd5_4   pd5_4   net37_4 VSS     VSS     net32_4 QN4     QN4     net32_4 VSS     VSS     net32_4 net37_4 ------------------------------------------------------------------------
+--
+pu1_1   D1      VDD     VDD     net32_1 QN1     QN1     net32_1 VDD     VDD     D2      pu1_2   pu1_2   clkb    net15_2 ------------------------net37_1 net32_1 VDD     VDD     net37_1 pd4_1   pd4_1   clkb    net32_1 net32_1 clkn    net29_1 net29_1 net15_1 VDD     VDD     net29_1 pd2_1   pd2_1   clkn    net15_1 ------------------------
+pu1_1   clkb    net15_1 ------------------------clkn    CLK     VDD     VDD     clkn    clkb    ------------------------net15_2 clkn    pd2_2   pd2_2   net29_2 VDD     VDD     net15_2 net29_2 net29_2 clkn    net32_2 net32_2 clkb    pd4_2   pd4_2   net37_2 VDD     VDD     net32_2 QN2     QN2     net32_2 VDD     VDD     net32_2 net37_2 
+VDD     D3      pu1_3   pu1_3   clkb    net15_3 net15_3 clkn    pd2_3   pd2_3   net29_3 VDD     VDD     net15_3 net29_3 net29_3 clkn    net32_3 net32_3 clkb    pd4_3   pd4_3   net37_3 VDD     VDD     net32_3 QN3     QN3     net32_3 VDD     VDD     net32_3 net37_3 ------------------------------------------------------------------------
+VDD     D4      pu1_4   pu1_4   clkb    net15_4 net15_4 clkn    pd2_4   pd2_4   net29_4 VDD     VDD     net15_4 net29_4 net29_4 clkn    net32_4 net32_4 clkb    pd4_4   pd4_4   net37_4 VDD     VDD     net32_4 QN4     QN4     net32_4 VDD     VDD     net32_4 net37_4 ------------------------------------------------------------------------
+pd1_1   D1      VSS     net32_1 QN1     net32_1 VSS     D2      pd1_2   clkn    net15_2 Null    net37_1 net32_1 VSS     net37_1 pd5_1   clkn    net32_1 clkb    net29_1 net15_1 VSS     net29_1 pd3_1   clkb    net15_1 Null    Null    
+pd1_1   clkn    net15_1 Null    clkn    CLK     VSS     clkn    clkb    Null    net15_2 clkb    pd3_2   net29_2 VSS     net15_2 net29_2 clkb    net32_2 clkn    pd5_2   net37_2 VSS     net32_2 QN2     net32_2 VSS     net32_2 net37_2 
+VSS     D3      pd1_3   clkn    net15_3 clkb    pd3_3   net29_3 VSS     net15_3 net29_3 clkb    net32_3 clkn    pd5_3   net37_3 VSS     net32_3 QN3     net32_3 VSS     net32_3 net37_3 Null    Null    Null    Null    Null    Null    
+VSS     D4      pd1_4   clkn    net15_4 clkb    pd3_4   net29_4 VSS     net15_4 net29_4 clkb    net32_4 clkn    pd5_4   net37_4 VSS     net32_4 QN4     net32_4 VSS     net32_4 net37_4 Null    Null    Null    Null    Null    Null    
+
+pu1_1   D1      VDD     net32_1 QN1     net32_1 VDD     D2      pu1_2   clkb    net15_2 Null    net37_1 net32_1 VDD     net37_1 pd4_1   clkb    net32_1 clkn    net29_1 net15_1 VDD     net29_1 pd2_1   clkn    net15_1 Null    Null    
+pu1_1   clkb    net15_1 Null    clkn    CLK     VDD     clkn    clkb    Null    net15_2 clkn    pd2_2   net29_2 VDD     net15_2 net29_2 clkn    net32_2 clkb    pd4_2   net37_2 VDD     net32_2 QN2     net32_2 VDD     net32_2 net37_2 
+VDD     D3      pu1_3   clkb    net15_3 clkn    pd2_3   net29_3 VDD     net15_3 net29_3 clkn    net32_3 clkb    pd4_3   net37_3 VDD     net32_3 QN3     net32_3 VDD     net32_3 net37_3 Null    Null    Null    Null    Null    Null    
+VDD     D4      pu1_4   clkb    net15_4 clkn    pd2_4   net29_4 VDD     net15_4 net29_4 clkn    net32_4 clkb    pd4_4   net37_4 VDD     net32_4 QN4     net32_4 VDD     net32_4 net37_4 Null    Null    Null    Null    Null    Null    
+
+[initial] cost: 1683
+[epoch 0]
+[final result] cost: 1593
+area: 52
+hpml: 185
+#inter-row signals: 6
+total density: 1882
+cost: 1593
+hello print_shape
+MM5_1   MM24_1  MM24_1  MM5_2   MM4_2           MM14_1  MM16_1  MM17_1  MM12_1  MM6_1   MM8_1   MM9_1   
+MM20_1  MM23_1          MM9_2   MM8_2   MM6_2   MM12_2  MM17_2  MM16_2  MM24_2  MM24_2  MM14_2          
+MM4_1           MM5_3   MM4_3   MM9_3   MM8_3   MM6_3   MM12_3  MM17_3  MM16_3  MM24_3  MM24_3  MM14_3  
+MM5_4   MM4_4   MM9_4   MM8_4   MM6_4   MM12_4  MM17_4  MM16_4  MM24_4  MM24_4  MM14_4                  
+--
+MM3_1   MM25_1  MM25_1  MM3_2   MM1_2           MM15_1  MM19_1  MM18_1  MM13_1  MM7_1   MM11_1  MM10_1  
+MM21_1  MM22_1          MM10_2  MM11_2  MM7_2   MM13_2  MM18_2  MM19_2  MM25_2  MM25_2  MM15_2          
+MM1_1           MM3_3   MM1_3   MM10_3  MM11_3  MM7_3   MM13_3  MM18_3  MM19_3  MM25_3  MM25_3  MM15_3  
+MM3_4   MM1_4   MM10_4  MM11_4  MM7_4   MM13_4  MM18_4  MM19_4  MM25_4  MM25_4  MM15_4                  
+pd1_1   D1      VSS     VSS     net32_1 QN1     QN1     net32_1 VSS     VSS     D2      pd1_2   pd1_2   clkn    net15_2 ------------------------net37_1 net32_1 VSS     VSS     net37_1 pd5_1   pd5_1   clkn    net32_1 net32_1 clkb    net29_1 net29_1 net15_1 VSS     VSS     net29_1 pd3_1   pd3_1   clkb    net15_1 
+clkn    CLK     VSS     VSS     clkn    clkb    ------------------------net15_2 clkb    pd3_2   pd3_2   net29_2 VSS     VSS     net15_2 net29_2 net29_2 clkb    net32_2 net32_2 clkn    pd5_2   pd5_2   net37_2 VSS     VSS     net32_2 QN2     QN2     net32_2 VSS     VSS     net32_2 net37_2 ------------------------
+net15_1 clkn    pd1_1   ------------------------VSS     D3      pd1_3   pd1_3   clkn    net15_3 net15_3 clkb    pd3_3   pd3_3   net29_3 VSS     VSS     net15_3 net29_3 net29_3 clkb    net32_3 net32_3 clkn    pd5_3   pd5_3   net37_3 VSS     VSS     net32_3 QN3     QN3     net32_3 VSS     VSS     net32_3 net37_3 
+VSS     D4      pd1_4   pd1_4   clkn    net15_4 net15_4 clkb    pd3_4   pd3_4   net29_4 VSS     VSS     net15_4 net29_4 net29_4 clkb    net32_4 net32_4 clkn    pd5_4   pd5_4   net37_4 VSS     VSS     net32_4 QN4     QN4     net32_4 VSS     VSS     net32_4 net37_4 ------------------------------------------------
+--
+pu1_1   D1      VDD     VDD     net32_1 QN1     QN1     net32_1 VDD     VDD     D2      pu1_2   pu1_2   clkb    net15_2 ------------------------net37_1 net32_1 VDD     VDD     net37_1 pd4_1   pd4_1   clkb    net32_1 net32_1 clkn    net29_1 net29_1 net15_1 VDD     VDD     net29_1 pd2_1   pd2_1   clkn    net15_1 
+clkn    CLK     VDD     VDD     clkn    clkb    ------------------------net15_2 clkn    pd2_2   pd2_2   net29_2 VDD     VDD     net15_2 net29_2 net29_2 clkn    net32_2 net32_2 clkb    pd4_2   pd4_2   net37_2 VDD     VDD     net32_2 QN2     QN2     net32_2 VDD     VDD     net32_2 net37_2 ------------------------
+net15_1 clkb    pu1_1   ------------------------VDD     D3      pu1_3   pu1_3   clkb    net15_3 net15_3 clkn    pd2_3   pd2_3   net29_3 VDD     VDD     net15_3 net29_3 net29_3 clkn    net32_3 net32_3 clkb    pd4_3   pd4_3   net37_3 VDD     VDD     net32_3 QN3     QN3     net32_3 VDD     VDD     net32_3 net37_3 
+VDD     D4      pu1_4   pu1_4   clkb    net15_4 net15_4 clkn    pd2_4   pd2_4   net29_4 VDD     VDD     net15_4 net29_4 net29_4 clkn    net32_4 net32_4 clkb    pd4_4   pd4_4   net37_4 VDD     VDD     net32_4 QN4     QN4     net32_4 VDD     VDD     net32_4 net37_4 ------------------------------------------------
+pd1_1   D1      VSS     net32_1 QN1     net32_1 VSS     D2      pd1_2   clkn    net15_2 Null    net37_1 net32_1 VSS     net37_1 pd5_1   clkn    net32_1 clkb    net29_1 net15_1 VSS     net29_1 pd3_1   clkb    net15_1 
+clkn    CLK     VSS     clkn    clkb    Null    net15_2 clkb    pd3_2   net29_2 VSS     net15_2 net29_2 clkb    net32_2 clkn    pd5_2   net37_2 VSS     net32_2 QN2     net32_2 VSS     net32_2 net37_2 Null    Null    
+net15_1 clkn    pd1_1   Null    VSS     D3      pd1_3   clkn    net15_3 clkb    pd3_3   net29_3 VSS     net15_3 net29_3 clkb    net32_3 clkn    pd5_3   net37_3 VSS     net32_3 QN3     net32_3 VSS     net32_3 net37_3 
+VSS     D4      pd1_4   clkn    net15_4 clkb    pd3_4   net29_4 VSS     net15_4 net29_4 clkb    net32_4 clkn    pd5_4   net37_4 VSS     net32_4 QN4     net32_4 VSS     net32_4 net37_4 Null    Null    Null    Null    
+
+pu1_1   D1      VDD     net32_1 QN1     net32_1 VDD     D2      pu1_2   clkb    net15_2 Null    net37_1 net32_1 VDD     net37_1 pd4_1   clkb    net32_1 clkn    net29_1 net15_1 VDD     net29_1 pd2_1   clkn    net15_1 
+clkn    CLK     VDD     clkn    clkb    Null    net15_2 clkn    pd2_2   net29_2 VDD     net15_2 net29_2 clkn    net32_2 clkb    pd4_2   net37_2 VDD     net32_2 QN2     net32_2 VDD     net32_2 net37_2 Null    Null    
+net15_1 clkb    pu1_1   Null    VDD     D3      pu1_3   clkb    net15_3 clkn    pd2_3   net29_3 VDD     net15_3 net29_3 clkn    net32_3 clkb    pd4_3   net37_3 VDD     net32_3 QN3     net32_3 VDD     net32_3 net37_3 
+VDD     D4      pu1_4   clkb    net15_4 clkn    pd2_4   net29_4 VDD     net15_4 net29_4 clkn    net32_4 clkb    pd4_4   net37_4 VDD     net32_4 QN4     net32_4 VDD     net32_4 net37_4 Null    Null    Null    Null    
+
+[epoch 1]
+[final result] cost: 1549
+area: 52
+hpml: 171
+#inter-row signals: 4
+total density: 1854
+cost: 1549
+hello print_shape
+MM24_1  MM24_1  MM5_2   MM4_2           MM14_1  MM16_1  MM17_1  MM12_1  MM6_1   MM8_1   MM9_1           
+MM20_1  MM23_1          MM9_2   MM8_2   MM6_2   MM12_2  MM17_2  MM16_2  MM24_2  MM24_2  MM14_2          
+MM4_1   MM5_1   MM5_3   MM4_3   MM9_3   MM8_3   MM6_3   MM12_3  MM17_3  MM16_3  MM24_3  MM24_3  MM14_3  
+MM5_4   MM4_4   MM9_4   MM8_4   MM6_4   MM12_4  MM17_4  MM16_4  MM24_4  MM24_4  MM14_4                  
+--
+MM25_1  MM25_1  MM3_2   MM1_2           MM15_1  MM19_1  MM18_1  MM13_1  MM7_1   MM11_1  MM10_1          
+MM21_1  MM22_1          MM10_2  MM11_2  MM7_2   MM13_2  MM18_2  MM19_2  MM25_2  MM25_2  MM15_2          
+MM1_1   MM3_1   MM3_3   MM1_3   MM10_3  MM11_3  MM7_3   MM13_3  MM18_3  MM19_3  MM25_3  MM25_3  MM15_3  
+MM3_4   MM1_4   MM10_4  MM11_4  MM7_4   MM13_4  MM18_4  MM19_4  MM25_4  MM25_4  MM15_4                  
+VSS     net32_1 QN1     QN1     net32_1 VSS     VSS     D2      pd1_2   pd1_2   clkn    net15_2 ------------------------net37_1 net32_1 VSS     VSS     net37_1 pd5_1   pd5_1   clkn    net32_1 net32_1 clkb    net29_1 net29_1 net15_1 VSS     VSS     net29_1 pd3_1   pd3_1   clkb    net15_1 ------------------------
+clkn    CLK     VSS     VSS     clkn    clkb    ------------------------net15_2 clkb    pd3_2   pd3_2   net29_2 VSS     VSS     net15_2 net29_2 net29_2 clkb    net32_2 net32_2 clkn    pd5_2   pd5_2   net37_2 VSS     VSS     net32_2 QN2     QN2     net32_2 VSS     VSS     net32_2 net37_2 ------------------------
+net15_1 clkn    pd1_1   pd1_1   D1      VSS     VSS     D3      pd1_3   pd1_3   clkn    net15_3 net15_3 clkb    pd3_3   pd3_3   net29_3 VSS     VSS     net15_3 net29_3 net29_3 clkb    net32_3 net32_3 clkn    pd5_3   pd5_3   net37_3 VSS     VSS     net32_3 QN3     QN3     net32_3 VSS     VSS     net32_3 net37_3 
+VSS     D4      pd1_4   pd1_4   clkn    net15_4 net15_4 clkb    pd3_4   pd3_4   net29_4 VSS     VSS     net15_4 net29_4 net29_4 clkb    net32_4 net32_4 clkn    pd5_4   pd5_4   net37_4 VSS     VSS     net32_4 QN4     QN4     net32_4 VSS     VSS     net32_4 net37_4 ------------------------------------------------
+--
+VDD     net32_1 QN1     QN1     net32_1 VDD     VDD     D2      pu1_2   pu1_2   clkb    net15_2 ------------------------net37_1 net32_1 VDD     VDD     net37_1 pd4_1   pd4_1   clkb    net32_1 net32_1 clkn    net29_1 net29_1 net15_1 VDD     VDD     net29_1 pd2_1   pd2_1   clkn    net15_1 ------------------------
+clkn    CLK     VDD     VDD     clkn    clkb    ------------------------net15_2 clkn    pd2_2   pd2_2   net29_2 VDD     VDD     net15_2 net29_2 net29_2 clkn    net32_2 net32_2 clkb    pd4_2   pd4_2   net37_2 VDD     VDD     net32_2 QN2     QN2     net32_2 VDD     VDD     net32_2 net37_2 ------------------------
+net15_1 clkb    pu1_1   pu1_1   D1      VDD     VDD     D3      pu1_3   pu1_3   clkb    net15_3 net15_3 clkn    pd2_3   pd2_3   net29_3 VDD     VDD     net15_3 net29_3 net29_3 clkn    net32_3 net32_3 clkb    pd4_3   pd4_3   net37_3 VDD     VDD     net32_3 QN3     QN3     net32_3 VDD     VDD     net32_3 net37_3 
+VDD     D4      pu1_4   pu1_4   clkb    net15_4 net15_4 clkn    pd2_4   pd2_4   net29_4 VDD     VDD     net15_4 net29_4 net29_4 clkn    net32_4 net32_4 clkb    pd4_4   pd4_4   net37_4 VDD     VDD     net32_4 QN4     QN4     net32_4 VDD     VDD     net32_4 net37_4 ------------------------------------------------
+VSS     net32_1 QN1     net32_1 VSS     D2      pd1_2   clkn    net15_2 Null    net37_1 net32_1 VSS     net37_1 pd5_1   clkn    net32_1 clkb    net29_1 net15_1 VSS     net29_1 pd3_1   clkb    net15_1 Null    Null    
+clkn    CLK     VSS     clkn    clkb    Null    net15_2 clkb    pd3_2   net29_2 VSS     net15_2 net29_2 clkb    net32_2 clkn    pd5_2   net37_2 VSS     net32_2 QN2     net32_2 VSS     net32_2 net37_2 Null    Null    
+net15_1 clkn    pd1_1   D1      VSS     D3      pd1_3   clkn    net15_3 clkb    pd3_3   net29_3 VSS     net15_3 net29_3 clkb    net32_3 clkn    pd5_3   net37_3 VSS     net32_3 QN3     net32_3 VSS     net32_3 net37_3 
+VSS     D4      pd1_4   clkn    net15_4 clkb    pd3_4   net29_4 VSS     net15_4 net29_4 clkb    net32_4 clkn    pd5_4   net37_4 VSS     net32_4 QN4     net32_4 VSS     net32_4 net37_4 Null    Null    Null    Null    
+
+VDD     net32_1 QN1     net32_1 VDD     D2      pu1_2   clkb    net15_2 Null    net37_1 net32_1 VDD     net37_1 pd4_1   clkb    net32_1 clkn    net29_1 net15_1 VDD     net29_1 pd2_1   clkn    net15_1 Null    Null    
+clkn    CLK     VDD     clkn    clkb    Null    net15_2 clkn    pd2_2   net29_2 VDD     net15_2 net29_2 clkn    net32_2 clkb    pd4_2   net37_2 VDD     net32_2 QN2     net32_2 VDD     net32_2 net37_2 Null    Null    
+net15_1 clkb    pu1_1   D1      VDD     D3      pu1_3   clkb    net15_3 clkn    pd2_3   net29_3 VDD     net15_3 net29_3 clkn    net32_3 clkb    pd4_3   net37_3 VDD     net32_3 QN3     net32_3 VDD     net32_3 net37_3 
+VDD     D4      pu1_4   clkb    net15_4 clkn    pd2_4   net29_4 VDD     net15_4 net29_4 clkn    net32_4 clkb    pd4_4   net37_4 VDD     net32_4 QN4     net32_4 VDD     net32_4 net37_4 Null    Null    Null    Null    
+
+[epoch 2]
+[final result] cost: 1547
+area: 52
+hpml: 169
+#inter-row signals: 4
+total density: 1866
+cost: 1547
+hello print_shape
+MM24_1  MM24_1  MM5_2   MM4_2           MM14_1  MM16_1  MM17_1  MM12_1  MM6_1   MM8_1   MM9_1           
+MM20_1  MM23_1          MM9_2   MM8_2   MM6_2   MM12_2  MM17_2  MM16_2          MM14_2  MM24_2  MM24_2  
+MM4_1   MM5_1   MM5_3   MM4_3   MM9_3   MM8_3   MM6_3   MM12_3  MM17_3  MM16_3  MM24_3  MM24_3  MM14_3  
+MM5_4   MM4_4   MM9_4   MM8_4   MM6_4   MM12_4  MM17_4  MM16_4  MM24_4  MM24_4  MM14_4                  
+--
+MM25_1  MM25_1  MM3_2   MM1_2           MM15_1  MM19_1  MM18_1  MM13_1  MM7_1   MM11_1  MM10_1          
+MM21_1  MM22_1          MM10_2  MM11_2  MM7_2   MM13_2  MM18_2  MM19_2          MM15_2  MM25_2  MM25_2  
+MM1_1   MM3_1   MM3_3   MM1_3   MM10_3  MM11_3  MM7_3   MM13_3  MM18_3  MM19_3  MM25_3  MM25_3  MM15_3  
+MM3_4   MM1_4   MM10_4  MM11_4  MM7_4   MM13_4  MM18_4  MM19_4  MM25_4  MM25_4  MM15_4                  
+VSS     net32_1 QN1     QN1     net32_1 VSS     VSS     D2      pd1_2   pd1_2   clkn    net15_2 ------------------------net37_1 net32_1 VSS     VSS     net37_1 pd5_1   pd5_1   clkn    net32_1 net32_1 clkb    net29_1 net29_1 net15_1 VSS     VSS     net29_1 pd3_1   pd3_1   clkb    net15_1 ------------------------
+clkn    CLK     VSS     VSS     clkn    clkb    ------------------------net15_2 clkb    pd3_2   pd3_2   net29_2 VSS     VSS     net15_2 net29_2 net29_2 clkb    net32_2 net32_2 clkn    pd5_2   pd5_2   net37_2 VSS     ------------------------net37_2 net32_2 VSS     VSS     net32_2 QN2     QN2     net32_2 VSS     
+net15_1 clkn    pd1_1   pd1_1   D1      VSS     VSS     D3      pd1_3   pd1_3   clkn    net15_3 net15_3 clkb    pd3_3   pd3_3   net29_3 VSS     VSS     net15_3 net29_3 net29_3 clkb    net32_3 net32_3 clkn    pd5_3   pd5_3   net37_3 VSS     VSS     net32_3 QN3     QN3     net32_3 VSS     VSS     net32_3 net37_3 
+VSS     D4      pd1_4   pd1_4   clkn    net15_4 net15_4 clkb    pd3_4   pd3_4   net29_4 VSS     VSS     net15_4 net29_4 net29_4 clkb    net32_4 net32_4 clkn    pd5_4   pd5_4   net37_4 VSS     VSS     net32_4 QN4     QN4     net32_4 VSS     VSS     net32_4 net37_4 ------------------------------------------------
+--
+VDD     net32_1 QN1     QN1     net32_1 VDD     VDD     D2      pu1_2   pu1_2   clkb    net15_2 ------------------------net37_1 net32_1 VDD     VDD     net37_1 pd4_1   pd4_1   clkb    net32_1 net32_1 clkn    net29_1 net29_1 net15_1 VDD     VDD     net29_1 pd2_1   pd2_1   clkn    net15_1 ------------------------
+clkn    CLK     VDD     VDD     clkn    clkb    ------------------------net15_2 clkn    pd2_2   pd2_2   net29_2 VDD     VDD     net15_2 net29_2 net29_2 clkn    net32_2 net32_2 clkb    pd4_2   pd4_2   net37_2 VDD     ------------------------net37_2 net32_2 VDD     VDD     net32_2 QN2     QN2     net32_2 VDD     
+net15_1 clkb    pu1_1   pu1_1   D1      VDD     VDD     D3      pu1_3   pu1_3   clkb    net15_3 net15_3 clkn    pd2_3   pd2_3   net29_3 VDD     VDD     net15_3 net29_3 net29_3 clkn    net32_3 net32_3 clkb    pd4_3   pd4_3   net37_3 VDD     VDD     net32_3 QN3     QN3     net32_3 VDD     VDD     net32_3 net37_3 
+VDD     D4      pu1_4   pu1_4   clkb    net15_4 net15_4 clkn    pd2_4   pd2_4   net29_4 VDD     VDD     net15_4 net29_4 net29_4 clkn    net32_4 net32_4 clkb    pd4_4   pd4_4   net37_4 VDD     VDD     net32_4 QN4     QN4     net32_4 VDD     VDD     net32_4 net37_4 ------------------------------------------------
+VSS     net32_1 QN1     net32_1 VSS     D2      pd1_2   clkn    net15_2 Null    net37_1 net32_1 VSS     net37_1 pd5_1   clkn    net32_1 clkb    net29_1 net15_1 VSS     net29_1 pd3_1   clkb    net15_1 Null    Null    
+clkn    CLK     VSS     clkn    clkb    Null    net15_2 clkb    pd3_2   net29_2 VSS     net15_2 net29_2 clkb    net32_2 clkn    pd5_2   net37_2 VSS     Null    net37_2 net32_2 VSS     net32_2 QN2     net32_2 VSS     
+net15_1 clkn    pd1_1   D1      VSS     D3      pd1_3   clkn    net15_3 clkb    pd3_3   net29_3 VSS     net15_3 net29_3 clkb    net32_3 clkn    pd5_3   net37_3 VSS     net32_3 QN3     net32_3 VSS     net32_3 net37_3 
+VSS     D4      pd1_4   clkn    net15_4 clkb    pd3_4   net29_4 VSS     net15_4 net29_4 clkb    net32_4 clkn    pd5_4   net37_4 VSS     net32_4 QN4     net32_4 VSS     net32_4 net37_4 Null    Null    Null    Null    
+
+VDD     net32_1 QN1     net32_1 VDD     D2      pu1_2   clkb    net15_2 Null    net37_1 net32_1 VDD     net37_1 pd4_1   clkb    net32_1 clkn    net29_1 net15_1 VDD     net29_1 pd2_1   clkn    net15_1 Null    Null    
+clkn    CLK     VDD     clkn    clkb    Null    net15_2 clkn    pd2_2   net29_2 VDD     net15_2 net29_2 clkn    net32_2 clkb    pd4_2   net37_2 VDD     Null    net37_2 net32_2 VDD     net32_2 QN2     net32_2 VDD     
+net15_1 clkb    pu1_1   D1      VDD     D3      pu1_3   clkb    net15_3 clkn    pd2_3   net29_3 VDD     net15_3 net29_3 clkn    net32_3 clkb    pd4_3   net37_3 VDD     net32_3 QN3     net32_3 VDD     net32_3 net37_3 
+VDD     D4      pu1_4   clkb    net15_4 clkn    pd2_4   net29_4 VDD     net15_4 net29_4 clkn    net32_4 clkb    pd4_4   net37_4 VDD     net32_4 QN4     net32_4 VDD     net32_4 net37_4 Null    Null    Null    Null    
+
+[epoch 3]
+[final result] cost: 1545
+area: 52
+hpml: 167
+#inter-row signals: 4
+total density: 1878
+cost: 1545
+hello print_shape
+MM24_1  MM24_1  MM5_2   MM4_2           MM14_1  MM16_1  MM17_1  MM12_1  MM6_1   MM8_1   MM9_1           
+MM20_1  MM23_1          MM9_2   MM8_2   MM6_2   MM12_2  MM17_2  MM16_2          MM14_2  MM24_2  MM24_2  
+MM4_1   MM5_1   MM5_3   MM4_3   MM9_3   MM8_3   MM6_3   MM12_3  MM17_3  MM16_3  MM24_3  MM24_3  MM14_3  
+MM5_4   MM4_4   MM9_4   MM8_4   MM6_4   MM12_4  MM17_4  MM16_4          MM14_4  MM24_4  MM24_4          
+--
+MM25_1  MM25_1  MM3_2   MM1_2           MM15_1  MM19_1  MM18_1  MM13_1  MM7_1   MM11_1  MM10_1          
+MM21_1  MM22_1          MM10_2  MM11_2  MM7_2   MM13_2  MM18_2  MM19_2          MM15_2  MM25_2  MM25_2  
+MM1_1   MM3_1   MM3_3   MM1_3   MM10_3  MM11_3  MM7_3   MM13_3  MM18_3  MM19_3  MM25_3  MM25_3  MM15_3  
+MM3_4   MM1_4   MM10_4  MM11_4  MM7_4   MM13_4  MM18_4  MM19_4          MM15_4  MM25_4  MM25_4          
+VSS     net32_1 QN1     QN1     net32_1 VSS     VSS     D2      pd1_2   pd1_2   clkn    net15_2 ------------------------net37_1 net32_1 VSS     VSS     net37_1 pd5_1   pd5_1   clkn    net32_1 net32_1 clkb    net29_1 net29_1 net15_1 VSS     VSS     net29_1 pd3_1   pd3_1   clkb    net15_1 ------------------------
+clkn    CLK     VSS     VSS     clkn    clkb    ------------------------net15_2 clkb    pd3_2   pd3_2   net29_2 VSS     VSS     net15_2 net29_2 net29_2 clkb    net32_2 net32_2 clkn    pd5_2   pd5_2   net37_2 VSS     ------------------------net37_2 net32_2 VSS     VSS     net32_2 QN2     QN2     net32_2 VSS     
+net15_1 clkn    pd1_1   pd1_1   D1      VSS     VSS     D3      pd1_3   pd1_3   clkn    net15_3 net15_3 clkb    pd3_3   pd3_3   net29_3 VSS     VSS     net15_3 net29_3 net29_3 clkb    net32_3 net32_3 clkn    pd5_3   pd5_3   net37_3 VSS     VSS     net32_3 QN3     QN3     net32_3 VSS     VSS     net32_3 net37_3 
+VSS     D4      pd1_4   pd1_4   clkn    net15_4 net15_4 clkb    pd3_4   pd3_4   net29_4 VSS     VSS     net15_4 net29_4 net29_4 clkb    net32_4 net32_4 clkn    pd5_4   pd5_4   net37_4 VSS     ------------------------net37_4 net32_4 VSS     VSS     net32_4 QN4     QN4     net32_4 VSS     ------------------------
+--
+VDD     net32_1 QN1     QN1     net32_1 VDD     VDD     D2      pu1_2   pu1_2   clkb    net15_2 ------------------------net37_1 net32_1 VDD     VDD     net37_1 pd4_1   pd4_1   clkb    net32_1 net32_1 clkn    net29_1 net29_1 net15_1 VDD     VDD     net29_1 pd2_1   pd2_1   clkn    net15_1 ------------------------
+clkn    CLK     VDD     VDD     clkn    clkb    ------------------------net15_2 clkn    pd2_2   pd2_2   net29_2 VDD     VDD     net15_2 net29_2 net29_2 clkn    net32_2 net32_2 clkb    pd4_2   pd4_2   net37_2 VDD     ------------------------net37_2 net32_2 VDD     VDD     net32_2 QN2     QN2     net32_2 VDD     
+net15_1 clkb    pu1_1   pu1_1   D1      VDD     VDD     D3      pu1_3   pu1_3   clkb    net15_3 net15_3 clkn    pd2_3   pd2_3   net29_3 VDD     VDD     net15_3 net29_3 net29_3 clkn    net32_3 net32_3 clkb    pd4_3   pd4_3   net37_3 VDD     VDD     net32_3 QN3     QN3     net32_3 VDD     VDD     net32_3 net37_3 
+VDD     D4      pu1_4   pu1_4   clkb    net15_4 net15_4 clkn    pd2_4   pd2_4   net29_4 VDD     VDD     net15_4 net29_4 net29_4 clkn    net32_4 net32_4 clkb    pd4_4   pd4_4   net37_4 VDD     ------------------------net37_4 net32_4 VDD     VDD     net32_4 QN4     QN4     net32_4 VDD     ------------------------
+VSS     net32_1 QN1     net32_1 VSS     D2      pd1_2   clkn    net15_2 Null    net37_1 net32_1 VSS     net37_1 pd5_1   clkn    net32_1 clkb    net29_1 net15_1 VSS     net29_1 pd3_1   clkb    net15_1 Null    Null    
+clkn    CLK     VSS     clkn    clkb    Null    net15_2 clkb    pd3_2   net29_2 VSS     net15_2 net29_2 clkb    net32_2 clkn    pd5_2   net37_2 VSS     Null    net37_2 net32_2 VSS     net32_2 QN2     net32_2 VSS     
+net15_1 clkn    pd1_1   D1      VSS     D3      pd1_3   clkn    net15_3 clkb    pd3_3   net29_3 VSS     net15_3 net29_3 clkb    net32_3 clkn    pd5_3   net37_3 VSS     net32_3 QN3     net32_3 VSS     net32_3 net37_3 
+VSS     D4      pd1_4   clkn    net15_4 clkb    pd3_4   net29_4 VSS     net15_4 net29_4 clkb    net32_4 clkn    pd5_4   net37_4 VSS     Null    net37_4 net32_4 VSS     net32_4 QN4     net32_4 VSS     Null    Null    
+
+VDD     net32_1 QN1     net32_1 VDD     D2      pu1_2   clkb    net15_2 Null    net37_1 net32_1 VDD     net37_1 pd4_1   clkb    net32_1 clkn    net29_1 net15_1 VDD     net29_1 pd2_1   clkn    net15_1 Null    Null    
+clkn    CLK     VDD     clkn    clkb    Null    net15_2 clkn    pd2_2   net29_2 VDD     net15_2 net29_2 clkn    net32_2 clkb    pd4_2   net37_2 VDD     Null    net37_2 net32_2 VDD     net32_2 QN2     net32_2 VDD     
+net15_1 clkb    pu1_1   D1      VDD     D3      pu1_3   clkb    net15_3 clkn    pd2_3   net29_3 VDD     net15_3 net29_3 clkn    net32_3 clkb    pd4_3   net37_3 VDD     net32_3 QN3     net32_3 VDD     net32_3 net37_3 
+VDD     D4      pu1_4   clkb    net15_4 clkn    pd2_4   net29_4 VDD     net15_4 net29_4 clkn    net32_4 clkb    pd4_4   net37_4 VDD     Null    net37_4 net32_4 VDD     net32_4 QN4     net32_4 VDD     Null    Null    
+
+[epoch 4]
 hello satisfy_via_rule
-VSS/VDD net32_1/net32_1 QN1/QN1 net32_1/net32_1 VSS/VDD D2/D2 pd1_2/pu1_2 clkn/clkb net15_2/net15_2 NULL/NULL net37_1/net37_1 net32_1/net32_1 VSS/VDD net37_1/net37_1 pd5_1/pd4_1 clkn/clkb net32_1/net32_1 clkb/clkn net29_1/net29_1 net15_1/net15_1 VSS/VDD net29_1/net29_1 pd3_1/pd2_1 clkb/clkn net15_1/net15_1 clkn/clkb pd1_1/pu1_1 D1/D1 VSS/VDD 
-clkn/clkn CLK/CLK VSS/VDD clkn/clkn clkb/clkb NULL/NULL net15_2/net15_2 clkb/clkn pd3_2/pd2_2 net29_2/net29_2 VSS/VDD net15_2/net15_2 net29_2/net29_2 clkb/clkn net32_2/net32_2 clkn/clkb pd5_2/pd4_2 net37_2/net37_2 VSS/VDD net32_2/net32_2 QN2/QN2 net32_2/net32_2 VSS/VDD net32_2/net32_2 net37_2/net37_2 NULL/NULL NULL/NULL NULL/NULL NULL/NULL 
-51115133101151331311513313315
-11511013315113133151115110000
-reserve space: CLK 1 1
-reserve space: D1 0 27
-reserve space: D2 0 5
-reserve space: QN2 1 20
-reserve space: QN1 0 2
-reserve space: net15_2 0 8
+511151331011513313115133100
+115110133151131331501151115
+133151331331511313315111511
+513313315113133150115111500
 SAT
-0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 1 0 1 0 0 0 
-0 1 0 1 0 1 0 0 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 1 0 0 1 0 
-0 0 0 0 0 0 0 1 0 0 1 0 0 1 0 1 0 0 1 0 0 1 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0 1 0 0 0 
-0 0 0 0 1 0 0 1 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-0 1 0 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 1 0 1 0 1 0 0 0 0 0 
-1 0 0 1 0 0 0 1 0 0 0 0 0 1 0 1 0 1 0 0 1 0 0 0 1 0 0 0 0 
-total_via_vertical_diff: 1
-hello generate_multirow_plmt
-Generated results/output.plmt
-Time taken : 10.8566 seconds
+[via]
+0 0 0 0 0 1 0 1 0 0 1 0 0 1 0 1 0 1 0 0 0 0 0 1 0 0 0 
+0 1 0 1 0 0 0 0 0 0 0 1 0 0 0 0 1 0 1 0 0 1 0 0 0 0 0 
+0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 1 0 0 
+0 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 
+0 0 0 0 1 0 0 1 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 1 0 0 
+0 1 0 0 0 0 0 0 0 1 0 0 1 0 1 0 0 0 0 0 0 1 0 1 0 1 0 
+0 0 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0 1 0 0 1 0 0 0 0 0 0 
+1 0 0 1 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 1 0 1 0 0 0 0 1 0 0 0 0 
+0 1 0 0 0 0 0 1 0 0 0 1 0 0 1 0 1 0 0 0 0 1 0 1 0 1 0 
+1 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 1 0 0 0 0 0 1 0 1 0 0 0 0 0 1 0 1 0 1 0 0 0 0 0 0 1 
+0 0 0 1 0 1 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 
+0 1 0 0 0 0 0 1 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 
+0 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 0 0 1 0 1 0 1 0 0 0 
+0 0 0 1 0 1 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[metal]
+ -1  -1  -1  -1  28  28  -1  37  37  -1  23  23  23  23  -1  37  37  37  37  37  -1  -1  37  37  -1  -1  -1 
+ -1  22  22  22  -1  -1  -1  -1  -1  -1  22  22  -1  -1  -1  22  22  -1  34  34  34  34  -1  -1  -1  -1  -1 
+ -1  -1  -1  -1  -1  -1  32  32  -1  -1  -1  -1  -1  -1  -1  32  32  -1  29  29  -1  -1  -1  -1  29  29  -1 
+ -1  24  24  -1  -1  -1  -1  -1  38  38  -1  -1  -1  -1  -1  32  32  32  32  32  -1  -1  32  32  -1  -1  -1 
+ -1  -1  -1  -1  37  37  37  37  -1  -1  -1  37  37  37  37  37  37  37  -1  -1  -1  -1  -1  -1  27  27  -1 
+ -1  30  30  -1  -1  -1  -1  -1  26  26  -1  26  26  -1  48  48  -1  -1  -1  -1  -1  48  48  48  48  48  -1 
+ -1  -1  -1  -1  -1  -1  38  38  -1  -1  -1  38  38  -1  32  32  -1  52  52  52  52  -1  -1  -1  -1  -1  -1 
+ 32  32  32  32  -1  -1  32  32  -1  -1  -1  32  32  32  32  32  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1 
+ -1  -1  -1  -1  36  36  -1  -1  -1  32  32  -1  -1  32  32  32  32  32  -1  -1  -1  25  25  -1  -1  -1  -1 
+ 32  32  -1  -1  -1  -1  32  32  -1  -1  -1   8   8   8   8  -1  41  41  -1  -1  -1  41  41  41  41  41  -1 
+ 29  29  -1  43  43  -1  -1  -1  45  45  -1  -1  -1  45  45  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1 
+ 37  37  -1  -1  -1  -1  37  37  37  37  -1  -1  -1  -1  -1  37  37  37  -1   9   9  -1  -1  -1  -1   9   9 
+ -1  -1  -1  37  37  37  -1  -1  -1  -1  -1  37  37  37  -1  -1  -1  -1  -1  -1  -1  -1  21  21  -1  -1  -1 
+ 42  42  -1  -1  -1  -1  -1   2   2   2   2  -1  -1  -1  -1   3   3   3   3  -1  -1  -1  -1  -1  -1  -1  -1 
+ -1  -1  -1  13  13  13  -1  -1  -1  13  13  -1   4   4  -1  -1  -1  -1  -1   4   4   4  -1   4   4  -1  -1 
+ -1  -1  -1  32  32  32  -1  -1  -1  32  32  32  32  32  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1 
+[metal density]
+0 0 0 0 0 1 0 1 1 1 3 2 3 4 1 1 1 1 1 1 1 1 1 1 0 0 0 
+0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 0 0 0 0 
+0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 0 0 0 1 1 1 1 1 1 0 0 
+0 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 
+0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 0 0 
+0 1 0 0 0 0 0 0 0 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 0 
+0 0 0 0 0 0 1 1 1 1 1 1 0 0 0 1 0 1 1 1 1 0 0 0 0 0 0 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 1 0 0 0 1 1 1 1 1 1 1 1 1 0 0 0 0 1 0 0 0 0 
+0 1 1 1 1 1 1 1 0 0 0 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 0 
+1 0 0 1 0 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 
+0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 0 0 0 0 
+0 1 0 0 0 0 0 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 
+0 0 0 0 1 1 1 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 
+0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[satisfy via metal]
+000011011011110111110011000
+011100000011000110111100000
+000000110000000110110000110
+011000001100000111110011000
+000011110001111111000000110
+011000001101101100000111110
+000000110001101101111000000
+111100110001111100000000000
+000011000110011111000110000
+110000110001111011000111110
+110110001100011000000000000
+110000111100000111011000011
+000111000001110000000011000
+110000011110000111100000000
+000111000110110000011101100
+000111000111110000000000000
+pass
+total_via_vertical_diff: 3
+total density: 268
+hello print_shape
+MM24_1  MM24_1  MM5_2   MM4_2           MM14_1  MM16_1  MM17_1  MM12_1  MM6_1   MM8_1   MM9_1           
+MM20_1  MM23_1          MM9_2   MM8_2   MM6_2   MM12_2  MM17_2  MM16_2          MM14_2  MM24_2  MM24_2  
+MM4_1   MM5_1   MM5_3   MM4_3   MM9_3   MM8_3   MM6_3   MM12_3  MM17_3  MM16_3  MM24_3  MM24_3  MM14_3  
+MM5_4   MM4_4   MM9_4   MM8_4   MM6_4   MM12_4  MM17_4  MM16_4          MM14_4  MM24_4  MM24_4          
+--
+MM25_1  MM25_1  MM3_2   MM1_2           MM15_1  MM19_1  MM18_1  MM13_1  MM7_1   MM11_1  MM10_1          
+MM21_1  MM22_1          MM10_2  MM11_2  MM7_2   MM13_2  MM18_2  MM19_2          MM15_2  MM25_2  MM25_2  
+MM1_1   MM3_1   MM3_3   MM1_3   MM10_3  MM11_3  MM7_3   MM13_3  MM18_3  MM19_3  MM25_3  MM25_3  MM15_3  
+MM3_4   MM1_4   MM10_4  MM11_4  MM7_4   MM13_4  MM18_4  MM19_4          MM15_4  MM25_4  MM25_4          
+VSS     net32_1 QN1     QN1     net32_1 VSS     VSS     D2      pd1_2   pd1_2   clkn    net15_2 ------------------------net37_1 net32_1 VSS     VSS     net37_1 pd5_1   pd5_1   clkn    net32_1 net32_1 clkb    net29_1 net29_1 net15_1 VSS     VSS     net29_1 pd3_1   pd3_1   clkb    net15_1 ------------------------
+clkn    CLK     VSS     VSS     clkn    clkb    ------------------------net15_2 clkb    pd3_2   pd3_2   net29_2 VSS     VSS     net15_2 net29_2 net29_2 clkb    net32_2 net32_2 clkn    pd5_2   pd5_2   net37_2 VSS     ------------------------net37_2 net32_2 VSS     VSS     net32_2 QN2     QN2     net32_2 VSS     
+net15_1 clkn    pd1_1   pd1_1   D1      VSS     VSS     D3      pd1_3   pd1_3   clkn    net15_3 net15_3 clkb    pd3_3   pd3_3   net29_3 VSS     VSS     net15_3 net29_3 net29_3 clkb    net32_3 net32_3 clkn    pd5_3   pd5_3   net37_3 VSS     VSS     net32_3 QN3     QN3     net32_3 VSS     VSS     net32_3 net37_3 
+VSS     D4      pd1_4   pd1_4   clkn    net15_4 net15_4 clkb    pd3_4   pd3_4   net29_4 VSS     VSS     net15_4 net29_4 net29_4 clkb    net32_4 net32_4 clkn    pd5_4   pd5_4   net37_4 VSS     ------------------------net37_4 net32_4 VSS     VSS     net32_4 QN4     QN4     net32_4 VSS     ------------------------
+--
+VDD     net32_1 QN1     QN1     net32_1 VDD     VDD     D2      pu1_2   pu1_2   clkb    net15_2 ------------------------net37_1 net32_1 VDD     VDD     net37_1 pd4_1   pd4_1   clkb    net32_1 net32_1 clkn    net29_1 net29_1 net15_1 VDD     VDD     net29_1 pd2_1   pd2_1   clkn    net15_1 ------------------------
+clkn    CLK     VDD     VDD     clkn    clkb    ------------------------net15_2 clkn    pd2_2   pd2_2   net29_2 VDD     VDD     net15_2 net29_2 net29_2 clkn    net32_2 net32_2 clkb    pd4_2   pd4_2   net37_2 VDD     ------------------------net37_2 net32_2 VDD     VDD     net32_2 QN2     QN2     net32_2 VDD     
+net15_1 clkb    pu1_1   pu1_1   D1      VDD     VDD     D3      pu1_3   pu1_3   clkb    net15_3 net15_3 clkn    pd2_3   pd2_3   net29_3 VDD     VDD     net15_3 net29_3 net29_3 clkn    net32_3 net32_3 clkb    pd4_3   pd4_3   net37_3 VDD     VDD     net32_3 QN3     QN3     net32_3 VDD     VDD     net32_3 net37_3 
+VDD     D4      pu1_4   pu1_4   clkb    net15_4 net15_4 clkn    pd2_4   pd2_4   net29_4 VDD     VDD     net15_4 net29_4 net29_4 clkn    net32_4 net32_4 clkb    pd4_4   pd4_4   net37_4 VDD     ------------------------net37_4 net32_4 VDD     VDD     net32_4 QN4     QN4     net32_4 VDD     ------------------------
+VSS     net32_1 QN1     net32_1 VSS     D2      pd1_2   clkn    net15_2 Null    net37_1 net32_1 VSS     net37_1 pd5_1   clkn    net32_1 clkb    net29_1 net15_1 VSS     net29_1 pd3_1   clkb    net15_1 Null    Null    
+clkn    CLK     VSS     clkn    clkb    Null    net15_2 clkb    pd3_2   net29_2 VSS     net15_2 net29_2 clkb    net32_2 clkn    pd5_2   net37_2 VSS     Null    net37_2 net32_2 VSS     net32_2 QN2     net32_2 VSS     
+net15_1 clkn    pd1_1   D1      VSS     D3      pd1_3   clkn    net15_3 clkb    pd3_3   net29_3 VSS     net15_3 net29_3 clkb    net32_3 clkn    pd5_3   net37_3 VSS     net32_3 QN3     net32_3 VSS     net32_3 net37_3 
+VSS     D4      pd1_4   clkn    net15_4 clkb    pd3_4   net29_4 VSS     net15_4 net29_4 clkb    net32_4 clkn    pd5_4   net37_4 VSS     Null    net37_4 net32_4 VSS     net32_4 QN4     net32_4 VSS     Null    Null    
+
+VDD     net32_1 QN1     net32_1 VDD     D2      pu1_2   clkb    net15_2 Null    net37_1 net32_1 VDD     net37_1 pd4_1   clkb    net32_1 clkn    net29_1 net15_1 VDD     net29_1 pd2_1   clkn    net15_1 Null    Null    
+clkn    CLK     VDD     clkn    clkb    Null    net15_2 clkn    pd2_2   net29_2 VDD     net15_2 net29_2 clkn    net32_2 clkb    pd4_2   net37_2 VDD     Null    net37_2 net32_2 VDD     net32_2 QN2     net32_2 VDD     
+net15_1 clkb    pu1_1   D1      VDD     D3      pu1_3   clkb    net15_3 clkn    pd2_3   net29_3 VDD     net15_3 net29_3 clkn    net32_3 clkb    pd4_3   net37_3 VDD     net32_3 QN3     net32_3 VDD     net32_3 net37_3 
+VDD     D4      pu1_4   clkb    net15_4 clkn    pd2_4   net29_4 VDD     net15_4 net29_4 clkn    net32_4 clkb    pd4_4   net37_4 VDD     Null    net37_4 net32_4 VDD     net32_4 QN4     net32_4 VDD     Null    Null    
+
+成功建立檔案：results/MBFF4x2.plmt
+max_cols: 13
+Generated results/MBFF4x2.plmt
+Time taken : 716.42 seconds

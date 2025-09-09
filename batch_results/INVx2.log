@@ -1,0 +1,127 @@
+Hello, World!
+cell/INVx2.txt
+Available CPU cores: 16
+MM1 num_finger: 2
+MM0 num_finger: 2
+#tr/#net: 2/4
+compound_gates: 
+
+MM1
+MM0
+
+transmission_gates: 
+p-network: 
+MM1
+n-network: 
+MM0
+
+MM1 MM0 2
+MM0 pref MM1
+MM1 pref MM0
+MM0 propose #0
+MM0 match MM1
+[matching result]
+MM1 <-> MM0
+pairs: 
+MM1 MM0
+[folding_shape_generation]
+[placement]
+total_finger: 2
+expected #row: 1
+output mos: MM1
+input mos: MM1
+[ungrouped_pmos]
+group: 
+MM1
+hello group_placement
+target_area: 2
+BFS Time taken : 8.46e-06
+bfs total time: 8.46e-06
+dfs total time: 0
+number of cell: 4
+HPML: -1427392136
+Set 1 intersecting elements: None
+Row 0: 
+hello print_shape
+MM0     MM0     
+--
+MM1     MM1     
+VSS     A       Y       Y       A       VSS     
+--
+VDD     A       Y       Y       A       VDD     
+VSS     A       Y       A       VSS     
+
+VDD     A       Y       A       VDD     
+
+HSP: 4
+HCD: 2
+hello print_shape
+MM0     MM0     
+--
+MM1     MM1     
+VSS     A       Y       Y       A       VSS     
+--
+VDD     A       Y       Y       A       VDD     
+VSS     A       Y       A       VSS     
+
+VDD     A       Y       A       VDD     
+
+area: 2
+hpml: 2
+#inter-row signals: 0
+total density: 31
+cost: 52
+hello print_shape
+MM0     MM0     
+--
+MM1     MM1     
+VSS     A       Y       Y       A       VSS     
+--
+VDD     A       Y       Y       A       VDD     
+VSS     A       Y       A       VSS     
+
+VDD     A       Y       A       VDD     
+
+[initial] cost: 52
+[epoch 0]
+hello satisfy_via_rule
+51115
+SAT
+[via]
+0 0 0 0 0 
+0 1 0 1 0 
+0 0 0 0 0 
+0 0 1 0 0 
+[metal]
+ -1  -1  -1  -1  -1 
+ -1   3   3   3  -1 
+ -1  -1  -1  -1  -1 
+ -1   0   0  -1  -1 
+[metal density]
+0 0 0 0 0 
+0 1 1 1 0 
+0 0 0 0 0 
+0 0 1 0 0 
+[satisfy via metal]
+00000
+01110
+00000
+01100
+pass
+total_via_vertical_diff: 0
+total density: 4
+hello print_shape
+MM0     MM0     
+--
+MM1     MM1     
+VSS     A       Y       Y       A       VSS     
+--
+VDD     A       Y       Y       A       VDD     
+VSS     A       Y       A       VSS     
+
+VDD     A       Y       A       VDD     
+
+成功建立檔案：results/INVx2.plmt
+max_cols: 2
+Generated results/INVx2.plmt
+Time taken : 0.0815638 seconds

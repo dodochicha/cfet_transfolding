@@ -1,0 +1,210 @@
+Hello, World!
+cell/AOI22x1.txt
+Available CPU cores: 16
+MM5 num_finger: 2
+MM4 num_finger: 2
+MM3 num_finger: 2
+MM2 num_finger: 2
+MM9 num_finger: 2
+MM8 num_finger: 2
+MM7 num_finger: 2
+MM6 num_finger: 2
+#tr/#net: 8/10
+compound_gates: 
+
+MM5
+MM4
+MM7
+MM6
+
+transmission_gates: 
+p-network: 
+MM5
+MM3
+MM2
+MM4
+n-network: 
+MM7
+MM9
+MM6
+MM8
+
+MM5 MM7 -2
+MM5 MM9 -3
+MM5 MM6 0
+MM5 MM8 -3
+MM3 MM7 -1
+MM3 MM9 -2
+MM3 MM6 -3
+MM3 MM8 -2
+MM2 MM7 -3
+MM2 MM9 0
+MM2 MM6 -3
+MM2 MM8 -2
+MM4 MM7 -2
+MM4 MM9 -3
+MM4 MM6 -2
+MM4 MM8 -1
+MM7 pref MM3
+MM7 pref MM5
+MM7 pref MM4
+MM7 pref MM2
+MM9 pref MM2
+MM9 pref MM3
+MM9 pref MM5
+MM9 pref MM4
+MM6 pref MM5
+MM6 pref MM4
+MM6 pref MM3
+MM6 pref MM2
+MM8 pref MM4
+MM8 pref MM3
+MM8 pref MM2
+MM8 pref MM5
+MM5 pref MM6
+MM5 pref MM7
+MM5 pref MM9
+MM5 pref MM8
+MM3 pref MM7
+MM3 pref MM9
+MM3 pref MM8
+MM3 pref MM6
+MM2 pref MM9
+MM2 pref MM8
+MM2 pref MM7
+MM2 pref MM6
+MM4 pref MM8
+MM4 pref MM7
+MM4 pref MM6
+MM4 pref MM9
+MM7 propose #0
+MM9 match MM5
+MM9 propose #0
+MM6 match MM3
+MM6 propose #0
+MM7 match MM2
+MM8 propose #0
+MM8 match MM4
+[matching result]
+MM5 <-> MM6
+MM3 <-> MM7
+MM2 <-> MM9
+MM4 <-> MM8
+pairs: 
+MM4 MM8
+MM2 MM9
+MM3 MM7
+MM5 MM6
+[folding_shape_generation]
+[placement]
+total_finger: 8
+expected #row: 1
+output mos: MM5
+input mos: MM4
+input mos: MM5
+input mos: MM2
+input mos: MM3
+[ungrouped_pmos]
+MM4
+MM3
+MM2
+group: 
+MM5
+MM4
+MM3
+MM2
+hello group_placement
+target_area: 8
+BFS Time taken : 0.000281078
+Time taken : 0.000306404 seconds
+target_area: 9
+BFS Time taken : 0.0012177
+bfs total time: 0.00149878
+dfs total time: 1.2565e-05
+number of cell: 40
+HPML: 0
+Set 1 intersecting elements: None
+Row 0: 
+hello print_shape
+MM9     MM9     MM7     MM7             MM6     MM6     MM8     MM8     
+--
+MM2     MM2     MM3     MM3             MM5     MM5     MM4     MM4     
+net29   B1      VSS     VSS     B1      net29   net29   B2      Y       Y       B2      net29   ------------------------net30   A2      Y       Y       A2      net30   net30   A1      VSS     VSS     A1      net30   
+--
+VDD     B1      net13   net13   B1      VDD     VDD     B2      net13   net13   B2      VDD     ------------------------net13   A2      Y       Y       A2      net13   net13   A1      Y       Y       A1      net13   
+net29   B1      VSS     B1      net29   B2      Y       B2      net29   Null    net30   A2      Y       A2      net30   A1      VSS     A1      net30   
+
+VDD     B1      net13   B1      VDD     B2      net13   B2      VDD     Null    net13   A2      Y       A2      net13   A1      Y       A1      net13   
+
+HSP: 58
+HCD: 3
+hello print_shape
+MM9     MM9     MM7     MM7             MM6     MM6     MM8     MM8     
+--
+MM2     MM2     MM3     MM3             MM5     MM5     MM4     MM4     
+net29   B1      VSS     VSS     B1      net29   net29   B2      Y       Y       B2      net29   ------------------------net30   A2      Y       Y       A2      net30   net30   A1      VSS     VSS     A1      net30   
+--
+VDD     B1      net13   net13   B1      VDD     VDD     B2      net13   net13   B2      VDD     ------------------------net13   A2      Y       Y       A2      net13   net13   A1      Y       Y       A1      net13   
+net29   B1      VSS     B1      net29   B2      Y       B2      net29   Null    net30   A2      Y       A2      net30   A1      VSS     A1      net30   
+
+VDD     B1      net13   B1      VDD     B2      net13   B2      VDD     Null    net13   A2      Y       A2      net13   A1      Y       A1      net13   
+
+area: 9
+hpml: 50
+#inter-row signals: 0
+total density: 383
+cost: 278
+hello print_shape
+MM9     MM9     MM7     MM7             MM6     MM6     MM8     MM8     
+--
+MM2     MM2     MM3     MM3             MM5     MM5     MM4     MM4     
+net29   B1      VSS     VSS     B1      net29   net29   B2      Y       Y       B2      net29   ------------------------net30   A2      Y       Y       A2      net30   net30   A1      VSS     VSS     A1      net30   
+--
+VDD     B1      net13   net13   B1      VDD     VDD     B2      net13   net13   B2      VDD     ------------------------net13   A2      Y       Y       A2      net13   net13   A1      Y       Y       A1      net13   
+net29   B1      VSS     B1      net29   B2      Y       B2      net29   Null    net30   A2      Y       A2      net30   A1      VSS     A1      net30   
+
+VDD     B1      net13   B1      VDD     B2      net13   B2      VDD     Null    net13   A2      Y       A2      net13   A1      Y       A1      net13   
+
+[initial] cost: 278
+[epoch 0]
+hello satisfy_via_rule
+2141213120311131413
+SAT
+[via]
+0 1 0 1 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 
+0 0 0 0 0 1 0 1 0 0 0 1 0 1 0 1 0 1 0 
+1 0 0 0 1 0 0 0 1 0 1 0 0 0 1 0 0 0 1 
+0 0 1 0 0 0 1 0 0 0 0 0 1 0 0 0 1 0 0 
+[metal]
+ -1   7   7   7  -1   1   1  -1  -1  -1   1   1   1   1   1   1   1   1   1 
+ -1  -1  -1  -1  -1   6   6   6   6  -1   8   8   8   8  -1   9   9   9   9 
+  0   0   0   0   0  -1  -1   0   0  -1   3   3   3   3   3   3   3   3   3 
+  1   1   1  -1  -1   2   2  -1  -1  -1  -1  -1   2   2  -1   2   2  -1  -1 
+[metal density]
+0 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 
+0 0 0 0 0 1 1 1 0 0 0 1 1 1 0 1 1 1 0 
+1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 
+0 0 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 
+[satisfy via metal]
+0111011000111111111
+0000011110111101111
+1111100110111111111
+1110011000001101100
+pass
+total_via_vertical_diff: 3
+total density: 55
+hello print_shape
+MM9     MM9     MM7     MM7             MM6     MM6     MM8     MM8     
+--
+MM2     MM2     MM3     MM3             MM5     MM5     MM4     MM4     
+net29   B1      VSS     VSS     B1      net29   net29   B2      Y       Y       B2      net29   ------------------------net30   A2      Y       Y       A2      net30   net30   A1      VSS     VSS     A1      net30   
+--
+VDD     B1      net13   net13   B1      VDD     VDD     B2      net13   net13   B2      VDD     ------------------------net13   A2      Y       Y       A2      net13   net13   A1      Y       Y       A1      net13   
+net29   B1      VSS     B1      net29   B2      Y       B2      net29   Null    net30   A2      Y       A2      net30   A1      VSS     A1      net30   
+
+VDD     B1      net13   B1      VDD     B2      net13   B2      VDD     Null    net13   A2      Y       A2      net13   A1      Y       A1      net13   
+
+成功建立檔案：results/AOI22x1.plmt
+max_cols: 9
+Generated results/AOI22x1.plmt
+Time taken : 1.09366 seconds

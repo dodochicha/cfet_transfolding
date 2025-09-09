@@ -1,0 +1,480 @@
+Hello, World!
+cell/AO333x1.txt
+Available CPU cores: 16
+MM7 num_finger: 1
+MM6 num_finger: 1
+MM5 num_finger: 1
+MM4 num_finger: 1
+MM17 num_finger: 1
+MM16 num_finger: 1
+MM15 num_finger: 1
+MM13 num_finger: 1
+MM12 num_finger: 1
+MM11 num_finger: 1
+MM3 num_finger: 1
+MM0 num_finger: 1
+MM1 num_finger: 1
+MM2 num_finger: 1
+MM19 num_finger: 1
+MM18 num_finger: 1
+MM14 num_finger: 1
+MM10 num_finger: 1
+MM9 num_finger: 1
+MM8 num_finger: 1
+#tr/#net: 20/21
+compound_gates: 
+
+MM4
+MM3
+
+MM7
+MM6
+MM5
+MM0
+MM14
+MM10
+
+transmission_gates: 
+p-network: 
+MM4
+n-network: 
+MM3
+
+MM4 MM3 2
+MM3 pref MM4
+MM4 pref MM3
+MM3 propose #0
+MM3 match MM4
+[matching result]
+MM4 <-> MM3
+p-network: 
+MM7
+MM13
+MM12
+MM11
+MM6
+MM5
+MM17
+MM16
+MM15
+n-network: 
+MM0
+MM1
+MM2
+MM14
+MM18
+MM19
+MM10
+MM9
+MM8
+
+MM7 MM0 0
+MM7 MM1 -4
+MM7 MM2 -3
+MM7 MM14 -2
+MM7 MM18 -4
+MM7 MM19 -3
+MM7 MM10 -2
+MM7 MM9 -4
+MM7 MM8 -3
+MM13 MM0 -4
+MM13 MM1 -4
+MM13 MM2 -3
+MM13 MM14 -4
+MM13 MM18 -4
+MM13 MM19 -3
+MM13 MM10 -2
+MM13 MM9 -4
+MM13 MM8 -3
+MM12 MM0 -4
+MM12 MM1 -4
+MM12 MM2 -3
+MM12 MM14 -4
+MM12 MM18 -4
+MM12 MM19 -3
+MM12 MM10 -4
+MM12 MM9 -2
+MM12 MM8 -3
+MM11 MM0 -4
+MM11 MM1 -4
+MM11 MM2 -3
+MM11 MM14 -4
+MM11 MM18 -4
+MM11 MM19 -3
+MM11 MM10 -4
+MM11 MM9 -4
+MM11 MM8 -1
+MM6 MM0 -2
+MM6 MM1 -2
+MM6 MM2 -3
+MM6 MM14 -2
+MM6 MM18 -4
+MM6 MM19 -3
+MM6 MM10 -2
+MM6 MM9 -4
+MM6 MM8 -3
+MM5 MM0 -2
+MM5 MM1 -4
+MM5 MM2 -1
+MM5 MM14 -2
+MM5 MM18 -4
+MM5 MM19 -3
+MM5 MM10 -2
+MM5 MM9 -4
+MM5 MM8 -3
+MM17 MM0 -3
+MM17 MM1 -3
+MM17 MM2 -2
+MM17 MM14 -3
+MM17 MM18 -3
+MM17 MM19 0
+MM17 MM10 -3
+MM17 MM9 -3
+MM17 MM8 -2
+MM16 MM0 -3
+MM16 MM1 -3
+MM16 MM2 -2
+MM16 MM14 -3
+MM16 MM18 -1
+MM16 MM19 -2
+MM16 MM10 -3
+MM16 MM9 -3
+MM16 MM8 -2
+MM15 MM0 -3
+MM15 MM1 -3
+MM15 MM2 -2
+MM15 MM14 -1
+MM15 MM18 -3
+MM15 MM19 -2
+MM15 MM10 -3
+MM15 MM9 -3
+MM15 MM8 -2
+MM0 pref MM7
+MM0 pref MM6
+MM0 pref MM5
+MM0 pref MM17
+MM0 pref MM16
+MM0 pref MM15
+MM0 pref MM13
+MM0 pref MM12
+MM0 pref MM11
+MM1 pref MM6
+MM1 pref MM17
+MM1 pref MM16
+MM1 pref MM15
+MM1 pref MM7
+MM1 pref MM13
+MM1 pref MM12
+MM1 pref MM11
+MM1 pref MM5
+MM2 pref MM5
+MM2 pref MM17
+MM2 pref MM16
+MM2 pref MM15
+MM2 pref MM7
+MM2 pref MM13
+MM2 pref MM12
+MM2 pref MM11
+MM2 pref MM6
+MM14 pref MM15
+MM14 pref MM7
+MM14 pref MM6
+MM14 pref MM5
+MM14 pref MM17
+MM14 pref MM16
+MM14 pref MM13
+MM14 pref MM12
+MM14 pref MM11
+MM18 pref MM16
+MM18 pref MM17
+MM18 pref MM15
+MM18 pref MM7
+MM18 pref MM13
+MM18 pref MM12
+MM18 pref MM11
+MM18 pref MM6
+MM18 pref MM5
+MM19 pref MM17
+MM19 pref MM16
+MM19 pref MM15
+MM19 pref MM7
+MM19 pref MM13
+MM19 pref MM12
+MM19 pref MM11
+MM19 pref MM6
+MM19 pref MM5
+MM10 pref MM7
+MM10 pref MM13
+MM10 pref MM6
+MM10 pref MM5
+MM10 pref MM17
+MM10 pref MM16
+MM10 pref MM15
+MM10 pref MM12
+MM10 pref MM11
+MM9 pref MM12
+MM9 pref MM17
+MM9 pref MM16
+MM9 pref MM15
+MM9 pref MM7
+MM9 pref MM13
+MM9 pref MM11
+MM9 pref MM6
+MM9 pref MM5
+MM8 pref MM11
+MM8 pref MM17
+MM8 pref MM16
+MM8 pref MM15
+MM8 pref MM7
+MM8 pref MM13
+MM8 pref MM12
+MM8 pref MM6
+MM8 pref MM5
+MM7 pref MM0
+MM7 pref MM14
+MM7 pref MM10
+MM7 pref MM2
+MM7 pref MM19
+MM7 pref MM8
+MM7 pref MM1
+MM7 pref MM18
+MM7 pref MM9
+MM13 pref MM10
+MM13 pref MM2
+MM13 pref MM19
+MM13 pref MM8
+MM13 pref MM0
+MM13 pref MM1
+MM13 pref MM14
+MM13 pref MM18
+MM13 pref MM9
+MM12 pref MM9
+MM12 pref MM2
+MM12 pref MM19
+MM12 pref MM8
+MM12 pref MM0
+MM12 pref MM1
+MM12 pref MM14
+MM12 pref MM18
+MM12 pref MM10
+MM11 pref MM8
+MM11 pref MM2
+MM11 pref MM19
+MM11 pref MM0
+MM11 pref MM1
+MM11 pref MM14
+MM11 pref MM18
+MM11 pref MM10
+MM11 pref MM9
+MM6 pref MM0
+MM6 pref MM1
+MM6 pref MM14
+MM6 pref MM10
+MM6 pref MM2
+MM6 pref MM19
+MM6 pref MM8
+MM6 pref MM18
+MM6 pref MM9
+MM5 pref MM2
+MM5 pref MM0
+MM5 pref MM14
+MM5 pref MM10
+MM5 pref MM19
+MM5 pref MM8
+MM5 pref MM1
+MM5 pref MM18
+MM5 pref MM9
+MM17 pref MM19
+MM17 pref MM2
+MM17 pref MM8
+MM17 pref MM0
+MM17 pref MM1
+MM17 pref MM14
+MM17 pref MM18
+MM17 pref MM10
+MM17 pref MM9
+MM16 pref MM18
+MM16 pref MM2
+MM16 pref MM19
+MM16 pref MM8
+MM16 pref MM0
+MM16 pref MM1
+MM16 pref MM14
+MM16 pref MM10
+MM16 pref MM9
+MM15 pref MM14
+MM15 pref MM2
+MM15 pref MM19
+MM15 pref MM8
+MM15 pref MM0
+MM15 pref MM1
+MM15 pref MM18
+MM15 pref MM10
+MM15 pref MM9
+MM0 propose #0
+MM0 match MM7
+MM1 propose #0
+MM18 match MM13
+MM2 propose #0
+MM19 match MM12
+MM14 propose #0
+MM8 match MM11
+MM18 propose #0
+MM9 match MM6
+MM19 propose #0
+MM10 match MM5
+MM10 propose #0
+MM9 propose #0
+MM2 match MM16
+MM8 propose #0
+MM14 match MM15
+MM10 propose #1
+MM1 match MM17
+[matching result]
+MM7 <-> MM0
+MM13 <-> MM10
+MM12 <-> MM9
+MM11 <-> MM8
+MM6 <-> MM1
+MM5 <-> MM2
+MM17 <-> MM19
+MM16 <-> MM18
+MM15 <-> MM14
+pairs: 
+MM15 MM14
+MM16 MM18
+MM17 MM19
+MM5 MM2
+MM6 MM1
+MM11 MM8
+MM12 MM9
+MM13 MM10
+MM7 MM0
+MM4 MM3
+[folding_shape_generation]
+[placement]
+total_finger: 10
+expected #row: 1
+output mos: MM4
+input mos: MM15
+input mos: MM16
+input mos: MM17
+input mos: MM11
+input mos: MM12
+input mos: MM13
+input mos: MM7
+input mos: MM6
+input mos: MM5
+[ungrouped_pmos]
+MM7
+MM6
+MM5
+MM17
+MM16
+MM15
+MM13
+MM12
+MM11
+group: 
+MM4
+MM7
+MM6
+MM5
+MM13
+MM15
+MM12
+MM11
+MM16
+MM17
+hello group_placement
+target_area: 10
+BFS Time taken : 0.00435115
+bfs total time: 0.00435115
+dfs total time: 0
+number of cell: 2
+HPML: 112
+Set 1 intersecting elements: None
+Row 0: 
+hello print_shape
+MM0     MM1     MM2     MM8     MM9     MM10    MM14    MM18    MM19    MM3     
+--
+MM7     MM6     MM5     MM11    MM12    MM13    MM15    MM16    MM17    MM4     
+net40   C1      net55   net55   C2      net54   net54   C3      VSS     VSS     B1      net57   net57   B2      net56   net56   B3      net40   net40   A1      net59   net59   A2      net58   net58   A3      VSS     VSS     net40   Y       
+--
+net40   C1      net22   net22   C2      net40   net40   C3      net22   net22   B1      net24   net24   B2      net22   net22   B3      net24   net24   A1      VDD     VDD     A2      net24   net24   A3      VDD     VDD     net40   Y       
+net40   C1      net55   C2      net54   C3      VSS     B1      net57   B2      net56   B3      net40   A1      net59   A2      net58   A3      VSS     net40   Y       
+
+net40   C1      net22   C2      net40   C3      net22   B1      net24   B2      net22   B3      net24   A1      VDD     A2      net24   A3      VDD     net40   Y       
+
+HSP: 54
+HCD: 4
+hello print_shape
+MM0     MM1     MM2     MM8     MM9     MM10    MM14    MM18    MM19    MM3     
+--
+MM7     MM6     MM5     MM11    MM12    MM13    MM15    MM16    MM17    MM4     
+net40   C1      net55   net55   C2      net54   net54   C3      VSS     VSS     B1      net57   net57   B2      net56   net56   B3      net40   net40   A1      net59   net59   A2      net58   net58   A3      VSS     VSS     net40   Y       
+--
+net40   C1      net22   net22   C2      net40   net40   C3      net22   net22   B1      net24   net24   B2      net22   net22   B3      net24   net24   A1      VDD     VDD     A2      net24   net24   A3      VDD     VDD     net40   Y       
+net40   C1      net55   C2      net54   C3      VSS     B1      net57   B2      net56   B3      net40   A1      net59   A2      net58   A3      VSS     net40   Y       
+
+net40   C1      net22   C2      net40   C3      net22   B1      net24   B2      net22   B3      net24   A1      VDD     A2      net24   A3      VDD     net40   Y       
+
+area: 10
+hpml: 35
+#inter-row signals: 0
+total density: 295
+cost: 287
+hello print_shape
+MM0     MM1     MM2     MM8     MM9     MM10    MM14    MM18    MM19    MM3     
+--
+MM7     MM6     MM5     MM11    MM12    MM13    MM15    MM16    MM17    MM4     
+net40   C1      net55   net55   C2      net54   net54   C3      VSS     VSS     B1      net57   net57   B2      net56   net56   B3      net40   net40   A1      net59   net59   A2      net58   net58   A3      VSS     VSS     net40   Y       
+--
+net40   C1      net22   net22   C2      net40   net40   C3      net22   net22   B1      net24   net24   B2      net22   net22   B3      net24   net24   A1      VDD     VDD     A2      net24   net24   A3      VDD     VDD     net40   Y       
+net40   C1      net55   C2      net54   C3      VSS     B1      net57   B2      net56   B3      net40   A1      net59   A2      net58   A3      VSS     net40   Y       
+
+net40   C1      net22   C2      net40   C3      net22   B1      net24   B2      net22   B3      net24   A1      VDD     A2      net24   A3      VDD     net40   Y       
+
+[initial] cost: 287
+[epoch 0]
+hello satisfy_via_rule
+113131413131312131511
+SAT
+[via]
+1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 
+0 1 0 0 0 1 0 0 0 1 0 1 0 0 0 0 0 0 0 1 0 
+0 0 0 1 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 0 
+0 0 1 0 0 0 1 0 0 0 1 0 0 1 0 0 0 1 0 0 0 
+[metal]
+ 20  20  -1  -1  20  20  -1  -1   0   0  -1   0   0  -1  -1   0   0  -1  -1  19  19 
+ 17  17  -1  -1  10  10  -1  -1   9   9  -1  11  11  -1  -1  -1  -1  -1  -1  20  20 
+ -1  -1   8   8  -1  -1  16  16  -1  -1  -1  20  20  -1  -1   7   7  -1  -1  -1  -1 
+ -1  -1   1   1  -1  -1   1   1  -1   1   1  -1  -1   6   6  -1  -1  15  15  -1  -1 
+[metal density]
+1 1 1 1 1 0 0 0 1 1 1 1 1 1 1 1 1 0 0 0 1 
+0 1 0 0 0 1 0 0 0 1 0 1 0 0 0 0 0 0 0 1 0 
+0 0 0 1 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 0 
+0 0 1 1 1 1 1 1 1 1 1 0 0 1 0 0 0 1 0 0 0 
+[satisfy via metal]
+110011001101100110011
+110011001101100000011
+001100110001100110000
+001100110110011001100
+pass
+total_via_vertical_diff: 2
+total density: 35
+hello print_shape
+MM0     MM1     MM2     MM8     MM9     MM10    MM14    MM18    MM19    MM3     
+--
+MM7     MM6     MM5     MM11    MM12    MM13    MM15    MM16    MM17    MM4     
+net40   C1      net55   net55   C2      net54   net54   C3      VSS     VSS     B1      net57   net57   B2      net56   net56   B3      net40   net40   A1      net59   net59   A2      net58   net58   A3      VSS     VSS     net40   Y       
+--
+net40   C1      net22   net22   C2      net40   net40   C3      net22   net22   B1      net24   net24   B2      net22   net22   B3      net24   net24   A1      VDD     VDD     A2      net24   net24   A3      VDD     VDD     net40   Y       
+net40   C1      net55   C2      net54   C3      VSS     B1      net57   B2      net56   B3      net40   A1      net59   A2      net58   A3      VSS     net40   Y       
+
+net40   C1      net22   C2      net40   C3      net22   B1      net24   B2      net22   B3      net24   A1      VDD     A2      net24   A3      VDD     net40   Y       
+
+成功建立檔案：results/AO333x1.plmt
+max_cols: 10
+Generated results/AO333x1.plmt
+Time taken : 2.34369 seconds

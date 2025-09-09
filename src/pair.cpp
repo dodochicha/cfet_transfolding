@@ -21,6 +21,7 @@ void new_tr_pairing() {
             }
         }
     }
+
     // std::cout << "tr neighbors: " << std::endl;
     // for (auto tr: trs) {
     //     std::cout << tr->name << std::endl;
@@ -29,6 +30,7 @@ void new_tr_pairing() {
     //     }
     //     std::cout << std::endl;
     // }
+
     // identify all transmission gates
     std::vector<bool> pmos_visited;
     std::vector<bool> nmos_visited;
@@ -57,6 +59,7 @@ void new_tr_pairing() {
     // for (int i = 0; i < nmos.size(); i++) {
     //     std::cout << nmos[i]->name << " " << nmos_visited[i] << std::endl;
     // }
+
     // find all primary output node
     // std::cout << "find all primary output node" << std::endl;
     std::vector<Signal*> nets;
@@ -182,97 +185,8 @@ void new_tr_pairing() {
         }
         std::cout << std::endl;
         // do pairing
-        for (auto tr_p : p_network) {
-            // find same size
-            std::vector<Transistor*> same_size_trs;
-            for (auto tr_n : n_network) {
-                if (tr_n->width == tr_p->width) {
-                    // if (tr_n->num_finger == tr_p->num_finger) {
-                    same_size_trs.push_back(tr_n);
-                }
-            }
-            if (same_size_trs.size() != 0) {
-                // find tr_n with most common signals
-                Transistor* tr_paired = same_size_trs[0];
-                int max_common_signal = 0;
-                for (auto tr_n : same_size_trs) {
-                    std::vector<Signal*> tr_n_signals;
-                    tr_n_signals.push_back(tr_n->drain);
-                    tr_n_signals.push_back(tr_n->gate);
-                    tr_n_signals.push_back(tr_n->source);
-                    int d = std::count(tr_n_signals.begin(), tr_n_signals.end(), tr_p->drain);
-                    int g = std::count(tr_n_signals.begin(), tr_n_signals.end(), tr_p->gate);
-                    int s = std::count(tr_n_signals.begin(), tr_n_signals.end(), tr_p->source);
-                    int same_size = (tr_n->width == tr_p->width) ? 1 : 0;
-                    if (d + g + s > max_common_signal) {
-                        max_common_signal = d + g + s;
-                        tr_paired = tr_n;
-                    }
-                    // if (2 * d + 2 * g + 2 * s + same_size > max_common_signal) {
-                    //     max_common_signal = 2 * d + 2 * g + 2 * s + same_size;
-                    //     tr_paired = tr_n;
-                    // }
-                }
-                tr_pairs[tr_p] = tr_paired;
-                n_network.erase(std::remove(n_network.begin(), n_network.end(), tr_paired), n_network.end());
-
-                _pmos.erase(std::remove(_pmos.begin(), _pmos.end(), tr_p), _pmos.end());
-                _nmos.erase(std::remove(_nmos.begin(), _nmos.end(), tr_paired), _nmos.end());
-            } else {
-                // std::cout << "unpaired: " << tr_p->name << std::endl;
-                Transistor* tr_paired = n_network[0];
-                int max_common_signal = 0;
-                for (auto tr_n : n_network) {
-                    std::vector<Signal*> tr_n_signals;
-                    tr_n_signals.push_back(tr_n->drain);
-                    tr_n_signals.push_back(tr_n->gate);
-                    tr_n_signals.push_back(tr_n->source);
-                    int d = std::count(tr_n_signals.begin(), tr_n_signals.end(), tr_p->drain);
-                    int g = std::count(tr_n_signals.begin(), tr_n_signals.end(), tr_p->gate);
-                    int s = std::count(tr_n_signals.begin(), tr_n_signals.end(), tr_p->source);
-                    int same_size = (tr_n->width == tr_p->width) ? 1 : 0;
-                    if (d + g + s > max_common_signal) {
-                        max_common_signal = d + g + s;
-                        tr_paired = tr_n;
-                    }
-                    // if (2 * d + 2 * g + 2 * s + same_size > max_common_signal) {
-                    //     max_common_signal = 2 * d + 2 * g + 2 * s + same_size;
-                    //     tr_paired = tr_n;
-                    // }
-                }
-                tr_pairs[tr_p] = tr_paired;
-                n_network.erase(std::remove(n_network.begin(), n_network.end(), tr_paired), n_network.end());
-
-                _pmos.erase(std::remove(_pmos.begin(), _pmos.end(), tr_p), _pmos.end());
-                _nmos.erase(std::remove(_nmos.begin(), _nmos.end(), tr_paired), _nmos.end());
-            }
-        }
+        stable_matching(p_network, n_network);
     }
-    // std::cout << _pmos.size() << " " << _nmos.size() << std::endl;
-    // if (_pmos.size() != 0) {
-    //     for (auto tr_p: _pmos) {
-    //         Transistor* tr_null = new Transistor();
-    //         tr_null->name = "NULL";
-    //         tr_null->width = 0;
-    //         tr_null->drain = nullptr;
-    //         tr_null->gate = nullptr;
-    //         tr_null->source = nullptr;
-    //         tr_null->type = MosType::NMOS;
-    //         tr_pairs[tr_p] = tr_null;
-    //     }
-    // }
-    // else if (_nmos.size() != 0) {
-    //     for (auto tr_n: _nmos) {
-    //         Transistor* tr_null = new Transistor();
-    //         tr_null->name = "NULL";
-    //         tr_null->width = 0;
-    //         tr_null->drain = nullptr;
-    //         tr_null->gate = nullptr;
-    //         tr_null->source = nullptr;
-    //         tr_null->type = MosType::NMOS;
-    //         tr_pairs[tr_null] = tr_n;
-    //     }
-    // }
     // print pairs
     std::cout << "pairs: " << std::endl;
     for (auto pair : tr_pairs) {
@@ -311,458 +225,116 @@ void custom_pairing() {
     // tr_pairs[tr_dict["MM19"]] = tr_dict["MM16"];
 }
 
-// std::vector<CFET::Pshape*> CFET::pmos_placement() {
-//     std::unordered_map<int, Transistor*> tr_id;
-//     std::vector<int> nums;
-//     std::vector<Pshape*> placement_cand;
-//     int tr_idx = 0;
-//     int tr_size_sum = 0;
-//     int min_cell_width = std::numeric_limits<int>::max();
+void stable_matching(std::vector<Transistor*> pmos_set, std::vector<Transistor*> nmos_set) {
+    const int N = pmos_set.size();
+    std::vector<std::vector<int>> costs(N, std::vector<int>(N, 0));        // [p][n]
+    std::vector<std::vector<int>> prefNmos(N, std::vector<int>(N, 0));     // [n][p]
+    std::vector<std::vector<int>> prefPmos(N, std::vector<int>(N, 0));     // [p][n]
+    std::vector<std::vector<int>> nmosRanking(N, std::vector<int>(N, 0));  // [p][n]
+    std::queue<int> freeNmos;
+    std::vector<bool> nmosFree(N, true);
+    std::vector<int> nextProposal(N, 0);  // nmos[i] propose to pmos
+    std::vector<int> pmosPartner(N, -1);
+    for (int i = 0; i < pmos_set.size(); i++) {
+        Transistor* tr_p = pmos_set[i];
+        for (int j = 0; j < nmos_set.size(); j++) {
+            Transistor* tr_n = nmos_set[j];
+            bool same_width = tr_p->width == tr_n->width;
+            bool same_d = tr_p->drain == tr_n->drain;
+            bool same_g = tr_p->gate == tr_n->gate;
+            bool same_s = tr_p->source == tr_n->source;
+            int routablility = 0;
+            if (tr_p->drain->name == "VDD" && tr_n->drain->name != "VSS" || tr_p->drain->name != "VDD" && tr_n->drain->name == "VSS" ||
+                tr_p->drain->name == tr_n->drain->name) {
+                routablility += 1;
+            } else if (tr_p->drain->name != "VDD" && tr_n->drain->name != "VSS" && tr_p != tr_n) {
+                routablility += 2;
+            }
+            if (tr_p->gate->name == "VDD" && tr_n->gate->name != "VSS" || tr_p->gate->name != "VDD" && tr_n->gate->name == "VSS" ||
+                tr_p->gate->name == tr_n->gate->name) {
+                routablility += 1;
+            } else if (tr_p->gate->name != "VDD" && tr_n->gate->name != "VSS" && tr_p != tr_n) {
+                routablility += 2;
+            }
+            if (tr_p->source->name == "VDD" && tr_n->source->name != "VSS" || tr_p->source->name != "VDD" && tr_n->source->name == "VSS" ||
+                tr_p->source->name == tr_n->source->name) {
+                routablility += 1;
+            } else if (tr_p->source->name != "VDD" && tr_n->source->name != "VSS" && tr_p != tr_n) {
+                routablility += 2;
+            }
+            int cost = 2 * same_width + (same_d + same_g + same_s) - routablility;
+            costs[i][j] = cost;
+            std::cout << tr_p->name << " " << tr_n->name << " " << cost << std::endl;
+        }
+    }
 
-//     for (Transistor* tr : pmos) {
-//         tr_size_sum = tr_size_sum + tr->num_finger;
-//     }
+    for (int i = 0; i < N; i++) {
+        std::vector<int> id_arr;
+        for (int j = 0; j < N; j++) {
+            id_arr.push_back(j);
+        }
+        std::sort(id_arr.begin(), id_arr.end(), [&costs, &i](int a, int b) { return costs[i][a] > costs[i][b]; });
+        prefNmos[i] = id_arr;
+    }
 
-//     Node* root = new Node();
-//     for (int i = 0; i < pmos.size(); i++) {
-//         bool pruned = false;
-//         // std::cout << "i: " << i << std::endl;
-//         Node* current_node = new Node();
-//         std::vector<Transistor*> remained_pmos(pmos);
-//         Transistor* current_tr = pmos[i];
-//         std::vector<Pshape*> partial_placement;
-//         int tr_left_sum = tr_size_sum;
-//         int config_idx = 0;
-//         current_node->parent = root;
-//         remained_pmos.erase(std::remove(remained_pmos.begin(), remained_pmos.end(), pmos[i]), remained_pmos.end());
-//         current_node->remained_pmos = remained_pmos;
-//         current_node->tr = current_tr;
-//         current_node->fill = 0;
+    for (int i = 0; i < N; i++) {
+        std::vector<int> id_arr;
+        for (int j = 0; j < N; j++) {
+            id_arr.push_back(j);
+        }
+        std::sort(id_arr.begin(), id_arr.end(), [&costs, &i](int a, int b) { return costs[a][i] > costs[b][i]; });
+        prefPmos[i] = id_arr;
+    }
 
-//         tr_left_sum = tr_left_sum - current_tr->num_finger;
+    for (int i = 0; i < N; i++) {
+        freeNmos.push(i);
+    }
 
-//         for (int config_idx = 0; config_idx <= 1; config_idx++) {
-//             Pshape* pshape = new Pshape();
-//             pshape->tr_permutaton.push_back(current_tr);
-//             pshape->tr_shape_id.push_back(config_idx);
-//             pshape->width = pmos[i]->num_finger;
-//             pshape->ds_array.push_back(true);
-//             partial_placement.push_back(pshape);
-//         }
-//         current_node->partial_shapes = partial_placement;
-//         while (true) {
-//             if (pruned) {
-//                 pruned = false;
-//                 while (true) {
-//                     Node* n = current_node->parent;
-//                     tr_left_sum = tr_left_sum + current_tr->num_finger;
-//                     for (auto pshape : current_node->partial_shapes) {
-//                         delete pshape;
-//                     }
-//                     delete current_node;
-//                     current_node = n;
-//                     current_tr = n->tr;
-//                     if (((current_node->remained_pmos.size() == 0 || current_node->fill == current_node->remained_pmos.size() - 1) && (current_node != root))
-//                     ==
-//                         false) {
-//                         break;
-//                     }
-//                 }
-//                 current_node->fill++;
-//                 if (current_node == root) {
-//                     break;
-//                 }
-//             } else if (current_node->remained_pmos.size() == 0) {
-//                 if (current_node->partial_shapes.size() != 0) {
-//                     if (current_node->partial_shapes[0]->width < min_cell_width) {
-//                         min_cell_width = current_node->partial_shapes[0]->width;
-//                         for (auto item : placement_cand) {
-//                             delete item;
-//                             item = nullptr;
-//                         }
-//                         placement_cand.clear();
-//                         placement_cand = current_node->partial_shapes;
-//                         // std::cout << "min_cell_width: " << min_cell_width << std::endl;
-//                     } else if (current_node->partial_shapes[0]->width == min_cell_width) {
-//                         if (placement_cand.size() < max_placement_size) {
-//                             for (auto item : current_node->partial_shapes) {
-//                                 placement_cand.push_back(item);
-//                             }
-//                         } else {
-//                             for (auto item : current_node->partial_shapes) {
-//                                 delete item;
-//                             }
-//                         }
-//                         delete current_node;
-//                     }
-//                 }
-//                 while ((current_node->remained_pmos.size() == 0 || current_node->fill == current_node->remained_pmos.size() - 1) && (current_node != root)) {
-//                     Node* n = current_node->parent;
-//                     tr_left_sum = tr_left_sum + current_tr->num_finger;
-//                     current_node = n;
-//                     current_tr = n->tr;
-//                 }
-//                 current_node->fill++;
-//                 if (current_node == root) {
-//                     break;
-//                 }
-//             } else {
-//                 if (current_node->partial_shapes.size() == 0) {
-//                     current_node->partial_shapes.clear();
-//                     current_node->partial_shapes.shrink_to_fit();
-//                     pruned = true;
-//                     continue;
-//                 }
-//                 Node* n = new Node();
-//                 std::vector<Transistor*> remained_pmos = current_node->remained_pmos;
-//                 int config_idx = 0;
-//                 Transistor* old_tr = current_tr;
-//                 current_tr = remained_pmos[current_node->fill];
-//                 std::vector<Pshape*> new_partial_placement;
-//                 int min_partial_width = current_node->partial_shapes[0]->width + current_tr->num_finger + 1;
-//                 int low_bound;
-//                 tr_left_sum = tr_left_sum - current_tr->num_finger;
+    for (int i = 0; i < prefPmos.size(); i++) {
+        for (int j = 0; j < prefPmos[i].size(); j++) {
+            std::cout << nmos_set[i]->name << " pref " << pmos_set[prefPmos[i][j]]->name << std::endl;
+        }
+    }
 
-//                 for (auto old_pshape : current_node->partial_shapes) {
-//                     for (int config_idx = 0; config_idx <= 1; config_idx++) {
-//                         Pshape* pshape = new Pshape();
-//                         auto new_tr_permutation = old_pshape->tr_permutaton;
-//                         auto new_tr_shape_id = old_pshape->tr_shape_id;
-//                         auto new_ds_array = old_pshape->ds_array;
-//                         bool ds = (simple_get_right_active(old_tr, old_pshape->tr_shape_id.back()) == simple_get_left_active(current_tr, config_idx));
-//                         if (ds) {
-//                             if (old_pshape->width + current_tr->num_finger < min_partial_width) {
-//                                 new_partial_placement = std::vector<Pshape*>();
-//                                 min_partial_width = old_pshape->width + current_tr->num_finger;
-//                             }
-//                             new_tr_permutation.push_back(current_tr);
-//                             new_tr_shape_id.push_back(config_idx);
-//                             new_ds_array.push_back(true);
-//                             pshape->tr_permutaton = new_tr_permutation;
-//                             pshape->tr_shape_id = new_tr_shape_id;
-//                             pshape->width = old_pshape->width + current_tr->num_finger;
-//                             pshape->ds_array = new_ds_array;
-//                             new_partial_placement.push_back(pshape);
-//                         } else {
-//                             low_bound = old_pshape->width + current_tr->num_finger + 1 + tr_left_sum;
-//                             if (low_bound > min_cell_width) {
-//                                 delete pshape;
-//                                 pshape = nullptr;
-//                                 continue;
-//                             }
-//                             if (min_partial_width < old_pshape->width + current_tr->num_finger + 1) {
-//                                 delete pshape;
-//                                 pshape = nullptr;
-//                                 continue;
-//                             }
-//                             new_tr_permutation.push_back(current_tr);
-//                             new_tr_shape_id.push_back(config_idx);
-//                             new_ds_array.push_back(false);
-//                             pshape->tr_permutaton = new_tr_permutation;
-//                             pshape->tr_shape_id = new_tr_shape_id;
-//                             pshape->width = old_pshape->width + current_tr->num_finger + 1;
-//                             pshape->ds_array = new_ds_array;
-//                             new_partial_placement.push_back(pshape);
-//                         }
-//                     }
-//                 }
-//                 n->partial_shapes = new_partial_placement;
+    for (int i = 0; i < prefPmos.size(); i++) {
+        for (int j = 0; j < prefPmos[i].size(); j++) {
+            std::cout << pmos_set[i]->name << " pref " << nmos_set[prefNmos[i][j]]->name << std::endl;
+        }
+    }
 
-//                 remained_pmos.erase(std::remove(remained_pmos.begin(), remained_pmos.end(), current_tr), remained_pmos.end());
-//                 n->remained_pmos = remained_pmos;
-//                 n->parent = current_node;
-//                 n->tr = current_tr;
-//                 n->fill = 0;
-//                 current_node->children.push_back(n);
-//                 current_node = n;
-//             }
-//         }
-//         // std::cout << "placement_cand.size(): " << placement_cand.size() << std::endl;
-//     }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            nmosRanking[i][prefNmos[i][j]] = j;
+        }
+    }
 
-//     // print solution
-//     // std::cout << "min_cell_width: " << min_cell_width << std::endl;
-//     // std::cout << "number of cell: " << placement_cand.size() << std::endl;
-//     for (auto pshape : placement_cand) {
-//         // for (int i = 0; i < pshape->tr_permutaton.size(); i++) {
-//         //     Transistor* tr_p = pshape->tr_permutaton[i];
-//         //     // auto config = single_row_configs[tr_p][pshape->tr_shape_id[i]];
-//         //     for (int k = 0; k < tr_p->num_finger; k++) {
-//         //         std::cout << tr_p->name << " ";
-//         //     }
-//         // }
-//         // std::cout << std::endl;
-//         // print shape idx
-//         // for (int i = 0; i < pshape->tr_shape_id.size(); i++) {
-//         //     Transistor* tr_p = pshape->tr_permutaton[i];
-//         //     // auto config = single_row_configs[tr_p][pshape->tr_shape_id[i]];
-//         //         for (int k = 0; k < tr_p->num_finger; k++) {
-//         //             std::cout << pshape->tr_shape_id[i] << " ";
-//         //         }
-//         // }
-//         // std::cout << std::endl;
-//         // print active
-//         // for (int i = 0; i < pshape->tr_shape_id.size(); i++) {
-//         //     Transistor* tr_p = pshape->tr_permutaton[i];
-//         //     // auto config = single_row_configs[tr_p][pshape->tr_shape_id[i]];
-//         //     if (pshape->ds_array[i] == false) {
-//         //         std::cout << " dummy_gate ";
-//         //     }
-//         //     for (int k = 0; k < tr_p->num_finger; k++) {
-//         //         if (k % 2 == 0) {
-//         //             if (pshape->tr_shape_id[i] == 0) {
-//         //                 std::cout << std::left << std::setw(7 )<< tr_p->drain->name << " " << std::left << std::setw(7) << tr_p->gate->name << " " <<
-//         std::left << std::setw(7) << tr_p->source->name << " ";
-//         //             }
-//         //             else {
-//         //                 std::cout << std::left << std::setw(7) << tr_p->source->name << " " << std::left << std::setw(7) << tr_p->gate->name << " " <<
-//         std::left << std::setw(7) << tr_p->drain->name << " ";
-//         //             }
-//         //         }
-//         //         else {
-//         //             if (pshape->tr_shape_id[i] == 0) {
-//         //                 std::cout << std::left << std::setw(7) << tr_p->source->name << " " << std::left << std::setw(7) << tr_p->gate->name << " " <<
-//         std::left << std::setw(7) << tr_p->drain->name << " ";
-//         //             }
-//         //             else {
-//         //                 std::cout << std::left << std::setw(7 )<< tr_p->drain->name << " " << std::left << std::setw(7) << tr_p->gate->name << " " <<
-//         std::left << std::setw(7) << tr_p->source->name << " ";
-//         //             }
-//         //         }
-//         //     }
-//         // }
-//         // std::cout << std::endl;
-//     }
-//     return placement_cand;
-// }
+    while (!freeNmos.empty()) {
+        int nid = freeNmos.front();
+        freeNmos.pop();
+        int pid = prefPmos[nid][nextProposal[nid]];
+        int current = pmosPartner[pid];
+        std::cout << nmos_set[nid]->name << " propose #" << nextProposal[nid] << std::endl;
 
-// std::vector<CFET::Pshape*> CFET::nmos_placement() {
-//     std::unordered_map<int, Transistor*> tr_id;
-//     std::vector<int> nums;
-//     std::vector<Pshape*> placement_cand;
-//     int tr_idx = 0;
-//     int tr_size_sum = 0;
-//     int min_cell_width = std::numeric_limits<int>::max();
+        if (current == -1) {
+            pmosPartner[pid] = nid;
+            std::cout << nmos_set[pid]->name << " match " << pmos_set[nid]->name << std::endl;
+            nmosFree[nid] = false;
+        } else if (nmosRanking[pid][nid] < nmosRanking[pid][current]) {
+            // } else if (prefNmos[pid][nid] < prefNmos[pid][current]) {
+            pmosPartner[pid] = nid;
+            std::cout << nmos_set[pid]->name << " match " << pmos_set[nid]->name << std::endl;
+            nmosFree[nid] = false;
+            nmosFree[current] = true;
+            freeNmos.push(current);
+        } else {
+            freeNmos.push(nid);
+        }
+        nextProposal[nid]++;
+    }
 
-//     for (Transistor* tr : nmos) {
-//         tr_size_sum = tr_size_sum + tr->num_finger;
-//     }
-
-//     Node* root = new Node();
-//     for (int i = 0; i < nmos.size(); i++) {
-//         bool pruned = false;
-//         // std::cout << "i: " << i << std::endl;
-//         Node* current_node = new Node();
-//         std::vector<Transistor*> remained_pmos(nmos);
-//         Transistor* current_tr = nmos[i];
-//         std::vector<Pshape*> partial_placement;
-//         int tr_left_sum = tr_size_sum;
-//         int config_idx = 0;
-//         current_node->parent = root;
-//         remained_pmos.erase(std::remove(remained_pmos.begin(), remained_pmos.end(), nmos[i]), remained_pmos.end());
-//         current_node->remained_pmos = remained_pmos;
-//         current_node->tr = current_tr;
-//         current_node->fill = 0;
-
-//         tr_left_sum = tr_left_sum - current_tr->num_finger;
-
-//         for (int config_idx = 0; config_idx <= 1; config_idx++) {
-//             Pshape* pshape = new Pshape();
-//             pshape->tr_permutaton.push_back(current_tr);
-//             pshape->tr_shape_id.push_back(config_idx);
-//             pshape->width = nmos[i]->num_finger;
-//             pshape->ds_array.push_back(true);
-//             partial_placement.push_back(pshape);
-//         }
-//         current_node->partial_shapes = partial_placement;
-//         while (true) {
-//             if (pruned) {
-//                 pruned = false;
-//                 while (true) {
-//                     Node* n = current_node->parent;
-//                     tr_left_sum = tr_left_sum + current_tr->num_finger;
-//                     for (auto pshape : current_node->partial_shapes) {
-//                         delete pshape;
-//                     }
-//                     delete current_node;
-//                     current_node = n;
-//                     current_tr = n->tr;
-//                     if (((current_node->remained_pmos.size() == 0 || current_node->fill == current_node->remained_pmos.size() - 1) && (current_node != root))
-//                     ==
-//                         false) {
-//                         break;
-//                     }
-//                 }
-//                 current_node->fill++;
-//                 if (current_node == root) {
-//                     break;
-//                 }
-//             } else if (current_node->remained_pmos.size() == 0) {
-//                 if (current_node->partial_shapes.size() != 0) {
-//                     if (current_node->partial_shapes[0]->width < min_cell_width) {
-//                         min_cell_width = current_node->partial_shapes[0]->width;
-//                         for (auto item : placement_cand) {
-//                             delete item;
-//                             item = nullptr;
-//                         }
-//                         placement_cand.clear();
-//                         placement_cand = current_node->partial_shapes;
-//                         // std::cout << "min_cell_width: " << min_cell_width << std::endl;
-//                     } else if (current_node->partial_shapes[0]->width == min_cell_width) {
-//                         if (placement_cand.size() < max_placement_size) {
-//                             for (auto item : current_node->partial_shapes) {
-//                                 placement_cand.push_back(item);
-//                             }
-//                         } else {
-//                             for (auto item : current_node->partial_shapes) {
-//                                 delete item;
-//                             }
-//                         }
-//                         delete current_node;
-//                     }
-//                 }
-//                 while ((current_node->remained_pmos.size() == 0 || current_node->fill == current_node->remained_pmos.size() - 1) && (current_node != root)) {
-//                     Node* n = current_node->parent;
-//                     tr_left_sum = tr_left_sum + current_tr->num_finger;
-//                     current_node = n;
-//                     current_tr = n->tr;
-//                 }
-//                 current_node->fill++;
-//                 if (current_node == root) {
-//                     break;
-//                 }
-//             } else {
-//                 if (current_node->partial_shapes.size() == 0) {
-//                     current_node->partial_shapes.clear();
-//                     current_node->partial_shapes.shrink_to_fit();
-//                     pruned = true;
-//                     continue;
-//                 }
-//                 Node* n = new Node();
-//                 std::vector<Transistor*> remained_pmos = current_node->remained_pmos;
-//                 int config_idx = 0;
-//                 Transistor* old_tr = current_tr;
-//                 current_tr = remained_pmos[current_node->fill];
-//                 std::vector<Pshape*> new_partial_placement;
-//                 int min_partial_width = current_node->partial_shapes[0]->width + current_tr->num_finger + 1;
-//                 int low_bound;
-//                 tr_left_sum = tr_left_sum - current_tr->num_finger;
-
-//                 for (auto old_pshape : current_node->partial_shapes) {
-//                     for (int config_idx = 0; config_idx <= 1; config_idx++) {
-//                         Pshape* pshape = new Pshape();
-//                         auto new_tr_permutation = old_pshape->tr_permutaton;
-//                         auto new_tr_shape_id = old_pshape->tr_shape_id;
-//                         auto new_ds_array = old_pshape->ds_array;
-//                         bool ds = (simple_get_right_active(old_tr, old_pshape->tr_shape_id.back()) == simple_get_left_active(current_tr, config_idx));
-//                         if (ds) {
-//                             if (old_pshape->width + current_tr->num_finger < min_partial_width) {
-//                                 new_partial_placement = std::vector<Pshape*>();
-//                                 min_partial_width = old_pshape->width + current_tr->num_finger;
-//                             }
-//                             new_tr_permutation.push_back(current_tr);
-//                             new_tr_shape_id.push_back(config_idx);
-//                             new_ds_array.push_back(true);
-//                             pshape->tr_permutaton = new_tr_permutation;
-//                             pshape->tr_shape_id = new_tr_shape_id;
-//                             pshape->width = old_pshape->width + current_tr->num_finger;
-//                             pshape->ds_array = new_ds_array;
-//                             new_partial_placement.push_back(pshape);
-//                         } else {
-//                             low_bound = old_pshape->width + current_tr->num_finger + 1 + tr_left_sum;
-//                             if (low_bound > min_cell_width) {
-//                                 delete pshape;
-//                                 pshape = nullptr;
-//                                 continue;
-//                             }
-//                             if (min_partial_width < old_pshape->width + current_tr->num_finger + 1) {
-//                                 delete pshape;
-//                                 pshape = nullptr;
-//                                 continue;
-//                             }
-//                             new_tr_permutation.push_back(current_tr);
-//                             new_tr_shape_id.push_back(config_idx);
-//                             new_ds_array.push_back(false);
-//                             pshape->tr_permutaton = new_tr_permutation;
-//                             pshape->tr_shape_id = new_tr_shape_id;
-//                             pshape->width = old_pshape->width + current_tr->num_finger + 1;
-//                             pshape->ds_array = new_ds_array;
-//                             new_partial_placement.push_back(pshape);
-//                         }
-//                     }
-//                 }
-//                 n->partial_shapes = new_partial_placement;
-
-//                 remained_pmos.erase(std::remove(remained_pmos.begin(), remained_pmos.end(), current_tr), remained_pmos.end());
-//                 n->remained_pmos = remained_pmos;
-//                 n->parent = current_node;
-//                 n->tr = current_tr;
-//                 n->fill = 0;
-//                 current_node->children.push_back(n);
-//                 current_node = n;
-//             }
-//         }
-//         // std::cout << "placement_cand.size(): " << placement_cand.size() << std::endl;
-//     }
-
-//     // print solution
-//     // std::cout << "min_cell_width: " << min_cell_width << std::endl;
-//     // std::cout << "number of cell: " << placement_cand.size() << std::endl;
-//     for (auto pshape : placement_cand) {
-//         // for (int i = 0; i < pshape->tr_permutaton.size(); i++) {
-//         //     Transistor* tr_p = pshape->tr_permutaton[i];
-//         //     // auto config = single_row_configs[tr_p][pshape->tr_shape_id[i]];
-//         //     for (int k = 0; k < tr_p->num_finger; k++) {
-//         //         std::cout << tr_p->name << " ";
-//         //     }
-//         // }
-//         // std::cout << std::endl;
-//         // print shape idx
-//         // for (int i = 0; i < pshape->tr_shape_id.size(); i++) {
-//         //     Transistor* tr_p = pshape->tr_permutaton[i];
-//         //     // auto config = single_row_configs[tr_p][pshape->tr_shape_id[i]];
-//         //         for (int k = 0; k < tr_p->num_finger; k++) {
-//         //             std::cout << pshape->tr_shape_id[i] << " ";
-//         //         }
-//         // }
-//         // std::cout << std::endl;
-//         // print active
-//         // for (int i = 0; i < pshape->tr_shape_id.size(); i++) {
-//         //     Transistor* tr_p = pshape->tr_permutaton[i];
-//         //     // auto config = single_row_configs[tr_p][pshape->tr_shape_id[i]];
-//         //     if (pshape->ds_array[i] == false) {
-//         //         std::cout << " dummy_gate ";
-//         //     }
-//         //     for (int k = 0; k < tr_p->num_finger; k++) {
-//         //         if (k % 2 == 0) {
-//         //             if (pshape->tr_shape_id[i] == 0) {
-//         //                 std::cout << std::left << std::setw(7 )<< tr_p->drain->name << " " << std::left << std::setw(7) << tr_p->gate->name << " " <<
-//         std::left << std::setw(7) << tr_p->source->name << " ";
-//         //             }
-//         //             else {
-//         //                 std::cout << std::left << std::setw(7) << tr_p->source->name << " " << std::left << std::setw(7) << tr_p->gate->name << " " <<
-//         std::left << std::setw(7) << tr_p->drain->name << " ";
-//         //             }
-//         //         }
-//         //         else {
-//         //             if (pshape->tr_shape_id[i] == 0) {
-//         //                 std::cout << std::left << std::setw(7) << tr_p->source->name << " " << std::left << std::setw(7) << tr_p->gate->name << " " <<
-//         std::left << std::setw(7) << tr_p->drain->name << " ";
-//         //             }
-//         //             else {
-//         //                 std::cout << std::left << std::setw(7 )<< tr_p->drain->name << " " << std::left << std::setw(7) << tr_p->gate->name << " " <<
-//         std::left << std::setw(7) << tr_p->source->name << " ";
-//         //             }
-//         //         }
-//         //     }
-//         // }
-//         // std::cout << std::endl;
-//     }
-//     return placement_cand;
-// }
-
-// CFET::Signal* CFET::simple_get_right_active(Transistor* tr, int shape_idx) {
-//     return (tr->num_finger % 2 == 1) ? (shape_idx == 0) ? tr->source : tr->drain : (shape_idx == 0) ? tr->drain : tr->source;
-// }
-
-// CFET::Signal* CFET::simple_get_left_active(Transistor* tr, int shape_idx) { return (shape_idx == 0) ? tr->drain : tr->source; }
+    std::cout << "[matching result]" << std::endl;
+    for (int i = 0; i < N; i++) {
+        std::cout << pmos_set[i]->name << " <-> " << nmos_set[pmosPartner[i]]->name << std::endl;
+        tr_pairs[pmos_set[i]] = nmos_set[pmosPartner[i]];
+    }
+}

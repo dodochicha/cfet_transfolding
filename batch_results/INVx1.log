@@ -1,0 +1,127 @@
+Hello, World!
+cell/INVx1.txt
+Available CPU cores: 16
+MM1 num_finger: 1
+MM0 num_finger: 1
+#tr/#net: 2/4
+compound_gates: 
+
+MM1
+MM0
+
+transmission_gates: 
+p-network: 
+MM1
+n-network: 
+MM0
+
+MM1 MM0 2
+MM0 pref MM1
+MM1 pref MM0
+MM0 propose #0
+MM0 match MM1
+[matching result]
+MM1 <-> MM0
+pairs: 
+MM1 MM0
+[folding_shape_generation]
+[placement]
+total_finger: 1
+expected #row: 1
+output mos: MM1
+input mos: MM1
+[ungrouped_pmos]
+group: 
+MM1
+hello group_placement
+target_area: 1
+BFS Time taken : 1.1147e-05
+bfs total time: 1.1147e-05
+dfs total time: 0
+number of cell: 4
+HPML: 923410168
+Set 1 intersecting elements: None
+Row 0: 
+hello print_shape
+MM0     
+--
+MM1     
+VSS     A       Y       
+--
+VDD     A       Y       
+VSS     A       Y       
+
+VDD     A       Y       
+
+HSP: 0
+HCD: 1
+hello print_shape
+MM0     
+--
+MM1     
+VSS     A       Y       
+--
+VDD     A       Y       
+VSS     A       Y       
+
+VDD     A       Y       
+
+area: 1
+hpml: 0
+#inter-row signals: 0
+total density: 0
+cost: 25
+hello print_shape
+MM0     
+--
+MM1     
+VSS     A       Y       
+--
+VDD     A       Y       
+VSS     A       Y       
+
+VDD     A       Y       
+
+[initial] cost: 25
+[epoch 0]
+hello satisfy_via_rule
+511
+SAT
+[via]
+0 1 0 
+0 0 0 
+0 0 1 
+0 0 0 
+[metal]
+  3   3  -1 
+ -1  -1  -1 
+ -1   0   0 
+ -1  -1  -1 
+[metal density]
+0 1 0 
+0 0 0 
+0 0 1 
+0 0 0 
+[satisfy via metal]
+110
+000
+011
+000
+pass
+total_via_vertical_diff: 0
+total density: 2
+hello print_shape
+MM0     
+--
+MM1     
+VSS     A       Y       
+--
+VDD     A       Y       
+VSS     A       Y       
+
+VDD     A       Y       
+
+成功建立檔案：results/INVx1.plmt
+max_cols: 1
+Generated results/INVx1.plmt
+Time taken : 0.0521399 seconds

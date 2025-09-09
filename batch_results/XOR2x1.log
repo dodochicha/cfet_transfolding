@@ -1,0 +1,216 @@
+Hello, World!
+cell/XOR2x1.txt
+Available CPU cores: 16
+MM4 num_finger: 2
+MM5 num_finger: 2
+MM6 num_finger: 2
+MM2 num_finger: 1
+MM3 num_finger: 1
+MM11 num_finger: 2
+MM10 num_finger: 2
+MM9 num_finger: 2
+MM0 num_finger: 1
+MM1 num_finger: 1
+#tr/#net: 10/9
+compound_gates: 
+
+MM2
+MM0
+MM1
+
+MM6
+MM10
+MM9
+
+transmission_gates: 
+p-network: 
+MM2
+MM3
+n-network: 
+MM0
+MM1
+
+MM2 MM0 -1
+MM2 MM1 1
+MM3 MM0 0
+MM3 MM1 -2
+MM0 pref MM3
+MM0 pref MM2
+MM1 pref MM2
+MM1 pref MM3
+MM2 pref MM1
+MM2 pref MM0
+MM3 pref MM0
+MM3 pref MM1
+MM0 propose #0
+MM1 match MM2
+MM1 propose #0
+MM0 match MM3
+[matching result]
+MM2 <-> MM1
+MM3 <-> MM0
+p-network: 
+MM6
+MM4
+MM5
+n-network: 
+MM10
+MM11
+MM9
+
+MM6 MM10 -2
+MM6 MM11 -3
+MM6 MM9 1
+MM4 MM10 -3
+MM4 MM11 0
+MM4 MM9 -2
+MM5 MM10 -1
+MM5 MM11 -2
+MM5 MM9 -2
+MM10 pref MM5
+MM10 pref MM6
+MM10 pref MM4
+MM11 pref MM4
+MM11 pref MM5
+MM11 pref MM6
+MM9 pref MM6
+MM9 pref MM4
+MM9 pref MM5
+MM6 pref MM9
+MM6 pref MM10
+MM6 pref MM11
+MM4 pref MM11
+MM4 pref MM9
+MM4 pref MM10
+MM5 pref MM10
+MM5 pref MM11
+MM5 pref MM9
+MM10 propose #0
+MM9 match MM6
+MM11 propose #0
+MM11 match MM4
+MM9 propose #0
+MM10 match MM5
+[matching result]
+MM6 <-> MM9
+MM4 <-> MM11
+MM5 <-> MM10
+pairs: 
+MM5 MM10
+MM4 MM11
+MM6 MM9
+MM3 MM0
+MM2 MM1
+[folding_shape_generation]
+[placement]
+total_finger: 8
+expected #row: 1
+output mos: MM6
+input mos: MM4
+input mos: MM5
+[ungrouped_pmos]
+MM4
+MM5
+MM2
+MM3
+group: 
+MM6
+MM2
+MM5
+MM3
+MM4
+hello group_placement
+target_area: 8
+BFS Time taken : 0.000492402
+Time taken : 0.000519456 seconds
+target_area: 9
+BFS Time taken : 0.00470387
+bfs total time: 0.00519627
+dfs total time: 1.2716e-05
+number of cell: 8
+HPML: 0
+Set 1 intersecting elements: None
+Row 0: 
+hello print_shape
+MM11    MM11    MM0     MM1             MM10    MM10    MM9     MM9     
+--
+MM4     MM4     MM3     MM2             MM5     MM5     MM6     MM6     
+VSS     A       net047  net047  A       VSS     VSS     A       net036  net036  B       VSS     ------------------------Y       B       net047  net047  B       Y       Y       net036  VSS     VSS     net036  Y       
+--
+VDD     A       net019  net019  A       VDD     VDD     A       net048  net048  B       net036  ------------------------net019  B       VDD     VDD     B       net019  net019  net036  Y       Y       net036  net019  
+VSS     A       net047  A       VSS     A       net036  B       VSS     Null    Y       B       net047  B       Y       net036  VSS     net036  Y       
+
+VDD     A       net019  A       VDD     A       net048  B       net036  Null    net019  B       VDD     B       net019  net036  Y       net036  net019  
+
+HSP: 74
+HCD: 4
+hello print_shape
+MM11    MM11    MM0     MM1             MM10    MM10    MM9     MM9     
+--
+MM4     MM4     MM3     MM2             MM5     MM5     MM6     MM6     
+VSS     A       net047  net047  A       VSS     VSS     A       net036  net036  B       VSS     ------------------------Y       B       net047  net047  B       Y       Y       net036  VSS     VSS     net036  Y       
+--
+VDD     A       net019  net019  A       VDD     VDD     A       net048  net048  B       net036  ------------------------net019  B       VDD     VDD     B       net019  net019  net036  Y       Y       net036  net019  
+VSS     A       net047  A       VSS     A       net036  B       VSS     Null    Y       B       net047  B       Y       net036  VSS     net036  Y       
+
+VDD     A       net019  A       VDD     A       net048  B       net036  Null    net019  B       VDD     B       net019  net036  Y       net036  net019  
+
+area: 9
+hpml: 55
+#inter-row signals: 0
+total density: 475
+cost: 284
+hello print_shape
+MM11    MM11    MM0     MM1             MM10    MM10    MM9     MM9     
+--
+MM4     MM4     MM3     MM2             MM5     MM5     MM6     MM6     
+VSS     A       net047  net047  A       VSS     VSS     A       net036  net036  B       VSS     ------------------------Y       B       net047  net047  B       Y       Y       net036  VSS     VSS     net036  Y       
+--
+VDD     A       net019  net019  A       VDD     VDD     A       net048  net048  B       net036  ------------------------net019  B       VDD     VDD     B       net019  net019  net036  Y       Y       net036  net019  
+VSS     A       net047  A       VSS     A       net036  B       VSS     Null    Y       B       net047  B       Y       net036  VSS     net036  Y       
+
+VDD     A       net019  A       VDD     A       net048  B       net036  Null    net019  B       VDD     B       net019  net036  Y       net036  net019  
+
+[initial] cost: 284
+[epoch 0]
+hello satisfy_via_rule
+5131513140312131413
+SAT
+[via]
+0 0 1 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 1 
+0 1 0 1 0 1 0 1 0 0 0 1 0 1 0 0 0 0 0 
+0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 1 0 1 0 
+0 0 0 0 0 0 1 0 1 0 1 0 0 0 1 0 1 0 1 
+[metal]
+ -1   0   0  -1  -1  -1  -1  -1  -1  -1   0   0  -1  -1   0   0  -1   0   0 
+ -1   8   8   8   8   8  -1   7   7  -1   7   7   7   7  -1  -1  -1  -1  -1 
+ -1   5   5  -1  -1  -1  -1  -1  -1  -1  -1  -1   5   5  -1   1   1   1   1 
+ -1  -1  -1  -1  -1  -1   1   1   1  -1   2   2   2   2   2   2   2   2   2 
+[metal density]
+0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+0 1 1 1 1 1 0 1 1 1 1 1 1 1 0 0 0 0 0 
+0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 0 
+0 0 0 0 0 0 1 1 1 0 1 1 1 1 1 1 1 1 1 
+[satisfy via metal]
+0110000000110011011
+0111110110111100000
+0110000000001101111
+0000001110111111111
+pass
+total_via_vertical_diff: 1
+total density: 55
+hello print_shape
+MM11    MM11    MM0     MM1             MM10    MM10    MM9     MM9     
+--
+MM4     MM4     MM3     MM2             MM5     MM5     MM6     MM6     
+VSS     A       net047  net047  A       VSS     VSS     A       net036  net036  B       VSS     ------------------------Y       B       net047  net047  B       Y       Y       net036  VSS     VSS     net036  Y       
+--
+VDD     A       net019  net019  A       VDD     VDD     A       net048  net048  B       net036  ------------------------net019  B       VDD     VDD     B       net019  net019  net036  Y       Y       net036  net019  
+VSS     A       net047  A       VSS     A       net036  B       VSS     Null    Y       B       net047  B       Y       net036  VSS     net036  Y       
+
+VDD     A       net019  A       VDD     A       net048  B       net036  Null    net019  B       VDD     B       net019  net036  Y       net036  net019  
+
+成功建立檔案：results/XOR2x1.plmt
+max_cols: 9
+Generated results/XOR2x1.plmt
+Time taken : 0.810945 seconds

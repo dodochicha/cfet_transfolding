@@ -1,0 +1,411 @@
+Hello, World!
+cell/DFFHQNx2.txt
+Available CPU cores: 16
+MM25 num_finger: 2
+MM19 num_finger: 1
+MM18 num_finger: 1
+MM15 num_finger: 1
+MM13 num_finger: 1
+MM7 num_finger: 1
+MM11 num_finger: 1
+MM10 num_finger: 1
+MM22 num_finger: 1
+MM1 num_finger: 1
+MM3 num_finger: 1
+MM21 num_finger: 1
+MM24 num_finger: 2
+MM17 num_finger: 1
+MM16 num_finger: 1
+MM14 num_finger: 1
+MM12 num_finger: 1
+MM6 num_finger: 1
+MM9 num_finger: 1
+MM8 num_finger: 1
+MM23 num_finger: 1
+MM5 num_finger: 1
+MM4 num_finger: 1
+MM20 num_finger: 1
+#tr/#net: 24/17
+compound_gates: 
+
+MM15
+MM14
+
+MM25
+MM24
+
+MM21
+MM20
+
+MM10
+MM1
+MM9
+MM4
+
+MM18
+MM17
+
+MM7
+MM6
+
+MM22
+MM23
+
+transmission_gates: 
+
+MM13
+MM12
+p-network: 
+MM15
+n-network: 
+MM14
+
+MM15 MM14 2
+MM14 pref MM15
+MM15 pref MM14
+MM14 propose #0
+MM14 match MM15
+[matching result]
+MM15 <-> MM14
+p-network: 
+MM25
+n-network: 
+MM24
+
+MM25 MM24 2
+MM24 pref MM25
+MM25 pref MM24
+MM24 propose #0
+MM24 match MM25
+[matching result]
+MM25 <-> MM24
+p-network: 
+MM21
+n-network: 
+MM20
+
+MM21 MM20 2
+MM20 pref MM21
+MM21 pref MM20
+MM20 propose #0
+MM20 match MM21
+[matching result]
+MM21 <-> MM20
+p-network: 
+MM10
+MM11
+MM1
+MM3
+n-network: 
+MM9
+MM8
+MM4
+MM5
+
+MM10 MM9 -2
+MM10 MM8 -3
+MM10 MM4 -2
+MM10 MM5 -5
+MM11 MM9 -3
+MM11 MM8 0
+MM11 MM4 -5
+MM11 MM5 -4
+MM1 MM9 -2
+MM1 MM8 -5
+MM1 MM4 -2
+MM1 MM5 -3
+MM3 MM9 -5
+MM3 MM8 -4
+MM3 MM4 -3
+MM3 MM5 0
+MM9 pref MM10
+MM9 pref MM1
+MM9 pref MM11
+MM9 pref MM3
+MM8 pref MM11
+MM8 pref MM10
+MM8 pref MM3
+MM8 pref MM1
+MM4 pref MM10
+MM4 pref MM1
+MM4 pref MM3
+MM4 pref MM11
+MM5 pref MM3
+MM5 pref MM1
+MM5 pref MM11
+MM5 pref MM10
+MM10 pref MM9
+MM10 pref MM4
+MM10 pref MM8
+MM10 pref MM5
+MM11 pref MM8
+MM11 pref MM9
+MM11 pref MM5
+MM11 pref MM4
+MM1 pref MM9
+MM1 pref MM4
+MM1 pref MM5
+MM1 pref MM8
+MM3 pref MM5
+MM3 pref MM4
+MM3 pref MM8
+MM3 pref MM9
+MM9 propose #0
+MM9 match MM10
+MM8 propose #0
+MM8 match MM11
+MM4 propose #0
+MM5 propose #0
+MM5 match MM3
+MM4 propose #1
+MM4 match MM1
+[matching result]
+MM10 <-> MM9
+MM11 <-> MM8
+MM1 <-> MM4
+MM3 <-> MM5
+p-network: 
+MM18
+MM19
+n-network: 
+MM17
+MM16
+
+MM18 MM17 -2
+MM18 MM16 -3
+MM19 MM17 -3
+MM19 MM16 0
+MM17 pref MM18
+MM17 pref MM19
+MM16 pref MM19
+MM16 pref MM18
+MM18 pref MM17
+MM18 pref MM16
+MM19 pref MM16
+MM19 pref MM17
+MM17 propose #0
+MM17 match MM18
+MM16 propose #0
+MM16 match MM19
+[matching result]
+MM18 <-> MM17
+MM19 <-> MM16
+p-network: 
+MM7
+n-network: 
+MM6
+
+MM7 MM6 2
+MM6 pref MM7
+MM7 pref MM6
+MM6 propose #0
+MM6 match MM7
+[matching result]
+MM7 <-> MM6
+p-network: 
+MM22
+n-network: 
+MM23
+
+MM22 MM23 2
+MM23 pref MM22
+MM22 pref MM23
+MM23 propose #0
+MM23 match MM22
+[matching result]
+MM22 <-> MM23
+pairs: 
+MM7 MM6
+MM19 MM16
+MM18 MM17
+MM1 MM4
+MM11 MM8
+MM10 MM9
+MM21 MM20
+MM25 MM24
+MM3 MM5
+MM15 MM14
+MM22 MM23
+MM13 MM12
+[folding_shape_generation]
+[placement]
+total_finger: 13
+expected #row: 2
+output mos: MM25
+input mos: MM21
+input mos: MM3
+[ungrouped_pmos]
+MM19
+MM18
+MM15
+MM13
+MM7
+MM11
+MM10
+MM22
+MM1
+MM21
+group: 
+MM25
+MM18
+MM13
+MM15
+MM19
+MM7
+hello group_placement
+target_area: 7
+BFS Time taken : 0.00118294
+bfs total time: 0.00118294
+dfs total time: 0
+number of cell: 8
+group: 
+MM3
+MM1
+MM10
+MM22
+MM21
+MM11
+hello group_placement
+target_area: 6
+BFS Time taken : 0.00100542
+bfs total time: 0.00100542
+dfs total time: 0
+number of cell: 4
+HPML: 0
+HPML: 0
+Set 1 intersecting elements: clkn net29 clkb net15 
+Set 2 intersecting elements: clkn net29 clkb net15 
+Row 0: 
+hello print_shape
+MM14    MM16    MM17    MM12    MM6     MM24    MM24    
+--
+MM15    MM19    MM18    MM13    MM7     MM25    MM25    
+net37   net32   VSS     VSS     net37   pd5     pd5     clkn    net32   net32   clkb    net29   net29   net15   VSS     VSS     net32   QN      QN      net32   VSS     
+--
+net37   net32   VDD     VDD     net37   pd4     pd4     clkb    net32   net32   clkn    net29   net29   net15   VDD     VDD     net32   QN      QN      net32   VDD     
+net37   net32   VSS     net37   pd5     clkn    net32   clkb    net29   net15   VSS     net32   QN      net32   VSS     
+
+net37   net32   VDD     net37   pd4     clkb    net32   clkn    net29   net15   VDD     net32   QN      net32   VDD     
+
+HSP: 30
+HCD: 2
+Row 1: 
+hello print_shape
+MM20    MM8     MM9     MM4     MM5     MM23    
+--
+MM21    MM11    MM10    MM1     MM3     MM22    
+clkn    CLK     VSS     VSS     net29   pd3     pd3     clkb    net15   net15   clkn    pd1     pd1     D       VSS     VSS     clkn    clkb    
+--
+clkn    CLK     VDD     VDD     net29   pd2     pd2     clkn    net15   net15   clkb    pu1     pu1     D       VDD     VDD     clkn    clkb    
+clkn    CLK     VSS     net29   pd3     clkb    net15   clkn    pd1     D       VSS     clkn    clkb    
+
+clkn    CLK     VDD     net29   pd2     clkn    net15   clkb    pu1     D       VDD     clkn    clkb    
+
+HSP: 34
+HCD: 3
+pshape_set.size(): 1
+hello print_shape
+MM14    MM16    MM17    MM12    MM6     MM24    MM24    
+MM23    MM5     MM4     MM9     MM8     MM20            
+--
+MM15    MM19    MM18    MM13    MM7     MM25    MM25    
+MM22    MM3     MM1     MM10    MM11    MM21            
+net37   net32   VSS     VSS     net37   pd5     pd5     clkn    net32   net32   clkb    net29   net29   net15   VSS     VSS     net32   QN      QN      net32   VSS     
+clkb    clkn    VSS     VSS     D       pd1     pd1     clkn    net15   net15   clkb    pd3     pd3     net29   VSS     VSS     CLK     clkn    ------------------------
+--
+net37   net32   VDD     VDD     net37   pd4     pd4     clkb    net32   net32   clkn    net29   net29   net15   VDD     VDD     net32   QN      QN      net32   VDD     
+clkb    clkn    VDD     VDD     D       pu1     pu1     clkb    net15   net15   clkn    pd2     pd2     net29   VDD     VDD     CLK     clkn    ------------------------
+net37   net32   VSS     net37   pd5     clkn    net32   clkb    net29   net15   VSS     net32   QN      net32   VSS     
+clkb    clkn    VSS     D       pd1     clkn    net15   clkb    pd3     net29   VSS     CLK     clkn    Null    Null    
+
+net37   net32   VDD     net37   pd4     clkb    net32   clkn    net29   net15   VDD     net32   QN      net32   VDD     
+clkb    clkn    VDD     D       pu1     clkb    net15   clkn    pd2     net29   VDD     CLK     clkn    Null    Null    
+
+area: 14
+hpml: 41
+#inter-row signals: 4
+total density: 361
+cost: 454
+hello print_shape
+MM14    MM16    MM17    MM12    MM6     MM24    MM24    
+MM23    MM5     MM4     MM9     MM8     MM20            
+--
+MM15    MM19    MM18    MM13    MM7     MM25    MM25    
+MM22    MM3     MM1     MM10    MM11    MM21            
+net37   net32   VSS     VSS     net37   pd5     pd5     clkn    net32   net32   clkb    net29   net29   net15   VSS     VSS     net32   QN      QN      net32   VSS     
+clkb    clkn    VSS     VSS     D       pd1     pd1     clkn    net15   net15   clkb    pd3     pd3     net29   VSS     VSS     CLK     clkn    ------------------------
+--
+net37   net32   VDD     VDD     net37   pd4     pd4     clkb    net32   net32   clkn    net29   net29   net15   VDD     VDD     net32   QN      QN      net32   VDD     
+clkb    clkn    VDD     VDD     D       pu1     pu1     clkb    net15   net15   clkn    pd2     pd2     net29   VDD     VDD     CLK     clkn    ------------------------
+net37   net32   VSS     net37   pd5     clkn    net32   clkb    net29   net15   VSS     net32   QN      net32   VSS     
+clkb    clkn    VSS     D       pd1     clkn    net15   clkb    pd3     net29   VSS     CLK     clkn    Null    Null    
+
+net37   net32   VDD     net37   pd4     clkb    net32   clkn    net29   net15   VDD     net32   QN      net32   VDD     
+clkb    clkn    VDD     D       pu1     clkb    net15   clkn    pd2     net29   VDD     CLK     clkn    Null    Null    
+
+[initial] cost: 454
+[epoch 0]
+hello satisfy_via_rule
+115133131151115
+115133133151100
+SAT
+[via]
+0 0 0 0 0 1 0 1 0 1 0 0 0 0 0 
+0 1 0 0 0 0 1 0 0 0 0 1 0 1 0 
+1 0 0 1 0 0 0 1 0 0 0 0 1 0 0 
+0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 
+0 0 0 0 0 0 0 1 0 0 0 0 1 0 0 
+0 1 0 0 0 1 0 0 0 1 0 0 0 0 0 
+0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 
+1 0 0 0 0 1 0 1 0 0 0 1 0 0 0 
+[metal]
+ -1  -1  -1  -1   9   9   9   9  -1  11  11  -1  -1  -1  -1 
+ 13  13  -1  -1  -1  -1  13  13  -1  -1  -1  13  13  13  -1 
+  5   5   5   5  -1  -1  16  16  -1  -1  -1   7   7   7  -1 
+ -1  -1  -1  -1  16  16  -1  -1  14  14  -1  -1  -1  -1  -1 
+ -1  -1  -1  -1  -1  -1   9   9  -1  -1  -1   9   9  -1  -1 
+  9   9  -1  -1   9   9  -1  -1  -1  14  14  -1  -1  -1  -1 
+ -1  -1   6   6  -1  -1  11  11  -1  -1  -1  -1  -1  -1  -1 
+ 16  16  -1  -1  16  16  16  16  -1  -1   4   4  -1  -1  -1 
+[metal density]
+0 0 0 0 0 1 1 1 0 1 0 0 0 0 0 
+0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 
+1 1 1 1 0 0 0 1 0 0 0 0 1 0 0 
+0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 
+0 0 0 0 0 0 0 1 1 1 1 1 1 0 0 
+0 1 1 1 1 1 0 0 0 1 0 0 0 0 0 
+0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 
+1 1 1 1 1 1 1 1 0 0 0 1 0 0 0 
+[satisfy via metal]
+000011110110000
+110000110001110
+111100110001110
+000011001100000
+000000110001100
+110011000110000
+001100110000000
+110011110011000
+pass
+total_via_vertical_diff: 2
+total density: 48
+hello print_shape
+MM14    MM16    MM17    MM12    MM6     MM24    MM24    
+MM23    MM5     MM4     MM9     MM8     MM20            
+--
+MM15    MM19    MM18    MM13    MM7     MM25    MM25    
+MM22    MM3     MM1     MM10    MM11    MM21            
+net37   net32   VSS     VSS     net37   pd5     pd5     clkn    net32   net32   clkb    net29   net29   net15   VSS     VSS     net32   QN      QN      net32   VSS     
+clkb    clkn    VSS     VSS     D       pd1     pd1     clkn    net15   net15   clkb    pd3     pd3     net29   VSS     VSS     CLK     clkn    ------------------------
+--
+net37   net32   VDD     VDD     net37   pd4     pd4     clkb    net32   net32   clkn    net29   net29   net15   VDD     VDD     net32   QN      QN      net32   VDD     
+clkb    clkn    VDD     VDD     D       pu1     pu1     clkb    net15   net15   clkn    pd2     pd2     net29   VDD     VDD     CLK     clkn    ------------------------
+net37   net32   VSS     net37   pd5     clkn    net32   clkb    net29   net15   VSS     net32   QN      net32   VSS     
+clkb    clkn    VSS     D       pd1     clkn    net15   clkb    pd3     net29   VSS     CLK     clkn    Null    Null    
+
+net37   net32   VDD     net37   pd4     clkb    net32   clkn    net29   net15   VDD     net32   QN      net32   VDD     
+clkb    clkn    VDD     D       pu1     clkb    net15   clkn    pd2     net29   VDD     CLK     clkn    Null    Null    
+
+成功建立檔案：results/DFFHQNx2.plmt
+max_cols: 7
+Generated results/DFFHQNx2.plmt
+Time taken : 4.07282 seconds

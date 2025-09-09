@@ -1,0 +1,18 @@
+.SUBCKT DHLx2_ASAP7_75t_L CLK D Q VDD VSS
+MM5 pd1 D VSS VSS nmos_lvt w=81.0n l=20n nfin=3
+MM4 MH clkb pd1 VSS nmos_lvt w=81.0n l=20n nfin=3
+MM2 clkb clkn VSS VSS nmos_lvt w=54.0n l=20n nfin=2
+MM24 Q MH VSS VSS nmos_lvt w=162.00n l=20n nfin=6
+MM0 clkn CLK VSS VSS nmos_lvt w=54.0n l=20n nfin=2
+MM6 net088 MH VSS VSS nmos_lvt w=27.0n l=20n nfin=1
+MM9 MH clkn pd3 VSS nmos_lvt w=27.0n l=20n nfin=1
+MM8 pd3 net088 VSS VSS nmos_lvt w=27.0n l=20n nfin=1
+MM11 pd2 net088 VDD VDD pmos_lvt w=27.0n l=20n nfin=1
+MM10 MH clkb pd2 VDD pmos_lvt w=27n l=20n nfin=1
+MM1 MH clkn pu1 VDD pmos_lvt w=81.0n l=20n nfin=3
+MM3 pu1 D VDD VDD pmos_lvt w=81.0n l=20n nfin=3
+MM13 clkb clkn VDD VDD pmos_lvt w=54.0n l=20n nfin=2
+MM12 clkn CLK VDD VDD pmos_lvt w=54.0n l=20n nfin=2
+MM25 Q MH VDD VDD pmos_lvt w=162.00n l=20n nfin=6
+MM7 net088 MH VDD VDD pmos_lvt w=27.0n l=20n nfin=1
+.ENDS

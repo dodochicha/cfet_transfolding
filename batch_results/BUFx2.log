@@ -1,0 +1,147 @@
+Hello, World!
+cell/BUFx2.txt
+Available CPU cores: 16
+MM0 num_finger: 2
+MM1 num_finger: 1
+MM3 num_finger: 2
+MM2 num_finger: 1
+#tr/#net: 4/5
+compound_gates: 
+
+MM0
+MM3
+
+MM1
+MM2
+
+transmission_gates: 
+p-network: 
+MM0
+n-network: 
+MM3
+
+MM0 MM3 2
+MM3 pref MM0
+MM0 pref MM3
+MM3 propose #0
+MM3 match MM0
+[matching result]
+MM0 <-> MM3
+p-network: 
+MM1
+n-network: 
+MM2
+
+MM1 MM2 2
+MM2 pref MM1
+MM1 pref MM2
+MM2 propose #0
+MM2 match MM1
+[matching result]
+MM1 <-> MM2
+pairs: 
+MM1 MM2
+MM0 MM3
+[folding_shape_generation]
+[placement]
+total_finger: 3
+expected #row: 1
+output mos: MM0
+input mos: MM1
+[ungrouped_pmos]
+MM1
+group: 
+MM0
+MM1
+hello group_placement
+target_area: 3
+BFS Time taken : 6.7693e-05
+bfs total time: 6.7693e-05
+dfs total time: 0
+number of cell: 2
+HPML: 0
+Set 1 intersecting elements: None
+Row 0: 
+hello print_shape
+MM2     MM3     MM3     
+--
+MM1     MM0     MM0     
+AN      A       VSS     VSS     AN      Y       Y       AN      VSS     
+--
+AN      A       VDD     VDD     AN      Y       Y       AN      VDD     
+AN      A       VSS     AN      Y       AN      VSS     
+
+AN      A       VDD     AN      Y       AN      VDD     
+
+HSP: 10
+HCD: 2
+hello print_shape
+MM2     MM3     MM3     
+--
+MM1     MM0     MM0     
+AN      A       VSS     VSS     AN      Y       Y       AN      VSS     
+--
+AN      A       VDD     VDD     AN      Y       Y       AN      VDD     
+AN      A       VSS     AN      Y       AN      VSS     
+
+AN      A       VDD     AN      Y       AN      VDD     
+
+area: 3
+hpml: 5
+#inter-row signals: 0
+total density: 49
+cost: 80
+hello print_shape
+MM2     MM3     MM3     
+--
+MM1     MM0     MM0     
+AN      A       VSS     VSS     AN      Y       Y       AN      VSS     
+--
+AN      A       VDD     VDD     AN      Y       Y       AN      VDD     
+AN      A       VSS     AN      Y       AN      VSS     
+
+AN      A       VDD     AN      Y       AN      VDD     
+
+[initial] cost: 80
+[epoch 0]
+hello satisfy_via_rule
+1151115
+SAT
+[via]
+1 0 0 1 0 1 0 
+0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 
+0 1 0 0 1 0 0 
+[metal]
+  1   1  -1   1   1   1  -1 
+ -1  -1  -1  -1  -1  -1  -1 
+ -1  -1  -1  -1  -1  -1  -1 
+  4   4  -1   0   0  -1  -1 
+[metal density]
+1 1 1 1 1 1 0 
+0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 
+0 1 0 0 1 0 0 
+[satisfy via metal]
+1101110
+0000000
+0000000
+1101100
+pass
+total_via_vertical_diff: 0
+total density: 8
+hello print_shape
+MM2     MM3     MM3     
+--
+MM1     MM0     MM0     
+AN      A       VSS     VSS     AN      Y       Y       AN      VSS     
+--
+AN      A       VDD     VDD     AN      Y       Y       AN      VDD     
+AN      A       VSS     AN      Y       AN      VSS     
+
+AN      A       VDD     AN      Y       AN      VDD     
+
+成功建立檔案：results/BUFx2.plmt
+max_cols: 3
+Generated results/BUFx2.plmt
+Time taken : 0.168084 seconds

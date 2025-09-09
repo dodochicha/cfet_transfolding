@@ -1,0 +1,284 @@
+Hello, World!
+cell/NAND3x2.txt
+Available CPU cores: 16
+MM3 num_finger: 2
+MM4 num_finger: 2
+MM5 num_finger: 2
+MM0 num_finger: 6
+MM1 num_finger: 6
+MM2 num_finger: 6
+#tr/#net: 6/8
+compound_gates: 
+
+MM3
+MM4
+MM5
+MM0
+
+transmission_gates: 
+p-network: 
+MM3
+MM4
+MM5
+n-network: 
+MM0
+MM1
+MM2
+
+MM3 MM0 -1
+MM3 MM1 -5
+MM3 MM2 -4
+MM4 MM0 -3
+MM4 MM1 -3
+MM4 MM2 -4
+MM5 MM0 -3
+MM5 MM1 -5
+MM5 MM2 -2
+MM0 pref MM3
+MM0 pref MM4
+MM0 pref MM5
+MM1 pref MM4
+MM1 pref MM3
+MM1 pref MM5
+MM2 pref MM5
+MM2 pref MM3
+MM2 pref MM4
+MM3 pref MM0
+MM3 pref MM2
+MM3 pref MM1
+MM4 pref MM0
+MM4 pref MM1
+MM4 pref MM2
+MM5 pref MM2
+MM5 pref MM0
+MM5 pref MM1
+MM0 propose #0
+MM0 match MM3
+MM1 propose #0
+MM1 match MM4
+MM2 propose #0
+MM2 match MM5
+[matching result]
+MM3 <-> MM0
+MM4 <-> MM1
+MM5 <-> MM2
+pairs: 
+MM5 MM2
+MM4 MM1
+MM3 MM0
+[folding_shape_generation]
+[placement]
+total_finger: 18
+expected #row: 2
+output mos: MM3
+input mos: MM3
+input mos: MM4
+input mos: MM5
+[ungrouped_pmos]
+MM5
+group: 
+MM3
+MM5
+hello group_placement
+target_area: 12
+BFS Time taken : 0.000928518
+Time taken : 0.000956665 seconds
+target_area: 13
+BFS Time taken : 0.000893062
+bfs total time: 0.00182158
+dfs total time: 1.4057e-05
+number of cell: 800
+group: 
+MM4
+hello group_placement
+target_area: 6
+BFS Time taken : 9.019e-06
+bfs total time: 9.019e-06
+dfs total time: 0
+number of cell: 20
+HPML: -389966904
+HPML: 0
+Set 1 intersecting elements: Y net22 net21 
+Set 2 intersecting elements: Y net22 net21 
+Row 0: 
+hello print_shape
+MM2     MM2     MM2     MM2     MM2     MM2             MM0     MM0     MM0     MM0     MM0     MM0     
+--
+                                MM5     MM5             MM3     MM3                                     
+VSS     C       net21   net21   C       VSS     VSS     C       net21   net21   C       VSS     VSS     C       net21   net21   C       VSS     ------------------------Y       A       net22   net22   A       Y       Y       A       net22   net22   A       Y       Y       A       net22   net22   A       Y       
+--
+------------------------------------------------------------------------------------------------VDD     C       Y       Y       C       VDD     ------------------------VDD     A       Y       Y       A       VDD     ------------------------------------------------------------------------------------------------
+VSS     C       net21   C       VSS     C       net21   C       VSS     C       net21   C       VSS     Null    Y       A       net22   A       Y       A       net22   A       Y       A       net22   A       Y       
+
+Null    Null    Null    Null    Null    Null    Null    Null    VDD     C       Y       C       VDD     Null    VDD     A       Y       A       VDD     Null    Null    Null    Null    Null    Null    Null    Null    
+
+HSP: 18
+HCD: 2
+Row 1: 
+hello print_shape
+MM1     MM1     MM1     MM1     MM1     MM1     
+--
+                                MM4     MM4     
+net22   B       net21   net21   B       net22   net22   B       net21   net21   B       net22   net22   B       net21   net21   B       net22   
+--
+------------------------------------------------------------------------------------------------VDD     B       Y       Y       B       VDD     
+net22   B       net21   B       net22   B       net21   B       net22   B       net21   B       net22   
+
+Null    Null    Null    Null    Null    Null    Null    Null    VDD     B       Y       B       VDD     
+
+HSP: 8
+HCD: 2
+pshape_set.size(): 1
+hello print_shape
+MM2     MM2     MM2     MM2     MM2     MM2             MM0     MM0     MM0     MM0     MM0     MM0     
+MM1     MM1     MM1     MM1     MM1     MM1                                                             
+--
+                                MM5     MM5             MM3     MM3                                     
+                                MM4     MM4                                                             
+VSS     C       net21   net21   C       VSS     VSS     C       net21   net21   C       VSS     VSS     C       net21   net21   C       VSS     ------------------------Y       A       net22   net22   A       Y       Y       A       net22   net22   A       Y       Y       A       net22   net22   A       Y       
+net22   B       net21   net21   B       net22   net22   B       net21   net21   B       net22   net22   B       net21   net21   B       net22   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--
+------------------------------------------------------------------------------------------------VDD     C       Y       Y       C       VDD     ------------------------VDD     A       Y       Y       A       VDD     ------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------VDD     B       Y       Y       B       VDD     ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+VSS     C       net21   C       VSS     C       net21   C       VSS     C       net21   C       VSS     Null    Y       A       net22   A       Y       A       net22   A       Y       A       net22   A       Y       
+net22   B       net21   B       net22   B       net21   B       net22   B       net21   B       net22   Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    
+
+Null    Null    Null    Null    Null    Null    Null    Null    VDD     C       Y       C       VDD     Null    VDD     A       Y       A       VDD     Null    Null    Null    Null    Null    Null    Null    Null    
+Null    Null    Null    Null    Null    Null    Null    Null    VDD     B       Y       B       VDD     Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    
+
+area: 26
+hpml: 81
+#inter-row signals: 3
+total density: 486
+cost: 780
+hello print_shape
+MM2     MM2     MM2     MM2     MM2     MM2             MM0     MM0     MM0     MM0     MM0     MM0     
+MM1     MM1     MM1     MM1     MM1     MM1                                                             
+--
+                                MM5     MM5             MM3     MM3                                     
+                                MM4     MM4                                                             
+VSS     C       net21   net21   C       VSS     VSS     C       net21   net21   C       VSS     VSS     C       net21   net21   C       VSS     ------------------------Y       A       net22   net22   A       Y       Y       A       net22   net22   A       Y       Y       A       net22   net22   A       Y       
+net22   B       net21   net21   B       net22   net22   B       net21   net21   B       net22   net22   B       net21   net21   B       net22   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--
+------------------------------------------------------------------------------------------------VDD     C       Y       Y       C       VDD     ------------------------VDD     A       Y       Y       A       VDD     ------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------VDD     B       Y       Y       B       VDD     ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+VSS     C       net21   C       VSS     C       net21   C       VSS     C       net21   C       VSS     Null    Y       A       net22   A       Y       A       net22   A       Y       A       net22   A       Y       
+net22   B       net21   B       net22   B       net21   B       net22   B       net21   B       net22   Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    
+
+Null    Null    Null    Null    Null    Null    Null    Null    VDD     C       Y       C       VDD     Null    VDD     A       Y       A       VDD     Null    Null    Null    Null    Null    Null    Null    Null    
+Null    Null    Null    Null    Null    Null    Null    Null    VDD     B       Y       B       VDD     Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    
+
+[initial] cost: 780
+[epoch 0]
+[final result] cost: 740
+area: 24
+hpml: 76
+#inter-row signals: 4
+total density: 493
+cost: 740
+hello print_shape
+MM2     MM2     MM2     MM2     MM2     MM2             MM0     MM0     MM0     MM0     MM0     
+MM1     MM1     MM1     MM1     MM1     MM1             MM0                                     
+--
+                                MM5     MM5             MM3     MM3                             
+                                MM4     MM4                                                     
+VSS     C       net21   net21   C       VSS     VSS     C       net21   net21   C       VSS     VSS     C       net21   net21   C       VSS     ------------------------Y       A       net22   net22   A       Y       Y       A       net22   net22   A       Y       Y       A       net22   
+net22   B       net21   net21   B       net22   net22   B       net21   net21   B       net22   net22   B       net21   net21   B       net22   ------------------------Y       A       net22   ------------------------------------------------------------------------------------------------
+--
+------------------------------------------------------------------------------------------------VDD     C       Y       Y       C       VDD     ------------------------VDD     A       Y       Y       A       VDD     ------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------VDD     B       Y       Y       B       VDD     ------------------------------------------------------------------------------------------------------------------------------------------------
+VSS     C       net21   C       VSS     C       net21   C       VSS     C       net21   C       VSS     Null    Y       A       net22   A       Y       A       net22   A       Y       A       net22   
+net22   B       net21   B       net22   B       net21   B       net22   B       net21   B       net22   Null    Y       A       net22   Null    Null    Null    Null    Null    Null    Null    Null    
+
+Null    Null    Null    Null    Null    Null    Null    Null    VDD     C       Y       C       VDD     Null    VDD     A       Y       A       VDD     Null    Null    Null    Null    Null    Null    
+Null    Null    Null    Null    Null    Null    Null    Null    VDD     B       Y       B       VDD     Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    
+
+[epoch 1]
+[final result] cost: 705
+area: 22
+hpml: 75
+#inter-row signals: 5
+total density: 513
+cost: 705
+hello print_shape
+MM2     MM2     MM2     MM2     MM2             MM0     MM0     MM0     MM0     MM0     
+MM2             MM1     MM1     MM1     MM1     MM1     MM1             MM0             
+--
+                        MM5     MM5             MM3     MM3                             
+                                                MM4     MM4                             
+net21   C       VSS     VSS     C       net21   net21   C       VSS     VSS     C       net21   net21   C       VSS     ------------------------Y       A       net22   net22   A       Y       Y       A       net22   net22   A       Y       Y       A       net22   
+net21   C       VSS     ------------------------net22   B       net21   net21   B       net22   net22   B       net21   net21   B       net22   net22   B       net21   net21   B       net22   ------------------------Y       A       net22   ------------------------
+--
+------------------------------------------------------------------------VDD     C       Y       Y       C       VDD     ------------------------VDD     A       Y       Y       A       VDD     ------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------VDD     B       Y       Y       B       VDD     ------------------------------------------------------------------------
+net21   C       VSS     C       net21   C       VSS     C       net21   C       VSS     Null    Y       A       net22   A       Y       A       net22   A       Y       A       net22   
+net21   C       VSS     Null    net22   B       net21   B       net22   B       net21   B       net22   B       net21   B       net22   Null    Y       A       net22   Null    Null    
+
+Null    Null    Null    Null    Null    Null    VDD     C       Y       C       VDD     Null    VDD     A       Y       A       VDD     Null    Null    Null    Null    Null    Null    
+Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    VDD     B       Y       B       VDD     Null    Null    Null    Null    Null    Null    
+
+[epoch 2]
+hello satisfy_via_rule
+11111151315021312111111
+11101111111121312011100
+SAT
+[via]
+0 0 1 0 0 0 0 0 1 0 0 0 1 0 1 0 1 0 0 0 1 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 
+0 1 0 1 0 1 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+1 0 0 0 1 0 0 0 1 0 0 0 0 0 1 0 0 0 1 0 0 0 1 
+0 1 0 0 0 1 0 1 0 1 0 1 0 1 0 1 0 0 0 1 0 0 0 
+1 0 0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 
+0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 
+0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 
+[metal]
+ -1  -1   3   3  -1  -1  -1   2   2  -1  -1  -1   2   2   2   2   2  -1  -1  -1   2   2  -1 
+ -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1   7   7  -1   7   7   7   7   7   7   7  -1 
+  6   6  -1   6   6   6   6   6   6   6  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1 
+  0   0  -1   0   0  -1  -1  -1   0   0  -1  -1  -1  -1   1   1  -1   1   1  -1  -1   1   1 
+  6   6  -1  -1  -1   5   5   5   5   5   5   5   5   5   5   5  -1  -1  -1   7   7  -1  -1 
+  0   0  -1  -1  -1   0   0  -1  -1   0   0  -1  -1  -1   0   0  -1  -1  -1  -1  -1  -1  -1 
+ -1  -1  -1   1   1  -1  -1   1   1  -1  -1   1   1  -1  -1  -1   1   1  -1  -1   1   1  -1 
+ -1   3   3  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1   2   2  -1  -1  -1   2   2  -1  -1  -1 
+[metal density]
+0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 0 
+0 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 
+0 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 0 0 0 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 
+0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 0 0 0 
+[satisfy via metal]
+00110001100011111000110
+00000000000011011111110
+11011111110000000000000
+11011000110000110110011
+11000111111111110001100
+11000110011000110000000
+00011001100110001100110
+01100000000001100011000
+pass
+total_via_vertical_diff: 0
+total density: 99
+hello print_shape
+MM2     MM2     MM2     MM2     MM2             MM0     MM0     MM0     MM0     MM0     
+MM2             MM1     MM1     MM1     MM1     MM1     MM1             MM0             
+--
+                        MM5     MM5             MM3     MM3                             
+                                                MM4     MM4                             
+net21   C       VSS     VSS     C       net21   net21   C       VSS     VSS     C       net21   net21   C       VSS     ------------------------Y       A       net22   net22   A       Y       Y       A       net22   net22   A       Y       Y       A       net22   
+net21   C       VSS     ------------------------net22   B       net21   net21   B       net22   net22   B       net21   net21   B       net22   net22   B       net21   net21   B       net22   ------------------------Y       A       net22   ------------------------
+--
+------------------------------------------------------------------------VDD     C       Y       Y       C       VDD     ------------------------VDD     A       Y       Y       A       VDD     ------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------VDD     B       Y       Y       B       VDD     ------------------------------------------------------------------------
+net21   C       VSS     C       net21   C       VSS     C       net21   C       VSS     Null    Y       A       net22   A       Y       A       net22   A       Y       A       net22   
+net21   C       VSS     Null    net22   B       net21   B       net22   B       net21   B       net22   B       net21   B       net22   Null    Y       A       net22   Null    Null    
+
+Null    Null    Null    Null    Null    Null    VDD     C       Y       C       VDD     Null    VDD     A       Y       A       VDD     Null    Null    Null    Null    Null    Null    
+Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    Null    VDD     B       Y       B       VDD     Null    Null    Null    Null    Null    Null    
+
+成功建立檔案：results/NAND3x2.plmt
+max_cols: 11
+Generated results/NAND3x2.plmt
+Time taken : 254.974 seconds

@@ -1,0 +1,147 @@
+Hello, World!
+cell/BUFx8.txt
+Available CPU cores: 16
+MM0 num_finger: 2
+MM1 num_finger: 8
+MM2 num_finger: 2
+MM3 num_finger: 8
+#tr/#net: 4/5
+compound_gates: 
+
+MM1
+MM3
+
+MM0
+MM2
+
+transmission_gates: 
+p-network: 
+MM1
+n-network: 
+MM3
+
+MM1 MM3 2
+MM3 pref MM1
+MM1 pref MM3
+MM3 propose #0
+MM3 match MM1
+[matching result]
+MM1 <-> MM3
+p-network: 
+MM0
+n-network: 
+MM2
+
+MM0 MM2 2
+MM2 pref MM0
+MM0 pref MM2
+MM2 propose #0
+MM2 match MM0
+[matching result]
+MM0 <-> MM2
+pairs: 
+MM0 MM2
+MM1 MM3
+[folding_shape_generation]
+[placement]
+total_finger: 10
+expected #row: 1
+output mos: MM1
+input mos: MM0
+[ungrouped_pmos]
+MM0
+group: 
+MM1
+MM0
+hello group_placement
+target_area: 10
+BFS Time taken : 5.2576e-05
+bfs total time: 5.2576e-05
+dfs total time: 0
+number of cell: 2
+HPML: 0
+Set 1 intersecting elements: None
+Row 0: 
+hello print_shape
+MM2     MM2     MM3     MM3     MM3     MM3     MM3     MM3     MM3     MM3     
+--
+MM0     MM0     MM1     MM1     MM1     MM1     MM1     MM1     MM1     MM1     
+VSS     A       AN      AN      A       VSS     VSS     AN      Y       Y       AN      VSS     VSS     AN      Y       Y       AN      VSS     VSS     AN      Y       Y       AN      VSS     VSS     AN      Y       Y       AN      VSS     
+--
+VDD     A       AN      AN      A       VDD     VDD     AN      Y       Y       AN      VDD     VDD     AN      Y       Y       AN      VDD     VDD     AN      Y       Y       AN      VDD     VDD     AN      Y       Y       AN      VDD     
+VSS     A       AN      A       VSS     AN      Y       AN      VSS     AN      Y       AN      VSS     AN      Y       AN      VSS     AN      Y       AN      VSS     
+
+VDD     A       AN      A       VDD     AN      Y       AN      VDD     AN      Y       AN      VDD     AN      Y       AN      VDD     AN      Y       AN      VDD     
+
+HSP: 62
+HCD: 2
+hello print_shape
+MM2     MM2     MM3     MM3     MM3     MM3     MM3     MM3     MM3     MM3     
+--
+MM0     MM0     MM1     MM1     MM1     MM1     MM1     MM1     MM1     MM1     
+VSS     A       AN      AN      A       VSS     VSS     AN      Y       Y       AN      VSS     VSS     AN      Y       Y       AN      VSS     VSS     AN      Y       Y       AN      VSS     VSS     AN      Y       Y       AN      VSS     
+--
+VDD     A       AN      AN      A       VDD     VDD     AN      Y       Y       AN      VDD     VDD     AN      Y       Y       AN      VDD     VDD     AN      Y       Y       AN      VDD     VDD     AN      Y       Y       AN      VDD     
+VSS     A       AN      A       VSS     AN      Y       AN      VSS     AN      Y       AN      VSS     AN      Y       AN      VSS     AN      Y       AN      VSS     
+
+VDD     A       AN      A       VDD     AN      Y       AN      VDD     AN      Y       AN      VDD     AN      Y       AN      VDD     AN      Y       AN      VDD     
+
+area: 10
+hpml: 31
+#inter-row signals: 0
+total density: 280
+cost: 283
+hello print_shape
+MM2     MM2     MM3     MM3     MM3     MM3     MM3     MM3     MM3     MM3     
+--
+MM0     MM0     MM1     MM1     MM1     MM1     MM1     MM1     MM1     MM1     
+VSS     A       AN      AN      A       VSS     VSS     AN      Y       Y       AN      VSS     VSS     AN      Y       Y       AN      VSS     VSS     AN      Y       Y       AN      VSS     VSS     AN      Y       Y       AN      VSS     
+--
+VDD     A       AN      AN      A       VDD     VDD     AN      Y       Y       AN      VDD     VDD     AN      Y       Y       AN      VDD     VDD     AN      Y       Y       AN      VDD     VDD     AN      Y       Y       AN      VDD     
+VSS     A       AN      A       VSS     AN      Y       AN      VSS     AN      Y       AN      VSS     AN      Y       AN      VSS     AN      Y       AN      VSS     
+
+VDD     A       AN      A       VDD     AN      Y       AN      VDD     AN      Y       AN      VDD     AN      Y       AN      VDD     AN      Y       AN      VDD     
+
+[initial] cost: 283
+[epoch 0]
+hello satisfy_via_rule
+511151115111511151115
+SAT
+[via]
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 1 0 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 1 0 1 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 
+[metal]
+ -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1 
+ -1   1   1  -1  -1   1   1   1  -1   1   1   1  -1   1   1   1  -1   1   1   1  -1 
+ -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1 
+ -1   4   4   4  -1  -1   0   0  -1   0   0  -1  -1   0   0  -1  -1   0   0  -1  -1 
+[metal density]
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 
+[satisfy via metal]
+000000000000000000000
+011001110111011101110
+000000000000000000000
+011100110110011001100
+pass
+total_via_vertical_diff: 0
+total density: 34
+hello print_shape
+MM2     MM2     MM3     MM3     MM3     MM3     MM3     MM3     MM3     MM3     
+--
+MM0     MM0     MM1     MM1     MM1     MM1     MM1     MM1     MM1     MM1     
+VSS     A       AN      AN      A       VSS     VSS     AN      Y       Y       AN      VSS     VSS     AN      Y       Y       AN      VSS     VSS     AN      Y       Y       AN      VSS     VSS     AN      Y       Y       AN      VSS     
+--
+VDD     A       AN      AN      A       VDD     VDD     AN      Y       Y       AN      VDD     VDD     AN      Y       Y       AN      VDD     VDD     AN      Y       Y       AN      VDD     VDD     AN      Y       Y       AN      VDD     
+VSS     A       AN      A       VSS     AN      Y       AN      VSS     AN      Y       AN      VSS     AN      Y       AN      VSS     AN      Y       AN      VSS     
+
+VDD     A       AN      A       VDD     AN      Y       AN      VDD     AN      Y       AN      VDD     AN      Y       AN      VDD     AN      Y       AN      VDD     
+
+成功建立檔案：results/BUFx8.plmt
+max_cols: 10
+Generated results/BUFx8.plmt
+Time taken : 1.15042 seconds

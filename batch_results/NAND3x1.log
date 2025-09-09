@@ -1,0 +1,175 @@
+Hello, World!
+cell/NAND3x1.txt
+Available CPU cores: 16
+MM3 num_finger: 1
+MM4 num_finger: 1
+MM5 num_finger: 1
+MM0 num_finger: 3
+MM1 num_finger: 3
+MM2 num_finger: 3
+#tr/#net: 6/8
+compound_gates: 
+
+MM3
+MM4
+MM5
+MM0
+
+transmission_gates: 
+p-network: 
+MM3
+MM4
+MM5
+n-network: 
+MM0
+MM1
+MM2
+
+MM3 MM0 -1
+MM3 MM1 -5
+MM3 MM2 -4
+MM4 MM0 -3
+MM4 MM1 -3
+MM4 MM2 -4
+MM5 MM0 -3
+MM5 MM1 -5
+MM5 MM2 -2
+MM0 pref MM3
+MM0 pref MM4
+MM0 pref MM5
+MM1 pref MM4
+MM1 pref MM3
+MM1 pref MM5
+MM2 pref MM5
+MM2 pref MM3
+MM2 pref MM4
+MM3 pref MM0
+MM3 pref MM2
+MM3 pref MM1
+MM4 pref MM0
+MM4 pref MM1
+MM4 pref MM2
+MM5 pref MM2
+MM5 pref MM0
+MM5 pref MM1
+MM0 propose #0
+MM0 match MM3
+MM1 propose #0
+MM1 match MM4
+MM2 propose #0
+MM2 match MM5
+[matching result]
+MM3 <-> MM0
+MM4 <-> MM1
+MM5 <-> MM2
+pairs: 
+MM5 MM2
+MM4 MM1
+MM3 MM0
+[folding_shape_generation]
+[placement]
+total_finger: 9
+expected #row: 1
+output mos: MM3
+input mos: MM3
+input mos: MM4
+input mos: MM5
+[ungrouped_pmos]
+MM4
+MM5
+group: 
+MM3
+MM4
+MM5
+hello group_placement
+target_area: 9
+BFS Time taken : 0.00279096
+bfs total time: 0.00279096
+dfs total time: 0
+number of cell: 384
+HPML: 97
+Set 1 intersecting elements: None
+Row 0: 
+hello print_shape
+MM2     MM2     MM2     MM1     MM1     MM1     MM0     MM0     MM0     
+--
+                MM5                     MM4     MM3                     
+VSS     C       net21   net21   C       VSS     VSS     C       net21   net21   B       net22   net22   B       net21   net21   B       net22   net22   A       Y       Y       A       net22   net22   A       Y       
+--
+------------------------------------------------VDD     C       Y       ------------------------------------------------VDD     B       Y       Y       A       VDD     ------------------------------------------------
+VSS     C       net21   C       VSS     C       net21   B       net22   B       net21   B       net22   A       Y       A       net22   A       Y       
+
+Null    Null    Null    Null    VDD     C       Y       Null    Null    Null    VDD     B       Y       A       VDD     Null    Null    Null    Null    
+
+HSP: 10
+HCD: 1
+hello print_shape
+MM2     MM2     MM2     MM1     MM1     MM1     MM0     MM0     MM0     
+--
+                MM5                     MM4     MM3                     
+VSS     C       net21   net21   C       VSS     VSS     C       net21   net21   B       net22   net22   B       net21   net21   B       net22   net22   A       Y       Y       A       net22   net22   A       Y       
+--
+------------------------------------------------VDD     C       Y       ------------------------------------------------VDD     B       Y       Y       A       VDD     ------------------------------------------------
+VSS     C       net21   C       VSS     C       net21   B       net22   B       net21   B       net22   A       Y       A       net22   A       Y       
+
+Null    Null    Null    Null    VDD     C       Y       Null    Null    Null    VDD     B       Y       A       VDD     Null    Null    Null    Null    
+
+area: 9
+hpml: 40
+#inter-row signals: 0
+total density: 246
+cost: 267
+hello print_shape
+MM2     MM2     MM2     MM1     MM1     MM1     MM0     MM0     MM0     
+--
+                MM5                     MM4     MM3                     
+VSS     C       net21   net21   C       VSS     VSS     C       net21   net21   B       net22   net22   B       net21   net21   B       net22   net22   A       Y       Y       A       net22   net22   A       Y       
+--
+------------------------------------------------VDD     C       Y       ------------------------------------------------VDD     B       Y       Y       A       VDD     ------------------------------------------------
+VSS     C       net21   C       VSS     C       net21   B       net22   B       net21   B       net22   A       Y       A       net22   A       Y       
+
+Null    Null    Null    Null    VDD     C       Y       Null    Null    Null    VDD     B       Y       A       VDD     Null    Null    Null    Null    
+
+[initial] cost: 267
+[epoch 0]
+hello satisfy_via_rule
+1111513111213121111
+SAT
+[via]
+0 0 1 0 0 0 1 0 0 0 1 0 0 1 0 1 0 1 0 
+0 1 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 1 0 1 0 1 0 0 0 0 0 0 0 
+1 0 0 0 0 0 1 0 0 0 0 0 1 0 1 0 0 0 1 
+[metal]
+ -1   0   0  -1  -1  -1   0   0  -1   0   0  -1  -1   7   7   7   7   7  -1 
+ -1   6   6   6   6   6  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1 
+ -1  -1  -1  -1  -1  -1  -1   5   5   5   5   5  -1  -1  -1  -1  -1  -1  -1 
+  3   3  -1  -1  -1   2   2  -1  -1  -1  -1  -1   2   2   2  -1  -1   2   2 
+[metal density]
+0 0 1 1 1 1 1 1 1 1 1 0 0 1 1 1 1 1 0 
+0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 
+0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 
+[satisfy via metal]
+0110001101100111110
+0111110000000000000
+0000000111110000000
+1100011000001110011
+pass
+total_via_vertical_diff: 0
+total density: 37
+hello print_shape
+MM2     MM2     MM2     MM1     MM1     MM1     MM0     MM0     MM0     
+--
+                MM5                     MM4     MM3                     
+VSS     C       net21   net21   C       VSS     VSS     C       net21   net21   B       net22   net22   B       net21   net21   B       net22   net22   A       Y       Y       A       net22   net22   A       Y       
+--
+------------------------------------------------VDD     C       Y       ------------------------------------------------VDD     B       Y       Y       A       VDD     ------------------------------------------------
+VSS     C       net21   C       VSS     C       net21   B       net22   B       net21   B       net22   A       Y       A       net22   A       Y       
+
+Null    Null    Null    Null    VDD     C       Y       Null    Null    Null    VDD     B       Y       A       VDD     Null    Null    Null    Null    
+
+成功建立檔案：results/NAND3x1.plmt
+max_cols: 9
+Generated results/NAND3x1.plmt
+Time taken : 1.52707 seconds

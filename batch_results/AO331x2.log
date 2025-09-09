@@ -1,0 +1,360 @@
+Hello, World!
+cell/AO331x2.txt
+Available CPU cores: 16
+MM0 num_finger: 2
+MM23 num_finger: 1
+MM26 num_finger: 1
+MM21 num_finger: 1
+MM25 num_finger: 1
+MM27 num_finger: 1
+MM20 num_finger: 1
+MM24 num_finger: 1
+MM1 num_finger: 2
+MM22 num_finger: 1
+MM19 num_finger: 1
+MM18 num_finger: 1
+MM17 num_finger: 1
+MM16 num_finger: 1
+MM15 num_finger: 1
+MM14 num_finger: 1
+#tr/#net: 16/17
+compound_gates: 
+
+MM27
+MM22
+MM17
+MM14
+
+MM0
+MM1
+
+transmission_gates: 
+p-network: 
+MM27
+MM23
+MM21
+MM20
+MM26
+MM25
+MM24
+n-network: 
+MM22
+MM17
+MM18
+MM19
+MM14
+MM15
+MM16
+
+MM27 MM22 1
+MM27 MM17 -2
+MM27 MM18 -4
+MM27 MM19 -3
+MM27 MM14 -2
+MM27 MM15 -4
+MM27 MM16 -3
+MM23 MM22 -3
+MM23 MM17 -4
+MM23 MM18 -4
+MM23 MM19 -1
+MM23 MM14 -4
+MM23 MM15 -4
+MM23 MM16 -3
+MM21 MM22 -3
+MM21 MM17 -4
+MM21 MM18 -2
+MM21 MM19 -3
+MM21 MM14 -4
+MM21 MM15 -4
+MM21 MM16 -3
+MM20 MM22 -3
+MM20 MM17 -2
+MM20 MM18 -4
+MM20 MM19 -3
+MM20 MM14 -4
+MM20 MM15 -4
+MM20 MM16 -3
+MM26 MM22 -2
+MM26 MM17 -3
+MM26 MM18 -3
+MM26 MM19 -2
+MM26 MM14 -3
+MM26 MM15 -3
+MM26 MM16 0
+MM25 MM22 -2
+MM25 MM17 -3
+MM25 MM18 -3
+MM25 MM19 -2
+MM25 MM14 -3
+MM25 MM15 -1
+MM25 MM16 -2
+MM24 MM22 -2
+MM24 MM17 -3
+MM24 MM18 -3
+MM24 MM19 -2
+MM24 MM14 -1
+MM24 MM15 -3
+MM24 MM16 -2
+MM22 pref MM27
+MM22 pref MM26
+MM22 pref MM25
+MM22 pref MM24
+MM22 pref MM23
+MM22 pref MM21
+MM22 pref MM20
+MM17 pref MM27
+MM17 pref MM20
+MM17 pref MM26
+MM17 pref MM25
+MM17 pref MM24
+MM17 pref MM23
+MM17 pref MM21
+MM18 pref MM21
+MM18 pref MM26
+MM18 pref MM25
+MM18 pref MM24
+MM18 pref MM27
+MM18 pref MM23
+MM18 pref MM20
+MM19 pref MM23
+MM19 pref MM26
+MM19 pref MM25
+MM19 pref MM24
+MM19 pref MM27
+MM19 pref MM21
+MM19 pref MM20
+MM14 pref MM24
+MM14 pref MM27
+MM14 pref MM26
+MM14 pref MM25
+MM14 pref MM23
+MM14 pref MM21
+MM14 pref MM20
+MM15 pref MM25
+MM15 pref MM26
+MM15 pref MM24
+MM15 pref MM27
+MM15 pref MM23
+MM15 pref MM21
+MM15 pref MM20
+MM16 pref MM26
+MM16 pref MM25
+MM16 pref MM24
+MM16 pref MM27
+MM16 pref MM23
+MM16 pref MM21
+MM16 pref MM20
+MM27 pref MM22
+MM27 pref MM17
+MM27 pref MM14
+MM27 pref MM19
+MM27 pref MM16
+MM27 pref MM18
+MM27 pref MM15
+MM23 pref MM19
+MM23 pref MM22
+MM23 pref MM16
+MM23 pref MM17
+MM23 pref MM18
+MM23 pref MM14
+MM23 pref MM15
+MM21 pref MM18
+MM21 pref MM22
+MM21 pref MM19
+MM21 pref MM16
+MM21 pref MM17
+MM21 pref MM14
+MM21 pref MM15
+MM20 pref MM17
+MM20 pref MM22
+MM20 pref MM19
+MM20 pref MM16
+MM20 pref MM18
+MM20 pref MM14
+MM20 pref MM15
+MM26 pref MM16
+MM26 pref MM22
+MM26 pref MM19
+MM26 pref MM17
+MM26 pref MM18
+MM26 pref MM14
+MM26 pref MM15
+MM25 pref MM15
+MM25 pref MM22
+MM25 pref MM19
+MM25 pref MM16
+MM25 pref MM17
+MM25 pref MM18
+MM25 pref MM14
+MM24 pref MM14
+MM24 pref MM22
+MM24 pref MM19
+MM24 pref MM16
+MM24 pref MM17
+MM24 pref MM18
+MM24 pref MM15
+MM22 propose #0
+MM22 match MM27
+MM17 propose #0
+MM18 propose #0
+MM18 match MM21
+MM19 propose #0
+MM17 match MM20
+MM14 propose #0
+MM16 match MM26
+MM15 propose #0
+MM15 match MM25
+MM16 propose #0
+MM14 match MM24
+MM17 propose #1
+MM19 match MM23
+[matching result]
+MM27 <-> MM22
+MM23 <-> MM19
+MM21 <-> MM18
+MM20 <-> MM17
+MM26 <-> MM16
+MM25 <-> MM15
+MM24 <-> MM14
+p-network: 
+MM0
+n-network: 
+MM1
+
+MM0 MM1 2
+MM1 pref MM0
+MM0 pref MM1
+MM1 propose #0
+MM1 match MM0
+[matching result]
+MM0 <-> MM1
+pairs: 
+MM0 MM1
+MM24 MM14
+MM25 MM15
+MM20 MM17
+MM21 MM18
+MM23 MM19
+MM26 MM16
+MM27 MM22
+[folding_shape_generation]
+[placement]
+total_finger: 9
+expected #row: 1
+output mos: MM0
+input mos: MM24
+input mos: MM25
+input mos: MM26
+input mos: MM20
+input mos: MM21
+input mos: MM23
+input mos: MM27
+[ungrouped_pmos]
+MM23
+MM26
+MM21
+MM25
+MM27
+MM20
+MM24
+group: 
+MM0
+MM27
+MM20
+MM24
+MM21
+MM23
+MM25
+MM26
+hello group_placement
+target_area: 9
+BFS Time taken : 0.00237786
+bfs total time: 0.00237786
+dfs total time: 0
+number of cell: 2
+HPML: 0
+Set 1 intersecting elements: None
+Row 0: 
+hello print_shape
+MM22    MM19    MM18    MM17    MM14    MM15    MM16    MM1     MM1     
+--
+MM27    MM23    MM21    MM20    MM24    MM25    MM26    MM0     MM0     
+yb      C       VSS     VSS     B3      net31   net31   B2      net32   net32   B1      yb      yb      A1      n1      n1      A2      n2      n2      A3      VSS     VSS     yb      Y       Y       yb      VSS     
+--
+yb      C       net24   net24   B3      net034  net034  B2      net24   net24   B1      net034  net034  A1      VDD     VDD     A2      net034  net034  A3      VDD     VDD     yb      Y       Y       yb      VDD     
+yb      C       VSS     B3      net31   B2      net32   B1      yb      A1      n1      A2      n2      A3      VSS     yb      Y       yb      VSS     
+
+yb      C       net24   B3      net034  B2      net24   B1      net034  A1      VDD     A2      net034  A3      VDD     yb      Y       yb      VDD     
+
+HSP: 46
+HCD: 4
+hello print_shape
+MM22    MM19    MM18    MM17    MM14    MM15    MM16    MM1     MM1     
+--
+MM27    MM23    MM21    MM20    MM24    MM25    MM26    MM0     MM0     
+yb      C       VSS     VSS     B3      net31   net31   B2      net32   net32   B1      yb      yb      A1      n1      n1      A2      n2      n2      A3      VSS     VSS     yb      Y       Y       yb      VSS     
+--
+yb      C       net24   net24   B3      net034  net034  B2      net24   net24   B1      net034  net034  A1      VDD     VDD     A2      net034  net034  A3      VDD     VDD     yb      Y       Y       yb      VDD     
+yb      C       VSS     B3      net31   B2      net32   B1      yb      A1      n1      A2      n2      A3      VSS     yb      Y       yb      VSS     
+
+yb      C       net24   B3      net034  B2      net24   B1      net034  A1      VDD     A2      net034  A3      VDD     yb      Y       yb      VDD     
+
+area: 9
+hpml: 29
+#inter-row signals: 0
+total density: 261
+cost: 256
+hello print_shape
+MM22    MM19    MM18    MM17    MM14    MM15    MM16    MM1     MM1     
+--
+MM27    MM23    MM21    MM20    MM24    MM25    MM26    MM0     MM0     
+yb      C       VSS     VSS     B3      net31   net31   B2      net32   net32   B1      yb      yb      A1      n1      n1      A2      n2      n2      A3      VSS     VSS     yb      Y       Y       yb      VSS     
+--
+yb      C       net24   net24   B3      net034  net034  B2      net24   net24   B1      net034  net034  A1      VDD     VDD     A2      net034  net034  A3      VDD     VDD     yb      Y       Y       yb      VDD     
+yb      C       VSS     B3      net31   B2      net32   B1      yb      A1      n1      A2      n2      A3      VSS     yb      Y       yb      VSS     
+
+yb      C       net24   B3      net034  B2      net24   B1      net034  A1      VDD     A2      net034  A3      VDD     yb      Y       yb      VDD     
+
+[initial] cost: 256
+[epoch 0]
+hello satisfy_via_rule
+1141313131213151115
+SAT
+[via]
+0 1 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 
+1 0 0 0 0 1 0 1 0 0 0 1 0 0 0 0 0 0 0 
+0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 1 0 1 0 
+0 0 1 0 0 0 1 0 0 1 0 0 0 1 0 0 0 0 0 
+[metal]
+ 14  14  -1  -1  13  13  -1  13  13  -1  -1  -1  13  13  -1  -1  16  16  -1 
+ 12  12  -1  -1   8   8  -1   7   7  -1   5   5  -1  -1  -1  -1  -1  -1  -1 
+ -1  -1  10  10  -1  -1  -1  12  12  -1  -1  -1  -1  -1  -1  12  12  12  -1 
+ -1  -1   9   9  -1   9   9  -1  -1   4   4  -1   6   6  -1  -1  -1  -1  -1 
+[metal density]
+0 1 0 0 1 1 1 1 1 1 1 1 1 0 0 0 1 0 0 
+1 0 0 0 0 1 0 1 0 0 0 1 0 0 0 0 0 0 0 
+0 0 0 1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 0 
+0 0 1 1 1 1 1 0 0 1 0 0 0 1 0 0 0 0 0 
+[satisfy via metal]
+1100110110001100110
+1100110110110000000
+0011000110000001110
+0011011001101100000
+pass
+total_via_vertical_diff: 1
+total density: 33
+hello print_shape
+MM22    MM19    MM18    MM17    MM14    MM15    MM16    MM1     MM1     
+--
+MM27    MM23    MM21    MM20    MM24    MM25    MM26    MM0     MM0     
+yb      C       VSS     VSS     B3      net31   net31   B2      net32   net32   B1      yb      yb      A1      n1      n1      A2      n2      n2      A3      VSS     VSS     yb      Y       Y       yb      VSS     
+--
+yb      C       net24   net24   B3      net034  net034  B2      net24   net24   B1      net034  net034  A1      VDD     VDD     A2      net034  net034  A3      VDD     VDD     yb      Y       Y       yb      VDD     
+yb      C       VSS     B3      net31   B2      net32   B1      yb      A1      n1      A2      n2      A3      VSS     yb      Y       yb      VSS     
+
+yb      C       net24   B3      net034  B2      net24   B1      net034  A1      VDD     A2      net034  A3      VDD     yb      Y       yb      VDD     
+
+成功建立檔案：results/AO331x2.plmt
+max_cols: 9
+Generated results/AO331x2.plmt
+Time taken : 1.56472 seconds

@@ -1,0 +1,168 @@
+Hello, World!
+cell/OR2x2.txt
+Available CPU cores: 16
+MM0 num_finger: 2
+MM4 num_finger: 1
+MM3 num_finger: 1
+MM5 num_finger: 2
+MM1 num_finger: 1
+MM2 num_finger: 1
+#tr/#net: 6/7
+compound_gates: 
+
+MM4
+MM1
+MM2
+
+MM0
+MM5
+
+transmission_gates: 
+p-network: 
+MM4
+MM3
+n-network: 
+MM1
+MM2
+
+MM4 MM1 -1
+MM4 MM2 -3
+MM3 MM1 -4
+MM3 MM2 -2
+MM1 pref MM4
+MM1 pref MM3
+MM2 pref MM3
+MM2 pref MM4
+MM4 pref MM1
+MM4 pref MM2
+MM3 pref MM2
+MM3 pref MM1
+MM1 propose #0
+MM1 match MM4
+MM2 propose #0
+MM2 match MM3
+[matching result]
+MM4 <-> MM1
+MM3 <-> MM2
+p-network: 
+MM0
+n-network: 
+MM5
+
+MM0 MM5 2
+MM5 pref MM0
+MM0 pref MM5
+MM5 propose #0
+MM5 match MM0
+[matching result]
+MM0 <-> MM5
+pairs: 
+MM0 MM5
+MM3 MM2
+MM4 MM1
+[folding_shape_generation]
+[placement]
+total_finger: 4
+expected #row: 1
+output mos: MM0
+input mos: MM3
+input mos: MM4
+[ungrouped_pmos]
+MM4
+MM3
+group: 
+MM0
+MM4
+MM3
+hello group_placement
+target_area: 4
+BFS Time taken : 0.000140941
+bfs total time: 0.000140941
+dfs total time: 0
+number of cell: 2
+HPML: 0
+Set 1 intersecting elements: None
+Row 0: 
+hello print_shape
+MM1     MM2     MM5     MM5     
+--
+MM4     MM3     MM0     MM0     
+VSS     B       net7    net7    A       VSS     VSS     net7    Y       Y       net7    VSS     
+--
+net7    B       net15   net15   A       VDD     VDD     net7    Y       Y       net7    VDD     
+VSS     B       net7    A       VSS     net7    Y       net7    VSS     
+
+net7    B       net15   A       VDD     net7    Y       net7    VDD     
+
+HSP: 12
+HCD: 2
+hello print_shape
+MM1     MM2     MM5     MM5     
+--
+MM4     MM3     MM0     MM0     
+VSS     B       net7    net7    A       VSS     VSS     net7    Y       Y       net7    VSS     
+--
+net7    B       net15   net15   A       VDD     VDD     net7    Y       Y       net7    VDD     
+VSS     B       net7    A       VSS     net7    Y       net7    VSS     
+
+net7    B       net15   A       VDD     net7    Y       net7    VDD     
+
+area: 4
+hpml: 7
+#inter-row signals: 0
+total density: 67
+cost: 107
+hello print_shape
+MM1     MM2     MM5     MM5     
+--
+MM4     MM3     MM0     MM0     
+VSS     B       net7    net7    A       VSS     VSS     net7    Y       Y       net7    VSS     
+--
+net7    B       net15   net15   A       VDD     VDD     net7    Y       Y       net7    VDD     
+VSS     B       net7    A       VSS     net7    Y       net7    VSS     
+
+net7    B       net15   A       VDD     net7    Y       net7    VDD     
+
+[initial] cost: 107
+[epoch 0]
+hello satisfy_via_rule
+413151115
+SAT
+[via]
+0 0 0 1 0 0 1 0 0 
+0 1 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 
+1 0 1 0 0 1 0 1 0 
+[metal]
+ -1  -1  -1   6   6  -1   1   1  -1 
+  5   5  -1  -1  -1  -1  -1  -1  -1 
+ -1  -1  -1  -1  -1  -1  -1  -1  -1 
+  0   0   0  -1  -1   0   0   0  -1 
+[metal density]
+0 0 0 1 0 0 1 0 0 
+0 1 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 
+1 1 1 1 1 1 1 1 0 
+[satisfy via metal]
+000110110
+110000000
+000000000
+111001110
+pass
+total_via_vertical_diff: 0
+total density: 11
+hello print_shape
+MM1     MM2     MM5     MM5     
+--
+MM4     MM3     MM0     MM0     
+VSS     B       net7    net7    A       VSS     VSS     net7    Y       Y       net7    VSS     
+--
+net7    B       net15   net15   A       VDD     VDD     net7    Y       Y       net7    VDD     
+VSS     B       net7    A       VSS     net7    Y       net7    VSS     
+
+net7    B       net15   A       VDD     net7    Y       net7    VDD     
+
+成功建立檔案：results/OR2x2.plmt
+max_cols: 4
+Generated results/OR2x2.plmt
+Time taken : 0.208058 seconds

@@ -1,0 +1,195 @@
+Hello, World!
+cell/AND3x2.txt
+Available CPU cores: 16
+MM6 num_finger: 2
+MM5 num_finger: 1
+MM4 num_finger: 1
+MM3 num_finger: 1
+MM7 num_finger: 2
+MM0 num_finger: 1
+MM1 num_finger: 1
+MM2 num_finger: 1
+#tr/#net: 8/9
+compound_gates: 
+
+MM5
+MM4
+MM3
+MM0
+
+MM6
+MM7
+
+transmission_gates: 
+p-network: 
+MM5
+MM4
+MM3
+n-network: 
+MM0
+MM1
+MM2
+
+MM5 MM0 -1
+MM5 MM1 -3
+MM5 MM2 0
+MM4 MM0 -1
+MM4 MM1 -1
+MM4 MM2 -2
+MM3 MM0 1
+MM3 MM1 -3
+MM3 MM2 -2
+MM0 pref MM3
+MM0 pref MM5
+MM0 pref MM4
+MM1 pref MM4
+MM1 pref MM5
+MM1 pref MM3
+MM2 pref MM5
+MM2 pref MM4
+MM2 pref MM3
+MM5 pref MM2
+MM5 pref MM0
+MM5 pref MM1
+MM4 pref MM0
+MM4 pref MM1
+MM4 pref MM2
+MM3 pref MM0
+MM3 pref MM2
+MM3 pref MM1
+MM0 propose #0
+MM2 match MM5
+MM1 propose #0
+MM1 match MM4
+MM2 propose #0
+MM0 match MM3
+[matching result]
+MM5 <-> MM2
+MM4 <-> MM1
+MM3 <-> MM0
+p-network: 
+MM6
+n-network: 
+MM7
+
+MM6 MM7 2
+MM7 pref MM6
+MM6 pref MM7
+MM7 propose #0
+MM7 match MM6
+[matching result]
+MM6 <-> MM7
+pairs: 
+MM6 MM7
+MM3 MM0
+MM4 MM1
+MM5 MM2
+[folding_shape_generation]
+[placement]
+total_finger: 5
+expected #row: 1
+output mos: MM6
+input mos: MM3
+input mos: MM4
+input mos: MM5
+[ungrouped_pmos]
+MM5
+MM4
+MM3
+group: 
+MM6
+MM3
+MM4
+MM5
+hello group_placement
+target_area: 5
+BFS Time taken : 0.000324354
+bfs total time: 0.000324354
+dfs total time: 0
+number of cell: 2
+HPML: 0
+Set 1 intersecting elements: None
+Row 0: 
+hello print_shape
+MM0     MM1     MM2     MM7     MM7     
+--
+MM3     MM4     MM5     MM6     MM6     
+net61   A       net72   net72   B       net71   net71   C       VSS     VSS     net61   Y       Y       net61   VSS     
+--
+net61   A       VDD     VDD     B       net61   net61   C       VDD     VDD     net61   Y       Y       net61   VDD     
+net61   A       net72   B       net71   C       VSS     net61   Y       net61   VSS     
+
+net61   A       VDD     B       net61   C       VDD     net61   Y       net61   VDD     
+
+HSP: 18
+HCD: 2
+hello print_shape
+MM0     MM1     MM2     MM7     MM7     
+--
+MM3     MM4     MM5     MM6     MM6     
+net61   A       net72   net72   B       net71   net71   C       VSS     VSS     net61   Y       Y       net61   VSS     
+--
+net61   A       VDD     VDD     B       net61   net61   C       VDD     VDD     net61   Y       Y       net61   VDD     
+net61   A       net72   B       net71   C       VSS     net61   Y       net61   VSS     
+
+net61   A       VDD     B       net61   C       VDD     net61   Y       net61   VDD     
+
+area: 5
+hpml: 9
+#inter-row signals: 0
+total density: 85
+cost: 134
+hello print_shape
+MM0     MM1     MM2     MM7     MM7     
+--
+MM3     MM4     MM5     MM6     MM6     
+net61   A       net72   net72   B       net71   net71   C       VSS     VSS     net61   Y       Y       net61   VSS     
+--
+net61   A       VDD     VDD     B       net61   net61   C       VDD     VDD     net61   Y       Y       net61   VDD     
+net61   A       net72   B       net71   C       VSS     net61   Y       net61   VSS     
+
+net61   A       VDD     B       net61   C       VDD     net61   Y       net61   VDD     
+
+[initial] cost: 134
+[epoch 0]
+hello satisfy_via_rule
+11213151115
+SAT
+[via]
+0 0 0 0 0 1 0 0 0 0 0 
+0 1 0 1 0 0 0 0 1 0 0 
+0 0 0 0 0 0 0 0 0 0 0 
+1 0 0 0 1 0 0 1 0 1 0 
+[metal]
+ -1  -1  -1  -1  -1   7   7  -1  -1  -1  -1 
+  8   8  -1   6   6  -1  -1  -1   3   3  -1 
+ -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1 
+  2   2  -1  -1   2   2  -1   2   2   2  -1 
+[metal density]
+0 0 0 0 0 1 0 0 0 0 0 
+0 1 0 1 0 0 0 0 1 0 0 
+0 0 0 0 0 0 0 0 0 0 0 
+1 1 1 1 1 1 1 1 1 1 0 
+[satisfy via metal]
+00000110000
+11011000110
+00000000000
+11001101110
+pass
+total_via_vertical_diff: 0
+total density: 14
+hello print_shape
+MM0     MM1     MM2     MM7     MM7     
+--
+MM3     MM4     MM5     MM6     MM6     
+net61   A       net72   net72   B       net71   net71   C       VSS     VSS     net61   Y       Y       net61   VSS     
+--
+net61   A       VDD     VDD     B       net61   net61   C       VDD     VDD     net61   Y       Y       net61   VDD     
+net61   A       net72   B       net71   C       VSS     net61   Y       net61   VSS     
+
+net61   A       VDD     B       net61   C       VDD     net61   Y       net61   VDD     
+
+成功建立檔案：results/AND3x2.plmt
+max_cols: 5
+Generated results/AND3x2.plmt
+Time taken : 0.398451 seconds
