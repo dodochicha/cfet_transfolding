@@ -48,7 +48,7 @@ extern int diffusion_break_constraint;
 extern int max_placement_size;
 extern int max_allowable_cell_height;
 extern int num_nodes_parsed_to_gpu;
-extern float expected_row_num;
+extern int expected_row_num;
 extern float relaxation_parameter;
 extern float aspect_ratio;
 
@@ -195,11 +195,13 @@ class Pshape {
     std::pair<Signal*, Signal*> get_left_sig(int row, int col);   // <sig_up, sig_down>
     std::pair<Signal*, Signal*> get_right_sig(int row, int col);  // <sig_up, sig_down>
     void allign();
+    void fill_signal();
     void move_tr_to_left(int y, int x);
     void move_tr(int y1, int x1, int y2, int x2);
     void improve(int improved_y, int improved_x);
     void shift_row(int row);
-    bool satisfy_via_rule(bool optimize = true);
+    bool satisfy_via_rule(bool optimized = true);
+    void expand(int row, int col);
     void calculate_available_track_case();
     void generate_multirow_plmt();
     int inter_row_signal_count(bool print = false);
@@ -255,9 +257,9 @@ class Lambda {
 
 class Permutation {
    public:
-    Permutation(){};
+    Permutation() {};
 
-    ~Permutation(){};
+    ~Permutation() {};
 
     std::vector<int> lamb_permutation;
     int size;
@@ -266,17 +268,17 @@ class Permutation {
 
 class Group {
    public:
-    Group(){};
-    ~Group(){};
+    Group() {};
+    ~Group() {};
     std::vector<Transistor*> trs;
     int width;
 };
 
 class Group_pair {
    public:
-    Group_pair(){};
+    Group_pair() {};
 
-    ~Group_pair(){};
+    ~Group_pair() {};
 
     std::pair<Group*, Group*> pair;
     int common;

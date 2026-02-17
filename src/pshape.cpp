@@ -188,6 +188,88 @@ void Pshape::allign() {
     // print_pshape();
 }
 
+void Pshape::fill_signal() {
+    const int row = multirow_tr_permutation_up.size();
+    const int cols = multirow_tr_permutation_up[0].size() * 2 + 1;
+    multirow_signal_permutation_up.resize(row);
+    for (int i = 0; i < row; i++) {
+        multirow_signal_permutation_up[i].assign(multirow_tr_permutation_up[0].size() * 2 + 1, nullptr);
+
+        for (int j = 0; j < multirow_tr_permutation_up[i].size(); j++) {
+            Transistor *tr_n = multirow_tr_permutation_up[i][j];
+            if (tr_n) {
+                switch (multirow_tr_shape_up[i][j]) {
+                    case 0:
+                        multirow_signal_permutation_up[i][2 * j] = tr_n->drain;
+                        multirow_signal_permutation_up[i][2 * j + 1] = tr_n->gate;
+                        multirow_signal_permutation_up[i][2 * j + 2] = tr_n->source;
+                        break;
+                    case 1:
+                        multirow_signal_permutation_up[i][2 * j] = tr_n->source;
+                        multirow_signal_permutation_up[i][2 * j + 1] = tr_n->gate;
+                        multirow_signal_permutation_up[i][2 * j + 2] = tr_n->drain;
+                        break;
+                    case 2:
+                        break;
+                }
+            }
+        }
+        multirow_signal_permutation_down.resize(row);
+        multirow_signal_permutation_down[i].assign(multirow_tr_permutation_down[0].size() * 2 + 1, nullptr);
+        for (int j = 0; j < multirow_tr_permutation_down[i].size(); j++) {
+            Transistor *tr_p = multirow_tr_permutation_down[i][j];
+            if (tr_p) {
+                switch (multirow_tr_shape_down[i][j]) {
+                    case 0:
+                        multirow_signal_permutation_down[i][2 * j] = tr_p->drain;
+                        multirow_signal_permutation_down[i][2 * j + 1] = tr_p->gate;
+                        multirow_signal_permutation_down[i][2 * j + 2] = tr_p->source;
+                        break;
+                    case 1:
+                        multirow_signal_permutation_down[i][2 * j] = tr_p->source;
+                        multirow_signal_permutation_down[i][2 * j + 1] = tr_p->gate;
+                        multirow_signal_permutation_down[i][2 * j + 2] = tr_p->drain;
+                        break;
+                    case 2:
+                        break;
+                }
+            }
+        }
+    }
+}
+
+void Pshape::expand(int row, int col) {
+    const int rows = multirow_tr_permutation_up.size();
+    const int cols = multirow_tr_permutation_up[0].size();
+
+    std::cout << "col: " << col << std::endl;
+    for (int r = 0; r < rows; r++) {
+        if (r == row) {
+            multirow_tr_permutation_up[r].push_back(multirow_tr_permutation_up[r][cols - 1]);
+            multirow_tr_permutation_down[r].push_back(multirow_tr_permutation_down[r][cols - 1]);
+            multirow_tr_shape_up[r].push_back(multirow_tr_shape_up[r][cols - 1]);
+            multirow_tr_shape_down[r].push_back(multirow_tr_shape_down[r][cols - 1]);
+            for (int c = cols - 1; c >= col + 1; c--) {
+                multirow_tr_permutation_up[r][c] = multirow_tr_permutation_up[r][c - 1];
+                multirow_tr_permutation_down[r][c] = multirow_tr_permutation_down[r][c - 1];
+                multirow_tr_shape_up[r][c] = multirow_tr_shape_up[r][c - 1];
+                multirow_tr_shape_down[r][c] = multirow_tr_shape_down[r][c - 1];
+            }
+            multirow_tr_permutation_up[r][col] = nullptr;
+            multirow_tr_permutation_down[r][col] = nullptr;
+            multirow_tr_shape_up[r][col] = 2;
+            multirow_tr_shape_down[r][col] = 2;
+        } else {
+            multirow_tr_permutation_up[r].push_back(nullptr);
+            multirow_tr_permutation_down[r].push_back(nullptr);
+            multirow_tr_shape_up[r].push_back(2);
+            multirow_tr_shape_down[r].push_back(2);
+        }
+    }
+    fill_signal();
+    calculate_available_track_case();
+}
+
 void Pshape::print_pshape() {
     std::cout << "hello print_shape" << std::endl;
     const int row = multirow_tr_permutation_up.size();
@@ -288,15 +370,17 @@ void Pshape::print_pshape() {
     std::cout << std::endl;
 }
 
-bool Pshape::satisfy_via_rule(bool optimize) {
-    std::cout << "hello satisfy_via_rule" << std::endl;
+bool Pshape::satisfy_via_rule(bool optimized) {
+    fill_signal();
+    calculate_available_track_case();
     const int row = multirow_tr_permutation_up.size();
+    const int rows = row * 4;
+    const int cols = available_track_case[0].size();
     // assign available track case
     // VSS on the top
     z3::context ctx;
     z3::solver solver(ctx);
     z3::optimize opt(ctx);
-    z3::expr_vector bool_vars(ctx);
     std::vector<std::vector<std::vector<z3::expr>>> via;  // [s][r][c]
     std::vector<std::vector<z3::expr>> metal;             // [r][c]
     std::vector<std::vector<z3::expr>> via_occupied;
@@ -313,11 +397,6 @@ bool Pshape::satisfy_via_rule(bool optimize) {
     std::vector<std::vector<z3::expr>> grid_id;
 
     int idx = 0;
-    calculate_available_track_case();
-
-    const int rows = row * 4;
-    const int cols = available_track_case[0].size();
-
     // assign id to signal
     for (auto pair : signals) {
         Signal *sig = pair.second;
@@ -371,7 +450,6 @@ bool Pshape::satisfy_via_rule(bool optimize) {
             }
         }
     }
-
     via.resize(signals.size());
     for (int s = 0; s < via.size(); s++) {
         via[s].assign(rows, std::vector<z3::expr>(cols, ctx.bool_val(false)));
@@ -393,10 +471,9 @@ bool Pshape::satisfy_via_rule(bool optimize) {
             metal[i][j] = ctx.bool_const(name.c_str());
         }
     }
-
     grid_id.resize(rows);
     for (int r = 0; r < grid_id.size(); r++) {
-        grid_id[r].assign(cols, ctx.bool_val(false));
+        grid_id[r].assign(cols, ctx.int_val(false));
     }
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
@@ -404,20 +481,45 @@ bool Pshape::satisfy_via_rule(bool optimize) {
             grid_id[i][j] = ctx.int_const(name.c_str());
         }
     }
-
     metal_occupied.resize(rows);
     for (int r = 0; r < metal_occupied.size(); r++) {
         metal_occupied[r].assign(cols, ctx.bool_val(false));
     }
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            std::string name = "metal_grid_" + std::to_string(i) + "_" + std::to_string(j);
-            metal_occupied[i][j] = ctx.int_const(name.c_str());
+            std::string name = "metal_occupied_" + std::to_string(i) + "_" + std::to_string(j);
+            metal_occupied[i][j] = ctx.bool_const(name.c_str());
+        }
+    }
+
+    // assign grid_id
+    for (int r = 0; r < rows; r++) {
+        for (int c = 0; c < cols; c++) {
+            z3::expr via_occu = ctx.bool_val(false);
+            for (int s = 0; s < signals.size(); s++) {
+                via_occu = via_occu || (via[s][r][c]);
+                opt.add(z3::implies(via[s][r][c], grid_id[r][c] == s));
+            }
+            // opt.add(z3::implies(!via_occu, grid_id[r][c] == -1));
+            opt.add(z3::implies(via_occu, metal[r][c]));
+        }
+    }
+
+    // grid_id connectivity
+    for (int r = 0; r < rows; r++) {
+        for (int c = 0; c < cols; c++) {
+            if (c == 0) {
+                opt.add((metal[r][c] && metal[r][c + 1]) == (grid_id[r][c] == grid_id[r][c + 1]));
+            } else if (c == cols - 1) {
+                opt.add((metal[r][c] && metal[r][c - 1]) == (grid_id[r][c] == grid_id[r][c - 1]));
+            } else {
+                opt.add((metal[r][c] && metal[r][c + 1]) == (grid_id[r][c] == grid_id[r][c + 1]));
+                opt.add((metal[r][c] && metal[r][c - 1]) == (grid_id[r][c] == grid_id[r][c - 1]));
+            }
         }
     }
 
     std::vector<std::vector<z3::expr>> gL(rows, std::vector<z3::expr>(cols, ctx.bool_val(false)));
-
     std::vector<std::vector<z3::expr>> gR(rows, std::vector<z3::expr>(cols, ctx.bool_val(false)));
 
     for (int y = 0; y < rows; ++y) {
@@ -433,7 +535,6 @@ bool Pshape::satisfy_via_rule(bool optimize) {
             gL[y][z] = ctx.bool_const(name.c_str());
         }
     }
-
     // gL assignment
     for (int y = 0; y < rows; y++) {
         for (int x = 0; x < cols; x++) {
@@ -444,7 +545,6 @@ bool Pshape::satisfy_via_rule(bool optimize) {
             }
         }
     }
-
     // gR assignment
     for (int y = 0; y < rows; y++) {
         for (int x = 0; x < cols; x++) {
@@ -455,18 +555,21 @@ bool Pshape::satisfy_via_rule(bool optimize) {
             }
         }
     }
-
     max_y.resize(row);
     min_y.resize(row);
 
     for (int r = 0; r < row; r++) {
         max_y[r].assign(signals.size(), ctx.int_val(0));
         min_y[r].assign(signals.size(), ctx.int_val(0));
+    }
+
+    for (int r = 0; r < row; r++) {
         for (int s = 0; s < signals.size(); s++) {
             max_y[r][s] = ctx.int_const((std::to_string(r) + "_" + std::to_string(s) + "_max_y").c_str());
             min_y[r][s] = ctx.int_const((std::to_string(r) + "_" + std::to_string(s) + "_min_y").c_str());
         }
     }
+
     for (int r = 0; r < row; r++) {
         for (int s = 0; s < signals.size(); s++) {
             opt.add(max_y[r][s] >= min_y[r][s]);
@@ -493,6 +596,11 @@ bool Pshape::satisfy_via_rule(bool optimize) {
         for (int s = 0; s < signals.size(); s++) {
             max_x[r][s] = ctx.int_const((std::to_string(r) + "_" + std::to_string(s) + "_max_x").c_str());
             min_x[r][s] = ctx.int_const((std::to_string(r) + "_" + std::to_string(s) + "_min_x").c_str());
+        }
+    }
+
+    for (int r = 0; r < rows; r++) {
+        for (int s = 0; s < signals.size(); s++) {
             opt.add(max_x[r][s] >= min_x[r][s]);
             for (int c = 0; c < cols; c++) {
                 opt.add(z3::implies(via[s][r][c], max_x[r][s] >= c));
@@ -500,11 +608,17 @@ bool Pshape::satisfy_via_rule(bool optimize) {
             }
         }
     }
-
     metal_density.resize(rows);
     for (int i = 0; i < rows; i++) {
         metal_density[i].assign(cols, ctx.int_val(0));
     }
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            metal_density[i][j] = ctx.int_const((std::to_string(i) + "_" + std::to_string(j) + "_metal_density").c_str());
+        }
+    }
+
     for (int s = 0; s < signals.size(); s++) {
         Signal *sig = idx_to_sig[s];
         if (sig_count[sig] <= 1 && sig->is_io_pins == false || sig->name == "VSS" || sig->name == "VDD") {
@@ -513,7 +627,7 @@ bool Pshape::satisfy_via_rule(bool optimize) {
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
                 z3::expr metal_cover = (c <= max_x[r][s]) && (c >= min_x[r][s]);
-                metal_density[r][c] = metal_density[r][c] + ite(metal_cover, ctx.int_val(1), ctx.int_val(0));
+                metal_density[r][c] = metal_density[r][c] + z3::ite(metal_cover, ctx.int_val(1), ctx.int_val(0));
             }
         }
     }
@@ -521,6 +635,12 @@ bool Pshape::satisfy_via_rule(bool optimize) {
     via_occupied.resize(via[0].size());
     for (int i = 0; i < via[0].size(); i++) {
         via_occupied[i].assign(via[0][0].size(), ctx.bool_val(false));
+    }
+
+    for (int i = 0; i < via[0].size(); i++) {
+        for (int j = 0; j < via[0][0].size(); j++) {
+            via_occupied[i][j] = ctx.bool_const((std::to_string(i) + "_" + std::to_string(j) + "_via_occupied").c_str());
+        }
     }
     for (int s = 0; s < via.size(); s++) {
         for (int i = 0; i < via[s].size(); i++) {
@@ -683,33 +803,6 @@ bool Pshape::satisfy_via_rule(bool optimize) {
         }
     }
 
-    // assign grid_id
-    for (int r = 0; r < rows; r++) {
-        for (int c = 0; c < cols; c++) {
-            z3::expr via_occu = ctx.bool_val(false);
-            for (int s = 0; s < signals.size(); s++) {
-                via_occu = via_occu || (via[s][r][c]);
-                opt.add(z3::implies(via[s][r][c], grid_id[r][c] == s));
-            }
-            // opt.add(z3::implies(!via_occu, grid_id[r][c] == -1));
-            opt.add(z3::implies(via_occu, metal[r][c]));
-        }
-    }
-
-    // grid_id connectivity
-    for (int r = 0; r < rows; r++) {
-        for (int c = 0; c < cols; c++) {
-            if (c == 0) {
-                opt.add((metal[r][c] && metal[r][c + 1]) == (grid_id[r][c] == grid_id[r][c + 1]));
-            } else if (c == cols - 1) {
-                opt.add((metal[r][c] && metal[r][c - 1]) == (grid_id[r][c] == grid_id[r][c - 1]));
-            } else {
-                opt.add((metal[r][c] && metal[r][c + 1]) == (grid_id[r][c] == grid_id[r][c + 1]));
-                opt.add((metal[r][c] && metal[r][c - 1]) == (grid_id[r][c] == grid_id[r][c - 1]));
-            }
-        }
-    }
-
     // MAR rule (MAR = 1)
     for (int r = 0; r < rows; r++) {
         for (int c = 0; c < cols; c++) {
@@ -797,14 +890,15 @@ bool Pshape::satisfy_via_rule(bool optimize) {
         }
     }
 
-    if (optimize) {
+    if (optimized) {
+        std::cout << "optimized" << std::endl;
         opt.minimize(total_diff);
         opt.minimize(total_density);
         opt.minimize(total_metal);
     }
 
     z3::params p(ctx);
-    p.set("timeout", static_cast<unsigned>(60000));
+    p.set("timeout", static_cast<unsigned>(600000));
     opt.set(p);
     std::cout << "before sat" << std::endl;
     z3::check_result result = opt.check();
@@ -863,13 +957,13 @@ bool Pshape::satisfy_via_rule(bool optimize) {
             }
         }
 
-        // std::cout << "[verticall diff]" << std::endl;
-        // for (int s = 0; s < signals.size(); s++) {
-        //     std::cout << idx_to_sig[s]->name << std::endl;
-        //     for (int r = 0; r < row; r++) {
-        //         std::cout << "row " << r << ": " << m.eval(min_y[r][s]) << " " << m.eval(max_y[r][s]) << std::endl;
-        //     }
-        // }
+        std::cout << "[verticall diff]" << std::endl;
+        for (int s = 0; s < signals.size(); s++) {
+            std::cout << idx_to_sig[s]->name << std::endl;
+            for (int r = 0; r < row; r++) {
+                std::cout << "row " << r << ": " << m.eval(min_y[r][s]) << " " << m.eval(max_y[r][s]) << std::endl;
+            }
+        }
 
         m0_metal_fill.resize(rows);
         for (int i = 0; i < rows; i++) {
@@ -889,12 +983,12 @@ bool Pshape::satisfy_via_rule(bool optimize) {
         std::cout << "total_via_vertical_diff: " << m.eval(total_diff) << std::endl;
         std::cout << "total density: " << m.eval(total_density) << std::endl;
 
-        for (int i = 0; i < via[0].size(); i++) {
-            for (int j = 0; j < via[0][i].size(); j++) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
                 assert(matrix_constraint[i][j] <= 1);
             }
         }
-
+        std::cout << "finish satisfy via rule" << std::endl;
         return true;
     } else if (result == z3::unknown) {
         std::cout << "⚠️ 超時或無法判定（unknown）" << std::endl;
@@ -990,12 +1084,13 @@ bool Pshape::satisfy_via_rule(bool optimize) {
 }
 
 void Pshape::calculate_available_track_case() {
-    // std::cout << "hello calculate_available_track_case" << std::endl;
+    std::cout << "hello calculate_available_track_case" << std::endl;
     int layout_width = 0;
     const int row = multirow_tr_permutation_up.size();
     for (int i = 0; i < row; i++) {
         layout_width = std::max(static_cast<int>(multirow_tr_permutation_up[i].size()), layout_width);
     }
+    std::cout << "layout_width * 2 + 1: " << layout_width * 2 + 1 << std::endl;
     available_track_case.assign(row, std::vector<int>(layout_width * 2 + 1, 0));
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < multirow_signal_permutation_up[i].size(); j++) {

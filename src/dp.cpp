@@ -26,7 +26,7 @@ Pshape* detailed_placement(Pshape* pshape) {
     const int beta = 1;
     const int gamma = 1;
     const int rows = pshape->multirow_tr_permutation_up.size();
-    const int cols = pshape->multirow_tr_permutation_up[0].size();
+    int cols = pshape->multirow_tr_permutation_up[0].size();
     int cost = pshape->cost(true);
     int best_cost = cost;
     std::cout << "[initial] cost: " << cost << std::endl;
@@ -69,12 +69,6 @@ Pshape* detailed_placement(Pshape* pshape) {
         if (improved == false) {
             break;
         }
-    }
-
-    bool via_rule_satisfied = best_pshape->satisfy_via_rule();
-    assert(via_rule_satisfied);
-    if (via_rule_satisfied == false) {
-        std::cout << "fail placement" << std::endl;
     }
 
     best_pshape->print_pshape();

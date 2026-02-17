@@ -1,0 +1,419 @@
+Hello, World!
+cell/DFFHQNx1.txt
+Available CPU cores: 16
+MM25 num_finger: 1
+MM22 num_finger: 1
+MM21 num_finger: 1
+MM19 num_finger: 1
+MM18 num_finger: 1
+MM15 num_finger: 1
+MM13 num_finger: 1
+MM11 num_finger: 1
+MM10 num_finger: 1
+MM7 num_finger: 1
+MM1 num_finger: 1
+MM3 num_finger: 1
+MM24 num_finger: 1
+MM23 num_finger: 1
+MM20 num_finger: 1
+MM17 num_finger: 1
+MM16 num_finger: 1
+MM14 num_finger: 1
+MM12 num_finger: 1
+MM9 num_finger: 1
+MM8 num_finger: 1
+MM6 num_finger: 1
+MM5 num_finger: 1
+MM4 num_finger: 1
+#tr/#net: 24/17
+nets: 
+pu1
+pd2
+pd4
+pd1
+CLK
+D
+QN
+MH
+pd3
+SH
+clkb
+pd5
+SS
+clkn
+MS
+compound_gates: 
+
+MM25
+MM24
+
+MM10
+MM1
+MM9
+MM4
+
+MM18
+MM17
+
+MM22
+MM23
+
+MM15
+MM14
+
+MM21
+MM20
+
+MM7
+MM6
+
+transmission_gates: 
+
+MM13
+MM12
+p-network: 
+MM25
+n-network: 
+MM24
+
+MM25 MM24 2
+MM24 pref MM25
+MM25 pref MM24
+MM24 propose #0
+MM24 match MM25
+[matching result]
+MM25 <-> MM24
+p-network: 
+MM10
+MM11
+MM1
+MM3
+n-network: 
+MM9
+MM8
+MM4
+MM5
+
+MM10 MM9 -2
+MM10 MM8 -3
+MM10 MM4 -2
+MM10 MM5 -5
+MM11 MM9 -3
+MM11 MM8 0
+MM11 MM4 -5
+MM11 MM5 -4
+MM1 MM9 -2
+MM1 MM8 -5
+MM1 MM4 -2
+MM1 MM5 -3
+MM3 MM9 -5
+MM3 MM8 -4
+MM3 MM4 -3
+MM3 MM5 0
+MM9 pref MM10
+MM9 pref MM1
+MM9 pref MM11
+MM9 pref MM3
+MM8 pref MM11
+MM8 pref MM10
+MM8 pref MM3
+MM8 pref MM1
+MM4 pref MM10
+MM4 pref MM1
+MM4 pref MM3
+MM4 pref MM11
+MM5 pref MM3
+MM5 pref MM1
+MM5 pref MM11
+MM5 pref MM10
+MM10 pref MM9
+MM10 pref MM4
+MM10 pref MM8
+MM10 pref MM5
+MM11 pref MM8
+MM11 pref MM9
+MM11 pref MM5
+MM11 pref MM4
+MM1 pref MM9
+MM1 pref MM4
+MM1 pref MM5
+MM1 pref MM8
+MM3 pref MM5
+MM3 pref MM4
+MM3 pref MM8
+MM3 pref MM9
+MM9 propose #0
+MM9 match MM10
+MM8 propose #0
+MM8 match MM11
+MM4 propose #0
+MM5 propose #0
+MM5 match MM3
+MM4 propose #1
+MM4 match MM1
+[matching result]
+MM10 <-> MM9
+MM11 <-> MM8
+MM1 <-> MM4
+MM3 <-> MM5
+p-network: 
+MM18
+MM19
+n-network: 
+MM17
+MM16
+
+MM18 MM17 -2
+MM18 MM16 -3
+MM19 MM17 -3
+MM19 MM16 0
+MM17 pref MM18
+MM17 pref MM19
+MM16 pref MM19
+MM16 pref MM18
+MM18 pref MM17
+MM18 pref MM16
+MM19 pref MM16
+MM19 pref MM17
+MM17 propose #0
+MM17 match MM18
+MM16 propose #0
+MM16 match MM19
+[matching result]
+MM18 <-> MM17
+MM19 <-> MM16
+p-network: 
+MM22
+n-network: 
+MM23
+
+MM22 MM23 2
+MM23 pref MM22
+MM22 pref MM23
+MM23 propose #0
+MM23 match MM22
+[matching result]
+MM22 <-> MM23
+p-network: 
+MM15
+n-network: 
+MM14
+
+MM15 MM14 2
+MM14 pref MM15
+MM15 pref MM14
+MM14 propose #0
+MM14 match MM15
+[matching result]
+MM15 <-> MM14
+p-network: 
+MM21
+n-network: 
+MM20
+
+MM21 MM20 2
+MM20 pref MM21
+MM21 pref MM20
+MM20 propose #0
+MM20 match MM21
+[matching result]
+MM21 <-> MM20
+p-network: 
+MM7
+n-network: 
+MM6
+
+MM7 MM6 2
+MM6 pref MM7
+MM7 pref MM6
+MM6 propose #0
+MM6 match MM7
+[matching result]
+MM7 <-> MM6
+pairs: 
+MM21 MM20
+MM15 MM14
+MM22 MM23
+MM18 MM17
+MM3 MM5
+MM19 MM16
+MM1 MM4
+MM11 MM8
+MM10 MM9
+MM7 MM6
+MM25 MM24
+MM13 MM12
+[matching result]
+[folding_shape_generation]
+[placement]
+total_finger: 12
+expected #row: 1
+outputs.size(): 1
+QN
+output mos: MM25
+inputs.size(): 2
+CLK
+input mos: MM21
+D
+input mos: MM3
+[ungrouped_pmos]
+MM22
+MM21
+MM19
+MM18
+MM15
+MM13
+MM11
+MM10
+MM7
+MM1
+MM3
+group: 
+MM25
+MM18
+MM13
+MM22
+MM21
+MM15
+MM10
+MM1
+MM7
+MM11
+MM19
+MM3
+hello group_placement
+target_area: 12
+BFS Time taken : 0.01994
+Time taken : 0.0200422 seconds
+target_area: 13
+BFS Time taken : 1.38083
+bfs total time: 1.40077
+dfs total time: 6.5231e-05
+number of cell: 576
+HPML: 1
+Set 1 intersecting elements: None
+Row 0: 
+hello print_shape
+MM20    MM5     MM4     MM9     MM8     MM6     MM12    MM17    MM16    MM23            MM14    MM24    
+--
+MM21    MM3     MM1     MM10    MM11    MM7     MM13    MM18    MM19    MM22            MM15    MM25    
+clkn    CLK     VSS     VSS     D       pd1     pd1     clkn    MH      MH      clkb    pd3     pd3     MS      VSS     VSS     MH      MS      MS      clkb    SH      SH      clkn    pd5     pd5     SS      VSS     VSS     clkn    clkb    ------------------------SS      SH      VSS     VSS     SH      QN      
+--
+clkn    CLK     VDD     VDD     D       pu1     pu1     clkb    MH      MH      clkn    pd2     pd2     MS      VDD     VDD     MH      MS      MS      clkn    SH      SH      clkb    pd4     pd4     SS      VDD     VDD     clkn    clkb    ------------------------SS      SH      VDD     VDD     SH      QN      
+clkn    CLK     VSS     D       pd1     clkn    MH      clkb    pd3     MS      VSS     MH      MS      clkb    SH      clkn    pd5     SS      VSS     clkn    clkb    Null    SS      SH      VSS     SH      QN      
+
+clkn    CLK     VDD     D       pu1     clkb    MH      clkn    pd2     MS      VDD     MH      MS      clkn    SH      clkb    pd4     SS      VDD     clkn    clkb    Null    SS      SH      VDD     SH      QN      
+
+HSP: 114
+HCD: 4
+hello placement_merging
+0 0 
+score: 58
+hello print_shape
+MM20    MM5     MM4     MM9     MM8     MM6     MM12    MM17    MM16    MM23            MM14    MM24    
+--
+MM21    MM3     MM1     MM10    MM11    MM7     MM13    MM18    MM19    MM22            MM15    MM25    
+clkn    CLK     VSS     VSS     D       pd1     pd1     clkn    MH      MH      clkb    pd3     pd3     MS      VSS     VSS     MH      MS      MS      clkb    SH      SH      clkn    pd5     pd5     SS      VSS     VSS     clkn    clkb    ------------------------SS      SH      VSS     VSS     SH      QN      
+--
+clkn    CLK     VDD     VDD     D       pu1     pu1     clkb    MH      MH      clkn    pd2     pd2     MS      VDD     VDD     MH      MS      MS      clkn    SH      SH      clkb    pd4     pd4     SS      VDD     VDD     clkn    clkb    ------------------------SS      SH      VDD     VDD     SH      QN      
+clkn    CLK     VSS     D       pd1     clkn    MH      clkb    pd3     MS      VSS     MH      MS      clkb    SH      clkn    pd5     SS      VSS     clkn    clkb    Null    SS      SH      VSS     SH      QN      
+
+clkn    CLK     VDD     D       pu1     clkb    MH      clkn    pd2     MS      VDD     MH      MS      clkn    SH      clkb    pd4     SS      VDD     clkn    clkb    Null    SS      SH      VDD     SH      QN      
+
+area: 13
+hpml: 58
+#inter-row signals: 0
+total density: 535
+cost: 388
+hello print_shape
+MM20    MM5     MM4     MM9     MM8     MM6     MM12    MM17    MM16    MM23            MM14    MM24    
+--
+MM21    MM3     MM1     MM10    MM11    MM7     MM13    MM18    MM19    MM22            MM15    MM25    
+clkn    CLK     VSS     VSS     D       pd1     pd1     clkn    MH      MH      clkb    pd3     pd3     MS      VSS     VSS     MH      MS      MS      clkb    SH      SH      clkn    pd5     pd5     SS      VSS     VSS     clkn    clkb    ------------------------SS      SH      VSS     VSS     SH      QN      
+--
+clkn    CLK     VDD     VDD     D       pu1     pu1     clkb    MH      MH      clkn    pd2     pd2     MS      VDD     VDD     MH      MS      MS      clkn    SH      SH      clkb    pd4     pd4     SS      VDD     VDD     clkn    clkb    ------------------------SS      SH      VDD     VDD     SH      QN      
+clkn    CLK     VSS     D       pd1     clkn    MH      clkb    pd3     MS      VSS     MH      MS      clkb    SH      clkn    pd5     SS      VSS     clkn    clkb    Null    SS      SH      VSS     SH      QN      
+
+clkn    CLK     VDD     D       pu1     clkb    MH      clkn    pd2     MS      VDD     MH      MS      clkn    SH      clkb    pd4     SS      VDD     clkn    clkb    Null    SS      SH      VDD     SH      QN      
+
+[initial] cost: 388
+[epoch 0]
+hello calculate_available_track_case
+layout_width * 2 + 1: 27
+115133133151131331511011511
+optimized
+before sat
+SAT
+[via]
+1 0 0 0 0 1 0 1 0 0 0 0 0 1 0 1 0 0 0 1 0 0 0 0 0 0 1 
+0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 1 0 0 0 0 
+0 0 0 0 0 0 0 0 0 1 0 0 1 0 1 0 0 0 0 0 0 0 0 1 0 1 0 
+0 0 0 1 0 1 0 1 0 0 0 0 0 1 0 1 0 0 0 0 1 0 0 0 0 0 1 
+[metal]
+ 15  15  -1  -1  -1  15  15  15  15  -1  -1  -1  -1  15  15  15  -1  -1  -1  15  15  -1  -1  -1  -1   6   6 
+  4   4  -1  -1  -1   7   7  -1  -1  -1  -1   7   7  -1  -1  -1  -1  14  14  -1  -1  14  14  -1  -1  -1  -1 
+ -1  -1  -1  -1  -1  -1  -1  -1  16  16  -1  16  16  -1  11  11  -1  -1  -1  -1  -1  -1  -1  11  11  11  -1 
+ -1  -1   5   5  -1  12  12  12  -1  -1  -1  12  12  12  12  12  -1  -1  -1  -1  12  12  -1  -1  -1  -1  -1 
+[metal density]
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[verticall diff]
+pu1
+row 0: 0 0
+pd2
+row 0: 0 0
+pd4
+row 0: 0 0
+pd1
+row 0: 0 0
+CLK
+row 0: 1 1
+D
+row 0: 3 3
+QN
+row 0: 0 0
+MH
+row 0: 1 1
+VDD
+row 0: 0 0
+VSS
+row 0: 0 0
+pd3
+row 0: 0 0
+SH
+row 0: 2 2
+clkb
+row 0: 3 3
+pd5
+row 0: 0 0
+SS
+row 0: 1 1
+clkn
+row 0: 0 0
+MS
+row 0: 2 2
+[satisfy via metal]
+110001111000011100011000011
+110001100001100001100110000
+000000001101101100000001110
+001101110001111100001100000
+total_via_vertical_diff: 0
+total density: 0
+finish satisfy via rule
+hello print_shape
+MM20    MM5     MM4     MM9     MM8     MM6     MM12    MM17    MM16    MM23            MM14    MM24    
+--
+MM21    MM3     MM1     MM10    MM11    MM7     MM13    MM18    MM19    MM22            MM15    MM25    
+clkn    CLK     VSS     VSS     D       pd1     pd1     clkn    MH      MH      clkb    pd3     pd3     MS      VSS     VSS     MH      MS      MS      clkb    SH      SH      clkn    pd5     pd5     SS      VSS     VSS     clkn    clkb    ------------------------SS      SH      VSS     VSS     SH      QN      
+--
+clkn    CLK     VDD     VDD     D       pu1     pu1     clkb    MH      MH      clkn    pd2     pd2     MS      VDD     VDD     MH      MS      MS      clkn    SH      SH      clkb    pd4     pd4     SS      VDD     VDD     clkn    clkb    ------------------------SS      SH      VDD     VDD     SH      QN      
+clkn    CLK     VSS     D       pd1     clkn    MH      clkb    pd3     MS      VSS     MH      MS      clkb    SH      clkn    pd5     SS      VSS     clkn    clkb    Null    SS      SH      VSS     SH      QN      
+
+clkn    CLK     VDD     D       pu1     clkb    MH      clkn    pd2     MS      VDD     MH      MS      clkn    SH      clkb    pd4     SS      VDD     clkn    clkb    Null    SS      SH      VDD     SH      QN      
+
+成功建立檔案：results/DFFHQNx1.plmt
+max_cols: 13
+Generated results/DFFHQNx1.plmt
+Time taken : 5.68432 seconds

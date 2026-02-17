@@ -1,0 +1,832 @@
+Hello, World!
+cell/MUL2.txt
+Available CPU cores: 16
+MM2 num_finger: 1
+MM4 num_finger: 1
+MM6 num_finger: 1
+MM8 num_finger: 1
+MM9 num_finger: 1
+MM10 num_finger: 1
+MM11 num_finger: 1
+MM12 num_finger: 1
+MM19 num_finger: 1
+MM20 num_finger: 1
+MM24 num_finger: 1
+MM25 num_finger: 1
+MM26 num_finger: 1
+MM27 num_finger: 1
+MM28 num_finger: 1
+MM29 num_finger: 1
+MM30 num_finger: 1
+MM37 num_finger: 1
+MM38 num_finger: 1
+MM1 num_finger: 1
+MM3 num_finger: 1
+MM5 num_finger: 1
+MM7 num_finger: 1
+MM13 num_finger: 1
+MM14 num_finger: 1
+MM15 num_finger: 1
+MM16 num_finger: 1
+MM17 num_finger: 1
+MM18 num_finger: 1
+MM21 num_finger: 1
+MM22 num_finger: 1
+MM23 num_finger: 1
+MM31 num_finger: 1
+MM32 num_finger: 1
+MM33 num_finger: 1
+MM34 num_finger: 1
+MM35 num_finger: 1
+MM36 num_finger: 1
+#tr/#net: 38/25
+nets: 
+N15
+N13
+N12
+N10
+N11
+a[0]
+N14
+a[1]
+N5
+sum[2]
+N7
+N9
+b[0]
+N6
+N3
+b[1]
+N8
+sum[0]
+N4
+sum[1]
+sum[3]
+N2
+N1
+compound_gates: 
+
+MM27
+MM28
+MM33
+MM34
+
+MM26
+MM21
+MM22
+MM23
+
+MM6
+MM5
+
+MM19
+MM17
+MM18
+
+MM8
+MM7
+
+MM37
+MM35
+MM36
+
+MM9
+MM13
+MM14
+MM15
+MM16
+
+MM4
+MM3
+
+MM2
+MM1
+
+transmission_gates: 
+p-network: 
+MM27
+MM29
+MM30
+MM28
+n-network: 
+MM33
+MM31
+MM34
+MM32
+
+MM27 MM33 0
+MM27 MM31 -3
+MM27 MM34 -2
+MM27 MM32 -3
+MM29 MM33 -3
+MM29 MM31 -2
+MM29 MM34 -1
+MM29 MM32 -2
+MM30 MM33 -3
+MM30 MM31 -2
+MM30 MM34 -3
+MM30 MM32 0
+MM28 MM33 -2
+MM28 MM31 -1
+MM28 MM34 -2
+MM28 MM32 -3
+MM33 pref MM27
+MM33 pref MM28
+MM33 pref MM29
+MM33 pref MM30
+MM31 pref MM28
+MM31 pref MM29
+MM31 pref MM30
+MM31 pref MM27
+MM34 pref MM29
+MM34 pref MM27
+MM34 pref MM28
+MM34 pref MM30
+MM32 pref MM30
+MM32 pref MM29
+MM32 pref MM27
+MM32 pref MM28
+MM27 pref MM33
+MM27 pref MM34
+MM27 pref MM31
+MM27 pref MM32
+MM29 pref MM34
+MM29 pref MM31
+MM29 pref MM32
+MM29 pref MM33
+MM30 pref MM32
+MM30 pref MM31
+MM30 pref MM33
+MM30 pref MM34
+MM28 pref MM31
+MM28 pref MM33
+MM28 pref MM34
+MM28 pref MM32
+MM33 propose #0
+MM33 match MM27
+MM31 propose #0
+MM32 match MM29
+MM34 propose #0
+MM31 match MM30
+MM32 propose #0
+MM34 match MM28
+[matching result]
+MM27 <-> MM33
+MM29 <-> MM34
+MM30 <-> MM32
+MM28 <-> MM31
+p-network: 
+MM26
+MM25
+MM24
+n-network: 
+MM21
+MM22
+MM23
+
+MM26 MM21 -3
+MM26 MM22 -3
+MM26 MM23 -1
+MM25 MM21 -5
+MM25 MM22 -3
+MM25 MM23 -5
+MM24 MM21 -2
+MM24 MM22 -4
+MM24 MM23 -4
+MM21 pref MM24
+MM21 pref MM26
+MM21 pref MM25
+MM22 pref MM26
+MM22 pref MM25
+MM22 pref MM24
+MM23 pref MM26
+MM23 pref MM24
+MM23 pref MM25
+MM26 pref MM23
+MM26 pref MM21
+MM26 pref MM22
+MM25 pref MM22
+MM25 pref MM21
+MM25 pref MM23
+MM24 pref MM21
+MM24 pref MM22
+MM24 pref MM23
+MM21 propose #0
+MM23 match MM26
+MM22 propose #0
+MM21 match MM25
+MM23 propose #0
+MM21 match MM24
+MM22 propose #1
+MM22 match MM25
+[matching result]
+MM26 <-> MM23
+MM25 <-> MM22
+MM24 <-> MM21
+p-network: 
+MM6
+n-network: 
+MM5
+
+MM6 MM5 2
+MM5 pref MM6
+MM6 pref MM5
+MM5 propose #0
+MM5 match MM6
+[matching result]
+MM6 <-> MM5
+p-network: 
+MM19
+MM20
+n-network: 
+MM17
+MM18
+
+MM19 MM17 -3
+MM19 MM18 -1
+MM20 MM17 -2
+MM20 MM18 -4
+MM17 pref MM20
+MM17 pref MM19
+MM18 pref MM19
+MM18 pref MM20
+MM19 pref MM18
+MM19 pref MM17
+MM20 pref MM17
+MM20 pref MM18
+MM17 propose #0
+MM18 match MM19
+MM18 propose #0
+MM17 match MM20
+[matching result]
+MM19 <-> MM18
+MM20 <-> MM17
+p-network: 
+MM8
+n-network: 
+MM7
+
+MM8 MM7 2
+MM7 pref MM8
+MM8 pref MM7
+MM7 propose #0
+MM7 match MM8
+[matching result]
+MM8 <-> MM7
+p-network: 
+MM37
+MM38
+n-network: 
+MM35
+MM36
+
+MM37 MM35 -3
+MM37 MM36 -1
+MM38 MM35 -2
+MM38 MM36 -4
+MM35 pref MM38
+MM35 pref MM37
+MM36 pref MM37
+MM36 pref MM38
+MM37 pref MM36
+MM37 pref MM35
+MM38 pref MM35
+MM38 pref MM36
+MM35 propose #0
+MM36 match MM37
+MM36 propose #0
+MM35 match MM38
+[matching result]
+MM37 <-> MM36
+MM38 <-> MM35
+p-network: 
+MM9
+MM10
+MM11
+MM12
+n-network: 
+MM13
+MM14
+MM15
+MM16
+
+MM9 MM13 -3
+MM9 MM14 -3
+MM9 MM15 -3
+MM9 MM16 -1
+MM10 MM13 -5
+MM10 MM14 -5
+MM10 MM15 -3
+MM10 MM16 -5
+MM11 MM13 -5
+MM11 MM14 -3
+MM11 MM15 -5
+MM11 MM16 -5
+MM12 MM13 -2
+MM12 MM14 -4
+MM12 MM15 -4
+MM12 MM16 -4
+MM13 pref MM12
+MM13 pref MM9
+MM13 pref MM10
+MM13 pref MM11
+MM14 pref MM9
+MM14 pref MM11
+MM14 pref MM12
+MM14 pref MM10
+MM15 pref MM9
+MM15 pref MM10
+MM15 pref MM12
+MM15 pref MM11
+MM16 pref MM9
+MM16 pref MM12
+MM16 pref MM10
+MM16 pref MM11
+MM9 pref MM16
+MM9 pref MM13
+MM9 pref MM14
+MM9 pref MM15
+MM10 pref MM15
+MM10 pref MM13
+MM10 pref MM14
+MM10 pref MM16
+MM11 pref MM14
+MM11 pref MM13
+MM11 pref MM15
+MM11 pref MM16
+MM12 pref MM13
+MM12 pref MM14
+MM12 pref MM15
+MM12 pref MM16
+MM13 propose #0
+MM16 match MM9
+MM14 propose #0
+MM13 match MM10
+MM15 propose #0
+MM16 propose #0
+MM13 match MM12
+MM15 propose #1
+MM14 match MM11
+MM14 propose #1
+MM15 match MM10
+[matching result]
+MM9 <-> MM16
+MM10 <-> MM15
+MM11 <-> MM14
+MM12 <-> MM13
+p-network: 
+MM4
+n-network: 
+MM3
+
+MM4 MM3 2
+MM3 pref MM4
+MM4 pref MM3
+MM3 propose #0
+MM3 match MM4
+[matching result]
+MM4 <-> MM3
+p-network: 
+MM2
+n-network: 
+MM1
+
+MM2 MM1 2
+MM1 pref MM2
+MM2 pref MM1
+MM1 propose #0
+MM1 match MM2
+[matching result]
+MM2 <-> MM1
+pairs: 
+MM2 MM1
+MM4 MM3
+MM11 MM14
+MM9 MM16
+MM10 MM15
+MM27 MM33
+MM20 MM17
+MM12 MM13
+MM29 MM34
+MM26 MM23
+MM24 MM21
+MM6 MM5
+MM28 MM31
+MM25 MM22
+MM19 MM18
+MM8 MM7
+MM37 MM36
+MM30 MM32
+MM38 MM35
+[matching result]
+[folding_shape_generation]
+[placement]
+total_finger: 19
+expected #row: 2
+outputs.size(): 4
+sum[0]
+output mos: MM19
+sum[1]
+output mos: MM37
+sum[2]
+output mos: MM26
+sum[3]
+output mos: MM9
+inputs.size(): 4
+a[0]
+input mos: MM2
+a[1]
+input mos: MM6
+b[0]
+input mos: MM4
+b[1]
+input mos: MM8
+pass
+[ungrouped_pmos]
+MM2
+MM4
+MM6
+MM8
+MM10
+MM11
+MM12
+MM20
+MM24
+MM25
+MM26
+MM27
+MM28
+MM29
+MM30
+MM37
+MM38
+group: 
+MM9
+MM2
+MM20
+MM11
+MM6
+MM12
+MM8
+MM37
+MM38
+MM30
+hello group_placement
+target_area: 10
+BFS Time taken : 0.00322008
+Time taken : 0.00330156 seconds
+target_area: 11
+BFS Time taken : 0.191492
+Time taken : 0.192317 seconds
+target_area: 12
+BFS Time taken : 1.4867
+Time taken : 4.9419 seconds
+target_area: 13
+BFS Time taken : 2.11932
+Time taken : 81.1777 seconds
+target_area: 14
+BFS Time taken : 2.0194
+Time taken : 18.2461 seconds
+bfs total time: 5.82013
+dfs total time: 98.7331
+number of cell: 16480
+group: 
+MM19
+MM4
+MM10
+MM26
+MM25
+MM24
+MM28
+MM27
+MM29
+hello group_placement
+target_area: 9
+BFS Time taken : 0.00172469
+Time taken : 0.00175382 seconds
+target_area: 10
+BFS Time taken : 0.0621439
+Time taken : 0.0623462 seconds
+target_area: 11
+BFS Time taken : 1.49624
+Time taken : 1.49638 seconds
+target_area: 12
+BFS Time taken : 29.2121
+bfs total time: 30.7722
+dfs total time: 0.000235365
+number of cell: 1536
+HPML: 0
+HPML: 0
+Set 1 intersecting elements: a[1] b[1] sum[0] sum[3] N3 N4 N5 N6 N8 N11 N12 N14 
+Set 2 intersecting elements: a[1] b[1] sum[0] sum[3] N3 N4 N5 N6 N8 N11 N12 N14 
+Row 0: 
+hello print_shape
+MM17            MM16            MM1     MM32            MM36    MM35    MM5             MM14    MM13    MM7     
+--
+MM20            MM9             MM2     MM30            MM37    MM38    MM6             MM11    MM12    MM8     
+sum[0]  N1      VSS     ------------------------VSS     N1      sum[3]  ------------------------N1      a[0]    VSS     VSS     a[0]    N14     ------------------------VSS     sum[3]  sum[1]  sum[1]  N11     VSS     VSS     a[1]    N3      ------------------------VSS     N3      sum[3]  sum[3]  N4      VSS     VSS     b[1]    N4      
+--
+N8      N1      VDD     ------------------------N5      N1      sum[3]  ------------------------N1      a[0]    VDD     VDD     a[0]    N12     ------------------------sum[1]  sum[3]  N15     N15     N11     VDD     VDD     a[1]    N3      ------------------------N6      N3      N7      N7      N4      VDD     VDD     b[1]    N4      
+sum[0]  N1      VSS     Null    VSS     N1      sum[3]  Null    N1      a[0]    VSS     a[0]    N14     Null    VSS     sum[3]  sum[1]  N11     VSS     a[1]    N3      Null    VSS     N3      sum[3]  N4      VSS     b[1]    N4      
+
+N8      N1      VDD     Null    N5      N1      sum[3]  Null    N1      a[0]    VDD     a[0]    N12     Null    sum[1]  sum[3]  N15     N11     VDD     a[1]    N3      Null    N6      N3      N7      N4      VDD     b[1]    N4      
+
+HSP: 57
+HCD: 3
+Row 1: 
+hello print_shape
+MM34    MM33    MM31            MM3     MM21    MM22    MM23            MM18            MM15    
+--
+MM29    MM27    MM28            MM4     MM24    MM25    MM26            MM19            MM10    
+N14     b[1]    N11     N11     a[1]    N13     N13     b[0]    VSS     ------------------------N2      b[0]    VSS     VSS     N4      sum[2]  sum[2]  N3      VSS     VSS     sum[0]  sum[2]  ------------------------sum[0]  N2      VSS     ------------------------VSS     N2      sum[3]  
+--
+VDD     b[1]    N12     N12     a[1]    N11     N11     b[0]    N12     ------------------------N2      b[0]    VDD     VDD     N4      N9      N9      N3      N10     N10     sum[0]  sum[2]  ------------------------sum[0]  N2      N8      ------------------------N6      N2      N5      
+N14     b[1]    N11     a[1]    N13     b[0]    VSS     Null    N2      b[0]    VSS     N4      sum[2]  N3      VSS     sum[0]  sum[2]  Null    sum[0]  N2      VSS     Null    VSS     N2      sum[3]  
+
+VDD     b[1]    N12     a[1]    N11     b[0]    N12     Null    N2      b[0]    VDD     N4      N9      N3      N10     sum[0]  sum[2]  Null    sum[0]  N2      N8      Null    N6      N2      N5      
+
+HSP: 52
+HCD: 3
+hello placement_merging
+hello calculate_available_track_case
+layout_width * 2 + 1: 29
+31504110115130413151104131511
+21313140115131411011404130000
+before sat
+UNSAT
+0 1 0 0 
+score: 2.14748e+09
+hello calculate_available_track_case
+layout_width * 2 + 1: 29
+31504110115130413151104131511
+31404110114131511041313120000
+before sat
+UNSAT
+0 1 0 1 
+score: 2.14748e+09
+hello print_shape
+MM17            MM16            MM1     MM32            MM36    MM35    MM5             MM14    MM13    MM7     
+MM34    MM33    MM31            MM3     MM21    MM22    MM23            MM18            MM15                    
+--
+MM20            MM9             MM2     MM30            MM37    MM38    MM6             MM11    MM12    MM8     
+MM29    MM27    MM28            MM4     MM24    MM25    MM26            MM19            MM10                    
+sum[0]  N1      VSS     ------------------------VSS     N1      sum[3]  ------------------------N1      a[0]    VSS     VSS     a[0]    N14     ------------------------VSS     sum[3]  sum[1]  sum[1]  N11     VSS     VSS     a[1]    N3      ------------------------VSS     N3      sum[3]  sum[3]  N4      VSS     VSS     b[1]    N4      
+N14     b[1]    N11     N11     a[1]    N13     N13     b[0]    VSS     ------------------------N2      b[0]    VSS     VSS     N4      sum[2]  sum[2]  N3      VSS     VSS     sum[0]  sum[2]  ------------------------sum[0]  N2      VSS     ------------------------VSS     N2      sum[3]  ------------------------------------------------
+--
+N8      N1      VDD     ------------------------N5      N1      sum[3]  ------------------------N1      a[0]    VDD     VDD     a[0]    N12     ------------------------sum[1]  sum[3]  N15     N15     N11     VDD     VDD     a[1]    N3      ------------------------N6      N3      N7      N7      N4      VDD     VDD     b[1]    N4      
+VDD     b[1]    N12     N12     a[1]    N11     N11     b[0]    N12     ------------------------N2      b[0]    VDD     VDD     N4      N9      N9      N3      N10     N10     sum[0]  sum[2]  ------------------------sum[0]  N2      N8      ------------------------N6      N2      N5      ------------------------------------------------
+sum[0]  N1      VSS     Null    VSS     N1      sum[3]  Null    N1      a[0]    VSS     a[0]    N14     Null    VSS     sum[3]  sum[1]  N11     VSS     a[1]    N3      Null    VSS     N3      sum[3]  N4      VSS     b[1]    N4      
+N14     b[1]    N11     a[1]    N13     b[0]    VSS     Null    N2      b[0]    VSS     N4      sum[2]  N3      VSS     sum[0]  sum[2]  Null    sum[0]  N2      VSS     Null    VSS     N2      sum[3]  Null    Null    Null    Null    
+
+N8      N1      VDD     Null    N5      N1      sum[3]  Null    N1      a[0]    VDD     a[0]    N12     Null    sum[1]  sum[3]  N15     N11     VDD     a[1]    N3      Null    N6      N3      N7      N4      VDD     b[1]    N4      
+VDD     b[1]    N12     a[1]    N11     b[0]    N12     Null    N2      b[0]    VDD     N4      N9      N3      N10     sum[0]  sum[2]  Null    sum[0]  N2      N8      Null    N6      N2      N5      Null    Null    Null    Null    
+
+area: 28
+hpml: 228
+#inter-row signals: 12
+total density: 648
+cost: 1114
+hello print_shape
+MM17            MM16            MM1     MM32            MM36    MM35    MM5             MM14    MM13    MM7     
+MM34    MM33    MM31            MM3     MM21    MM22    MM23            MM18            MM15                    
+--
+MM20            MM9             MM2     MM30            MM37    MM38    MM6             MM11    MM12    MM8     
+MM29    MM27    MM28            MM4     MM24    MM25    MM26            MM19            MM10                    
+sum[0]  N1      VSS     ------------------------VSS     N1      sum[3]  ------------------------N1      a[0]    VSS     VSS     a[0]    N14     ------------------------VSS     sum[3]  sum[1]  sum[1]  N11     VSS     VSS     a[1]    N3      ------------------------VSS     N3      sum[3]  sum[3]  N4      VSS     VSS     b[1]    N4      
+N14     b[1]    N11     N11     a[1]    N13     N13     b[0]    VSS     ------------------------N2      b[0]    VSS     VSS     N4      sum[2]  sum[2]  N3      VSS     VSS     sum[0]  sum[2]  ------------------------sum[0]  N2      VSS     ------------------------VSS     N2      sum[3]  ------------------------------------------------
+--
+N8      N1      VDD     ------------------------N5      N1      sum[3]  ------------------------N1      a[0]    VDD     VDD     a[0]    N12     ------------------------sum[1]  sum[3]  N15     N15     N11     VDD     VDD     a[1]    N3      ------------------------N6      N3      N7      N7      N4      VDD     VDD     b[1]    N4      
+VDD     b[1]    N12     N12     a[1]    N11     N11     b[0]    N12     ------------------------N2      b[0]    VDD     VDD     N4      N9      N9      N3      N10     N10     sum[0]  sum[2]  ------------------------sum[0]  N2      N8      ------------------------N6      N2      N5      ------------------------------------------------
+sum[0]  N1      VSS     Null    VSS     N1      sum[3]  Null    N1      a[0]    VSS     a[0]    N14     Null    VSS     sum[3]  sum[1]  N11     VSS     a[1]    N3      Null    VSS     N3      sum[3]  N4      VSS     b[1]    N4      
+N14     b[1]    N11     a[1]    N13     b[0]    VSS     Null    N2      b[0]    VSS     N4      sum[2]  N3      VSS     sum[0]  sum[2]  Null    sum[0]  N2      VSS     Null    VSS     N2      sum[3]  Null    Null    Null    Null    
+
+N8      N1      VDD     Null    N5      N1      sum[3]  Null    N1      a[0]    VDD     a[0]    N12     Null    sum[1]  sum[3]  N15     N11     VDD     a[1]    N3      Null    N6      N3      N7      N4      VDD     b[1]    N4      
+VDD     b[1]    N12     a[1]    N11     b[0]    N12     Null    N2      b[0]    VDD     N4      N9      N3      N10     sum[0]  sum[2]  Null    sum[0]  N2      N8      Null    N6      N2      N5      Null    Null    Null    Null    
+
+[initial] cost: 1114
+[epoch 0]
+[final result] cost: 1072
+area: 28
+hpml: 198
+#inter-row signals: 11
+total density: 968
+cost: 1072
+hello print_shape
+MM16            MM1     MM32            MM36    MM35    MM5             MM14    MM13    MM7                     
+MM17            MM34    MM33    MM31            MM3     MM21    MM22    MM23            MM18            MM15    
+--
+MM9             MM2     MM30            MM37    MM38    MM6             MM11    MM12    MM8                     
+MM20            MM29    MM27    MM28            MM4     MM24    MM25    MM26            MM19            MM10    
+VSS     N1      sum[3]  ------------------------N1      a[0]    VSS     VSS     a[0]    N14     ------------------------VSS     sum[3]  sum[1]  sum[1]  N11     VSS     VSS     a[1]    N3      ------------------------VSS     N3      sum[3]  sum[3]  N4      VSS     VSS     b[1]    N4      ------------------------------------------------
+VSS     N1      sum[0]  ------------------------N14     b[1]    N11     N11     a[1]    N13     N13     b[0]    VSS     ------------------------N2      b[0]    VSS     VSS     N4      sum[2]  sum[2]  N3      VSS     VSS     sum[0]  sum[2]  ------------------------sum[0]  N2      VSS     ------------------------VSS     N2      sum[3]  
+--
+N5      N1      sum[3]  ------------------------N1      a[0]    VDD     VDD     a[0]    N12     ------------------------sum[1]  sum[3]  N15     N15     N11     VDD     VDD     a[1]    N3      ------------------------N6      N3      N7      N7      N4      VDD     VDD     b[1]    N4      ------------------------------------------------
+VDD     N1      N8      ------------------------VDD     b[1]    N12     N12     a[1]    N11     N11     b[0]    N12     ------------------------N2      b[0]    VDD     VDD     N4      N9      N9      N3      N10     N10     sum[0]  sum[2]  ------------------------sum[0]  N2      N8      ------------------------N6      N2      N5      
+VSS     N1      sum[3]  Null    N1      a[0]    VSS     a[0]    N14     Null    VSS     sum[3]  sum[1]  N11     VSS     a[1]    N3      Null    VSS     N3      sum[3]  N4      VSS     b[1]    N4      Null    Null    Null    Null    
+VSS     N1      sum[0]  Null    N14     b[1]    N11     a[1]    N13     b[0]    VSS     Null    N2      b[0]    VSS     N4      sum[2]  N3      VSS     sum[0]  sum[2]  Null    sum[0]  N2      VSS     Null    VSS     N2      sum[3]  
+
+N5      N1      sum[3]  Null    N1      a[0]    VDD     a[0]    N12     Null    sum[1]  sum[3]  N15     N11     VDD     a[1]    N3      Null    N6      N3      N7      N4      VDD     b[1]    N4      Null    Null    Null    Null    
+VDD     N1      N8      Null    VDD     b[1]    N12     a[1]    N11     b[0]    N12     Null    N2      b[0]    VDD     N4      N9      N3      N10     sum[0]  sum[2]  Null    sum[0]  N2      N8      Null    N6      N2      N5      
+
+[epoch 1]
+[final result] cost: 1052
+area: 28
+hpml: 177
+#inter-row signals: 11
+total density: 1093
+cost: 1052
+hello print_shape
+MM1     MM32            MM36    MM35    MM5             MM14    MM13    MM7             MM16                    
+MM17            MM34    MM33    MM31            MM3     MM21    MM22    MM23            MM18            MM15    
+--
+MM2     MM30            MM37    MM38    MM6             MM11    MM12    MM8             MM9                     
+MM20            MM29    MM27    MM28            MM4     MM24    MM25    MM26            MM19            MM10    
+N1      a[0]    VSS     VSS     a[0]    N14     ------------------------VSS     sum[3]  sum[1]  sum[1]  N11     VSS     VSS     a[1]    N3      ------------------------VSS     N3      sum[3]  sum[3]  N4      VSS     VSS     b[1]    N4      ------------------------sum[3]  N1      VSS     ------------------------------------------------
+VSS     N1      sum[0]  ------------------------N14     b[1]    N11     N11     a[1]    N13     N13     b[0]    VSS     ------------------------N2      b[0]    VSS     VSS     N4      sum[2]  sum[2]  N3      VSS     VSS     sum[0]  sum[2]  ------------------------sum[0]  N2      VSS     ------------------------VSS     N2      sum[3]  
+--
+N1      a[0]    VDD     VDD     a[0]    N12     ------------------------sum[1]  sum[3]  N15     N15     N11     VDD     VDD     a[1]    N3      ------------------------N6      N3      N7      N7      N4      VDD     VDD     b[1]    N4      ------------------------sum[3]  N1      N5      ------------------------------------------------
+VDD     N1      N8      ------------------------VDD     b[1]    N12     N12     a[1]    N11     N11     b[0]    N12     ------------------------N2      b[0]    VDD     VDD     N4      N9      N9      N3      N10     N10     sum[0]  sum[2]  ------------------------sum[0]  N2      N8      ------------------------N6      N2      N5      
+N1      a[0]    VSS     a[0]    N14     Null    VSS     sum[3]  sum[1]  N11     VSS     a[1]    N3      Null    VSS     N3      sum[3]  N4      VSS     b[1]    N4      Null    sum[3]  N1      VSS     Null    Null    Null    Null    
+VSS     N1      sum[0]  Null    N14     b[1]    N11     a[1]    N13     b[0]    VSS     Null    N2      b[0]    VSS     N4      sum[2]  N3      VSS     sum[0]  sum[2]  Null    sum[0]  N2      VSS     Null    VSS     N2      sum[3]  
+
+N1      a[0]    VDD     a[0]    N12     Null    sum[1]  sum[3]  N15     N11     VDD     a[1]    N3      Null    N6      N3      N7      N4      VDD     b[1]    N4      Null    sum[3]  N1      N5      Null    Null    Null    Null    
+VDD     N1      N8      Null    VDD     b[1]    N12     a[1]    N11     b[0]    N12     Null    N2      b[0]    VDD     N4      N9      N3      N10     sum[0]  sum[2]  Null    sum[0]  N2      N8      Null    N6      N2      N5      
+
+[epoch 2]
+[final result] cost: 1039
+area: 28
+hpml: 166
+#inter-row signals: 11
+total density: 861
+cost: 1039
+hello print_shape
+MM1     MM32            MM36    MM35    MM5             MM14    MM13    MM7             MM16                    
+MM34    MM33    MM31            MM3     MM21    MM22    MM23            MM17            MM18            MM15    
+--
+MM2     MM30            MM37    MM38    MM6             MM11    MM12    MM8             MM9                     
+MM29    MM27    MM28            MM4     MM24    MM25    MM26            MM20            MM19            MM10    
+N1      a[0]    VSS     VSS     a[0]    N14     ------------------------VSS     sum[3]  sum[1]  sum[1]  N11     VSS     VSS     a[1]    N3      ------------------------VSS     N3      sum[3]  sum[3]  N4      VSS     VSS     b[1]    N4      ------------------------sum[3]  N1      VSS     ------------------------------------------------
+N14     b[1]    N11     N11     a[1]    N13     N13     b[0]    VSS     ------------------------N2      b[0]    VSS     VSS     N4      sum[2]  sum[2]  N3      VSS     VSS     sum[0]  sum[2]  ------------------------VSS     N1      sum[0]  ------------------------sum[0]  N2      VSS     ------------------------VSS     N2      sum[3]  
+--
+N1      a[0]    VDD     VDD     a[0]    N12     ------------------------sum[1]  sum[3]  N15     N15     N11     VDD     VDD     a[1]    N3      ------------------------N6      N3      N7      N7      N4      VDD     VDD     b[1]    N4      ------------------------sum[3]  N1      N5      ------------------------------------------------
+VDD     b[1]    N12     N12     a[1]    N11     N11     b[0]    N12     ------------------------N2      b[0]    VDD     VDD     N4      N9      N9      N3      N10     N10     sum[0]  sum[2]  ------------------------VDD     N1      N8      ------------------------sum[0]  N2      N8      ------------------------N6      N2      N5      
+N1      a[0]    VSS     a[0]    N14     Null    VSS     sum[3]  sum[1]  N11     VSS     a[1]    N3      Null    VSS     N3      sum[3]  N4      VSS     b[1]    N4      Null    sum[3]  N1      VSS     Null    Null    Null    Null    
+N14     b[1]    N11     a[1]    N13     b[0]    VSS     Null    N2      b[0]    VSS     N4      sum[2]  N3      VSS     sum[0]  sum[2]  Null    VSS     N1      sum[0]  Null    sum[0]  N2      VSS     Null    VSS     N2      sum[3]  
+
+N1      a[0]    VDD     a[0]    N12     Null    sum[1]  sum[3]  N15     N11     VDD     a[1]    N3      Null    N6      N3      N7      N4      VDD     b[1]    N4      Null    sum[3]  N1      N5      Null    Null    Null    Null    
+VDD     b[1]    N12     a[1]    N11     b[0]    N12     Null    N2      b[0]    VDD     N4      N9      N3      N10     sum[0]  sum[2]  Null    VDD     N1      N8      Null    sum[0]  N2      N8      Null    N6      N2      N5      
+
+[epoch 3]
+[final result] cost: 955
+area: 26
+hpml: 160
+#inter-row signals: 9
+total density: 1004
+cost: 955
+hello print_shape
+MM1     MM32            MM36    MM35    MM5             MM15    MM14    MM13    MM7             MM16    
+MM34    MM33    MM31            MM3     MM21    MM22    MM23            MM17            MM18            
+--
+MM2     MM30            MM37    MM38    MM6             MM10    MM11    MM12    MM8             MM9     
+MM29    MM27    MM28            MM4     MM24    MM25    MM26            MM20            MM19            
+N1      a[0]    VSS     VSS     a[0]    N14     ------------------------VSS     sum[3]  sum[1]  sum[1]  N11     VSS     VSS     a[1]    N3      ------------------------sum[3]  N2      VSS     VSS     N3      sum[3]  sum[3]  N4      VSS     VSS     b[1]    N4      ------------------------sum[3]  N1      VSS     
+N14     b[1]    N11     N11     a[1]    N13     N13     b[0]    VSS     ------------------------N2      b[0]    VSS     VSS     N4      sum[2]  sum[2]  N3      VSS     VSS     sum[0]  sum[2]  ------------------------VSS     N1      sum[0]  ------------------------sum[0]  N2      VSS     ------------------------
+--
+N1      a[0]    VDD     VDD     a[0]    N12     ------------------------sum[1]  sum[3]  N15     N15     N11     VDD     VDD     a[1]    N3      ------------------------N5      N2      N6      N6      N3      N7      N7      N4      VDD     VDD     b[1]    N4      ------------------------sum[3]  N1      N5      
+VDD     b[1]    N12     N12     a[1]    N11     N11     b[0]    N12     ------------------------N2      b[0]    VDD     VDD     N4      N9      N9      N3      N10     N10     sum[0]  sum[2]  ------------------------VDD     N1      N8      ------------------------sum[0]  N2      N8      ------------------------
+N1      a[0]    VSS     a[0]    N14     Null    VSS     sum[3]  sum[1]  N11     VSS     a[1]    N3      Null    sum[3]  N2      VSS     N3      sum[3]  N4      VSS     b[1]    N4      Null    sum[3]  N1      VSS     
+N14     b[1]    N11     a[1]    N13     b[0]    VSS     Null    N2      b[0]    VSS     N4      sum[2]  N3      VSS     sum[0]  sum[2]  Null    VSS     N1      sum[0]  Null    sum[0]  N2      VSS     Null    Null    
+
+N1      a[0]    VDD     a[0]    N12     Null    sum[1]  sum[3]  N15     N11     VDD     a[1]    N3      Null    N5      N2      N6      N3      N7      N4      VDD     b[1]    N4      Null    sum[3]  N1      N5      
+VDD     b[1]    N12     a[1]    N11     b[0]    N12     Null    N2      b[0]    VDD     N4      N9      N3      N10     sum[0]  sum[2]  Null    VDD     N1      N8      Null    sum[0]  N2      N8      Null    Null    
+
+[epoch 4]
+[final result] cost: 947
+area: 26
+hpml: 154
+#inter-row signals: 9
+total density: 858
+cost: 947
+hello print_shape
+MM1     MM32            MM36    MM35    MM5             MM16            MM15    MM14    MM13    MM7     
+MM34    MM33    MM31            MM3     MM21    MM22    MM23            MM17            MM18            
+--
+MM2     MM30            MM37    MM38    MM6             MM9             MM10    MM11    MM12    MM8     
+MM29    MM27    MM28            MM4     MM24    MM25    MM26            MM20            MM19            
+N1      a[0]    VSS     VSS     a[0]    N14     ------------------------VSS     sum[3]  sum[1]  sum[1]  N11     VSS     VSS     a[1]    N3      ------------------------sum[3]  N1      VSS     ------------------------sum[3]  N2      VSS     VSS     N3      sum[3]  sum[3]  N4      VSS     VSS     b[1]    N4      
+N14     b[1]    N11     N11     a[1]    N13     N13     b[0]    VSS     ------------------------N2      b[0]    VSS     VSS     N4      sum[2]  sum[2]  N3      VSS     VSS     sum[0]  sum[2]  ------------------------VSS     N1      sum[0]  ------------------------sum[0]  N2      VSS     ------------------------
+--
+N1      a[0]    VDD     VDD     a[0]    N12     ------------------------sum[1]  sum[3]  N15     N15     N11     VDD     VDD     a[1]    N3      ------------------------sum[3]  N1      N5      ------------------------N5      N2      N6      N6      N3      N7      N7      N4      VDD     VDD     b[1]    N4      
+VDD     b[1]    N12     N12     a[1]    N11     N11     b[0]    N12     ------------------------N2      b[0]    VDD     VDD     N4      N9      N9      N3      N10     N10     sum[0]  sum[2]  ------------------------VDD     N1      N8      ------------------------sum[0]  N2      N8      ------------------------
+N1      a[0]    VSS     a[0]    N14     Null    VSS     sum[3]  sum[1]  N11     VSS     a[1]    N3      Null    sum[3]  N1      VSS     Null    sum[3]  N2      VSS     N3      sum[3]  N4      VSS     b[1]    N4      
+N14     b[1]    N11     a[1]    N13     b[0]    VSS     Null    N2      b[0]    VSS     N4      sum[2]  N3      VSS     sum[0]  sum[2]  Null    VSS     N1      sum[0]  Null    sum[0]  N2      VSS     Null    Null    
+
+N1      a[0]    VDD     a[0]    N12     Null    sum[1]  sum[3]  N15     N11     VDD     a[1]    N3      Null    sum[3]  N1      N5      Null    N5      N2      N6      N3      N7      N4      VDD     b[1]    N4      
+VDD     b[1]    N12     a[1]    N11     b[0]    N12     Null    N2      b[0]    VDD     N4      N9      N3      N10     sum[0]  sum[2]  Null    VDD     N1      N8      Null    sum[0]  N2      N8      Null    Null    
+
+[epoch 5]
+[final result] cost: 931
+area: 26
+hpml: 150
+#inter-row signals: 8
+total density: 1129
+cost: 931
+hello print_shape
+MM1     MM32            MM36    MM35    MM5             MM16            MM15    MM14    MM13            
+MM34    MM33    MM31            MM3     MM21    MM22    MM23            MM7     MM17            MM18    
+--
+MM2     MM30            MM37    MM38    MM6             MM9             MM10    MM11    MM12            
+MM29    MM27    MM28            MM4     MM24    MM25    MM26            MM8     MM20            MM19    
+N1      a[0]    VSS     VSS     a[0]    N14     ------------------------VSS     sum[3]  sum[1]  sum[1]  N11     VSS     VSS     a[1]    N3      ------------------------sum[3]  N1      VSS     ------------------------sum[3]  N2      VSS     VSS     N3      sum[3]  sum[3]  N4      VSS     ------------------------
+N14     b[1]    N11     N11     a[1]    N13     N13     b[0]    VSS     ------------------------N2      b[0]    VSS     VSS     N4      sum[2]  sum[2]  N3      VSS     VSS     sum[0]  sum[2]  ------------------------N4      b[1]    VSS     VSS     N1      sum[0]  ------------------------sum[0]  N2      VSS     
+--
+N1      a[0]    VDD     VDD     a[0]    N12     ------------------------sum[1]  sum[3]  N15     N15     N11     VDD     VDD     a[1]    N3      ------------------------sum[3]  N1      N5      ------------------------N5      N2      N6      N6      N3      N7      N7      N4      VDD     ------------------------
+VDD     b[1]    N12     N12     a[1]    N11     N11     b[0]    N12     ------------------------N2      b[0]    VDD     VDD     N4      N9      N9      N3      N10     N10     sum[0]  sum[2]  ------------------------N4      b[1]    VDD     VDD     N1      N8      ------------------------sum[0]  N2      N8      
+N1      a[0]    VSS     a[0]    N14     Null    VSS     sum[3]  sum[1]  N11     VSS     a[1]    N3      Null    sum[3]  N1      VSS     Null    sum[3]  N2      VSS     N3      sum[3]  N4      VSS     Null    Null    
+N14     b[1]    N11     a[1]    N13     b[0]    VSS     Null    N2      b[0]    VSS     N4      sum[2]  N3      VSS     sum[0]  sum[2]  Null    N4      b[1]    VSS     N1      sum[0]  Null    sum[0]  N2      VSS     
+
+N1      a[0]    VDD     a[0]    N12     Null    sum[1]  sum[3]  N15     N11     VDD     a[1]    N3      Null    sum[3]  N1      N5      Null    N5      N2      N6      N3      N7      N4      VDD     Null    Null    
+VDD     b[1]    N12     a[1]    N11     b[0]    N12     Null    N2      b[0]    VDD     N4      N9      N3      N10     sum[0]  sum[2]  Null    N4      b[1]    VDD     N1      N8      Null    sum[0]  N2      N8      
+
+[epoch 6]
+hello calculate_available_track_case
+layout_width * 2 + 1: 27
+115130413151101140314131500
+213131401151314110115130114
+before sat
+UNSAT
+[congestion]
+6 8 8 11 10 10 6 10 10 8 6 7 8 8 7 9 6 8 8 10 8 11 11 9 4 3 2 
+6 10 10 13 11 11 6 8 8 7 6 8 10 10 8 9 6 7 7 8 7 10 10 9 5 6 4 
+expand 1 3
+col: 1
+hello calculate_available_track_case
+layout_width * 2 + 1: 29
+11513041315110114031413150000
+21303131401151314110115130114
+hello calculate_available_track_case
+layout_width * 2 + 1: 29
+11513041315110114031413150000
+21303131401151314110115130114
+before sat
+SAT
+[via]
+0 0 0 0 1 0 0 1 0 0 0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 0 0 
+0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 
+1 0 0 0 1 0 0 0 1 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 
+0 1 0 1 0 0 1 0 0 1 0 0 1 0 0 0 1 0 1 0 0 1 0 0 0 0 0 0 0 
+0 0 1 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 1 
+0 1 0 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 1 0 0 0 0 0 1 0 
+1 0 0 0 0 0 0 1 0 0 0 1 0 1 0 0 0 1 0 0 1 0 0 0 1 0 1 0 0 
+0 0 1 0 1 0 1 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 1 0 0 0 0 0 
+[metal]
+ -1  -1  -1   2   2  -1  22  22  -1  -1  -1  -1  -1  -1  22  22  -1  22  22  -1  -1  22  22  -1  -1  -1  -1  -1  -1 
+  5   5  -1   5   5  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  19  19  -1  -1  -1  -1 
+ 24  24  -1   6   6  -1  -1  -1  20  20  -1   7   7  -1  24  24  -1  -1  -1  23  23  -1  -1  -1  -1  -1  -1  -1  -1 
+ -1  -1  -1  -1  -1  20  20  -1   4   4  -1  15  15  -1  -1  -1   8   8   8  -1  -1  15  15  -1  -1  -1  -1  -1  -1 
+ -1  -1   2   2   2  -1  -1  -1   2   2  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  17  17  -1  17  17 
+ 16  16  -1  -1  -1   7   7  -1  -1  -1  23  23  -1   9   9  -1  -1   9   9  -1  16  16  -1  -1  -1  -1  -1  23  23 
+  6   6  -1  -1  -1  -1  -1  13  13  -1  13  13  -1  19  19  -1  -1  18  18  -1  19  19  -1  -1  18  18  18  -1  -1 
+ -1  -1   4   4   4   4   4  -1  -1  -1  -1  -1  -1  -1  -1  15  15  -1  -1  -1  -1  -1  24  24  -1  -1  -1  -1  -1 
+[metal density]
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[satisfy via metal]
+00011011000000110110011000000
+11011000000000000000000110000
+11011000110110110001100000000
+00000110110110001110011000000
+00111000110000000000000011011
+11000110001101100110110000011
+11000001101101100110110011100
+00111110000000011000001100000
+total_via_vertical_diff: 1
+total density: 0
+finish satisfy via rule
+hello print_shape
+MM1     MM32            MM36    MM35    MM5             MM16            MM15    MM14    MM13                    
+MM34            MM33    MM31            MM3     MM21    MM22    MM23            MM7     MM17            MM18    
+--
+MM2     MM30            MM37    MM38    MM6             MM9             MM10    MM11    MM12                    
+MM29            MM27    MM28            MM4     MM24    MM25    MM26            MM8     MM20            MM19    
+N1      a[0]    VSS     VSS     a[0]    N14     ------------------------VSS     sum[3]  sum[1]  sum[1]  N11     VSS     VSS     a[1]    N3      ------------------------sum[3]  N1      VSS     ------------------------sum[3]  N2      VSS     VSS     N3      sum[3]  sum[3]  N4      VSS     ------------------------------------------------
+N14     b[1]    N11     ------------------------N11     a[1]    N13     N13     b[0]    VSS     ------------------------N2      b[0]    VSS     VSS     N4      sum[2]  sum[2]  N3      VSS     VSS     sum[0]  sum[2]  ------------------------N4      b[1]    VSS     VSS     N1      sum[0]  ------------------------sum[0]  N2      VSS     
+--
+N1      a[0]    VDD     VDD     a[0]    N12     ------------------------sum[1]  sum[3]  N15     N15     N11     VDD     VDD     a[1]    N3      ------------------------sum[3]  N1      N5      ------------------------N5      N2      N6      N6      N3      N7      N7      N4      VDD     ------------------------------------------------
+VDD     b[1]    N12     ------------------------N12     a[1]    N11     N11     b[0]    N12     ------------------------N2      b[0]    VDD     VDD     N4      N9      N9      N3      N10     N10     sum[0]  sum[2]  ------------------------N4      b[1]    VDD     VDD     N1      N8      ------------------------sum[0]  N2      N8      
+N1      a[0]    VSS     a[0]    N14     Null    VSS     sum[3]  sum[1]  N11     VSS     a[1]    N3      Null    sum[3]  N1      VSS     Null    sum[3]  N2      VSS     N3      sum[3]  N4      VSS     Null    Null    Null    Null    
+N14     b[1]    N11     Null    N11     a[1]    N13     b[0]    VSS     Null    N2      b[0]    VSS     N4      sum[2]  N3      VSS     sum[0]  sum[2]  Null    N4      b[1]    VSS     N1      sum[0]  Null    sum[0]  N2      VSS     
+
+N1      a[0]    VDD     a[0]    N12     Null    sum[1]  sum[3]  N15     N11     VDD     a[1]    N3      Null    sum[3]  N1      N5      Null    N5      N2      N6      N3      N7      N4      VDD     Null    Null    Null    Null    
+VDD     b[1]    N12     Null    N12     a[1]    N11     b[0]    N12     Null    N2      b[0]    VDD     N4      N9      N3      N10     sum[0]  sum[2]  Null    N4      b[1]    VDD     N1      N8      Null    sum[0]  N2      N8      
+
+成功建立檔案：results/MUL2.plmt
+max_cols: 14
+Generated results/MUL2.plmt
+Time taken : 223.799 seconds

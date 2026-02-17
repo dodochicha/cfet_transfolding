@@ -62,9 +62,11 @@ void new_tr_pairing() {
 
     // find all primary output node
     // std::cout << "find all primary output node" << std::endl;
+    std::cout << "nets: " << std::endl;
     std::vector<Signal*> nets;
     for (auto pair : signals) {
         if (pair.first != "VDD" && pair.first != "VSS") {
+            std::cout << pair.second->name << std::endl;
             nets.push_back(pair.second);
         }
     }
@@ -92,7 +94,6 @@ void new_tr_pairing() {
             }
         }
         if (pmos_share_net && nmos_share_net) {
-            // std::cout << net->name << std::endl;
             compound_gates.push_back(group);
         }
     }
@@ -112,14 +113,12 @@ void new_tr_pairing() {
         }
     }
     // pair for each group
-    // std::cout << std::endl;
     std::vector<Transistor*> _pmos;
     std::vector<Transistor*> _nmos;
     _pmos = pmos;
     _nmos = nmos;
     for (auto group : compound_gates) {
         // find p-network and n-network
-        // std::cout << "find p-network and n-network" << std::endl;
         std::vector<Transistor*> p_network;
         std::vector<Transistor*> n_network;
         std::unordered_map<Transistor*, bool> mos_visited_in_group;
@@ -189,9 +188,24 @@ void new_tr_pairing() {
     }
     // print pairs
     std::cout << "pairs: " << std::endl;
+    std::unordered_map<std::string, int> num_mm;
     for (auto pair : tr_pairs) {
         std::cout << pair.first->name << " " << pair.second->name << std::endl;
+        num_mm[pair.first->name]++;
+        num_mm[pair.second->name]++;
     }
+
+    std::vector<Transistor*> remaining_pmos;
+    std::vector<Transistor*> remaining_nmos;
+    for (int i = 0; i < pmos.size(); i++) {
+        if (num_mm[pmos[i]->name] == 0) {
+            remaining_pmos.push_back(pmos[i]);
+        }
+        if (num_mm[nmos[i]->name] == 0) {
+            remaining_nmos.push_back(nmos[i]);
+        }
+    }
+    stable_matching(remaining_pmos, remaining_nmos);
 }
 
 void custom_pairing() {

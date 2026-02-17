@@ -187,6 +187,7 @@ void parse_input(std::string file) {
                 break;
             } else if (sig == tr->gate) {
                 inputs.insert(sig);
+                break;
             }
         }
     }

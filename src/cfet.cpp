@@ -523,11 +523,10 @@ Pshape *placement_merging(std::vector<Pshape *> pshape_vec) {
 
     // 想固定 4x2 就打開下面兩行（N 必須為 8）; 否則預設 1 欄直排
     int rows = N, cols = 1;
-    if (N == 8) {
+    if (N > 4) {
         rows = 4;
-        cols = 2;
+        cols = N / rows;
     }
-
     // 狀態
     std::vector<int> pos2comp(N, -1);       // 位置 -> 元件 id
     std::vector<bool> flipAtPos(N, false);  // 位置 -> flip 狀態
@@ -537,6 +536,8 @@ Pshape *placement_merging(std::vector<Pshape *> pshape_vec) {
 
     // 位置索引 -> (r,c)
     auto pos_rc = [&](int idx) -> std::pair<int, int> { return std::make_pair(idx / cols, idx % cols); };
+    // 對稱性：comp 0 不翻轉且僅能放在上半任一位置。上半定義：row < rows/2
+    auto is_upper_half = [&](int idx) -> bool { return (idx / cols) < (rows / 2); };
 
     auto score_partial = [&](int placed) -> int {
         if (placed <= 0) return 0;
@@ -576,6 +577,9 @@ Pshape *placement_merging(std::vector<Pshape *> pshape_vec) {
             }
         }
         int hpml = mg_pshape->calculate_hpml();
+        // if (!mg_pshape->satisfy_via_rule(false)) {
+        //     hpml = INT_MAX;
+        // }
         // mg_pshape->print_pshape();
         delete mg_pshape;
         return hpml;
@@ -607,19 +611,11 @@ Pshape *placement_merging(std::vector<Pshape *> pshape_vec) {
         // 下界剪枝
         if (score_partial(posIdx) >= bestScore) return;
 
-        // 對稱性消除（建議保留）：固定第一格放 comp 0 且不翻轉
-        if (posIdx == 0) {
-            int comp = 0;
-            pos2comp[posIdx] = comp;
-            flipAtPos[posIdx] = false;
-            self(self, posIdx + 1, usedMask | (1ull << comp));
-            pos2comp[posIdx] = -1;
-            return;
-        }
-
-        // 枚舉所有未使用元件 + 該位置的 flip / not flip
+        // 枚舉所有未使用元件 + 該位置的 flip / not flip（對稱性：comp 0 僅能放在上半、不翻轉）
         for (int comp = 0; comp < N; ++comp) {
             if (usedMask & (1ull << comp)) continue;
+            // comp 0 僅能放在上半
+            if (!is_upper_half(posIdx) && comp == 0) continue;
 
             pos2comp[posIdx] = comp;
 
@@ -627,9 +623,11 @@ Pshape *placement_merging(std::vector<Pshape *> pshape_vec) {
             flipAtPos[posIdx] = false;
             if (score_partial(posIdx + 1) < bestScore) self(self, posIdx + 1, usedMask | (1ull << comp));
 
-            // flip
-            flipAtPos[posIdx] = true;
-            if (score_partial(posIdx + 1) < bestScore) self(self, posIdx + 1, usedMask | (1ull << comp));
+            // flip（comp 0 固定不翻轉，不嘗試 flip 分支）
+            if (comp != 0) {
+                flipAtPos[posIdx] = true;
+                if (score_partial(posIdx + 1) < bestScore) self(self, posIdx + 1, usedMask | (1ull << comp));
+            }
 
             pos2comp[posIdx] = -1;  // 回溯
         }
@@ -723,6 +721,6 @@ int diffusion_break_constraint = 1;
 int max_placement_size = 16384;
 int max_allowable_cell_height = 1;
 int num_nodes_parsed_to_gpu = 10000;
-float expected_row_num = 1;
+int expected_row_num = 1;
 float relaxation_parameter = 0;
 float aspect_ratio = 12;

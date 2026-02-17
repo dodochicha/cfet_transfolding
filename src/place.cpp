@@ -502,14 +502,17 @@ Pshape *placement() {
         expected_row_num = 2;
     } else if (total_finger < 37) {
         expected_row_num = 3;
-    } else if (total_finger < 91) {
+    } else if (total_finger < 89) {
         expected_row_num = 4;
     } else {
         expected_row_num = 8;
     }
+    // expected_row_num = 1;
     std::cout << "expected #row: " << expected_row_num << std::endl;
 
+    std::cout << "outputs.size(): " << outputs.size() << std::endl;
     for (Signal *output : outputs) {
+        std::cout << output->name << std::endl;
         for (Transistor *tr : pmos) {
             if (tr->drain == output || tr->source == output) {
                 inout_pmos.insert(tr);
@@ -518,7 +521,9 @@ Pshape *placement() {
             }
         }
     }
+    std::cout << "inputs.size(): " << inputs.size() << std::endl;
     for (Signal *input : inputs) {
+        std::cout << input->name << std::endl;
         for (Transistor *tr : pmos) {
             if (tr->gate == input) {
                 inout_pmos.insert(tr);
@@ -545,7 +550,11 @@ Pshape *placement() {
     }
     leader_cands.insert(leader_cands.end(), other_cands.begin(), other_cands.end());
     for (int i = 0; i < expected_row_num; i++) {
-        Transistor *tr_o = leader_cands[i];
+        Transistor *tr_o;
+        if (i < leader_cands.size())
+            tr_o = leader_cands[i];
+        else
+            tr_o = ungrouped_pmos[0];
         Group *gp = new Group();
         gp->trs.push_back(tr_o);
         gp->width = std::max(tr_o->num_finger, tr_pairs[tr_o]->num_finger);
