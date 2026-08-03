@@ -1178,36 +1178,7 @@ void Pshape::generate_multirow_plmt() {
             int shape = multirow_tr_shape_down[r][c];
             // spacing
             if (tr == nullptr) {
-                if (c > 0 && c + 1 < max_cols) {
-                    auto *pre = multirow_tr_permutation_down[r][c - 1];
-                    auto *post = multirow_tr_permutation_down[r][c + 1];
-                    std::string left;
-                    std::string right;
-                    if (pre) {
-                        left = (multirow_tr_shape_down[r][c - 1] == 0 ? pre->source->name : pre->drain->name);
-                    } else {
-                        left = " VDD";
-                    }
-                    if (post) {
-                        right = (multirow_tr_shape_down[r][c + 1] == 0 ? post->drain->name : post->source->name);
-                    } else {
-                        right = "VDD ";
-                    }
-                    ofs << " " << left << " <VDD> " << right << " ";
-                } else if (c == 0) {
-                    ofs << " VDD <VDD> VDD ";
-                } else {
-                    auto *pre = multirow_tr_permutation_down[r][c - 1];
-                    std::string left;
-                    std::string right;
-                    if (pre) {
-                        left = (multirow_tr_shape_down[r][c - 1] == 0 ? pre->source->name : pre->drain->name);
-                    } else {
-                        left = " VDD";
-                    }
-                    right = "VDD ";
-                    ofs << " " << left << " <VDD> " << right << " ";
-                }
+                ofs << " Null Null Null ";
             } else if (shape == 0) {
                 ofs << " " << tr->drain->name << " <" << tr->gate->name << "> " << tr->source->name << " ";
             } else if (shape == 1) {
@@ -1227,36 +1198,7 @@ void Pshape::generate_multirow_plmt() {
             int shape = multirow_tr_shape_up[r][c];
             // spacing
             if (tr == nullptr) {
-                if (c > 0 && c + 1 < max_cols) {
-                    auto *pre = multirow_tr_permutation_up[r][c - 1];
-                    auto *post = multirow_tr_permutation_up[r][c + 1];
-                    std::string left;
-                    std::string right;
-                    if (pre) {
-                        left = (multirow_tr_shape_up[r][c - 1] == 0 ? pre->source->name : pre->drain->name);
-                    } else {
-                        left = " VSS";
-                    }
-                    if (post) {
-                        right = (multirow_tr_shape_up[r][c + 1] == 0 ? post->drain->name : post->source->name);
-                    } else {
-                        right = "VSS ";
-                    }
-                    ofs << " " << left << " <VSS> " << right << " ";
-                } else if (c == 0) {
-                    ofs << " VSS <VSS> VSS ";
-                } else {
-                    auto *pre = multirow_tr_permutation_up[r][c - 1];
-                    std::string left;
-                    std::string right;
-                    if (pre) {
-                        left = (multirow_tr_shape_up[r][c - 1] == 0 ? pre->source->name : pre->drain->name);
-                    } else {
-                        left = " VSS";
-                    }
-                    right = "VSS ";
-                    ofs << " " << left << " <VSS> " << right << " ";
-                }
+                ofs << " Null Null Null ";
             } else if (shape == 0) {
                 ofs << " " << tr->drain->name << " <" << tr->gate->name << "> " << tr->source->name << " ";
             } else if (shape == 1) {

@@ -27,3 +27,8 @@ make clean
 ```
 
 輸出會寫入 `results/<cell_name>.plmt`（`cell_name` 由輸入檔名推得，例如 `MBFF4x2.txt` → `results/MBFF4x2.plmt`）。
+
+## 視覺化
+```bash
+python3 visualization.py results/MBFF4x2.plmt
+```
