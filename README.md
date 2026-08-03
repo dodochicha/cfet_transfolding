@@ -32,3 +32,5 @@ make clean
 ```bash
 python3 visualization.py results/MBFF4x2.plmt
 ```
+
+![MBFF4x2 Full Layout](MBFF4x2_full_layout.png)
